@@ -80,14 +80,15 @@ $theme-colors: () !default;
 $theme-colors: map-merge(
   (
     "primary":    rgb(92,135,167),//$primary,
-    "secondary":  $secondary,
+    "secondary":  rgb(65,65,65),//$secondary,
     "success":    $success,
     "info":       $info,
     "warning":    $warning,
-    "danger":     $danger,
+    "danger":     rgb(226,81,84),//$danger,
     "light":      $light,
     "dark":       $dark,
-    'fb':         #3667bc
+    'fb':         #3667bc,
+    'gray':       rgb(193,191,194)
   ),
   $theme-colors
 );
@@ -146,7 +147,8 @@ $spacers: map-merge(
     3: $spacer,
     4: ($spacer * 1.5),
     5: ($spacer * 3),
-    30: 30px,
+    8: ($spacer * 5),
+    30: 32px,
   ),
   $spacers
 );

@@ -1,9 +1,10 @@
 <template lang="pug">
+.home
   .container-fluid
     .row.px-0.campaign.py-4.bg-primary
       p.text-center.mb-0.w-100 全商品8折優惠 / 20% OFF．滿499免運費
     .row.justify-content-center
-      .col-sm-8
+      .col-sm-10
         nav.navbar.navbar-expand-lg.navbar-light.bg-white.d-flex.py-3
           a.navbar-brand.d-block.mr-0(href='#')
             img(src="../assets/img/logo.png")
@@ -12,11 +13,21 @@
             <i class="fas fa-bars" style="color:rgb(92,135,167); font-size:16px;"></i>
           #navbarNav.collapse.navbar-collapse
             ul.navbar-nav.w-100
-              li.nav-item.pl-lg-5
+              li.nav-item.px-lg-5
                 a.nav-link.font-weight-bold.text-center(href='#') 首頁
-              li.nav-item.pl-lg-5
-                a.nav-link.font-weight-bold.text-center(href='#') 所有產品
-              li.nav-item.pl-lg-5
+              li.nav-item.dropdown.pr-lg-5
+                a.nav-link.font-weight-bold.text-center(href='#' data-toggle="dropdown") 所有產品
+                .dropdown-menu.py-0(aria-labelledby='navbarDropdown')
+                  a.dropdown-item.py-3.photoBook.font-weight-bold.text-center(href='#' @mouseover="showDetail" @mouseout="hideDetail") 相片書
+                    .dropdownDetail.d-none
+                      a.nav-link.w-100.px-4.py-3(href='#') 精裝相片書
+                      .dropdown-divider.my-0
+                      a.nav-link.w-100.px-4.py-3(href='#') 平裝相片書
+                  .dropdown-divider.my-0
+                  a.dropdown-item.py-3.font-weight-bold.text-center(href='#') 卡片類
+                  .dropdown-divider.my-0
+                  a.dropdown-item.py-3.font-weight-bold.text-center(href='#') 筆記本
+              li.nav-item.pr-lg-5
                 a.nav-link.font-weight-bold.text-center(href='#') 幫助中心
               li.nav-item.boder-sm-left.ml-lg-auto
                 a.nav-link.font-weight-bold.text-center(href='#') <span class="text-primary bar">|</span> 註冊
@@ -24,8 +35,64 @@
                 a.nav-link.font-weight-bold.text-center(href='#' data-toggle="modal" data-target="#exampleModal") <span class="text-primary">|</span> <i class="fas fa-user-circle mr-2 text-primary"></i>登入
     .row.px-0
       .col-sm-12.px-0
-        img.w-100.firstBanner(src="https://fakeimg.pl/950x700/282828/")
-
+        img.w-100.firstBanner.img-fluid(src="https://picsum.photos/950/700")
+    .row.letPhotoForever
+      .col-sm-12.px-0.text-center
+        h2.font-weight-bold.mb-0.text-secondary 一個理由，讓照片永存
+  .container.mb-sm-8
+    .row
+      .col-md-4.text-center
+        .card()
+          .imgBox
+            img.card-img-top(src='https://picsum.photos/360/360' alt='test')
+          .card-body
+            h5.card-title.font-weight-bold.text-secondary 相片書
+            p.card-text.text-center.font-weight-bold.text-secondary Photo Book
+      .col-md-4.text-center
+        .card()
+          .imgBox
+            img.card-img-top(src='https://picsum.photos/360/360' alt='test')
+          .card-body
+            h5.card-title.font-weight-bold.text-secondary 明信片
+            p.card-text.text-cneter.font-weight-bold.text-secondary Post Card
+      .col-md-4.text-center
+        .card()
+          .imgBox
+            img.card-img-top(src='https://picsum.photos/360/360' alt='test')
+          .card-body
+            h5.card-title.font-weight-bold.text-secondary 筆記本
+            p.card-text.text-center.font-weight-bold.text-secondary Note Book
+  .container-fluid.bg-gray.secondBannerBox(style="position:relative;")
+    .row
+      .col-md-6.px-0.secondBanner
+        //- img.w-100.h-100.img-fluid(src="https://fakeimg.pl/950x600/282828/?text=Hello")
+      .container-fluid
+        .row.justify-content-end
+          .col-md-6.px-0
+            .px-0.secondBannerDes.pt-8.px-4
+              p.mb-0.title 只需簡單的步驟，
+              p.mb-30.title 完成您不簡單的作品
+              .glasses
+                div.text-dark.d-flex.align-items-center
+                  p.border.border-dark.num.mb-0.d-flex.justify-content-center.align-items-center.font-weight-bold 1
+                  p.mb-0.step.font-weight-bold 選擇產品
+                div.stepDes.text-white
+                  p.text-white 我們提供多樣的客製化商品，您的回憶值得更有溫度的保存。
+                div.text-dark.d-flex.align-items-center
+                  p.border.border-dark.num.mb-0.d-flex.justify-content-center.align-items-center.font-weight-bold 2
+                  p.mb-0.step.font-weight-bold 上傳照片
+                div.stepDes.text-white
+                  p.text-white 您的回憶有比電腦硬碟更好的去處，交給我們，讓它成為您生活的一部分。
+                div.text-dark.d-flex.align-items-center
+                  p.border.border-dark.num.mb-0.d-flex.justify-content-center.align-items-center.font-weight-bold 3
+                  p.mb-0.step.font-weight-bold 編輯完成
+                div.stepDes.text-white
+                  p.text-white 我們的編輯器提供您完美、自由的操作體驗，只有您才能決定您生活的風格。
+                .d-flex
+                  button.btn.btn-danger.font-weight-bold 馬上體驗 <i class="fas fa-chevron-right ml-5"></i>
+  .container-fluid
+    .row.aChance
+      h2.text-center.font-weight-bold.w-100 一個機會，讓生活獨特
     //- modal
     #exampleModal.modal.fade(tabindex='-1' role='dialog' aria-labelledby='exampleModalLabel' aria-hidden='true')
       .modal-dialog(role='document')
@@ -35,10 +102,11 @@
             button.close(type='button' data-dismiss='modal' aria-label='Close')
               span(aria-hidden='true') &times;
           .modal-body.px-0
-            input(type="text").form-control
+            input(type="text").form-control.fz14
             .form-group.mb-0
-              input(type="password").form-control.my-3
-              span.fz14.showPassword 顯示
+              input(:type="showPassword").form-control.my-3.fz14
+              span.fz14.showPassword(v-if="showPassword === 'password'" @click="showPassword = 'text'") 顯示
+              span.fz14.showPassword(v-if="showPassword === 'text'" @click="showPassword = 'password'") 隱藏
             .d-flex.justify-content-end
               a(href="#").fz14.text-secondary 忘記密碼?
           .modal-footer.flex-column.px-0.py-0.border-top-0
@@ -51,18 +119,40 @@
 <script>
 export default {
   data () {
-    return {}
+    return {
+      showPassword: 'password'
+    }
+  },
+  methods: {
+    showDetail () {
+      let dropdownDetail = document.querySelector('.dropdownDetail')
+      dropdownDetail.classList.remove('d-none')
+    },
+    hideDetail () {
+      let dropdownDetail = document.querySelector('.dropdownDetail')
+      dropdownDetail.classList.add('d-none')
+    }
   }
 }
 </script>
 
 <style lang="scss">
+$s14: 14px;
+$s20: 20px;
 .fz14{
-  font-size:14px;
+  font-size:$s14;
 }
 .campaign{
   color:rgb(235,255,255);
   font-size: 24px;
+}
+@media(max-width:414px){
+  .campaign{
+    font-size:16px;
+  }
+  .logo{
+    margin-left: 0;
+  }
 }
 // hamburger style
 .navbar-light .navbar-toggler {
@@ -78,6 +168,138 @@ export default {
       color:rgb(92,135,167);
     }
   }
+}
+.photoBook{
+  position: relative;
+  .dropdownDetail{
+    position: absolute;
+    top:16px;
+    left:158px;
+    background:white;
+    color:#212529;
+    border:1px solid #d9d9d9;
+    // display:none;
+    width: 100%;
+  }
+}
+@media(max-width:992px){
+  .photoBook .dropdownDetail{
+    position: relative;
+    background:white;
+    color:#212529;
+    border:1px solid #d9d9d9;
+    // display:none;
+    top:0px;
+    left:0px;
+    width: 100%;
+  }
+}
+.photoBook{
+  &:hover{
+    .dropdownDetail{
+      display: block;
+    }
+  }
+}
+// first banner
+.firstBanner{
+  height: 700px;
+}
+// 讓照片永存
+.imgBox{
+  overflow: hidden;
+  img{
+    transform:scale(1,1);
+    transition: all 1s ease-out;
+    &:hover{
+      transform:scale(1.2,1.2);
+    }
+  }
+}
+.letPhotoForever{
+  padding-top: 90px;
+  padding-bottom: 40px;
+}
+@media(max-width:540px){
+  .card{
+    margin-top: 16px;
+  }
+}
+// second banner
+.secondBanner{
+  height: 600px;
+  background-image: url("https://picsum.photos/950/600");
+  background-size:cover;
+  background-position: center center;
+  position: absolute;
+  top: 0;
+  bottom: 0;
+}
+@media(max-width:540px){
+  .secondBannerBox{
+    margin-top: 16px;
+  }
+}
+.secondBannerDes{
+  // background: rgba(193,191,194,.4);
+  height: 600px;
+  .title{
+    font-size: 30px;
+    color:rgb(255,253,254)
+  }
+  .num{
+    width: $s20;
+    height: $s20;
+    border-radius: 50%;
+    display: block;
+    font-size: 18px;
+    line-height: 18px;
+    margin-right: 16px;
+  }
+  .step{
+    font-size: $s20;
+  }
+  .stepDes{
+    margin-left: 36px;
+  }
+  .btn{
+    border-radius: 2px;
+    width: 250px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+}
+@media(max-width:720px){
+  .secondBannerDes{
+    .title{
+      text-align: center;
+    }
+    .glasses{
+      background: hsla(0,0%,100%,.5);
+      position: relative;
+      overflow: hidden;
+      z-index: 1;
+    }
+    .glasses::before {
+      content: '';
+      position: absolute;
+      top:0; right:0; bottom:0; left:0;
+      filter: blur(50px);
+      z-index: -1;
+      background: rgba(87, 84, 84, 0.5);
+      // margin: -30px;
+    }
+    .btn{
+      width: 100%;
+      border:0px;
+    }
+  }
+}
+// 一個機會
+.aChance{
+  padding-top: 90px;
+  padding-bottom: 40px;
 }
 // modal
 .modal-dialog{
@@ -99,18 +321,9 @@ export default {
 .showPassword{
   position:relative;
   float:right;
-}
-// first banner
-.firstBanner{
-  height: 700px;
-}
-
-@media(max-width:414px){
-  .campaign{
-    font-size:16px;
-  }
-  .logo{
-    margin-left: 0;
-  }
+  z-index: 2;
+  margin-top: -43px;
+  margin-right: 16px;
+  cursor: pointer;
 }
 </style>
