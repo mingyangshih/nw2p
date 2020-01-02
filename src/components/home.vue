@@ -18,8 +18,8 @@
               li.nav-item.dropdown.pr-lg-5
                 a.nav-link.font-weight-bold.text-center(href='#' data-toggle="dropdown") 所有產品
                 .dropdown-menu.py-0(aria-labelledby='navbarDropdown')
-                  a.dropdown-item.py-3.photoBook.font-weight-bold.text-center(href='#' @mouseover="showDetail" @mouseout="hideDetail") 相片書
-                    .dropdownDetail.d-none
+                  a.dropdown-item.py-3.photoBook.font-weight-bold.text-center(href='#') 相片書
+                    .dropdownDetail
                       a.nav-link.w-100.px-4.py-3(href='#') 精裝相片書
                       .dropdown-divider.my-0
                       a.nav-link.w-100.px-4.py-3(href='#') 平裝相片書
@@ -44,21 +44,21 @@
       .col-md-4.text-center
         .card()
           .imgBox
-            img.card-img-top(src='https://picsum.photos/360/360' alt='test')
+            img.card-img-top(src='https://picsum.photos/360/360?random=1' alt='test')
           .card-body
             h5.card-title.font-weight-bold.text-secondary 相片書
             p.card-text.text-center.font-weight-bold.text-secondary Photo Book
       .col-md-4.text-center
         .card()
           .imgBox
-            img.card-img-top(src='https://picsum.photos/360/360' alt='test')
+            img.card-img-top(src='https://picsum.photos/360/360?random=2' alt='test')
           .card-body
             h5.card-title.font-weight-bold.text-secondary 明信片
             p.card-text.text-cneter.font-weight-bold.text-secondary Post Card
       .col-md-4.text-center
         .card()
           .imgBox
-            img.card-img-top(src='https://picsum.photos/360/360' alt='test')
+            img.card-img-top(src='https://picsum.photos/360/360?random=3' alt='test')
           .card-body
             h5.card-title.font-weight-bold.text-secondary 筆記本
             p.card-text.text-center.font-weight-bold.text-secondary Note Book
@@ -69,7 +69,7 @@
       .container-fluid
         .row.justify-content-end
           .col-md-6.px-0
-            .px-0.secondBannerDes.pt-8.px-4
+            .secondBannerDes.pt-md-8.px-md-4
               p.mb-0.title 只需簡單的步驟，
               p.mb-30.title 完成您不簡單的作品
               .glasses
@@ -77,22 +77,47 @@
                   p.border.border-dark.num.mb-0.d-flex.justify-content-center.align-items-center.font-weight-bold 1
                   p.mb-0.step.font-weight-bold 選擇產品
                 div.stepDes.text-white
-                  p.text-white 我們提供多樣的客製化商品，您的回憶值得更有溫度的保存。
+                  p.text-white.stepDesContent 我們提供多樣的客製化商品，您的回憶值得更有溫度的保存。
                 div.text-dark.d-flex.align-items-center
                   p.border.border-dark.num.mb-0.d-flex.justify-content-center.align-items-center.font-weight-bold 2
                   p.mb-0.step.font-weight-bold 上傳照片
-                div.stepDes.text-white
+                div.stepDes.text-white.stepDesContent
                   p.text-white 您的回憶有比電腦硬碟更好的去處，交給我們，讓它成為您生活的一部分。
                 div.text-dark.d-flex.align-items-center
                   p.border.border-dark.num.mb-0.d-flex.justify-content-center.align-items-center.font-weight-bold 3
                   p.mb-0.step.font-weight-bold 編輯完成
-                div.stepDes.text-white
+                div.stepDes.text-white.stepDesContent
                   p.text-white 我們的編輯器提供您完美、自由的操作體驗，只有您才能決定您生活的風格。
                 .d-flex
-                  button.btn.btn-danger.font-weight-bold 馬上體驗 <i class="fas fa-chevron-right ml-5"></i>
+                  button.btn.btn-danger.font-weight-bold.btnInPage 馬上體驗 <i class="fas fa-chevron-right ml-5"></i>
   .container-fluid
     .row.aChance
       h2.text-center.font-weight-bold.w-100 一個機會，讓生活獨特
+  .container-fluid(style="position:relative;")
+    .row
+      .col-md-8.warmPhotoBook.pr-0
+      .container-fluid
+        .row.justify-content-end.align-items-center
+          .col-md-4.px-0
+            .warmPhotoBookDes
+              p.title 更有溫度的相片書
+              .glasses
+                p 還在用社群軟體分享照片嗎?
+                p 您還有其他的選擇
+                .d-flex
+                  button.btn.btn-primary.font-weight-bold.btnInPage.mt-5 我要製作 <i class="fas fa-chevron-right ml-5"></i>
+  .container-fluid(style="position:relative;")
+    .row
+      .container-fluid
+        .row
+          .com-md-4.px-0
+            p.title 更有溫度的相片書
+              .glasses
+                p 還在用社群軟體分享照片嗎?
+                p 您還有其他的選擇
+                .d-flex
+                  button.btn.btn-primary.font-weight-bold.btnInPage.mt-5 我要製作 <i class="fas fa-chevron-right ml-5"></i>
+      .col-md-8.valuablePostCard
     //- modal
     #exampleModal.modal.fade(tabindex='-1' role='dialog' aria-labelledby='exampleModalLabel' aria-hidden='true')
       .modal-dialog(role='document')
@@ -125,12 +150,12 @@ export default {
   },
   methods: {
     showDetail () {
-      let dropdownDetail = document.querySelector('.dropdownDetail')
-      dropdownDetail.classList.remove('d-none')
+      // let dropdownDetail = document.querySelector('.dropdownDetail')
+      // dropdownDetail.classList.remove('d-none')
     },
     hideDetail () {
-      let dropdownDetail = document.querySelector('.dropdownDetail')
-      dropdownDetail.classList.add('d-none')
+      // let dropdownDetail = document.querySelector('.dropdownDetail')
+      // dropdownDetail.classList.add('d-none')
     }
   }
 }
@@ -165,9 +190,14 @@ $s20: 20px;
     font-weight: bold;
     color:#000;
     &:hover{
-      color:rgb(92,135,167);
+      background: rgb(92,135,167);
+      color:white;
     }
   }
+}
+.dropdown-item:hover{
+  background: rgb(92,135,167);
+  color:white;
 }
 .photoBook{
   position: relative;
@@ -178,7 +208,7 @@ $s20: 20px;
     background:white;
     color:#212529;
     border:1px solid #d9d9d9;
-    // display:none;
+    display:none;
     width: 100%;
   }
 }
@@ -196,6 +226,11 @@ $s20: 20px;
 }
 .photoBook{
   &:hover{
+    .dropdownDetail{
+      display: block;
+    }
+  }
+  &:active{
     .dropdownDetail{
       display: block;
     }
@@ -262,33 +297,14 @@ $s20: 20px;
   .stepDes{
     margin-left: 36px;
   }
-  .btn{
-    border-radius: 2px;
-    width: 250px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-  }
 }
 @media(max-width:720px){
   .secondBannerDes{
+    padding-top: 50px;
+    padding-left: 12px;
+    padding-right: 12px;
     .title{
       text-align: center;
-    }
-    .glasses{
-      background: hsla(0,0%,100%,.5);
-      position: relative;
-      overflow: hidden;
-      z-index: 1;
-    }
-    .glasses::before {
-      content: '';
-      position: absolute;
-      top:0; right:0; bottom:0; left:0;
-      filter: blur(50px);
-      z-index: -1;
-      background: rgba(87, 84, 84, 0.5);
-      // margin: -30px;
     }
     .btn{
       width: 100%;
@@ -300,6 +316,58 @@ $s20: 20px;
 .aChance{
   padding-top: 90px;
   padding-bottom: 40px;
+}
+.warmPhotoBook{
+  background-image:url("https://picsum.photos/870/600?random=1");
+  height: 495px;
+  background-repeat: no-repeat;
+  background-position:center center;
+  position: absolute;
+  top: 0;
+  bottom: 0;
+}
+.warmPhotoBookDes{
+  padding-top: 140px;
+  p.title{
+    font-size: 24px;
+    font-weight: bold;
+    margin-bottom: 45px;
+  }
+  p{
+    font-weight: bold;
+    margin-bottom: 0;
+    line-height: 34px;
+    color: #5f5f5f;
+  }
+}
+@media(max-width: 720px){
+  .warmPhotoBookDes{
+    padding-left: 12px;
+    padding-right: 12px;
+    p.title{
+      color:white;
+      font-weight: normal;
+      text-align: center;
+    }
+    p{
+      color:white;
+    }
+  }
+}
+.valuablePostCard{
+  background-image:url("https://picsum.photos/870/600?random=2");
+  height: 495px;
+  background-repeat: no-repeat;
+  background-position:center center;
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  right: 0;
+}
+@media(min-width: 720px){
+  .valuablePostCard{
+    // margin-top: 180px;
+  }
 }
 // modal
 .modal-dialog{
@@ -325,5 +393,44 @@ $s20: 20px;
   margin-top: -43px;
   margin-right: 16px;
   cursor: pointer;
+}
+// glasses style
+@media(max-width: 720px){
+  .glasses{
+      background: hsla(0,0%,100%,.5);
+      position: relative;
+      overflow: hidden;
+      z-index: 1;
+      padding: 12px;
+      box-sizing: border-box;
+      .stepDesContent{
+        font-size: 14px;
+      }
+    }
+    .glasses::before {
+      content: '';
+      position: absolute;
+      top:0; right:0; bottom:0; left:0;
+      filter: blur(50px);
+      z-index: -1;
+      background: rgba(87, 84, 84, 0.5);
+      // margin: -30px;
+    }
+}
+// 頁面中的Btn樣式
+.btnInPage{
+  border-radius: 2px;
+  width: 250px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+@media(max-width: 720px){
+  .btnInPage{
+    width:100%;
+    border : 0px;
+  }
 }
 </style>
