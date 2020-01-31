@@ -1,8 +1,8 @@
 <template lang="pug">
 .home
   .container-fluid
-    .row.px-0.campaign.py-4.bg-primary
-      p.text-center.mb-0.w-100 全商品8折優惠 / 20% OFF．滿499免運費
+    .row.px-0.campaign.campaignBox.bg-primary
+      p.mb-0.w-100.campaignDes 全商品8折優惠 / 20% OFF．滿499免運費
     .row.justify-content-center
       .col-sm-10
         nav.navbar.navbar-expand-lg.navbar-light.bg-white.d-flex.py-3
@@ -33,93 +33,144 @@
                 a.nav-link.font-weight-bold.text-center(href='#') <span class="text-primary bar">|</span> 註冊
               li.nav-item.font-weight-bold
                 a.nav-link.font-weight-bold.text-center(href='#' data-toggle="modal" data-target="#exampleModal") <span class="text-primary">|</span> <i class="fas fa-user-circle mr-2 text-primary"></i>登入
+    //- banner
     .row.px-0
       .col-sm-12.px-0
-        img.w-100.firstBanner.img-fluid(src="https://picsum.photos/950/700")
+        img.w-100.firstBanner.img-fluid(src="../assets/img/home/banner.jpg")
+    //- 第一層產品TITLE
     .row.letPhotoForever
       .col-sm-12.px-0.text-center
         h2.font-weight-bold.mb-0.text-secondary 一個理由，讓照片永存
-  .container.mb-sm-8
+  //- 首頁第一層產品介紹
+  .container.letPhotoForeverProduct
     .row
-      .col-md-4.text-center
+      .col-lg-4.col-md-6.text-center
         .card()
           .imgBox
-            img.card-img-top(src='https://picsum.photos/360/360?random=1' alt='test')
+            img.card-img-top(src='../assets/img/home/a01.jpg' alt='相片書')
           .card-body
             h5.card-title.font-weight-bold.text-secondary 相片書
-            p.card-text.text-center.font-weight-bold.text-secondary Photo Book
-      .col-md-4.text-center
+      .col-lg-4.col-md-6.text-center
         .card()
           .imgBox
-            img.card-img-top(src='https://picsum.photos/360/360?random=2' alt='test')
+            img.card-img-top(src='../assets/img/home/a02.jpg' alt='帆布袋')
+          .card-body
+            h5.card-title.font-weight-bold.text-secondary 帆布袋
+      .col-lg-4.col-md-6.text-center
+        .card()
+          .imgBox
+            img.card-img-top(src='../assets/img/home/a03.jpg' alt='T-shirt')
+          .card-body
+            h5.card-title.font-weight-bold.text-secondary T恤
+      .col-lg-4.col-md-6.text-center.mt-lg-2
+        .card()
+          .imgBox
+            img.card-img-top(src='../assets/img/home/a04.jpg' alt='T-shirt')
+          .card-body
+            h5.card-title.font-weight-bold.text-secondary 馬克杯
+      .col-lg-4.col-md-6.text-center.mt-lg-2
+        .card()
+          .imgBox
+            img.card-img-top(src='../assets/img/home/a05.jpg' alt='T-shirt')
           .card-body
             h5.card-title.font-weight-bold.text-secondary 明信片
-            p.card-text.text-cneter.font-weight-bold.text-secondary Post Card
-      .col-md-4.text-center
+      .col-lg-4.col-md-6.text-center.mt-lg-2
         .card()
           .imgBox
-            img.card-img-top(src='https://picsum.photos/360/360?random=3' alt='test')
+            img.card-img-top(src='../assets/img/home/a06.jpg' alt='T-shirt')
           .card-body
-            h5.card-title.font-weight-bold.text-secondary 筆記本
-            p.card-text.text-center.font-weight-bold.text-secondary Note Book
+            h5.card-title.font-weight-bold.text-secondary 手機殼
   .container-fluid.bg-gray.secondBannerBox(style="position:relative;")
     .row
       .col-md-6.px-0.secondBanner
-        //- img.w-100.h-100.img-fluid(src="https://fakeimg.pl/950x600/282828/?text=Hello")
       .container-fluid
         .row.justify-content-end
           .col-md-6.px-0
             .secondBannerDes.pt-md-8.px-md-4
-              p.mb-0.title 只需簡單的步驟，
-              p.mb-30.title 完成您不簡單的作品
-              .glasses
+              p.mb-0.title.text-primary 只需簡單的步驟，
+              p.mb-30.title.text-primary 完成您不簡單的作品
+              .glasses.stepDesBox
                 div.text-dark.d-flex.align-items-center
-                  p.border.border-dark.num.mb-0.d-flex.justify-content-center.align-items-center.font-weight-bold 1
-                  p.mb-0.step.font-weight-bold 選擇產品
+                  p.border.border-primary.num.mb-0.d-flex.justify-content-center.align-items-center.font-weight-bold.text-primary 1
+                  p.mb-0.step.font-weight-bold.text-primary 選擇產品
                 div.stepDes.text-white
-                  p.text-white.stepDesContent 我們提供多樣的客製化商品，您的回憶值得更有溫度的保存。
+                  p.text-white.stepDesContent.text-dark 我們提供多樣的客製化商品，您的回憶值得更有溫度的保存。
                 div.text-dark.d-flex.align-items-center
-                  p.border.border-dark.num.mb-0.d-flex.justify-content-center.align-items-center.font-weight-bold 2
-                  p.mb-0.step.font-weight-bold 上傳照片
+                  p.border.border-primary.num.mb-0.d-flex.justify-content-center.align-items-center.font-weight-bold.text-primary 2
+                  p.mb-0.step.font-weight-bold.text-primary 上傳照片
                 div.stepDes.text-white.stepDesContent
-                  p.text-white 您的回憶有比電腦硬碟更好的去處，交給我們，讓它成為您生活的一部分。
+                  p.text-white.text-dark 您的回憶有比電腦硬碟更好的去處，交給我們，讓它成為您生活的一部分。
                 div.text-dark.d-flex.align-items-center
-                  p.border.border-dark.num.mb-0.d-flex.justify-content-center.align-items-center.font-weight-bold 3
-                  p.mb-0.step.font-weight-bold 編輯完成
+                  p.border.border-primary.num.mb-0.d-flex.justify-content-center.align-items-center.font-weight-bold.text-primary 3
+                  p.mb-0.step.font-weight-bold.text-primary 編輯完成
                 div.stepDes.text-white.stepDesContent
-                  p.text-white 我們的編輯器提供您完美、自由的操作體驗，只有您才能決定您生活的風格。
+                  p.text-white.text-dark 我們的編輯器提供您完美、自由的操作體驗，只有您才能決定您生活的風格。
                 .d-flex
-                  button.btn.btn-danger.font-weight-bold.btnInPage 馬上體驗 <i class="fas fa-chevron-right ml-5"></i>
+                  button.btn.btn-primary.btnInPage.py-0.pr-0 <span class="font-weight-bold">馬上體驗</span> <i class="fas fa-chevron-right fa-xs"></i>
   .container-fluid
     .row.aChance
-      h2.text-center.font-weight-bold.w-100 一個機會，讓生活獨特
-  .container-fluid(style="position:relative;")
+      h2.title.text-center.font-weight-bold.w-100.mb-0 一個機會，讓生活獨特
+  .container-fluid
     .row
-      .col-md-8.warmPhotoBook.pr-0
-      .container-fluid
-        .row.justify-content-end.align-items-center
-          .col-md-4.px-0
-            .warmPhotoBookDes
-              p.title 更有溫度的相片書
-              .glasses
-                p 還在用社群軟體分享照片嗎?
-                p 您還有其他的選擇
-                .d-flex
-                  button.btn.btn-primary.font-weight-bold.btnInPage.mt-5 我要製作 <i class="fas fa-chevron-right ml-5"></i>
-  .container-fluid(style="position:relative;")
+      .col-md-7.warmPhotoBook.bgSetting
+      .col-md-4
+        .under_second_banner_des_box_right
+          .glasses
+            p.font-weight-bold.text-dark.under_secondbanner_des_title 更有溫度的相片書
+            p.under_secondbanner_des 還在用社群軟體分享照片嗎?
+            p.under_secondbanner_des 您還有其他的選擇
+            .d-flex
+              button.btn.btn-primary.font-weight-bold.btnInPage.mt-5.pr-0.py-0 我要製作 <i class="fas fa-chevron-right fa-xs"></i>
+  .container-fluid.mt-4
     .row
-      .container-fluid
-        .row
-          .com-md-4.px-0
-            p.title 更有溫度的相片書
-              .glasses
-                p 還在用社群軟體分享照片嗎?
-                p 您還有其他的選擇
-                .d-flex
-                  button.btn.btn-primary.font-weight-bold.btnInPage.mt-5 我要製作 <i class="fas fa-chevron-right ml-5"></i>
-      .col-md-8.valuablePostCard
-    //- modal
-    #exampleModal.modal.fade(tabindex='-1' role='dialog' aria-labelledby='exampleModalLabel' aria-hidden='true')
+      .col-md-4
+        .under_second_banner_des_box_left
+          .glasses
+            p.font-weight-bold.text-dark.under_secondbanner_des_title 更值得收藏的卡片
+             p.under_secondbanner_des 寄一張您留戀的街道，
+            p.under_secondbanner_des 給旅行時最惦記的人。
+            .d-flex
+              button.btn.btn-primary.font-weight-bold.btnInPage.mt-5.pr-0.py-0 我要製作 <i class="fas fa-chevron-right fa-xs"></i>
+      .col-md-7.valuablePostCard.bgSetting
+  .container-fluid.mt-4
+    .row
+      .col-md-7.lifeStuff.bgSetting
+      .col-md-4
+        .under_second_banner_des_box_right
+          .glasses
+            p.font-weight-bold.text-dark.under_secondbanner_des_title 生活雜貨
+            p.under_secondbanner_des 花一整天在逛街找最滿意的馬克杯，
+            p.under_secondbanner_des 不如花一小時做一件屬於自己的！
+            .d-flex
+              button.btn.btn-primary.font-weight-bold.btnInPage.mt-5.pr-0.py-0 我要製作 <i class="fas fa-chevron-right fa-xs"></i>
+  .container-fluid.mt-4
+    .row
+      .col-md-4
+        .under_second_banner_des_box_left
+          .glasses
+            p.font-weight-bold.text-dark.under_secondbanner_des_title 創意科技
+            p.under_secondbanner_des 花一整天在逛街找最滿意的手機殼，
+            p.under_secondbanner_des 不如花一小時做一件屬於自己的！
+            .d-flex
+              button.btn.btn-primary.font-weight-bold.btnInPage.mt-5.pr-0.py-0 我要製作 <i class="fas fa-chevron-right fa-xs"></i>
+      .col-md-7.creativityTech.bgSetting
+  .container-fluid.mt-4
+    .row
+      .col-md-7.clothes.bgSetting
+      .col-md-4
+        .under_second_banner_des_box_right
+          .glasses
+            p.font-weight-bold.text-dark.under_secondbanner_des_title 衣料織品
+            p.under_secondbanner_des 花一整天在逛街找最滿意的T恤，
+            p.under_secondbanner_des 不如花一小時做一件屬於自己的！
+            .d-flex
+              button.btn.btn-primary.font-weight-bold.btnInPage.mt-5.pr-0.py-0 我要製作 <i class="fas fa-chevron-right fa-xs"></i>
+  .container-fluid.border-top.mt-30.footer
+    footerComponent
+  .container-fluid.bg-dark
+    copyright
+  //- modal
+  #exampleModal.modal.fade(tabindex='-1' role='dialog' aria-labelledby='exampleModalLabel' aria-hidden='true')
       .modal-dialog(role='document')
         .modal-content.border-0.px-30
           .modal-header.border-bottom-0
@@ -142,21 +193,28 @@
 </template>
 
 <script>
+import footerComponent from './footer.vue'
+import copyright from './copyright'
+import {scroll} from '../assets/scroll'
 export default {
+  components: {
+    footerComponent,
+    copyright
+  },
+  mixins: [scroll],
   data () {
     return {
       showPassword: 'password'
     }
   },
-  methods: {
-    showDetail () {
-      // let dropdownDetail = document.querySelector('.dropdownDetail')
-      // dropdownDetail.classList.remove('d-none')
-    },
-    hideDetail () {
-      // let dropdownDetail = document.querySelector('.dropdownDetail')
-      // dropdownDetail.classList.add('d-none')
-    }
+  mounted () {
+    // let el = this.scroll('warmPhotoBook')
+    // alert(window.scrollY)
+    window.addEventListener('scroll', function (e) {
+      if (window.scrollY === 50) {
+        alert('hello')
+      }
+    })
   }
 }
 </script>
@@ -164,21 +222,26 @@ export default {
 <style lang="scss">
 $s14: 14px;
 $s20: 20px;
+$serif: 'Noto Serif TC', serif;
 .fz14{
   font-size:$s14;
 }
 .campaign{
-  color:rgb(235,255,255);
-  font-size: 24px;
+  font-size: 20px;
+  font-weight: bold;
+  max-width: 1920px;
 }
-@media(max-width:414px){
-  .campaign{
-    font-size:16px;
-  }
-  .logo{
-    margin-left: 0;
-  }
+.campaignBox{
+  height: 60px;
+  box-sizing: border-box;
+  color:white;
 }
+.campaignDes{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
 // hamburger style
 .navbar-light .navbar-toggler {
     border-color: rgb(92,135,167);
@@ -212,18 +275,6 @@ $s20: 20px;
     width: 100%;
   }
 }
-@media(max-width:992px){
-  .photoBook .dropdownDetail{
-    position: relative;
-    background:white;
-    color:#212529;
-    border:1px solid #d9d9d9;
-    // display:none;
-    top:0px;
-    left:0px;
-    width: 100%;
-  }
-}
 .photoBook{
   &:hover{
     .dropdownDetail{
@@ -241,9 +292,21 @@ $s20: 20px;
   height: 700px;
 }
 // 讓照片永存
+.card{
+  height: 424px;
+  box-sizing: border-box;
+  cursor: pointer;
+}
+.card-body{
+  height: 64px;
+  box-sizing: border-box;
+}
 .imgBox{
+  height: 360px;
   overflow: hidden;
   img{
+    max-width: 100%;
+    height: 360px;
     transform:scale(1,1);
     transition: all 1s ease-out;
     &:hover{
@@ -252,35 +315,34 @@ $s20: 20px;
   }
 }
 .letPhotoForever{
-  padding-top: 90px;
+  padding-top: 40px;
   padding-bottom: 40px;
-}
-@media(max-width:540px){
-  .card{
-    margin-top: 16px;
+  h2{
+    font-family: $serif;
+    letter-spacing: 1px;
+    font-size: 24px;
   }
+}
+.letPhotoForeverProduct{
+  padding-bottom: 40px;
+  box-sizing: border-box;
 }
 // second banner
 .secondBanner{
   height: 600px;
-  background-image: url("https://picsum.photos/950/600");
+  background-image: url("../assets/img/home/Experience_1.jpg");
   background-size:cover;
   background-position: center center;
   position: absolute;
   top: 0;
   bottom: 0;
 }
-@media(max-width:540px){
-  .secondBannerBox{
-    margin-top: 16px;
-  }
-}
 .secondBannerDes{
-  // background: rgba(193,191,194,.4);
   height: 600px;
   .title{
-    font-size: 30px;
-    color:rgb(255,253,254)
+    font-size: 32px;
+    font-family: $serif;
+    letter-spacing: 1px;
   }
   .num{
     width: $s20;
@@ -296,78 +358,87 @@ $s20: 20px;
   }
   .stepDes{
     margin-left: 36px;
-  }
-}
-@media(max-width:720px){
-  .secondBannerDes{
-    padding-top: 50px;
-    padding-left: 12px;
-    padding-right: 12px;
-    .title{
-      text-align: center;
-    }
-    .btn{
-      width: 100%;
-      border:0px;
-    }
+    font-weight:bold;
   }
 }
 // 一個機會
 .aChance{
-  padding-top: 90px;
+  padding-top: 40px;
   padding-bottom: 40px;
-}
-.warmPhotoBook{
-  background-image:url("https://picsum.photos/870/600?random=1");
-  height: 495px;
-  background-repeat: no-repeat;
-  background-position:center center;
-  position: absolute;
-  top: 0;
-  bottom: 0;
-}
-.warmPhotoBookDes{
-  padding-top: 140px;
-  p.title{
+  box-sizing: border-box;
+  .title{
+    font-family: $serif;
     font-size: 24px;
-    font-weight: bold;
-    margin-bottom: 45px;
-  }
-  p{
-    font-weight: bold;
-    margin-bottom: 0;
-    line-height: 34px;
-    color: #5f5f5f;
+    letter-spacing: 1px;
   }
 }
-@media(max-width: 720px){
-  .warmPhotoBookDes{
-    padding-left: 12px;
-    padding-right: 12px;
-    p.title{
-      color:white;
-      font-weight: normal;
-      text-align: center;
-    }
-    p{
-      color:white;
-    }
-  }
+
+// 第二個banner產品介紹樣式設定
+.under_secondbanner_des_title{
+  font-size: 27px;
+}
+.under_secondbanner_des{
+  font-size: 17px;
+}
+// 第二個banner產品--左邊圖片--樣式設定
+.under_second_banner_des_box_right{
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  height: 100%;
+  box-sizing: border-box;
+  margin-left: 40px;
+}
+// 第二個banner產品--右邊圖片--樣式設定
+.under_second_banner_des_box_left{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  box-sizing: border-box;
+  height: 100%;
+  align-items: flex-end;
+  // margin-right: 60px;
+}
+// 背景圖片樣式設定
+.bgSetting{
+  background-repeat: no-repeat;
+  background-size: 880px 493px;
+}
+// 第二個banner產品--左邊圖片--樣式設定
+.warmPhotoBook{
+  background-image:url("../assets/img/home/b01.jpg");
+  height: 493px;
+  // margin-left: 45px;
+  box-sizing: border-box;
+  background-position: right center;
 }
 .valuablePostCard{
-  background-image:url("https://picsum.photos/870/600?random=2");
-  height: 495px;
-  background-repeat: no-repeat;
-  background-position:center center;
-  position: absolute;
-  top: 0;
-  bottom: 0;
-  right: 0;
+  background-image: url('../assets/img/home/b02.jpg');
+  height: 493px;
+  background-position: 50px center;
+  // margin-left: 12px;
 }
-@media(min-width: 720px){
-  .valuablePostCard{
-    // margin-top: 180px;
-  }
+.lifeStuff{
+  background-image: url('../assets/img/home/b03.jpg');
+  height: 493px;
+  // margin-left: 45px;
+  box-sizing: border-box;
+  background-position: right center;
+}
+.creativityTech{
+  background-image: url('../assets/img/home/b04.jpg');
+  height: 493px;
+  background-position: 50px center;
+}
+.clothes{
+  background-image: url('../assets/img/home/b05.jpg');
+  height: 493px;
+  background-position: right center;
+}
+// footer style
+.footer{
+  background-color : #f4f4f1;
+  height: 384px;
 }
 // modal
 .modal-dialog{
@@ -394,43 +465,19 @@ $s20: 20px;
   margin-right: 16px;
   cursor: pointer;
 }
-// glasses style
-@media(max-width: 720px){
-  .glasses{
-      background: hsla(0,0%,100%,.5);
-      position: relative;
-      overflow: hidden;
-      z-index: 1;
-      padding: 12px;
-      box-sizing: border-box;
-      .stepDesContent{
-        font-size: 14px;
-      }
-    }
-    .glasses::before {
-      content: '';
-      position: absolute;
-      top:0; right:0; bottom:0; left:0;
-      filter: blur(50px);
-      z-index: -1;
-      background: rgba(87, 84, 84, 0.5);
-      // margin: -30px;
-    }
-}
 // 頁面中的Btn樣式
 .btnInPage{
-  border-radius: 2px;
-  width: 250px;
-  display: -webkit-box;
-  display: -ms-flexbox;
+  border-radius: 5px;
+  width: 203px;
+  height: 39px;
+  font-size: 21px;
+  padding-left: 50px;
+  box-sizing: border-box;
   display: flex;
   justify-content: center;
   align-items: center;
-}
-@media(max-width: 720px){
-  .btnInPage{
-    width:100%;
-    border : 0px;
+  .fa-chevron-right{
+    margin-left: 37px;
   }
 }
 </style>

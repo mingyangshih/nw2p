@@ -79,16 +79,16 @@ $theme-colors: () !default;
 // stylelint-disable-next-line scss/dollar-variable-default
 $theme-colors: map-merge(
   (
-    "primary":    rgb(92,135,167),//$primary,
+    "primary":    #5c87a6,//$primary,
     "secondary":  rgb(65,65,65),//$secondary,
     "success":    $success,
     "info":       $info,
     "warning":    $warning,
     "danger":     rgb(226,81,84),//$danger,
     "light":      $light,
-    "dark":       $dark,
+    "dark":       #333333,
     'fb':         #3667bc,
-    'gray':       rgb(193,191,194)
+    'gray':       #c1bfc1
   ),
   $theme-colors
 );

@@ -1,7 +1,5 @@
 <template lang="pug">
   #app
-    //- button.btn.btn-primary button
-    //- img(src="./assets/logo.png")
     router-view
 </template>
 
