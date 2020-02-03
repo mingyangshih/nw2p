@@ -110,7 +110,7 @@
   .container-fluid
     .row.aChance
       h2.title.text-center.font-weight-bold.w-100.mb-0 一個機會，讓生活獨特
-  .container-fluid
+  .container-fluid.specialEffectleft
     .row
       .col-md-7.warmPhotoBook.bgSetting
       .col-md-4
@@ -121,7 +121,7 @@
             p.under_secondbanner_des 您還有其他的選擇
             .d-flex
               button.btn.btn-primary.font-weight-bold.btnInPage.mt-5.pr-0.py-0 我要製作 <i class="fas fa-chevron-right fa-xs"></i>
-  .container-fluid.mt-4
+  .container-fluid.mt-4.specialEffectRight
     .row
       .col-md-4
         .under_second_banner_des_box_left
@@ -132,7 +132,7 @@
             .d-flex
               button.btn.btn-primary.font-weight-bold.btnInPage.mt-5.pr-0.py-0 我要製作 <i class="fas fa-chevron-right fa-xs"></i>
       .col-md-7.valuablePostCard.bgSetting
-  .container-fluid.mt-4
+  .container-fluid.mt-4.specialEffectleft
     .row
       .col-md-7.lifeStuff.bgSetting
       .col-md-4
@@ -143,7 +143,7 @@
             p.under_secondbanner_des 不如花一小時做一件屬於自己的！
             .d-flex
               button.btn.btn-primary.font-weight-bold.btnInPage.mt-5.pr-0.py-0 我要製作 <i class="fas fa-chevron-right fa-xs"></i>
-  .container-fluid.mt-4
+  .container-fluid.mt-4.specialEffectRight
     .row
       .col-md-4
         .under_second_banner_des_box_left
@@ -154,7 +154,7 @@
             .d-flex
               button.btn.btn-primary.font-weight-bold.btnInPage.mt-5.pr-0.py-0 我要製作 <i class="fas fa-chevron-right fa-xs"></i>
       .col-md-7.creativityTech.bgSetting
-  .container-fluid.mt-4
+  .container-fluid.mt-4.specialEffectleft
     .row
       .col-md-7.clothes.bgSetting
       .col-md-4
@@ -165,10 +165,10 @@
             p.under_secondbanner_des 不如花一小時做一件屬於自己的！
             .d-flex
               button.btn.btn-primary.font-weight-bold.btnInPage.mt-5.pr-0.py-0 我要製作 <i class="fas fa-chevron-right fa-xs"></i>
-  .container-fluid.border-top.mt-30.footer
+  .border-top.mt-30.footer.container-fluid.px-0
     footerComponent
-  .container-fluid.bg-dark
     copyright
+
   //- modal
   #exampleModal.modal.fade(tabindex='-1' role='dialog' aria-labelledby='exampleModalLabel' aria-hidden='true')
       .modal-dialog(role='document')
@@ -208,12 +208,21 @@ export default {
     }
   },
   mounted () {
-    // let el = this.scroll('warmPhotoBook')
-    // alert(window.scrollY)
+    const vm = this
+    const {elem: elemleft, distance: distanceleft} = vm.scroll('specialEffectleft')
+    const {elem: elemright, distance: distanceright} = vm.scroll('specialEffectRight')
+    // inner viewport height
+    const IVPH = window.innerHeight
     window.addEventListener('scroll', function (e) {
-      if (window.scrollY === 50) {
-        alert('hello')
-      }
+      e.stopPropagation()
+      distanceleft.forEach(function (item, idx) {
+        const checkClassName = elemleft[idx].classList.contains('specialEffectShow')
+        if (item - window.scrollY <= IVPH / 2 && !checkClassName) elemleft[idx].classList.add('specialEffectShow')
+      })
+      distanceright.forEach(function (item, idx) {
+        const checkClassName = elemright[idx].classList.contains('specialEffectShow')
+        if (item - window.scrollY <= IVPH / 2 && !checkClassName) elemright[idx].classList.add('specialEffectShow')
+      })
     })
   }
 }
@@ -439,6 +448,7 @@ $serif: 'Noto Serif TC', serif;
 .footer{
   background-color : #f4f4f1;
   height: 384px;
+  position: relative;
 }
 // modal
 .modal-dialog{
@@ -478,6 +488,29 @@ $serif: 'Noto Serif TC', serif;
   align-items: center;
   .fa-chevron-right{
     margin-left: 37px;
+  }
+}
+// glasses
+.glasses{
+  width: 272px;
+}
+// 滾動特效
+.specialEffectleft{
+ transform: translateX(-2000px);
+ transition: .8s all cubic-bezier(.17,.67,.83,.67);
+ opacity: 0;
+ &.specialEffectShow{
+   transform: translateX(0);
+   opacity: 1;
+ }
+}
+.specialEffectRight{
+  transform: translateX(2000px);
+  transition: .8s all cubic-bezier(.17,.67,.83,.67);
+  opacity: 0;
+  &.specialEffectShow{
+    transform: translateX(0);
+    opacity: 1;
   }
 }
 </style>
