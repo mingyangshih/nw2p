@@ -232,6 +232,10 @@ export default {
 $s14: 14px;
 $s20: 20px;
 $serif: 'Noto Serif TC', serif;
+.home{
+  width:100%;
+  overflow-x: hidden;
+}
 .fz14{
   font-size:$s14;
 }
@@ -497,8 +501,11 @@ $serif: 'Noto Serif TC', serif;
 // 滾動特效
 .specialEffectleft{
  transform: translateX(-2000px);
- transition: .8s all cubic-bezier(.17,.67,.83,.67);
+ transition-property: transform, opacity;
+ transition-duration: 1.2s, 1.7s;
+ transition-timing-function: cubic-bezier(0.32,-0.04, 0.55, 0.71), cubic-bezier(0.05, 0.26, 0.33,-0.2);
  opacity: 0;
+ overflow: hidden;
  &.specialEffectShow{
    transform: translateX(0);
    opacity: 1;
@@ -506,7 +513,9 @@ $serif: 'Noto Serif TC', serif;
 }
 .specialEffectRight{
   transform: translateX(2000px);
-  transition: .8s all cubic-bezier(.17,.67,.83,.67);
+  transition-property: transform, opacity;
+  transition-duration: 1.2s, 1.7s;
+  transition-timing-function: cubic-bezier(0.32,-0.04, 0.55, 0.71), cubic-bezier(0.05, 0.26, 0.33,-0.2);
   opacity: 0;
   &.specialEffectShow{
     transform: translateX(0);
