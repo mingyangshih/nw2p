@@ -1,6 +1,6 @@
 <template lang="pug">
   .container
-    .row.pt-4.justify-content-cneter
+    .row.pt-4.pb-5.justify-content-cneter
       .col-md-3.footerContent
         p.footerTitle.font-weight-bold 商品資訊
         p 相片書

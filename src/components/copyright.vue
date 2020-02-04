@@ -13,15 +13,12 @@ export default {
 <style lang="scss" scoped>
 .copyright{
   font-size: 13px;
-  height: 63px;
-  position:absolute;
-  bottom: 0;
-  left: 0;
-  right: 0;
+  // height: 63px;
+  padding: 20px 0;
 }
-// @media (min-width: 1200px){
-//   .container, .container-sm, .container-md, .container-lg, .container-xl {
-//     max-width: 1395px;
-//   }
-// }
+@media (min-width: 1200px){
+  .container, .container-sm, .container-md, .container-lg, .container-xl {
+    max-width: 1395px;
+  }
+}
 </style>

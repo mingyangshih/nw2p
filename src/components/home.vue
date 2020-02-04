@@ -1,38 +1,12 @@
 <template lang="pug">
 .home
   .container-fluid
-    .row.px-0.campaign.campaignBox.bg-primary
+    .row.px-0.campaign.campaignBox.bg-primary(v-if="fullWidth > 640")
       p.mb-0.w-100.campaignDes 全商品8折優惠 / 20% OFF．滿499免運費
-    .row.justify-content-center
-      .col-sm-10
-        nav.navbar.navbar-expand-lg.navbar-light.bg-white.d-flex.py-3
-          a.navbar-brand.d-block.mr-0(href='#')
-            img(src="../assets/img/logo.png")
-          button.navbar-toggler(type='button' data-toggle='collapse' data-target='#navbarNav' aria-controls='navbarNav' aria-expanded='false' aria-label='Toggle navigation')
-            //- span.navbar-toggler-icon
-            <i class="fas fa-bars" style="color:rgb(92,135,167); font-size:16px;"></i>
-          #navbarNav.collapse.navbar-collapse
-            ul.navbar-nav.w-100
-              li.nav-item.px-lg-5
-                a.nav-link.font-weight-bold.text-center(href='#') 首頁
-              li.nav-item.dropdown.pr-lg-5
-                a.nav-link.font-weight-bold.text-center(href='#' data-toggle="dropdown") 所有產品
-                .dropdown-menu.py-0(aria-labelledby='navbarDropdown')
-                  a.dropdown-item.py-3.photoBook.font-weight-bold.text-center(href='#') 相片書
-                    .dropdownDetail
-                      a.nav-link.w-100.px-4.py-3(href='#') 精裝相片書
-                      .dropdown-divider.my-0
-                      a.nav-link.w-100.px-4.py-3(href='#') 平裝相片書
-                  .dropdown-divider.my-0
-                  a.dropdown-item.py-3.font-weight-bold.text-center(href='#') 卡片類
-                  .dropdown-divider.my-0
-                  a.dropdown-item.py-3.font-weight-bold.text-center(href='#') 筆記本
-              li.nav-item.pr-lg-5
-                a.nav-link.font-weight-bold.text-center(href='#') 幫助中心
-              li.nav-item.boder-sm-left.ml-lg-auto
-                a.nav-link.font-weight-bold.text-center(href='#') <span class="text-primary bar">|</span> 註冊
-              li.nav-item.font-weight-bold
-                a.nav-link.font-weight-bold.text-center(href='#' data-toggle="modal" data-target="#exampleModal") <span class="text-primary">|</span> <i class="fas fa-user-circle mr-2 text-primary"></i>登入
+    //- navbar
+    navbarhead(:viewportWidth="fullWidth")
+    .row.px-0.campaign.campaignBox.bg-primary(v-if="fullWidth < 640")
+      p.mb-0.w-100.campaignDes 全商品8折優惠 / 20% OFF．滿499免運費
     //- banner
     .row.px-0
       .col-sm-12.px-0
@@ -167,7 +141,7 @@
               button.btn.btn-primary.font-weight-bold.btnInPage.mt-5.pr-0.py-0 我要製作 <i class="fas fa-chevron-right fa-xs"></i>
   .border-top.mt-30.footer.container-fluid.px-0
     footerComponent
-    copyright
+  copyright
 
   //- modal
   #exampleModal.modal.fade(tabindex='-1' role='dialog' aria-labelledby='exampleModalLabel' aria-hidden='true')
@@ -195,16 +169,19 @@
 <script>
 import footerComponent from './footer.vue'
 import copyright from './copyright'
+import navbarhead from './navbarhead'
 import {scroll} from '../assets/scroll'
 export default {
   components: {
     footerComponent,
-    copyright
+    copyright,
+    navbarhead
   },
   mixins: [scroll],
   data () {
     return {
-      showPassword: 'password'
+      showPassword: 'password',
+      fullWidth: document.body.clientWidth
     }
   },
   mounted () {
@@ -224,6 +201,19 @@ export default {
         if (item - window.scrollY <= IVPH / 2 && !checkClassName) elemright[idx].classList.add('specialEffectShow')
       })
     })
+    // resize 事件
+    window.onresize = () => {
+      return (() => {
+        window.screenWidth = document.body.clientWidth
+        vm.fullWidth = window.screenWidth
+      })()
+    }
+  },
+  watch: {
+    // val 為改變的值
+    fullWidth (val) {
+      this.fullWidth = val
+    }
   }
 }
 </script>
@@ -239,6 +229,7 @@ $serif: 'Noto Serif TC', serif;
 .fz14{
   font-size:$s14;
 }
+// 最上方促銷活動
 .campaign{
   font-size: 20px;
   font-weight: bold;
@@ -254,55 +245,11 @@ $serif: 'Noto Serif TC', serif;
   justify-content: center;
   align-items: center;
 }
-
-// hamburger style
-.navbar-light .navbar-toggler {
-    border-color: rgb(92,135,167);
-    border-width: 2px;
-}
-// nav bar.
-.navbar-light .navbar-nav{
-  .nav-link{
-    font-weight: bold;
-    color:#000;
-    &:hover{
-      background: rgb(92,135,167);
-      color:white;
-    }
-  }
-}
-.dropdown-item:hover{
-  background: rgb(92,135,167);
-  color:white;
-}
-.photoBook{
-  position: relative;
-  .dropdownDetail{
-    position: absolute;
-    top:16px;
-    left:158px;
-    background:white;
-    color:#212529;
-    border:1px solid #d9d9d9;
-    display:none;
-    width: 100%;
-  }
-}
-.photoBook{
-  &:hover{
-    .dropdownDetail{
-      display: block;
-    }
-  }
-  &:active{
-    .dropdownDetail{
-      display: block;
-    }
-  }
-}
 // first banner
 .firstBanner{
   height: 700px;
+  position: relative;
+  z-index: 0;
 }
 // 讓照片永存
 .card{
@@ -451,7 +398,6 @@ $serif: 'Noto Serif TC', serif;
 // footer style
 .footer{
   background-color : #f4f4f1;
-  height: 384px;
   position: relative;
 }
 // modal
