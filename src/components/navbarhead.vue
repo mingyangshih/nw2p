@@ -1,19 +1,25 @@
 <template lang="pug">
   .row.justify-content-center
-    .col-md-8
+    .col-lg-8
         nav.navbar.navbar-expand-md.navbar-light.bg-white.d-flex.py-3
-          button.navbar-toggler(type='button' data-toggle='collapse' data-target='#navbarNav' aria-controls='navbarNav' aria-expanded='false' aria-label='Toggle navigation')
+          button.navbar-toggler.border-0.p-0(type='button' data-toggle='collapse' data-target='#navbarNav' aria-controls='navbarNav' aria-expanded='false' aria-label='Toggle navigation')
             //- span.navbar-toggler-icon
-            <i class="fas fa-bars" style="color:rgb(92,135,167); font-size:16px;"></i>
+            .icon-bar
+            .icon-bar
+            .icon-bar
+            //- <i class="fas fa-bars" style="color:rgb(92,135,167); font-size:16px;"></i>
           a.navbar-brand.d-block.mr-0(href='#')
             img.logo(src="../assets/img/logo.png")
+          img.cart(src="../assets/img/home/supermarket.svg" v-if="viewportWidth <= 640")
           #navbarNav.collapse.navbar-collapse
             //- sidebar logo
             .d-flex.flex-column.align-items-center.w-100
-              .d-flex.justify-content-center.align-items-center.w-75.py-3.logoBox(v-if="viewportWidth < 640")
+              .d-flex.justify-content-center.align-items-center.w-75.py-3.logoBox(v-if="viewportWidth <= 640")
                 img.logo(src="../assets/img/logo.png")
                 <i class="fas fa-times" @click.stopPropagation="closeSideBar"></i>
               ul.navbar-nav
+                li.nav-item.pr-lg-5.ml-md-5(@click="closeSideBar" v-if="viewportWidth <= 640")
+                  a.nav-link.font-weight-bold(href='#') 首頁
                 li.nav-item.dropdown.ml-md-5
                   a.nav-link.font-weight-bold(href='#' data-toggle="dropdown") 所有產品
                   .dropdown-menu.py-0(aria-labelledby='navbarDropdown')
@@ -55,10 +61,16 @@
                           li.fz15.mb-2 - 行動電源
                 li.nav-item.pr-lg-5.ml-md-5(@click="closeSideBar")
                   a.nav-link.font-weight-bold(href='#') 幫助中心
+                li.nav-item.pr-lg-5.ml-md-5(@click="closeSideBar" v-if="viewportWidth <= 640")
+                  a.nav-link.font-weight-bold(href='#') 關於我們
+                li.nav-item.pr-lg-5.ml-md-5(@click="closeSideBar" v-if="viewportWidth <= 640")
+                  a.nav-link.font-weight-bold(href='#') 售後服務
+                li.nav-item.pr-lg-5.ml-md-5(@click="closeSideBar" v-if="viewportWidth <= 640")
+                  a.nav-link.font-weight-bold(href='#') 聯絡我們
                 li.nav-item.boder-sm-left.ml-md-auto
                   a.nav-link.font-weight-bold(href='#') <span class="text-primary bar" v-if="viewportWidth > 640">|</span> 註冊
                 li.nav-item.font-weight-bold
-                  a.nav-link.font-weight-bold(href='#' data-toggle="modal" data-target="#exampleModal") <span class="text-primary" v-if="viewportWidth > 640">|</span> <i class="fas fa-user-circle mr-2 text-primary" v-if="viewportWidth > 812"></i>登入
+                  a.nav-link.font-weight-bold(href='#' data-toggle="modal" data-target="#exampleModal") <span class="text-primary" v-if="viewportWidth > 640">|</span> <i class="fas fa-user-circle mr-2 text-primary" v-if="viewportWidth > 913"></i>登入
 </template>
 
 <script>
@@ -92,6 +104,17 @@ export default{
 .fz15{
   font-size: 15px;
 }
+.icon-bar{
+  height: 2px;
+  background: #333333;
+  width: 16px;
+  &:nth-child(2){
+    margin-top: 4px;
+  }
+  &:nth-child(3){
+    margin-top: 4px;
+  }
+}
 .navbar{
   height: 80px;
   box-sizing: border-box;
@@ -116,6 +139,9 @@ export default{
 }
 .logo{
   height: 40px;
+}
+.cart{
+  height: 16px;
 }
 @media(min-width: 640px){
   .nav-link{
@@ -164,8 +190,7 @@ export default{
   background: none;
   color:black;
 }
-
-@media(max-width : 640px ){
+@media (max-width : 640px){
   // 側邊下拉設定
   .navbar-collapse{
     position: fixed;
@@ -188,7 +213,7 @@ export default{
     }
     .fa-times{
       position: absolute;
-      right:-40px;
+      right:-15%;
       top:10px;
       border: 1px solid gray;
       border-radius: 50%;
@@ -206,6 +231,7 @@ export default{
     }
   }
 }
+
 .dropdown-menu{
   min-width: 35rem;
   padding: 0 16px;
@@ -226,6 +252,35 @@ export default{
   .dropdown-menu{
     min-width: auto;
     border-width: 0;
+  }
+}
+// for 640px
+@media(width : 640px){
+  .navbar-expand-md .navbar-collapse{
+    display:none !important;
+  }
+  .navbar-expand-md .navbar-collapse.show{
+    display:block !important;
+  }
+  .navbar-nav{
+    display: flex;
+    flex-direction: column;
+  }
+  .nav-item.ml-md-5,.nav-item.ml-md-auto{
+    margin-left: 0 !important;
+  }
+  .dropdown-menu.show .row {
+    flex-direction: column;
+  }
+  .navbar-expand-md .navbar-nav .dropdown-menu {
+    position: static;
+  }
+  .navbar{
+   justify-content: space-between;
+  }
+  // show hamburger button
+  .navbar-expand-md .navbar-toggler {
+    display: block;
   }
 }
 </style>

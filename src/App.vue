@@ -10,6 +10,13 @@ export default {
 </script>
 
 <style lang="scss">
+body{
+  &::-webkit-scrollbar {
+    // display: none;
+  }
+  -ms-overflow-style: none;
+}
+
 @import "./assets/all.scss";
 #app {
   font-family: "Avenir", Helvetica, Arial, sans-serif;

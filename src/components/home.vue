@@ -1,7 +1,7 @@
 <template lang="pug">
 .home
   .container-fluid
-    .row.px-0.campaign.campaignBox.bg-primary(v-if="fullWidth > 640")
+    .row.px-0.campaign.campaignBox.bg-primary(v-if="fullWidth >= 640")
       p.mb-0.w-100.campaignDes 全商品8折優惠 / 20% OFF．滿499免運費
     //- navbar
     navbarhead(:viewportWidth="fullWidth")
@@ -10,82 +10,81 @@
     //- banner
     .row.px-0
       .col-sm-12.px-0
-        img.w-100.firstBanner.img-fluid(src="../assets/img/home/banner.jpg")
+        img.w-100.firstBanner.img-fluid(src="../assets/img/home/banner.jpg" v-if="fullWidth >= 640")
+        img.w-100.firstBanner.img-fluid(src="../assets/img/home/banner01.jpg" v-if="fullWidth < 640")
     //- 第一層產品TITLE
     .row.letPhotoForever
       .col-sm-12.px-0.text-center
         h2.font-weight-bold.mb-0.text-secondary 一個理由，讓照片永存
   //- 首頁第一層產品介紹
   .container.letPhotoForeverProduct
-    .row
-      .col-lg-4.col-md-6.text-center
+    .row.justify-content-center
+      .col-6.col-md-4.text-center
         .card()
           .imgBox
             img.card-img-top(src='../assets/img/home/a01.jpg' alt='相片書')
           .card-body
             h5.card-title.font-weight-bold.text-secondary 相片書
-      .col-lg-4.col-md-6.text-center
+      .col-6.col-md-4.text-center
         .card()
           .imgBox
             img.card-img-top(src='../assets/img/home/a02.jpg' alt='帆布袋')
           .card-body
             h5.card-title.font-weight-bold.text-secondary 帆布袋
-      .col-lg-4.col-md-6.text-center
+      .col-6.col-md-4.text-center
         .card()
           .imgBox
             img.card-img-top(src='../assets/img/home/a03.jpg' alt='T-shirt')
           .card-body
             h5.card-title.font-weight-bold.text-secondary T恤
-      .col-lg-4.col-md-6.text-center.mt-lg-2
+      .col-6.col-md-4.text-center.mt-md-2
         .card()
           .imgBox
             img.card-img-top(src='../assets/img/home/a04.jpg' alt='T-shirt')
           .card-body
             h5.card-title.font-weight-bold.text-secondary 馬克杯
-      .col-lg-4.col-md-6.text-center.mt-lg-2
+      .col-6.col-md-4.text-center.mt-md-2
         .card()
           .imgBox
             img.card-img-top(src='../assets/img/home/a05.jpg' alt='T-shirt')
           .card-body
             h5.card-title.font-weight-bold.text-secondary 明信片
-      .col-lg-4.col-md-6.text-center.mt-lg-2
+      .col-6.col-md-4.text-center.mt-md-2
         .card()
           .imgBox
             img.card-img-top(src='../assets/img/home/a06.jpg' alt='T-shirt')
           .card-body
             h5.card-title.font-weight-bold.text-secondary 手機殼
-  .container-fluid.bg-gray.secondBannerBox(style="position:relative;")
+  .container-fluid.bg-gray.secondBannerBox
     .row
       .col-md-6.px-0.secondBanner
-      .container-fluid
-        .row.justify-content-end
-          .col-md-6.px-0
-            .secondBannerDes.pt-md-8.px-md-4
-              p.mb-0.title.text-primary 只需簡單的步驟，
-              p.mb-30.title.text-primary 完成您不簡單的作品
-              .glasses.stepDesBox
-                div.text-dark.d-flex.align-items-center
-                  p.border.border-primary.num.mb-0.d-flex.justify-content-center.align-items-center.font-weight-bold.text-primary 1
-                  p.mb-0.step.font-weight-bold.text-primary 選擇產品
-                div.stepDes.text-white
-                  p.text-white.stepDesContent.text-dark 我們提供多樣的客製化商品，您的回憶值得更有溫度的保存。
-                div.text-dark.d-flex.align-items-center
-                  p.border.border-primary.num.mb-0.d-flex.justify-content-center.align-items-center.font-weight-bold.text-primary 2
-                  p.mb-0.step.font-weight-bold.text-primary 上傳照片
-                div.stepDes.text-white.stepDesContent
-                  p.text-white.text-dark 您的回憶有比電腦硬碟更好的去處，交給我們，讓它成為您生活的一部分。
-                div.text-dark.d-flex.align-items-center
-                  p.border.border-primary.num.mb-0.d-flex.justify-content-center.align-items-center.font-weight-bold.text-primary 3
-                  p.mb-0.step.font-weight-bold.text-primary 編輯完成
-                div.stepDes.text-white.stepDesContent
-                  p.text-white.text-dark 我們的編輯器提供您完美、自由的操作體驗，只有您才能決定您生活的風格。
-                .d-flex
-                  button.btn.btn-primary.btnInPage.py-0.pr-0 <span class="font-weight-bold">馬上體驗</span> <i class="fas fa-chevron-right fa-xs"></i>
+      .col-md-6.px-0.secondBannerDesBox
+        .secondBannerDes.pt-md-8.px-md-4
+          p.mb-0.title.text-primary 只需簡單的步驟，
+          p.mb-30.title.text-primary 完成您不簡單的作品
+          .glasses.stepDesBox
+            div.text-dark.d-flex.align-items-center
+              p.border.border-primary.num.mb-0.d-flex.justify-content-center.align-items-center.font-weight-bold.text-primary 1
+              p.mb-0.step.font-weight-bold.text-primary 選擇產品
+            div.stepDes.text-white
+              p.text-white.stepDesContent.text-dark 我們提供多樣的客製化商品，您的回憶值得更有溫度的保存。
+            div.text-dark.d-flex.align-items-center
+              p.border.border-primary.num.mb-0.d-flex.justify-content-center.align-items-center.font-weight-bold.text-primary 2
+              p.mb-0.step.font-weight-bold.text-primary 上傳照片
+            div.stepDes.text-white.stepDesContent
+              p.text-white.text-dark 您的回憶有比電腦硬碟更好的去處，交給我們，讓它成為您生活的一部分。
+            div.text-dark.d-flex.align-items-center
+              p.border.border-primary.num.mb-0.d-flex.justify-content-center.align-items-center.font-weight-bold.text-primary 3
+              p.mb-0.step.font-weight-bold.text-primary 編輯完成
+            div.stepDes.text-white.stepDesContent
+              p.text-white.text-dark 我們的編輯器提供您完美、自由的操作體驗，只有您才能決定您生活的風格。
+            .d-flex.try
+              button.btn.btn-primary.btnInPage.py-0.pr-0 <span class="font-weight-bold">馬上體驗</span> <i class="fas fa-chevron-right fa-xs"></i>
   .container-fluid
     .row.aChance
       h2.title.text-center.font-weight-bold.w-100.mb-0 一個機會，讓生活獨特
   .container-fluid.specialEffectleft
-    .row
+    .row.justify-content-center
       .col-md-7.warmPhotoBook.bgSetting
       .col-md-4
         .under_second_banner_des_box_right
@@ -96,7 +95,7 @@
             .d-flex
               button.btn.btn-primary.font-weight-bold.btnInPage.mt-5.pr-0.py-0 我要製作 <i class="fas fa-chevron-right fa-xs"></i>
   .container-fluid.mt-4.specialEffectRight
-    .row
+    .row.justify-content-center
       .col-md-4
         .under_second_banner_des_box_left
           .glasses
@@ -107,7 +106,7 @@
               button.btn.btn-primary.font-weight-bold.btnInPage.mt-5.pr-0.py-0 我要製作 <i class="fas fa-chevron-right fa-xs"></i>
       .col-md-7.valuablePostCard.bgSetting
   .container-fluid.mt-4.specialEffectleft
-    .row
+    .row.justify-content-center
       .col-md-7.lifeStuff.bgSetting
       .col-md-4
         .under_second_banner_des_box_right
@@ -118,7 +117,7 @@
             .d-flex
               button.btn.btn-primary.font-weight-bold.btnInPage.mt-5.pr-0.py-0 我要製作 <i class="fas fa-chevron-right fa-xs"></i>
   .container-fluid.mt-4.specialEffectRight
-    .row
+    .row.justify-content-center
       .col-md-4
         .under_second_banner_des_box_left
           .glasses
@@ -129,7 +128,7 @@
               button.btn.btn-primary.font-weight-bold.btnInPage.mt-5.pr-0.py-0 我要製作 <i class="fas fa-chevron-right fa-xs"></i>
       .col-md-7.creativityTech.bgSetting
   .container-fluid.mt-4.specialEffectleft
-    .row
+    .row.justify-content-center
       .col-md-7.clothes.bgSetting
       .col-md-4
         .under_second_banner_des_box_right
@@ -204,8 +203,9 @@ export default {
     // resize 事件
     window.onresize = () => {
       return (() => {
-        window.screenWidth = document.body.clientWidth
-        vm.fullWidth = window.screenWidth
+        vm.fullWidth = document.documentElement.clientWidth
+        // vm.fullWidth = $(window).width()
+        // $(window).width()
       })()
     }
   },
@@ -218,7 +218,7 @@ export default {
 }
 </script>
 
-<style lang="scss">
+<style lang="scss" scoped>
 $s14: 14px;
 $s20: 20px;
 $serif: 'Noto Serif TC', serif;
@@ -231,7 +231,7 @@ $serif: 'Noto Serif TC', serif;
 }
 // 最上方促銷活動
 .campaign{
-  font-size: 20px;
+  font-size: $s20;
   font-weight: bold;
   max-width: 1920px;
 }
@@ -240,6 +240,11 @@ $serif: 'Noto Serif TC', serif;
   box-sizing: border-box;
   color:white;
 }
+@media(max-width: 640px) {
+ .campaign{
+   font-size: 5vw;
+ }
+}
 .campaignDes{
   display: flex;
   justify-content: center;
@@ -247,33 +252,18 @@ $serif: 'Noto Serif TC', serif;
 }
 // first banner
 .firstBanner{
-  height: 700px;
+  width: 100%;
+  max-height: 700px;
+  height: auto;
   position: relative;
   z-index: 0;
 }
-// 讓照片永存
-.card{
-  height: 424px;
-  box-sizing: border-box;
-  cursor: pointer;
-}
-.card-body{
-  height: 64px;
-  box-sizing: border-box;
-}
-.imgBox{
-  height: 360px;
-  overflow: hidden;
-  img{
-    max-width: 100%;
-    height: 360px;
-    transform:scale(1,1);
-    transition: all 1s ease-out;
-    &:hover{
-      transform:scale(1.2,1.2);
-    }
+@media(max-width: 640px){
+  .firstBanner{
+    height: auto;
   }
 }
+// 讓照片永存
 .letPhotoForever{
   padding-top: 40px;
   padding-bottom: 40px;
@@ -287,18 +277,92 @@ $serif: 'Noto Serif TC', serif;
   padding-bottom: 40px;
   box-sizing: border-box;
 }
+@media(max-width: 640px){
+  .letPhotoForeverProduct{
+    padding-bottom: 0;
+  }
+}
+.card{
+  max-height: 424px;
+  max-width: 360px;
+  box-sizing: border-box;
+  cursor: pointer;
+}
+@media(max-width:640px){
+  .card{
+    margin-bottom: 46px;
+  }
+}
+
+// 讓照片永存  相片下方  白色部分
+.card-body{
+  height: 64px;
+  box-sizing: border-box;
+  h5{
+    margin-bottom: 0;
+  }
+}
+@media(max-width: 640px){
+  .card-body{
+    height: 40px;
+    padding:10px 0;
+    font-size: 24px;
+    h5{
+      display: flex;
+      align-items:center;
+      justify-content: center;
+      height: 100%;
+      font-size: .6em;
+    }
+  }
+}
+
+// 讓照片永存 相片部分
+.imgBox{
+  max-height: 360px;
+  max-width: 360px;
+  overflow: hidden;
+  img{
+    max-width: 360px;
+    max-height: 360px;
+    transform:scale(1,1);
+    transition: all 1s ease-out;
+    &:hover{
+      transform:scale(1.2,1.2);
+    }
+  }
+}
+// 調整讓照片永存的container 設定
+@media(max-width: 640px){
+  .container{
+    max-width: 100%;
+  }
+}
+
 // second banner
 .secondBanner{
-  height: 600px;
+  max-height: 600px;
   background-image: url("../assets/img/home/Experience_1.jpg");
   background-size:cover;
+  background-repeat: no-repeat;
   background-position: center center;
-  position: absolute;
-  top: 0;
-  bottom: 0;
+}
+@media(max-width: 640px){
+  .secondBanner{
+    height: 480px;
+    order:2;
+  }
+  .secondBannerDesBox{
+    order:1;
+    max-height: 676px;
+    .try{
+      justify-content: center;
+    }
+  }
 }
 .secondBannerDes{
-  height: 600px;
+  box-sizing: border-box;
+  // height: 600px;
   .title{
     font-size: 32px;
     font-family: $serif;
@@ -319,6 +383,29 @@ $serif: 'Noto Serif TC', serif;
   .stepDes{
     margin-left: 36px;
     font-weight:bold;
+  }
+}
+@media(min-width:640px){
+  .secondBannerDes{
+    height: 600px;
+  }
+}
+@media(max-width: 640px){
+  .secondBannerDes{
+    box-sizing: border-box;
+    padding:16px;
+    max-height: 600px;
+    .title{
+      text-align: center;
+      font-size: 6vw;
+    }
+  }
+}
+@media(max-width:690px){
+  .secondBannerDes{
+    .title{
+      font-size: 23px;
+    }
   }
 }
 // 一個機會
@@ -439,10 +526,6 @@ $serif: 'Noto Serif TC', serif;
   .fa-chevron-right{
     margin-left: 37px;
   }
-}
-// glasses
-.glasses{
-  width: 272px;
 }
 // 滾動特效
 .specialEffectleft{
