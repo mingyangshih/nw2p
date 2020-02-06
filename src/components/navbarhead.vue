@@ -93,6 +93,9 @@ export default{
     $('.dropdown-menu').on('click', function (event) {
       event.stopPropagation()
     })
+    $('.dropdown-item').on('click', function (event) {
+      event.stopPropagation()
+    })
   }
 }
 </script>

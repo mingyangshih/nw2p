@@ -86,58 +86,63 @@
   .container-fluid.specialEffectleft
     .row.justify-content-center
       .col-md-7.warmPhotoBook.bgSetting
+        img(src="../assets/img/home/b01.jpg")
       .col-md-4
         .under_second_banner_des_box_right
           .glasses
-            p.font-weight-bold.text-dark.under_secondbanner_des_title 更有溫度的相片書
-            p.under_secondbanner_des 還在用社群軟體分享照片嗎?
-            p.under_secondbanner_des 您還有其他的選擇
-            .d-flex
-              button.btn.btn-primary.font-weight-bold.btnInPage.mt-5.pr-0.py-0 我要製作 <i class="fas fa-chevron-right fa-xs"></i>
+            p.font-weight-bold.text-dark.under_secondbanner_des_title(:class="{'text-center' : fullWidth <= 640}") 更有溫度的相片書
+            p.under_secondbanner_des(v-if="fullWidth > 640") 還在用社群軟體分享照片嗎?
+            p.under_secondbanner_des(v-if="fullWidth > 640") 您還有其他的選擇
+            .d-flex(:class="{'justify-content-center' : fullWidth <= 640}")
+              button.btn.btn-primary.font-weight-bold.btnInPage.pr-0.py-0(:class="{'mt-5' : fullWidth > 640}") 我要製作 <i class="fas fa-chevron-right fa-xs"></i>
   .container-fluid.mt-4.specialEffectRight
     .row.justify-content-center
       .col-md-4
         .under_second_banner_des_box_left
           .glasses
-            p.font-weight-bold.text-dark.under_secondbanner_des_title 更值得收藏的卡片
-             p.under_secondbanner_des 寄一張您留戀的街道，
-            p.under_secondbanner_des 給旅行時最惦記的人。
-            .d-flex
-              button.btn.btn-primary.font-weight-bold.btnInPage.mt-5.pr-0.py-0 我要製作 <i class="fas fa-chevron-right fa-xs"></i>
+            p.font-weight-bold.text-dark.under_secondbanner_des_title(:class="{'text-center' : fullWidth <= 640}") 更值得收藏的卡片
+            p.under_secondbanner_des(v-if="fullWidth > 640") 寄一張您留戀的街道，
+            p.under_secondbanner_des(v-if="fullWidth > 640") 給旅行時最惦記的人。
+            .d-flex(:class="{'justify-content-center' : fullWidth <= 640}")
+              button.btn.btn-primary.font-weight-bold.btnInPage.pr-0.py-0(:class="{'mt-5' : fullWidth > 640}") 我要製作 <i class="fas fa-chevron-right fa-xs"></i>
       .col-md-7.valuablePostCard.bgSetting
+        img(src="../assets/img/home/b02.jpg")
   .container-fluid.mt-4.specialEffectleft
     .row.justify-content-center
       .col-md-7.lifeStuff.bgSetting
+        img(src="../assets/img/home/b03.jpg")
       .col-md-4
         .under_second_banner_des_box_right
           .glasses
-            p.font-weight-bold.text-dark.under_secondbanner_des_title 生活雜貨
-            p.under_secondbanner_des 花一整天在逛街找最滿意的馬克杯，
-            p.under_secondbanner_des 不如花一小時做一件屬於自己的！
-            .d-flex
-              button.btn.btn-primary.font-weight-bold.btnInPage.mt-5.pr-0.py-0 我要製作 <i class="fas fa-chevron-right fa-xs"></i>
+            p.font-weight-bold.text-dark.under_secondbanner_des_title(:class="{'text-center' : fullWidth <= 640}") 生活雜貨
+            p.under_secondbanner_des(v-if="fullWidth > 640") 花一整天在逛街找最滿意的馬克杯，
+            p.under_secondbanner_des(v-if="fullWidth > 640") 不如花一小時做一件屬於自己的！
+            .d-flex(:class="{'justify-content-center' : fullWidth <= 640}")
+              button.btn.btn-primary.font-weight-bold.btnInPage.pr-0.py-0(:class="{'mt-5' : fullWidth > 640}") 我要製作 <i class="fas fa-chevron-right fa-xs"></i>
   .container-fluid.mt-4.specialEffectRight
     .row.justify-content-center
       .col-md-4
         .under_second_banner_des_box_left
           .glasses
-            p.font-weight-bold.text-dark.under_secondbanner_des_title 創意科技
-            p.under_secondbanner_des 花一整天在逛街找最滿意的手機殼，
-            p.under_secondbanner_des 不如花一小時做一件屬於自己的！
+            p.font-weight-bold.text-dark.under_secondbanner_des_title(:class="{'text-center' : fullWidth <= 640}") 創意科技
+            p.under_secondbanner_des(v-if="fullWidth > 640") 花一整天在逛街找最滿意的手機殼，
+            p.under_secondbanner_des(v-if="fullWidth > 640") 不如花一小時做一件屬於自己的！
             .d-flex
-              button.btn.btn-primary.font-weight-bold.btnInPage.mt-5.pr-0.py-0 我要製作 <i class="fas fa-chevron-right fa-xs"></i>
+              button.btn.btn-primary.font-weight-bold.btnInPage.pr-0.py-0(:class="{'mt-5' : fullWidth > 640}") 我要製作 <i class="fas fa-chevron-right fa-xs"></i>
       .col-md-7.creativityTech.bgSetting
+        img(src="../assets/img/home/b04.jpg")
   .container-fluid.mt-4.specialEffectleft
     .row.justify-content-center
       .col-md-7.clothes.bgSetting
+        img(src="../assets/img/home/b05.jpg")
       .col-md-4
         .under_second_banner_des_box_right
           .glasses
-            p.font-weight-bold.text-dark.under_secondbanner_des_title 衣料織品
-            p.under_secondbanner_des 花一整天在逛街找最滿意的T恤，
-            p.under_secondbanner_des 不如花一小時做一件屬於自己的！
-            .d-flex
-              button.btn.btn-primary.font-weight-bold.btnInPage.mt-5.pr-0.py-0 我要製作 <i class="fas fa-chevron-right fa-xs"></i>
+            p.font-weight-bold.text-dark.under_secondbanner_des_title(:class="{'text-center' : fullWidth <= 640}") 衣料織品
+            p.under_secondbanner_des(v-if="fullWidth > 640") 花一整天在逛街找最滿意的T恤，
+            p.under_secondbanner_des(v-if="fullWidth > 640") 不如花一小時做一件屬於自己的！
+            .d-flex(:class="{'justify-content-center' : fullWidth <= 640}")
+              button.btn.btn-primary.font-weight-bold.btnInPage.pr-0.py-0(:class="{'mt-5' : fullWidth > 640}") 我要製作 <i class="fas fa-chevron-right fa-xs"></i>
   .border-top.mt-30.footer.container-fluid.px-0
     footerComponent
   copyright
@@ -162,7 +167,6 @@
             button.btn.btn-primary.w-100.ml-0.font-weight-bold(type='button' data-dismiss='modal') 登入
             p.mb-0.text-secondary.font-weight-bold or
             button.btn.btn-fb.w-100.ml-0.font-weight-bold.mb-30(type='button') fb帳號登入
-
 </template>
 
 <script>
@@ -189,6 +193,7 @@ export default {
     const {elem: elemright, distance: distanceright} = vm.scroll('specialEffectRight')
     // inner viewport height
     const IVPH = window.innerHeight
+    console.log(distanceleft)
     window.addEventListener('scroll', function (e) {
       e.stopPropagation()
       distanceleft.forEach(function (item, idx) {
@@ -204,8 +209,6 @@ export default {
     window.onresize = () => {
       return (() => {
         vm.fullWidth = document.documentElement.clientWidth
-        // vm.fullWidth = $(window).width()
-        // $(window).width()
       })()
     }
   },
@@ -436,6 +439,11 @@ $serif: 'Noto Serif TC', serif;
   box-sizing: border-box;
   margin-left: 40px;
 }
+@media(max-width:640px){
+  .under_second_banner_des_box_right{
+    margin-left: 0;
+  }
+}
 // 第二個banner產品--右邊圖片--樣式設定
 .under_second_banner_des_box_left{
   display: flex;
@@ -446,42 +454,32 @@ $serif: 'Noto Serif TC', serif;
   align-items: flex-end;
   // margin-right: 60px;
 }
+@media(max-width: 640px){
+  .under_second_banner_des_box_left{
+    align-items: center;
+  }
+}
 // 背景圖片樣式設定
 .bgSetting{
-  background-repeat: no-repeat;
-  background-size: 880px 493px;
-}
-// 第二個banner產品--左邊圖片--樣式設定
-.warmPhotoBook{
-  background-image:url("../assets/img/home/b01.jpg");
-  height: 493px;
-  // margin-left: 45px;
+  max-width: 880px;
+  height: auto;
   box-sizing: border-box;
-  background-position: right center;
+  img{
+    width: 100%;
+    height: auto;
+  }
 }
-.valuablePostCard{
-  background-image: url('../assets/img/home/b02.jpg');
-  height: 493px;
-  background-position: 50px center;
-  // margin-left: 12px;
+@media(max-width: 640px){
+  .bgSetting{
+    max-width: 580px;
+    height: auto;
+    img{
+      max-width: 100%;
+      height: auto;
+    }
+  }
 }
-.lifeStuff{
-  background-image: url('../assets/img/home/b03.jpg');
-  height: 493px;
-  // margin-left: 45px;
-  box-sizing: border-box;
-  background-position: right center;
-}
-.creativityTech{
-  background-image: url('../assets/img/home/b04.jpg');
-  height: 493px;
-  background-position: 50px center;
-}
-.clothes{
-  background-image: url('../assets/img/home/b05.jpg');
-  height: 493px;
-  background-position: right center;
-}
+
 // footer style
 .footer{
   background-color : #f4f4f1;
@@ -527,6 +525,13 @@ $serif: 'Noto Serif TC', serif;
     margin-left: 37px;
   }
 }
+@media(max-width: 640px){
+  .btnInPage{
+    width: 332px;
+    padding-left: 0;
+
+  }
+}
 // 滾動特效
 .specialEffectleft{
  transform: translateX(-2000px);
@@ -549,6 +554,12 @@ $serif: 'Noto Serif TC', serif;
   &.specialEffectShow{
     transform: translateX(0);
     opacity: 1;
+  }
+  .col-md-4{
+    order:2;
+  }
+  .col-md-7{
+    order:1;
   }
 }
 </style>
