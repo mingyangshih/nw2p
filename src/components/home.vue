@@ -94,7 +94,7 @@
             p.under_secondbanner_des(v-if="fullWidth > 640") 還在用社群軟體分享照片嗎?
             p.under_secondbanner_des(v-if="fullWidth > 640") 您還有其他的選擇
             .d-flex(:class="{'justify-content-center' : fullWidth <= 640}")
-              button.btn.btn-primary.font-weight-bold.btnInPage.pr-0.py-0(:class="{'mt-5' : fullWidth > 640}") 我要製作 <i class="fas fa-chevron-right fa-xs"></i>
+              button.btn.btn-primary.font-weight-bold.btnInPage.pr-0.py-0(:class="{'mt-5' : fullWidth > 823}") 我要製作 <i class="fas fa-chevron-right fa-xs"></i>
   .container-fluid.mt-4.specialEffectRight
     .row.justify-content-center
       .col-md-4
@@ -104,7 +104,7 @@
             p.under_secondbanner_des(v-if="fullWidth > 640") 寄一張您留戀的街道，
             p.under_secondbanner_des(v-if="fullWidth > 640") 給旅行時最惦記的人。
             .d-flex(:class="{'justify-content-center' : fullWidth <= 640}")
-              button.btn.btn-primary.font-weight-bold.btnInPage.pr-0.py-0(:class="{'mt-5' : fullWidth > 640}") 我要製作 <i class="fas fa-chevron-right fa-xs"></i>
+              button.btn.btn-primary.font-weight-bold.btnInPage.pr-0.py-0(:class="{'mt-5' : fullWidth > 823}") 我要製作 <i class="fas fa-chevron-right fa-xs"></i>
       .col-md-7.valuablePostCard.bgSetting
         img(src="../assets/img/home/b02.jpg")
   .container-fluid.mt-4.specialEffectleft
@@ -118,7 +118,7 @@
             p.under_secondbanner_des(v-if="fullWidth > 640") 花一整天在逛街找最滿意的馬克杯，
             p.under_secondbanner_des(v-if="fullWidth > 640") 不如花一小時做一件屬於自己的！
             .d-flex(:class="{'justify-content-center' : fullWidth <= 640}")
-              button.btn.btn-primary.font-weight-bold.btnInPage.pr-0.py-0(:class="{'mt-5' : fullWidth > 640}") 我要製作 <i class="fas fa-chevron-right fa-xs"></i>
+              button.btn.btn-primary.font-weight-bold.btnInPage.pr-0.py-0(:class="{'mt-5' : fullWidth > 823}") 我要製作 <i class="fas fa-chevron-right fa-xs"></i>
   .container-fluid.mt-4.specialEffectRight
     .row.justify-content-center
       .col-md-4
@@ -127,8 +127,8 @@
             p.font-weight-bold.text-dark.under_secondbanner_des_title(:class="{'text-center' : fullWidth <= 640}") 創意科技
             p.under_secondbanner_des(v-if="fullWidth > 640") 花一整天在逛街找最滿意的手機殼，
             p.under_secondbanner_des(v-if="fullWidth > 640") 不如花一小時做一件屬於自己的！
-            .d-flex
-              button.btn.btn-primary.font-weight-bold.btnInPage.pr-0.py-0(:class="{'mt-5' : fullWidth > 640}") 我要製作 <i class="fas fa-chevron-right fa-xs"></i>
+            .d-flex(:class="{'justify-content-center' : fullWidth <= 640}")
+              button.btn.btn-primary.font-weight-bold.btnInPage.pr-0.py-0(:class="{'mt-5' : fullWidth > 823}") 我要製作 <i class="fas fa-chevron-right fa-xs"></i>
       .col-md-7.creativityTech.bgSetting
         img(src="../assets/img/home/b04.jpg")
   .container-fluid.mt-4.specialEffectleft
@@ -142,7 +142,7 @@
             p.under_secondbanner_des(v-if="fullWidth > 640") 花一整天在逛街找最滿意的T恤，
             p.under_secondbanner_des(v-if="fullWidth > 640") 不如花一小時做一件屬於自己的！
             .d-flex(:class="{'justify-content-center' : fullWidth <= 640}")
-              button.btn.btn-primary.font-weight-bold.btnInPage.pr-0.py-0(:class="{'mt-5' : fullWidth > 640}") 我要製作 <i class="fas fa-chevron-right fa-xs"></i>
+              button.btn.btn-primary.font-weight-bold.btnInPage.pr-0.py-0(:class="{'mt-5' : fullWidth > 823}") 我要製作 <i class="fas fa-chevron-right fa-xs"></i>
   .border-top.mt-30.footer.container-fluid.px-0
     footerComponent
   copyright
@@ -426,6 +426,20 @@ $serif: 'Noto Serif TC', serif;
 // 第二個banner產品介紹樣式設定
 .under_secondbanner_des_title{
   font-size: 27px;
+  word-break: keep-all;
+}
+@media(max-width:667px){
+  .under_secondbanner_des_title{
+    // font-size: 4vw;
+    margin-bottom: 0;
+    font-size: 20px;
+  }
+}
+@media(max-width:640px){
+  .under_secondbanner_des_title{
+    margin-top: 12px;
+
+  }
 }
 .under_secondbanner_des{
   font-size: 17px;
@@ -437,7 +451,7 @@ $serif: 'Noto Serif TC', serif;
   flex-direction: column;
   height: 100%;
   box-sizing: border-box;
-  margin-left: 40px;
+  // margin-left: 40px;
 }
 @media(max-width:640px){
   .under_second_banner_des_box_right{
@@ -454,11 +468,20 @@ $serif: 'Noto Serif TC', serif;
   align-items: flex-end;
   // margin-right: 60px;
 }
+@media (min-width: 640px){
+  .col-md-4 {
+    -webkit-box-flex: 0;
+    -ms-flex: 0 0 33.33333%;
+    flex: 0 0 33.33333%;
+    max-width: none;
+  }
+}
 @media(max-width: 640px){
   .under_second_banner_des_box_left{
     align-items: center;
   }
 }
+
 // 背景圖片樣式設定
 .bgSetting{
   max-width: 880px;
@@ -527,9 +550,8 @@ $serif: 'Noto Serif TC', serif;
 }
 @media(max-width: 640px){
   .btnInPage{
-    width: 332px;
+    // width: 332px;
     padding-left: 0;
-
   }
 }
 // 滾動特效
@@ -555,11 +577,15 @@ $serif: 'Noto Serif TC', serif;
     transform: translateX(0);
     opacity: 1;
   }
-  .col-md-4{
-    order:2;
-  }
-  .col-md-7{
-    order:1;
+}
+@media(max-width: 640px){
+  .specialEffectRight{
+    .col-md-4{
+      order:2;
+    }
+    .col-md-7{
+      order:1;
+    }
   }
 }
 </style>
