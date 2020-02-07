@@ -1,6 +1,6 @@
 # webtoprint
 
-> A Vue.js project
+> YFP web to print project
 
 ## Build Setup
 
