@@ -1,25 +1,26 @@
 <template lang="pug">
   .container
     .row.pt-4.pb-5.justify-content-cneter
-      .col-md-3.footerContent
+      .col-md-3.col-6.footerContent
         p.footerTitle.font-weight-bold 商品資訊
         p 相片書
         p 卡片系列
         p 生活雜貨
         p 創意科技
         p 衣料織品
-      .col-md-3
-        p.footerTitle.font-weight-bold 關於我們
-        p 關於永豐
-        p 服務使用條款
-        p 隱私條款
-      .col-md-3
-        p.footerTitle.font-weight-bold 售後服務
-        p 常見問題
-        p 退貨須知
-        p 付款與運費說明
-      .col-md-3
-        p.footerTitle.font-weight-bold 聯絡我們
+      .col-md-6.col-6.d-flex(:class="{'flex-column':viewportWidth<=640}")
+        .aboutUs.w-100.w-md-50
+          p.footerTitle.font-weight-bold 關於我們
+          p 關於永豐
+          p 服務使用條款
+          p 隱私條款
+        .saledServiceBox.w-100.w-md-50
+          p.footerTitle.font-weight-bold 售後服務
+          p 常見問題
+          p 退貨須知
+          p 付款與運費說明
+      .col-md-3.col-12(:class="{'row':viewportWidth <= 640,'flex-column':viewportWidth <= 640,'align-items-center':viewportWidth <= 640}")
+        p.footerTitle.font-weight-bold(v-if="viewportWidth > 640") 聯絡我們
         p 週一至週五 9:00~18:00
         p 電子郵件 service@babala.com.tw
         <i class="fab fa-facebook-square fa-lg"></i>
@@ -27,7 +28,7 @@
 
 <script>
 export default {
-
+  props: ['viewportWidth']
 }
 </script>
 <style lang="scss" scoped>
@@ -36,5 +37,12 @@ export default {
 }
 .footerTitle{
   font-size: 21px;
+}
+@media(max-width:640px){
+  .footerContent{
+    p{
+      padding-left: 16px;
+    }
+  }
 }
 </style>

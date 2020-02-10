@@ -10,8 +10,8 @@
     //- banner
     .row.px-0
       .col-sm-12.px-0
-        img.w-100.firstBanner.img-fluid(src="../assets/img/home/banner.jpg" v-if="fullWidth >= 640")
-        img.w-100.firstBanner.img-fluid(src="../assets/img/home/banner01.jpg" v-if="fullWidth < 640")
+        img.w-100.firstBanner.img-fluid(src="../../assets/img/home/banner.jpg" v-if="fullWidth >= 640")
+        img.w-100.firstBanner.img-fluid(src="../../assets/img/home/banner01.jpg" v-if="fullWidth < 640")
     //- 第一層產品TITLE
     .row.letPhotoForever
       .col-sm-12.px-0.text-center
@@ -22,37 +22,38 @@
       .col-6.col-md-4.text-center
         .card()
           .imgBox
-            img.card-img-top(src='../assets/img/home/a01.jpg' alt='相片書')
+            router-link(to="/productDetail")
+              img.card-img-top(src='../../assets/img/home/a01.jpg' alt='相片書')
           .card-body
             h5.card-title.font-weight-bold.text-secondary 相片書
       .col-6.col-md-4.text-center
         .card()
           .imgBox
-            img.card-img-top(src='../assets/img/home/a02.jpg' alt='帆布袋')
+            img.card-img-top(src='../../assets/img/home/a02.jpg' alt='帆布袋')
           .card-body
             h5.card-title.font-weight-bold.text-secondary 帆布袋
       .col-6.col-md-4.text-center
         .card()
           .imgBox
-            img.card-img-top(src='../assets/img/home/a03.jpg' alt='T-shirt')
+            img.card-img-top(src='../../assets/img/home/a03.jpg' alt='T-shirt')
           .card-body
             h5.card-title.font-weight-bold.text-secondary T恤
       .col-6.col-md-4.text-center.mt-md-2
         .card()
           .imgBox
-            img.card-img-top(src='../assets/img/home/a04.jpg' alt='T-shirt')
+            img.card-img-top(src='../../assets/img/home/a04.jpg' alt='T-shirt')
           .card-body
             h5.card-title.font-weight-bold.text-secondary 馬克杯
       .col-6.col-md-4.text-center.mt-md-2
         .card()
           .imgBox
-            img.card-img-top(src='../assets/img/home/a05.jpg' alt='T-shirt')
+            img.card-img-top(src='../../assets/img/home/a05.jpg' alt='T-shirt')
           .card-body
             h5.card-title.font-weight-bold.text-secondary 明信片
       .col-6.col-md-4.text-center.mt-md-2
         .card()
           .imgBox
-            img.card-img-top(src='../assets/img/home/a06.jpg' alt='T-shirt')
+            img.card-img-top(src='../../assets/img/home/a06.jpg' alt='T-shirt')
           .card-body
             h5.card-title.font-weight-bold.text-secondary 手機殼
   .container-fluid.bg-gray.secondBannerBox
@@ -86,7 +87,7 @@
   .container-fluid.specialEffectleft
     .row.justify-content-center
       .col-md-7.warmPhotoBook.bgSetting
-        img(src="../assets/img/home/b01.jpg")
+        img(src="../../assets/img/home/b01.jpg")
       .col-md-4
         .under_second_banner_des_box_right
           .glasses
@@ -106,11 +107,11 @@
             .d-flex(:class="{'justify-content-center' : fullWidth <= 640}")
               button.btn.btn-primary.font-weight-bold.btnInPage.pr-0.py-0(:class="{'mt-5' : fullWidth > 823}") 我要製作 <i class="fas fa-chevron-right fa-xs"></i>
       .col-md-7.valuablePostCard.bgSetting
-        img(src="../assets/img/home/b02.jpg")
+        img(src="../../assets/img/home/b02.jpg")
   .container-fluid.mt-4.specialEffectleft
     .row.justify-content-center
       .col-md-7.lifeStuff.bgSetting
-        img(src="../assets/img/home/b03.jpg")
+        img(src="../../assets/img/home/b03.jpg")
       .col-md-4
         .under_second_banner_des_box_right
           .glasses
@@ -130,11 +131,11 @@
             .d-flex(:class="{'justify-content-center' : fullWidth <= 640}")
               button.btn.btn-primary.font-weight-bold.btnInPage.pr-0.py-0(:class="{'mt-5' : fullWidth > 823}") 我要製作 <i class="fas fa-chevron-right fa-xs"></i>
       .col-md-7.creativityTech.bgSetting
-        img(src="../assets/img/home/b04.jpg")
+        img(src="../../assets/img/home/b04.jpg")
   .container-fluid.mt-4.specialEffectleft
     .row.justify-content-center
       .col-md-7.clothes.bgSetting
-        img(src="../assets/img/home/b05.jpg")
+        img(src="../../assets/img/home/b05.jpg")
       .col-md-4
         .under_second_banner_des_box_right
           .glasses
@@ -144,8 +145,8 @@
             .d-flex(:class="{'justify-content-center' : fullWidth <= 640}")
               button.btn.btn-primary.font-weight-bold.btnInPage.pr-0.py-0(:class="{'mt-5' : fullWidth > 823}") 我要製作 <i class="fas fa-chevron-right fa-xs"></i>
   .border-top.mt-30.footer.container-fluid.px-0
-    footerComponent
-  copyright
+    footerComponent(:viewportWidth="fullWidth")
+  copyright(:viewportWidth="fullWidth")
 
   //- modal
   #exampleModal.modal.fade(tabindex='-1' role='dialog' aria-labelledby='exampleModalLabel' aria-hidden='true')
@@ -170,10 +171,10 @@
 </template>
 
 <script>
-import footerComponent from './footer.vue'
-import copyright from './copyright'
-import navbarhead from './navbarhead'
-import {scroll} from '../assets/scroll'
+import footerComponent from '../footer.vue'
+import copyright from '../copyright'
+import navbarhead from '../navbarhead'
+import {scroll} from '../../assets/scroll'
 export default {
   components: {
     footerComponent,
@@ -193,16 +194,15 @@ export default {
     const {elem: elemright, distance: distanceright} = vm.scroll('specialEffectRight')
     // inner viewport height
     const IVPH = window.innerHeight
-    console.log(distanceleft)
     window.addEventListener('scroll', function (e) {
       e.stopPropagation()
       distanceleft.forEach(function (item, idx) {
         const checkClassName = elemleft[idx].classList.contains('specialEffectShow')
-        if (item - window.scrollY <= IVPH / 2 && !checkClassName) elemleft[idx].classList.add('specialEffectShow')
+        if (item - window.scrollY <= IVPH / 4 && !checkClassName) elemleft[idx].classList.add('specialEffectShow')
       })
       distanceright.forEach(function (item, idx) {
         const checkClassName = elemright[idx].classList.contains('specialEffectShow')
-        if (item - window.scrollY <= IVPH / 2 && !checkClassName) elemright[idx].classList.add('specialEffectShow')
+        if (item - window.scrollY <= IVPH / 4 && !checkClassName) elemright[idx].classList.add('specialEffectShow')
       })
     })
     // resize 事件
@@ -345,7 +345,7 @@ $serif: 'Noto Serif TC', serif;
 // second banner
 .secondBanner{
   max-height: 600px;
-  background-image: url("../assets/img/home/Experience_1.jpg");
+  background-image: url("../../assets/img/home/Experience_1.jpg");
   background-size:cover;
   background-repeat: no-repeat;
   background-position: center center;
@@ -438,7 +438,6 @@ $serif: 'Noto Serif TC', serif;
 @media(max-width:640px){
   .under_secondbanner_des_title{
     margin-top: 12px;
-
   }
 }
 .under_secondbanner_des{
@@ -508,6 +507,7 @@ $serif: 'Noto Serif TC', serif;
   background-color : #f4f4f1;
   position: relative;
 }
+
 // modal
 .modal-dialog{
   max-width: 320px;

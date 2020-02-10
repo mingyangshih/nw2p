@@ -11,9 +11,6 @@ export default {
 
 <style lang="scss">
 body{
-  &::-webkit-scrollbar {
-    // display: none;
-  }
   -ms-overflow-style: none;
 }
 // 解決RWD螢幕寬度問題 https://css-tricks.com/forums/topic/best-media-query-excluding-scroll-solution/

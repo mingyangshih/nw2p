@@ -8,7 +8,7 @@
             .icon-bar
             .icon-bar
             //- <i class="fas fa-bars" style="color:rgb(92,135,167); font-size:16px;"></i>
-          a.navbar-brand.d-block.mr-0(href='#')
+          router-link.navbar-brand.d-block.mr-0(to="/")
             img.logo(src="../assets/img/logo.png")
           img.cart(src="../assets/img/home/supermarket.svg" v-if="viewportWidth <= 640")
           #navbarNav.collapse.navbar-collapse
@@ -19,7 +19,7 @@
                 <i class="fas fa-times" @click.stopPropagation="closeSideBar"></i>
               ul.navbar-nav
                 li.nav-item.pr-lg-5.ml-md-5(@click="closeSideBar" v-if="viewportWidth <= 640")
-                  a.nav-link.font-weight-bold(href='#') 首頁
+                  router-link.nav-link.font-weight-bold(to="/") 首頁
                 li.nav-item.dropdown.ml-md-5
                   a.nav-link.font-weight-bold(href='#' data-toggle="dropdown") 所有產品
                   .dropdown-menu.py-0(aria-labelledby='navbarDropdown')
@@ -209,10 +209,12 @@ export default{
     background: white;
     height: 100vh;
     overflow-y:scroll;
-    &::-webkit-scrollbar {
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+    &::-moz-scrollbar{
       display: none;
     }
-    &::-ms-scrollbar{
+    &::-webkit-scrollbar {
       display: none;
     }
     .logoBox{
