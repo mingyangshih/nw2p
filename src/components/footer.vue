@@ -1,6 +1,6 @@
 <template lang="pug">
   .container
-    .row.pt-4.pb-5.justify-content-cneter
+    .row.pt-4.justify-content-cneter
       .col-md-3.col-6.footerContent
         p.footerTitle.font-weight-bold 商品資訊
         p 相片書
@@ -19,11 +19,13 @@
           p 常見問題
           p 退貨須知
           p 付款與運費說明
-      .col-md-3.col-12(:class="{'row':viewportWidth <= 640,'flex-column':viewportWidth <= 640,'align-items-center':viewportWidth <= 640}")
+      .col-md-3.px-0.mx-0(:class="{'row':viewportWidth <= 640,'flex-column':viewportWidth <= 640,'align-items-center':viewportWidth <= 640}")
         p.footerTitle.font-weight-bold(v-if="viewportWidth > 640") 聯絡我們
         p 週一至週五 9:00~18:00
         p 電子郵件 service@babala.com.tw
         <i class="fab fa-facebook-square fa-lg"></i>
+    .d-flex.justify-content-center.mt-3.pb-3(v-if="viewportWidth <= 640")
+      button.btn.btn-primary.font-weight-bold.btnInPage.pr-0.py-0 聯絡我們 <i class="fas fa-chevron-right fa-xs"></i>
 </template>
 
 <script>
@@ -43,6 +45,21 @@ export default {
     p{
       padding-left: 16px;
     }
+  }
+}
+// 頁面中的Btn樣式
+.btnInPage{
+  border-radius: 5px;
+  width: 203px;
+  height: 39px;
+  font-size: 21px;
+  padding-left: 50px;
+  box-sizing: border-box;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  .fa-chevron-right{
+    margin-left: 37px;
   }
 }
 </style>

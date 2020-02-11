@@ -4,7 +4,9 @@
     .row.px-0.campaign.campaignBox.bg-primary(v-if="fullWidth >= 640")
       p.mb-0.w-100.campaignDes 全商品8折優惠 / 20% OFF．滿499免運費
     //- navbar
+  .container
     navbarhead(:viewportWidth="fullWidth")
+  .container-fluid
     .row.px-0.campaign.campaignBox.bg-primary(v-if="fullWidth < 640")
       p.mb-0.w-100.campaignDes 全商品8折優惠 / 20% OFF．滿499免運費
     //- banner

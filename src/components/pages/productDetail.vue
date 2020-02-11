@@ -4,7 +4,9 @@
       .row.px-0.campaign.campaignBox.bg-primary(v-if="fullWidth >= 640")
         p.mb-0.w-100.campaignDes 全商品8折優惠 / 20% OFF．滿499免運費
       //- navbar
+    .container
       navbarhead(:viewportWidth="fullWidth")
+    .container-fluid
       .row.px-0.campaign.campaignBox.bg-primary(v-if="fullWidth < 640")
         p.mb-0.w-100.campaignDes 全商品8折優惠 / 20% OFF．滿499免運費
       //- banner
@@ -22,7 +24,8 @@
         .col-6.col-md-3.text-center
           .card
             .imgBox
-              img.card-img-top(src="../../assets/img/productDetail/a01.jpg")
+              router-link(to="/standard")
+                img.card-img-top(src="../../assets/img/productDetail/a01.jpg")
             .card-body
               h5.card-title.font-weight-bold.text-secondary 平裝相片書
         .col-6.col-md-3.text-center
@@ -56,26 +59,48 @@
     .container-fluid
       .row.satisfyAllNeeds
         h2.title.text-center.font-weight-bold.w-100.mb-0 滿足您所有場景的需求
-    .container-fluid.specialEffectleft
+    .container-fluid.specialEffectleft.my-4
       .row.justify-content-center
         .col-md-7.standard.bgSetting
           img(src="../../assets/img/productDetail//c01.jpg")
         .col-md-4
           .under_second_banner_des_box_right
             .glasses
-              p.font-weight-bold.text-dark.under_secondbanner_des_title 平裝相片書
-              p.under_secondbanner_des 輕薄好攜帶是平裝相片書最大的優勢，作為一份自己珍藏或是送給家人、朋友的禮物，精巧而不顯得過於貴重。些微反光但不沾指紋的光澤，保有了傳統相紙的豔麗，消除了收藏上的缺點。只有這樣的好質感，才襯得出您的珍貴。
+              p.font-weight-bold.text-dark.under_secondbanner_des_title(:class="{'text-center':fullWidth <= 640}") 平裝相片書
+              p.under_secondbanner_des(v-if="fullWidth > 640") 輕薄好攜帶是平裝相片書最大的優勢，作為一份自己珍藏或是送給家人、朋友的禮物，精巧而不顯得過於貴重。些微反光但不沾指紋的光澤，保有了傳統相紙的豔麗，消除了收藏上的缺點。只有這樣的好質感，才襯得出您的珍貴。
               .d-flex.try.mb-3
-              button.btn.btn-primary.btnInPage.py-0.pr-0 <span class="font-weight-bold">馬上體驗</span> <i class="fas fa-chevron-right fa-xs"></i>
-    .container-fluid.mt-4.specialEffectRight
+                button.btn.btn-primary.btnInPage.py-0.pr-0 <span class="font-weight-bold">馬上體驗</span> <i class="fas fa-chevron-right fa-xs"></i>
+    .container-fluid.my-4.specialEffectRight
       .row.justify-content-center
         .col-md-4
           .under_second_banner_des_box_left
             .glasses
-              p.font-weight-bold.text-dark.under_secondbanner_des_title 精裝相片書
-              p.under_secondbanner_des 輕薄好攜帶是平裝相片書最大的優勢，作為一份自己珍藏或是送給家人、朋友的禮物，精巧而不顯得過於貴重。些微反光但不沾指紋的光澤，保有了傳統相紙的豔麗，消除了收藏上的缺點。只有這樣的好質感，才襯得出您的珍貴。
+              p.font-weight-bold.text-dark.under_secondbanner_des_title(:class="{'text-center':fullWidth <= 640}") 精裝相片書
+              p.under_secondbanner_des(v-if="fullWidth > 640") 輕薄好攜帶是平裝相片書最大的優勢，作為一份自己珍藏或是送給家人、朋友的禮物，精巧而不顯得過於貴重。些微反光但不沾指紋的光澤，保有了傳統相紙的豔麗，消除了收藏上的缺點。只有這樣的好質感，才襯得出您的珍貴。
               .d-flex.try.mb-3
-              button.btn.btn-primary.btnInPage.py-0.pr-0 <span class="font-weight-bold">馬上體驗</span> <i class="fas fa-chevron-right fa-xs"></i>
+                button.btn.btn-primary.btnInPage.py-0.pr-0 <span class="font-weight-bold">馬上體驗</span> <i class="fas fa-chevron-right fa-xs"></i>
+        .col-md-7.standard.bgSetting
+          img(src="../../assets/img/productDetail//c01.jpg")
+    .container-fluid.specialEffectleft.my-4
+      .row.justify-content-center
+        .col-md-7.standard.bgSetting
+          img(src="../../assets/img/productDetail//c01.jpg")
+        .col-md-4
+          .under_second_banner_des_box_right
+            .glasses
+              p.font-weight-bold.text-dark.under_secondbanner_des_title(:class="{'text-center':fullWidth <= 640}") 薄蝴蝶裝相片書
+              p.under_secondbanner_des(v-if="fullWidth > 640") 輕薄好攜帶是平裝相片書最大的優勢，作為一份自己珍藏或是送給家人、朋友的禮物，精巧而不顯得過於貴重。些微反光但不沾指紋的光澤，保有了傳統相紙的豔麗，消除了收藏上的缺點。只有這樣的好質感，才襯得出您的珍貴。
+              .d-flex.try.mb-3
+                button.btn.btn-primary.btnInPage.py-0.pr-0 <span class="font-weight-bold">馬上體驗</span> <i class="fas fa-chevron-right fa-xs"></i>
+    .container-fluid.my-4.specialEffectRight
+      .row.justify-content-center
+        .col-md-4
+          .under_second_banner_des_box_left
+            .glasses
+              p.font-weight-bold.text-dark.under_secondbanner_des_title(:class="{'text-center':fullWidth <= 640}") 厚蝴蝶裝裝相片書
+              p.under_secondbanner_des(v-if="fullWidth > 640") 輕薄好攜帶是平裝相片書最大的優勢，作為一份自己珍藏或是送給家人、朋友的禮物，精巧而不顯得過於貴重。些微反光但不沾指紋的光澤，保有了傳統相紙的豔麗，消除了收藏上的缺點。只有這樣的好質感，才襯得出您的珍貴。
+              .d-flex.try.mb-3
+                button.btn.btn-primary.btnInPage.py-0.pr-0 <span class="font-weight-bold">馬上體驗</span> <i class="fas fa-chevron-right fa-xs"></i>
         .col-md-7.standard.bgSetting
           img(src="../../assets/img/productDetail//c01.jpg")
     .border-top.mt-30.footer.container-fluid.px-0
@@ -452,6 +477,16 @@ export default {
     &.specialEffectShow{
       transform: translateX(0);
       opacity: 1;
+    }
+  }
+  @media(max-width: 640px){
+    .specialEffectRight{
+      .col-md-4{
+        order:2;
+      }
+      .col-md-7{
+        order:1;
+      }
     }
   }
 </style>

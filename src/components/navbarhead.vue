@@ -1,7 +1,7 @@
 <template lang="pug">
-  .row.justify-content-center
-    .col-lg-8
-        nav.navbar.navbar-expand-md.navbar-light.bg-white.d-flex.py-3
+  .row.justify-content-between
+
+        nav.navbar.navbar-expand-md.navbar-light.bg-white.d-flex.py-3.w-100
           button.navbar-toggler.border-0.p-0(type='button' data-toggle='collapse' data-target='#navbarNav' aria-controls='navbarNav' aria-expanded='false' aria-label='Toggle navigation')
             //- span.navbar-toggler-icon
             .icon-bar
@@ -24,41 +24,47 @@
                   a.nav-link.font-weight-bold(href='#' data-toggle="dropdown") 所有產品
                   .dropdown-menu.py-0(aria-labelledby='navbarDropdown')
                     .row.px-md-3
-                      a.dropdown-item.py-md-3.photoBook.font-weight-bold.text-center.col-md-4(href='#')
-                        label.d-flex.align-items-center.font-weight-bold.text-left(for="photoBook" :class="{'text-gray':viewportWidth <= 640 && sideBarShow.indexOf('photoBook') >= 0}") 相片書 <span class="fz12">Photobook</span><i class="fas fa-chevron-down ml-auto" v-if="viewportWidth <= 640 && sideBarShow.indexOf('photoBook') < 0"></i><i class="fas fa-chevron-up ml-auto" v-if="viewportWidth <= 640 && sideBarShow.indexOf('photoBook') >= 0"></i>
-                        input.d-none(type="checkbox" id="photoBook" value="photoBook" v-model="sideBarShow")
-                        ul.pl-3(:class="{'d-none' : viewportWidth <= 640 && sideBarShow.indexOf('photoBook') < 0}")
-                          li.fz15.mb-2 - 平裝相片書
-                          li.fz15.mb-2 - 精裝相片書
-                      a.dropdown-item.py-md-3.font-weight-bold.text-center.col-md-4(href='#')
-                        label.d-flex.align-items-center.font-weight-bold.text-left(for="daily" :class="{'text-gray':viewportWidth <= 640 && sideBarShow.indexOf('daily') >= 0}") 生活雜貨 <span class="fz12">Daily Necessities</span><i class="fas fa-chevron-down ml-auto" v-if="viewportWidth <= 640 && sideBarShow.indexOf('daily') < 0"></i><i class="fas fa-chevron-up ml-auto" v-if="viewportWidth <= 640 && sideBarShow.indexOf('daily') >= 0"></i>
-                        input.d-none(type="checkbox" id="daily" value="daily" v-model="sideBarShow")
-                        ul.pl-3(:class="{'d-none' : viewportWidth <= 640 && sideBarShow.indexOf('daily') < 0}")
-                          li.fz15.mb-2 - 吸水杯墊
-                          li.fz15.mb-2 - 馬克杯
-                          li.fz15.mb-2 - 鑰匙圈
-                      a.dropdown-item.py-md-3.font-weight-bold.text-center.col-md-4(href='#')
-                        label.d-flex.align-items-center.font-weight-bold.text-left(for="fabrics" :class="{'text-gray':viewportWidth <= 640 && sideBarShow.indexOf('fabrics') >= 0}") 衣料織品 <span class="fz12">Fabrics</span><i class="fas fa-chevron-down ml-auto" v-if="viewportWidth <= 640 && sideBarShow.indexOf('fabrics') < 0"></i><i class="fas fa-chevron-up ml-auto" v-if="viewportWidth <= 640 && sideBarShow.indexOf('fabrics') >= 0"></i>
-                        input.d-none(type="checkbox" id="fabrics" value="fabrics" v-model="sideBarShow")
-                        ul.pl-3(:class="{'d-none' : viewportWidth <= 640 && sideBarShow.indexOf('fabrics') < 0}")
-                          li.fz15.mb-2 - T恤
-                          li.fz15.mb-2 - 抱枕
-                          li.fz15.mb-2 - 帆布袋
-                      a.dropdown-item.py-md-3.font-weight-bold.text-left.col-md-4(href='#')
-                        label.d-flex.align-items-center.font-weight-bold(for="cards" :class="{'text-gray':viewportWidth <= 640 && sideBarShow.indexOf('cards') >= 0}") 卡片系列 <span class="fz12">Cards</span><i class="fas fa-chevron-down ml-auto" v-if="viewportWidth <= 640 && sideBarShow.indexOf('cards') < 0"></i><i class="fas fa-chevron-up ml-auto" v-if="viewportWidth <= 640 && sideBarShow.indexOf('cards') >= 0"></i>
-                        input.d-none(type="checkbox" id="cards" value="cards" v-model="sideBarShow")
-                        ul.pl-3(:class="{'d-none' : viewportWidth <= 640 && sideBarShow.indexOf('cards') < 0}")
-                          li.fz15.mb-2 - 卡片
-                          li.fz15.mb-2 - 明信片
-                          li.fz15.mb-2 - 喜帖
-                      a.dropdown-item.py-md-3.font-weight-bold.text-left.col-md-4(href='#')
-                        label.d-flex.align-items-center.font-weight-bold(for="electronics" :class="{'text-gray':viewportWidth <= 640 && sideBarShow.indexOf('electronics') >= 0}") 創意科技 <span class="fz12">Electronics</span><i class="fas fa-chevron-down ml-auto" v-if="viewportWidth <= 640 && sideBarShow.indexOf('electronics') < 0"></i><i class="fas fa-chevron-up ml-auto" v-if="viewportWidth <= 640 && sideBarShow.indexOf('electronics') >= 0"></i>
-                        input.d-none(type="checkbox" id="electronics" value="electronics" v-model="sideBarShow")
-                        ul.pl-3(:class="{'d-none' : viewportWidth <= 640 && sideBarShow.indexOf('electronics') < 0}")
-                          li.fz15.mb-2 - 悠遊卡
-                          li.fz15.mb-2 - 一卡通
-                          li.fz15.mb-2 - 手機殼
-                          li.fz15.mb-2 - 行動電源
+                      a.dropdown-item.py-md-3.photoBook.font-weight-bold.text-center.col-md-4(href='#' v-for="(item,idx) in totalCategory")
+                        label.d-flex.align-items-center.font-weight-bold.text-left(:for="item" :class="{'text-gray':viewportWidth <= 640 && sideBarShow.indexOf(item) >= 0}") {{item}} <span class="fz12">Photobook</span><i class="fas fa-chevron-down ml-auto" v-if="viewportWidth <= 640 && sideBarShow.indexOf(item) < 0"></i><i class="fas fa-chevron-up ml-auto" v-if="viewportWidth <= 640 && sideBarShow.indexOf(item) >= 0"></i>
+                        input.d-none(type="checkbox" :id="item" :value="item" v-model="sideBarShow")
+                        ul.pl-3(:class="{'d-none' : viewportWidth <= 640 && sideBarShow.indexOf(item) < 0}")
+                          li.fz15.mb-2(v-for="item1 in totalProduct" v-if="item1.productCategory === item") - {{item1.productName}}
+
+                      //- a.dropdown-item.py-md-3.photoBook.font-weight-bold.text-center.col-md-4(href='#')
+                      //-   label.d-flex.align-items-center.font-weight-bold.text-left(for="photoBook" :class="{'text-gray':viewportWidth <= 640 && sideBarShow.indexOf('photoBook') >= 0}") 相片書 <span class="fz12">Photobook</span><i class="fas fa-chevron-down ml-auto" v-if="viewportWidth <= 640 && sideBarShow.indexOf('photoBook') < 0"></i><i class="fas fa-chevron-up ml-auto" v-if="viewportWidth <= 640 && sideBarShow.indexOf('photoBook') >= 0"></i>
+                      //-   input.d-none(type="checkbox" id="photoBook" value="photoBook" v-model="sideBarShow")
+                      //-   ul.pl-3(:class="{'d-none' : viewportWidth <= 640 && sideBarShow.indexOf('photoBook') < 0}")
+                      //-     li.fz15.mb-2 - 平裝相片書
+                      //-     li.fz15.mb-2 - 精裝相片書
+                      //- a.dropdown-item.py-md-3.font-weight-bold.text-center.col-md-4(href='#')
+                      //-   label.d-flex.align-items-center.font-weight-bold.text-left(for="daily" :class="{'text-gray':viewportWidth <= 640 && sideBarShow.indexOf('daily') >= 0}") 生活雜貨 <span class="fz12">Daily Necessities</span><i class="fas fa-chevron-down ml-auto" v-if="viewportWidth <= 640 && sideBarShow.indexOf('daily') < 0"></i><i class="fas fa-chevron-up ml-auto" v-if="viewportWidth <= 640 && sideBarShow.indexOf('daily') >= 0"></i>
+                      //-   input.d-none(type="checkbox" id="daily" value="daily" v-model="sideBarShow")
+                      //-   ul.pl-3(:class="{'d-none' : viewportWidth <= 640 && sideBarShow.indexOf('daily') < 0}")
+                      //-     li.fz15.mb-2 - 吸水杯墊
+                      //-     li.fz15.mb-2 - 馬克杯
+                      //-     li.fz15.mb-2 - 鑰匙圈
+                      //- a.dropdown-item.py-md-3.font-weight-bold.text-center.col-md-4(href='#')
+                      //-   label.d-flex.align-items-center.font-weight-bold.text-left(for="fabrics" :class="{'text-gray':viewportWidth <= 640 && sideBarShow.indexOf('fabrics') >= 0}") 衣料織品 <span class="fz12">Fabrics</span><i class="fas fa-chevron-down ml-auto" v-if="viewportWidth <= 640 && sideBarShow.indexOf('fabrics') < 0"></i><i class="fas fa-chevron-up ml-auto" v-if="viewportWidth <= 640 && sideBarShow.indexOf('fabrics') >= 0"></i>
+                      //-   input.d-none(type="checkbox" id="fabrics" value="fabrics" v-model="sideBarShow")
+                      //-   ul.pl-3(:class="{'d-none' : viewportWidth <= 640 && sideBarShow.indexOf('fabrics') < 0}")
+                      //-     li.fz15.mb-2 - T恤
+                      //-     li.fz15.mb-2 - 抱枕
+                      //-     li.fz15.mb-2 - 帆布袋
+                      //- a.dropdown-item.py-md-3.font-weight-bold.text-left.col-md-4(href='#')
+                      //-   label.d-flex.align-items-center.font-weight-bold(for="cards" :class="{'text-gray':viewportWidth <= 640 && sideBarShow.indexOf('cards') >= 0}") 卡片系列 <span class="fz12">Cards</span><i class="fas fa-chevron-down ml-auto" v-if="viewportWidth <= 640 && sideBarShow.indexOf('cards') < 0"></i><i class="fas fa-chevron-up ml-auto" v-if="viewportWidth <= 640 && sideBarShow.indexOf('cards') >= 0"></i>
+                      //-   input.d-none(type="checkbox" id="cards" value="cards" v-model="sideBarShow")
+                      //-   ul.pl-3(:class="{'d-none' : viewportWidth <= 640 && sideBarShow.indexOf('cards') < 0}")
+                      //-     li.fz15.mb-2 - 卡片
+                      //-     li.fz15.mb-2 - 明信片
+                      //-     li.fz15.mb-2 - 喜帖
+                      //- a.dropdown-item.py-md-3.font-weight-bold.text-left.col-md-4(href='#')
+                      //-   label.d-flex.align-items-center.font-weight-bold(for="electronics" :class="{'text-gray':viewportWidth <= 640 && sideBarShow.indexOf('electronics') >= 0}") 創意科技 <span class="fz12">Electronics</span><i class="fas fa-chevron-down ml-auto" v-if="viewportWidth <= 640 && sideBarShow.indexOf('electronics') < 0"></i><i class="fas fa-chevron-up ml-auto" v-if="viewportWidth <= 640 && sideBarShow.indexOf('electronics') >= 0"></i>
+                      //-   input.d-none(type="checkbox" id="electronics" value="electronics" v-model="sideBarShow")
+                      //-   ul.pl-3(:class="{'d-none' : viewportWidth <= 640 && sideBarShow.indexOf('electronics') < 0}")
+                      //-     li.fz15.mb-2 - 悠遊卡
+                      //-     li.fz15.mb-2 - 一卡通
+                      //-     li.fz15.mb-2 - 手機殼
+                      //-     li.fz15.mb-2 - 行動電源
                 li.nav-item.pr-lg-5.ml-md-5(@click="closeSideBar")
                   a.nav-link.font-weight-bold(href='#') 幫助中心
                 li.nav-item.pr-lg-5.ml-md-5(@click="closeSideBar" v-if="viewportWidth <= 640")
@@ -78,7 +84,9 @@ export default{
   props: ['viewportWidth'],
   data () {
     return {
-      sideBarShow: []
+      sideBarShow: [],
+      totalCategory: [],
+      totalProduct: []
     }
   },
   methods: {
@@ -95,6 +103,20 @@ export default{
     })
     $('.dropdown-item').on('click', function (event) {
       event.stopPropagation()
+    })
+  },
+  created () {
+    const vm = this
+    let totalCategory = []
+    this.$http.get('http://192.168.20.133:8001/api/v1/product').then((response) => {
+      // 篩出有幾種分類
+      response.data.data.forEach(function (item) {
+        if (totalCategory.indexOf(item.productCategory) < 0) {
+          totalCategory.push(item.productCategory)
+        }
+      })
+      vm.totalCategory = totalCategory
+      vm.totalProduct = response.data.data
     })
   }
 }
