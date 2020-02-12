@@ -2,12 +2,12 @@
   <div class="swiperComponent" :class="{'mt-3' : viewportWidth <= 640}">
     <swiper :options="swiperOptionTop" class="gallery-top" ref="swiperTop">
     <!-- slides -->
-      <swiper-slide><img src="../assets/img/standard/a01.jpg" alt=""></swiper-slide>
-      <swiper-slide><img src="../assets/img/standard/a02.jpg" alt=""></swiper-slide>
-      <swiper-slide><img src="../assets/img/standard/a03.jpg" alt=""></swiper-slide>
-      <swiper-slide><img src="../assets/img/standard/a04.jpg" alt=""></swiper-slide>
-      <swiper-slide><img src="../assets/img/standard/a05.jpg" alt=""></swiper-slide>
-      <swiper-slide><img src="../assets/img/standard/a06.jpg" alt=""></swiper-slide>
+      <swiper-slide class="bigImg"><img src="../assets/img/standard/a01.jpg" alt=""></swiper-slide>
+      <swiper-slide class="bigImg"><img src="../assets/img/standard/a02.jpg" alt=""></swiper-slide>
+      <swiper-slide class="bigImg"><img src="../assets/img/standard/a03.jpg" alt=""></swiper-slide>
+      <swiper-slide class="bigImg"><img src="../assets/img/standard/a04.jpg" alt=""></swiper-slide>
+      <swiper-slide class="bigImg"><img src="../assets/img/standard/a05.jpg" alt=""></swiper-slide>
+      <swiper-slide class="bigImg"><img src="../assets/img/standard/a06.jpg" alt=""></swiper-slide>
       <!-- Optional controls -->
       <div class="swiper-pagination"  slot="pagination" v-if="viewportWidth <= 640"></div>
       <!-- <div class="swiper-button-prev" slot="button-prev"></div> -->
@@ -87,7 +87,7 @@ export default {
     max-width: 600px;
     height: auto;
     img{
-      max-width:100%;
+      width:100%;
       height: auto;
     }
   }

@@ -25,7 +25,7 @@
                   .dropdown-menu.py-0(aria-labelledby='navbarDropdown')
                     .row.px-md-3
                       a.dropdown-item.py-md-3.photoBook.font-weight-bold.text-center.col-md-4(href='#' v-for="(item,idx) in totalCategory")
-                        label.d-flex.align-items-center.font-weight-bold.text-left(:for="item" :class="{'text-gray':viewportWidth <= 640 && sideBarShow.indexOf(item) >= 0}") {{item}} <span class="fz12">Photobook</span><i class="fas fa-chevron-down ml-auto" v-if="viewportWidth <= 640 && sideBarShow.indexOf(item) < 0"></i><i class="fas fa-chevron-up ml-auto" v-if="viewportWidth <= 640 && sideBarShow.indexOf(item) >= 0"></i>
+                        label.d-flex.align-items-center.font-weight-bold.text-left(:for="item" :class="{'text-gray':viewportWidth <= 640 && sideBarShow.indexOf(item) >= 0}") {{item}}<i class="fas fa-chevron-down ml-auto" v-if="viewportWidth <= 640 && sideBarShow.indexOf(item) < 0"></i><i class="fas fa-chevron-up ml-auto" v-if="viewportWidth <= 640 && sideBarShow.indexOf(item) >= 0"></i>
                         input.d-none(type="checkbox" :id="item" :value="item" v-model="sideBarShow")
                         ul.pl-3(:class="{'d-none' : viewportWidth <= 640 && sideBarShow.indexOf(item) < 0}")
                           li.fz15.mb-2(v-for="item1 in totalProduct" v-if="item1.productCategory === item") - {{item1.productName}}
