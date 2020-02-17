@@ -1,11 +1,27 @@
 <template lang="pug">
   #app
+    loading(:active.sync="isLoading" :is-full-page="fullPage" :color="color" :loader="loader")
     router-view
 </template>
 
 <script>
 export default {
-  name: 'App'
+  name: 'App',
+  components: {
+    // loading
+  },
+  data () {
+    return {
+      fullPage: true,
+      color: '#5c87a6',
+      loader: 'dots'
+    }
+  },
+  computed: {
+    isLoading () {
+      return this.$store.state.isLoading
+    }
+  }
 }
 </script>
 
@@ -32,8 +48,5 @@ body{
   font-family: "Avenir", Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  // text-align: center;
-  // color: #2c3e50;
-  // margin-top: 60px;
 }
 </style>

@@ -17,30 +17,24 @@
           p.text-primary.font-weight-bold.secondTitle(:class="{'text-center':fullWidth <= 640}") 選擇裝訂/尺寸
           p.font-weight-bold(:class="{'text-center':fullWidth <= 640}") 尺寸
           .d-flex.align-items-end.mb-3
-            .d-flex.flex-column.schematic(@click="size = '21正方 210x210mm'")
-              img(src="../../assets/img/standard/b01.jpg")
-              span.fz12.w-100.text-center 21正方
-              span.fz12.w-100.text-center 210x210 mm
-            .d-flex.flex-column.ml-3.schematic(@click="size = 'A4直 210x297mm'")
-              img(src="../../assets/img/standard/b02.jpg")
-              span.fz12.w-100.text-center A4直
-              span.fz12.w-100.text-center 210x297 mm
+            .d-flex.flex-column.schematic(v-for="(item,idx) in productSpec" @click.prevent="size = item.specName; specId = idx + 1")
+              img(:src="item.specThumbnail")
+              span.fz12.w-100.text-center {{item.specName}}
           .d-flex.align-items-center
             label.mb-0(for="pageNumber") 頁數
             select#pageNumber.form-control.w-75.ml-3(v-model="pages")
-              option(value=36) 內裝36頁 + 封面封底
-              option(value=40) 內裝40頁 + 封面封底
+              option(v-for="item in productPages" :value = "item")  {{item}}
           hr
           p.text-primary.font-weight-bold.secondTitle.mb-0 產品資訊
             .row
               .col-4
-                p 尺寸
+                  p 尺寸
               .col-8
                 p {{size}}
               .col-4
                 p 頁數
               .col-8
-                p {{pages}}頁
+                p {{pages}}
               .col-4
                 p 紙張
               .col-8
@@ -52,7 +46,7 @@
               .col-4
                 p 出貨天數
               .col-8
-                p 付款後9個工作天寄出
+                p 付款後{{shippingDay}}個工作天寄出
               .col-4
                 p 郵寄方式
               .col-8
@@ -60,7 +54,7 @@
           hr.mt-0
           p(:class="{'justify-content-between' : fullWidth > 640, 'flex-column' : fullWidth <= 640, 'align-items-center' : fullWidth <= 640}").text-primary.d-flex.font-weight-bold 周年慶活動，相片全面85折優惠!<span class="fz26">NT$300</span>
           .d-flex.btnBox(:class="{'justify-content-center' : fullWidth <= 640}")
-            button(:class="{'w-100' : fullWidth <= 640}").btn.btn-primary.font-weight-bold.btnInPage.py-0 開始製作
+            a(:href="designLink" target="_blank" :class="{'w-100' : fullWidth <= 640}").btn.btn-primary.font-weight-bold.btnInPage.py-0 開始製作
     .container
       .row.justify-content-center.py-4
         h2.font-weight-bold.mb-0.text-secondary.secondTitle 產品特性
@@ -145,8 +139,32 @@ export default {
   data () {
     return {
       fullWidth: document.body.clientWidth,
+      // 綁定選取資料
       size: '',
-      pages: ''
+      // 綁定選取資料
+      pages: '',
+      // 產品全部規格
+      productSpec: [],
+      // 全部產品資訊
+      productInfo: [],
+      // 頁數下拉
+      productPages: [],
+      // 直式橫式對應數字
+      specId: null,
+      designLink: ''
+    }
+  },
+  computed: {
+    shippingDay () {
+      const vm = this
+      let idx = 0
+      vm.productInfo.forEach((item, index) => {
+        if (item.productPages === vm.pages && item.specId === vm.specId) {
+          idx = index
+          vm.designLink = item.editLink
+        }
+      })
+      return vm.productInfo[idx]['shippingDay']
     }
   },
   mounted () {
@@ -163,6 +181,24 @@ export default {
     fullWidth (val) {
       this.fullWidth = val
     }
+  },
+  created () {
+    const vm = this
+    vm.$store.dispatch('loadingStatus', true)
+    // 取資料
+    const id = this.$route.params.id
+    vm.$http.get(`http://192.168.20.133:8001/api/v1/product/${id}`).then((response) => {
+      let productSpec = response.data.data[0].productSpec
+      let productInfo = response.data.data[1].productInfo
+      vm.productSpec = productSpec
+      productInfo.forEach((item) => {
+        if (vm.productPages.indexOf(item.productPages) < 0) {
+          vm.productPages.push(item.productPages)
+        }
+      })
+      vm.productInfo = productInfo
+      this.$store.dispatch('loadingStatus', false)
+    })
   }
 }
 </script>
@@ -214,6 +250,9 @@ export default {
     cursor: pointer;
     &:hover{
       opacity: .5;
+    }
+    &:not(:nth-child(1)){
+      margin-left: 16px;
     }
   }
   // 頁面中的Btn樣式
