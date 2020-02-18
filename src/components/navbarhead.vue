@@ -45,13 +45,12 @@
 </template>
 
 <script>
+import {mapState} from 'vuex'
 export default{
   props: ['viewportWidth'],
   data () {
     return {
-      sideBarShow: [],
-      totalCategory: [],
-      totalProduct: []
+      sideBarShow: []
     }
   },
   methods: {
@@ -72,17 +71,10 @@ export default{
   },
   created () {
     const vm = this
-    let totalCategory = []
-    this.$http.get('http://192.168.20.133:8001/api/v1/product').then((response) => {
-      // 篩出有幾種分類
-      response.data.data.forEach(function (item) {
-        if (totalCategory.indexOf(item.productCategory) < 0) {
-          totalCategory.push(item.productCategory)
-        }
-      })
-      vm.totalCategory = totalCategory
-      vm.totalProduct = response.data.data
-    })
+    vm.$store.dispatch('getNavBarList')
+  },
+  computed: {
+    ...mapState(['totalProduct', 'totalCategory'])
   }
 }
 </script>
@@ -234,8 +226,8 @@ export default{
   padding: 0 16px;
   box-sizing: border-box;
   // 設定下拉位置
-  left: -220px;
-  top: calc( 100% + 16px);
+  left: -45px;
+  top: calc( 100%);
   ul{
     padding-left: 0;
   }
@@ -245,6 +237,10 @@ export default{
     text-align: left;
   }
 }
+.dropdown:hover .dropdown-menu {
+    display: block;
+    margin-top: 0; // remove the gap so it doesn't close
+ }
 @media(max-width : 640px) {
   .dropdown-menu{
     min-width: auto;

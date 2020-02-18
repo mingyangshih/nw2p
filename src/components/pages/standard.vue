@@ -22,7 +22,7 @@
               span.fz12.w-100.text-center {{item.specName}}
           .d-flex.align-items-center
             label.mb-0(for="pageNumber") 頁數
-            select#pageNumber.form-control.w-75.ml-3(v-model="pages")
+            select#pageNumber.form-control.w-75.ml-3(v-model="pages" @change="shippingDayChange")
               option(v-for="item in productPages" :value = "item")  {{item}}
           hr
           p.text-primary.font-weight-bold.secondTitle.mb-0 產品資訊
@@ -54,7 +54,7 @@
           hr.mt-0
           p(:class="{'justify-content-between' : fullWidth > 640, 'flex-column' : fullWidth <= 640, 'align-items-center' : fullWidth <= 640}").text-primary.d-flex.font-weight-bold 周年慶活動，相片全面85折優惠!<span class="fz26">NT$300</span>
           .d-flex.btnBox(:class="{'justify-content-center' : fullWidth <= 640}")
-            a(:href="designLink" target="_blank" :class="{'w-100' : fullWidth <= 640}").btn.btn-primary.font-weight-bold.btnInPage.py-0 開始製作
+            a(:href="designLink" target="_blank" :class="{'w-100' : fullWidth <= 640}").btn.btn-primary.font-weight-bold.btnInPage.py-0.text-white 開始製作
     .container
       .row.justify-content-center.py-4
         h2.font-weight-bold.mb-0.text-secondary.secondTitle 產品特性
@@ -129,6 +129,8 @@ import navbarhead from '../navbarhead'
 import swiper from '../swiperComponent'
 import footerComponent from '../footer.vue'
 import copyright from '../copyright'
+import {mapState, mapActions} from 'vuex'
+import { mapFields } from 'vuex-map-fields'
 export default {
   components: {
     navbarhead,
@@ -138,34 +140,28 @@ export default {
   },
   data () {
     return {
-      fullWidth: document.body.clientWidth,
-      // 綁定選取資料
-      size: '',
-      // 綁定選取資料
-      pages: '',
-      // 產品全部規格
-      productSpec: [],
-      // 全部產品資訊
-      productInfo: [],
-      // 頁數下拉
-      productPages: [],
-      // 直式橫式對應數字
-      specId: null,
-      designLink: ''
+      fullWidth: document.body.clientWidth
     }
   },
   computed: {
-    shippingDay () {
-      const vm = this
-      let idx = 0
-      vm.productInfo.forEach((item, index) => {
-        if (item.productPages === vm.pages && item.specId === vm.specId) {
-          idx = index
-          vm.designLink = item.editLink
-        }
-      })
-      return vm.productInfo[idx]['shippingDay']
-    }
+    // 從Vuex取出資料
+    ...mapState({
+      productSpec: state => state.standardModules.productSpec,
+      productPages: state => state.standardModules.productPages,
+      productAlbum: state => state.standardModules.productAlbum,
+      productInfo: state => state.standardModules.productInfo,
+      shippingDay: state => state.standardModules.shippingDay
+    }),
+    ...mapFields([
+      'size',
+      'pages',
+      'shippingDay',
+      'specId',
+      'designLink'
+    ])
+  },
+  methods: {
+    ...mapActions(['shippingDayChange'])
   },
   mounted () {
     const vm = this
@@ -184,21 +180,10 @@ export default {
   },
   created () {
     const vm = this
-    vm.$store.dispatch('loadingStatus', true)
+    // vm.$store.dispatch('loadingStatus', true)
     // 取資料
     const id = this.$route.params.id
-    vm.$http.get(`http://192.168.20.133:8001/api/v1/product/${id}`).then((response) => {
-      let productSpec = response.data.data[0].productSpec
-      let productInfo = response.data.data[1].productInfo
-      vm.productSpec = productSpec
-      productInfo.forEach((item) => {
-        if (vm.productPages.indexOf(item.productPages) < 0) {
-          vm.productPages.push(item.productPages)
-        }
-      })
-      vm.productInfo = productInfo
-      this.$store.dispatch('loadingStatus', false)
-    })
+    vm.$store.dispatch('getStandardData', {id})
   }
 }
 </script>

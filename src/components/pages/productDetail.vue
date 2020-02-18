@@ -24,7 +24,7 @@
         .col-6.col-md-3.text-center
           .card
             .imgBox
-              router-link(to="/standard")
+              router-link(to="/standard/14")
                 img.card-img-top(src="../../assets/img/productDetail/a01.jpg")
             .card-body
               h5.card-title.font-weight-bold.text-secondary 平裝相片書
