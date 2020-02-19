@@ -152,6 +152,7 @@ export default {
       productInfo: state => state.standardModules.productInfo,
       shippingDay: state => state.standardModules.shippingDay
     }),
+    // like v-model
     ...mapFields([
       'size',
       'pages',

@@ -11,6 +11,7 @@ export default {
     productPages: [],
     // 左邊相片
     productAlbum: [],
+    productAlbumLength: null,
     // 運送天數
     shippingDay: null,
     size: '',
@@ -25,13 +26,14 @@ export default {
         let productSpec = response.data.data[1].productSpec
         let productInfo = response.data.data[2].productInfo
         let productAlbum = response.data.data[0].productAlbum
+        let productAlbumLength = productAlbum.length
         let productPages = []
         productInfo.forEach((item) => {
           if (productPages.indexOf(item.productPages) < 0) {
             productPages.push(item.productPages)
           }
         })
-        context.commit('changeStandardData', {productSpec, productInfo, productAlbum, productPages})
+        context.commit('changeStandardData', {productSpec, productInfo, productAlbum, productPages, productAlbumLength})
       }).catch((error) => { console.log(error) }).finally(() => {
         context.commit('LOADING', false, {root: true})
       })
@@ -48,10 +50,11 @@ export default {
     }
   },
   mutations: {
-    changeStandardData (state, {productSpec, productInfo, productAlbum, productPages}) {
+    changeStandardData (state, {productSpec, productInfo, productAlbum, productPages, productAlbumLength}) {
       state.productSpec = productSpec
       state.productInfo = productInfo
       state.productAlbum = productAlbum
+      state.productAlbumLength = productAlbumLength
       state.productPages = productPages
       state.shippingDay = productInfo[0].shippingDay
       state.size = productSpec[0].specName

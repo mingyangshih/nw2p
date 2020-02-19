@@ -1,27 +1,16 @@
 <template>
   <div class="swiperComponent" :class="{'mt-3' : viewportWidth <= 640}">
-    <swiper :options="swiperOptionTop" class="gallery-top" ref="swiperTop">
+    <swiper :options="swiperOptionTop" class="gallery-top" ref="swiperTop"  v-if="productAlbum.length>0">
     <!-- slides -->
       <swiper-slide class="bigImg" v-for="item in productAlbum" :key="item.albumId"><img :src="item.productAlbum" alt=""></swiper-slide>
-      <!-- <swiper-slide class="bigImg"><img src="../assets/img/standard/a01.jpg" alt=""></swiper-slide>
-      <swiper-slide class="bigImg"><img src="../assets/img/standard/a02.jpg" alt=""></swiper-slide>
-      <swiper-slide class="bigImg"><img src="../assets/img/standard/a03.jpg" alt=""></swiper-slide>
-      <swiper-slide class="bigImg"><img src="../assets/img/standard/a04.jpg" alt=""></swiper-slide>
-      <swiper-slide class="bigImg"><img src="../assets/img/standard/a05.jpg" alt=""></swiper-slide>
-      <swiper-slide class="bigImg"><img src="../assets/img/standard/a06.jpg" alt=""></swiper-slide> -->
       <!-- Optional controls -->
       <div class="swiper-pagination"  slot="pagination" v-if="viewportWidth <= 640"></div>
       <!-- <div class="swiper-button-prev" slot="button-prev"></div> -->
       <!-- <div class="swiper-button-next" slot="button-next"></div> -->
       <!-- <div class="swiper-scrollbar"   slot="scrollbar"></div> -->      <!-- swiper2 Thumbs -->
     </swiper>
-    <swiper :options="swiperOptionThumbs" class="gallery-thumbs mt-3" ref="swiperThumbs" v-show="viewportWidth > 640">
-      <swiper-slide class="slide-1 smallImg" v-for="item in productAlbum" :key="item.albumId"><img :src="item.productAlbum" alt=""></swiper-slide>
-      <!-- <swiper-slide class="slide-2 smallImg"><img src="../assets/img/standard/a02.jpg" alt=""></swiper-slide>
-      <swiper-slide class="slide-3 smallImg"><img src="../assets/img/standard/a03.jpg" alt=""></swiper-slide>
-      <swiper-slide class="slide-4 smallImg"><img src="../assets/img/standard/a04.jpg" alt=""></swiper-slide>
-      <swiper-slide class="slide-5 smallImg"><img src="../assets/img/standard/a05.jpg" alt=""></swiper-slide>
-      <swiper-slide class="slide-6 smallImg"><img src="../assets/img/standard/a06.jpg" alt=""></swiper-slide> -->
+    <swiper :options="swiperOptionThumbs" class="gallery-thumbs mt-3" ref="swiperThumbs" v-if="viewportWidth > 640 && productAlbum.length>0">
+      <swiper-slide class="slide-1 smallImg" v-for="item in productAlbum" :key="item.albumId" ><img :src="item.productAlbum" alt=""></swiper-slide>
     </swiper>
   </div>
 </template>
@@ -29,7 +18,6 @@
 <script>
 import 'swiper/dist/css/swiper.css'
 import { swiper, swiperSlide } from 'vue-awesome-swiper'
-import { mapFields } from 'vuex-map-fields'
 export default {
   props: ['viewportWidth'],
   name: 'carrousel',
@@ -41,10 +29,9 @@ export default {
     return {
       swiperOptionTop: {
         spaceBetween: 10,
+        slidesPerView: 1,
         loop: true,
-        loopedSlides: 0, // looped slides should be the same
-        slidesPerView: 'auto',
-        autoHeight: true,
+        loopedSlides: null, // looped slides should be the same
         effect: 'fade',
         pagination: {
           el: '.swiper-pagination',
@@ -52,36 +39,34 @@ export default {
         },
         updateOnWindowResize: true,
         centeredSlides: true,
-        grabCursor: true,
-        slideToClickedSlide: true
+        grabCursor: true
       },
       swiperOptionThumbs: {
         spaceBetween: 10,
-        slidesPerView: 'auto',
         touchRatio: 0.2,
+        slidesPerView: 6,
         loop: true,
-        loopedSlides: 0, // looped slides should be the same
+        loopedSlides: null, // looped slides should be the same
         slideToClickedSlide: true,
-        centeredSlides: true,
-        autoHeight: true
-      }
+        centeredSlides: true
+      },
+      productAlbum: []
     }
   },
-  computed: {
-    ...mapFields([
-      'productAlbum'
-    ])
-  },
-  mounted () {
-    this.$nextTick(() => {
-      const swiperTop = this.$refs.swiperTop.swiper
-      const swiperThumbs = this.$refs.swiperThumbs.swiper
-      swiperTop.controller.control = swiperThumbs
-      swiperThumbs.controller.control = swiperTop
+  // 處理v-for swiper 跟資料不同步問題
+  async mounted () {
+    const id = this.$route.params.id
+    await this.$http.get(`http://192.168.20.133:8001/api/v1/product/${id}`).then(response => {
+      this.productAlbum = response.data.data[0].productAlbum
+      this.swiperOptionTop.loopedSlides = this.productAlbum.length
+      this.swiperOptionThumbs.loopedSlides = this.productAlbum.length
+      this.$nextTick(() => {
+        const swiperTop = this.$refs.swiperTop.swiper
+        const swiperThumbs = this.$refs.swiperThumbs.swiper
+        swiperTop.controller.control = swiperThumbs
+        swiperThumbs.controller.control = swiperTop
+      })
     })
-    // 自動計算相片有幾張
-    this.swiperOptionTop.loopedSlides = this.productAlbum.length
-    this.swiperOptionThumbs.loopedSlides = this.productAlbum.length
   }
 }
 </script>
