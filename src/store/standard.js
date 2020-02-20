@@ -41,7 +41,6 @@ export default {
     shippingDayChange ({commit, state}) {
       state.productInfo.forEach((item, index) => {
         if (item.productPages === state.pages && item.specId === state.specId) {
-          console.log(item.editLink)
           let editLink = item.editLink
           let shippingDay = state.productInfo[index]['shippingDay']
           commit('shippingDayChange', {shippingDay, editLink})

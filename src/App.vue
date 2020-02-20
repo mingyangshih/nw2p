@@ -45,7 +45,7 @@ body{
 
 @import "./assets/all.scss";
 #app {
-  font-family: "Avenir", Helvetica, Arial, sans-serif;
+  font-family: Arial, Helvetica, "Microsoft JhengHei", sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }

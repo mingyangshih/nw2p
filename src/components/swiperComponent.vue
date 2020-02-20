@@ -4,10 +4,11 @@
     <!-- slides -->
       <swiper-slide class="bigImg" v-for="item in productAlbum" :key="item.albumId"><img :src="item.productAlbum" alt=""></swiper-slide>
       <!-- Optional controls -->
-      <div class="swiper-pagination"  slot="pagination" v-if="viewportWidth <= 640"></div>
+      <div class="swiper-pagination"  slot="pagination" v-if="viewportWidth > 640"></div>
       <!-- <div class="swiper-button-prev" slot="button-prev"></div> -->
       <!-- <div class="swiper-button-next" slot="button-next"></div> -->
-      <!-- <div class="swiper-scrollbar"   slot="scrollbar"></div> -->      <!-- swiper2 Thumbs -->
+      <!-- <div class="swiper-scrollbar"   slot="scrollbar"></div> -->
+      <!-- swiper2 Thumbs -->
     </swiper>
     <swiper :options="swiperOptionThumbs" class="gallery-thumbs mt-3" ref="swiperThumbs" v-if="viewportWidth > 640 && productAlbum.length>0">
       <swiper-slide class="slide-1 smallImg" v-for="item in productAlbum" :key="item.albumId" ><img :src="item.productAlbum" alt=""></swiper-slide>
@@ -16,7 +17,7 @@
 </template>
 
 <script>
-import 'swiper/dist/css/swiper.css'
+import '../helpers/swiper.css'
 import { swiper, swiperSlide } from 'vue-awesome-swiper'
 export default {
   props: ['viewportWidth'],
@@ -30,26 +31,30 @@ export default {
       swiperOptionTop: {
         spaceBetween: 10,
         slidesPerView: 1,
-        loop: true,
         loopedSlides: null, // looped slides should be the same
         effect: 'fade',
+        loop: true,
         pagination: {
           el: '.swiper-pagination',
-          clickable: true
+          clickable: true,
+          type: 'bullets'
         },
         updateOnWindowResize: true,
-        centeredSlides: true,
-        grabCursor: true
+        autoplay: {
+          delay: 3000,
+          disableOnInteraction: true
+        }
       },
       swiperOptionThumbs: {
         spaceBetween: 10,
         touchRatio: 0.2,
-        slidesPerView: 6,
-        loop: true,
+        slidesPerView: 'auto',
         loopedSlides: null, // looped slides should be the same
         slideToClickedSlide: true,
-        centeredSlides: true
+        centeredSlides: true,
+        loop: true
       },
+      // 放左邊相片資訊
       productAlbum: []
     }
   },
@@ -78,6 +83,9 @@ export default {
   .swiper-container{
     height: auto;
     max-width: 600px;
+    &.gallery-thumbs{
+      max-width: 600px;
+    }
   }
   .swiper-slide{
     max-width: 600px;
@@ -95,5 +103,9 @@ export default {
     width: 25%;
     height: 100%;
     opacity: 0.4;
+    // 輪到的時候標明顯一點
+    &.swiper-slide-active{
+      opacity: 1;
+    }
   }
 </style>

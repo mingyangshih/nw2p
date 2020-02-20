@@ -17,7 +17,7 @@
           p.text-primary.font-weight-bold.secondTitle(:class="{'text-center':fullWidth <= 640}") 選擇裝訂/尺寸
           p.font-weight-bold(:class="{'text-center':fullWidth <= 640}") 尺寸
           .d-flex.align-items-end.mb-3
-            .d-flex.flex-column.schematic(v-for="(item,idx) in productSpec" @click.prevent="size = item.specName; specId = idx + 1")
+            .d-flex.flex-column.schematic(v-for="(item,idx) in productSpec" @click.prevent="size = item.specName; specId = idx + 1; shippingDayChange()")
               img(:src="item.specThumbnail")
               span.fz12.w-100.text-center {{item.specName}}
           .d-flex.align-items-center

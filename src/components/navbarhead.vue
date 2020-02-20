@@ -1,6 +1,5 @@
 <template lang="pug">
   .row.justify-content-between
-
         nav.navbar.navbar-expand-md.navbar-light.bg-white.d-flex.py-3.w-100
           button.navbar-toggler.border-0.p-0(type='button' data-toggle='collapse' data-target='#navbarNav' aria-controls='navbarNav' aria-expanded='false' aria-label='Toggle navigation')
             //- span.navbar-toggler-icon
@@ -29,7 +28,7 @@
                         input.d-none(type="checkbox" :id="item" :value="item" v-model="sideBarShow")
                         ul.pl-3(:class="{'d-none' : viewportWidth <= 640 && sideBarShow.indexOf(item) < 0}")
                           li.fz15.mb-2(v-for="item1 in totalProduct" v-if="item1.productCategory === item")
-                            router-link.text-decoration-none(:to="'/standard/'+item1.productId") - {{item1.productName}}
+                            router-link.text-decoration-none.text-dark(:to="'/standard/'+item1.productId") - {{item1.productName}}
                 li.nav-item.pr-lg-5.ml-md-5(@click="closeSideBar")
                   a.nav-link.font-weight-bold(href='#') 幫助中心
                 li.nav-item.pr-lg-5.ml-md-5(@click="closeSideBar" v-if="viewportWidth <= 640")
@@ -100,6 +99,9 @@ export default{
 .navbar{
   height: 80px;
   box-sizing: border-box;
+}
+.navbar-nav{
+  font-family: Arial, Helvetica,'Microsoft JhengHei', sans-serif !important;
 }
 @media(min-width: 640px){
   .navbar-nav{
