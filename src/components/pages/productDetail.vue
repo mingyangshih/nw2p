@@ -22,35 +22,35 @@
     .container.bookBindingProduct
       .row.justify-content-center
         .col-6.col-md-3.text-center
-          .card
+          .card.rounded-0
             .imgBox
               router-link(to="/standard/14")
-                img.card-img-top(src="../../assets/img/productDetail/a01.jpg")
+                img.card-img-top.rounded-0(src="../../assets/img/productDetail/a01.jpg")
             .card-body
-              h5.card-title.font-weight-bold.text-secondary 平裝相片書
+              h5.card-title.text-secondary 平裝相片書
         .col-6.col-md-3.text-center
-          .card
+          .card.rounded-0
             .imgBox
-              img.card-img-top(src="../../assets/img/productDetail/a01.jpg")
+              img.card-img-top.rounded-0(src="../../assets/img/productDetail/a01.jpg")
             .card-body
-              h5.card-title.font-weight-bold.text-secondary 精裝相片書
+              h5.card-title.text-secondary 精裝相片書
         .col-6.col-md-3.text-center
-          .card
+          .card.rounded-0
             .imgBox
-              img.card-img-top(src="../../assets/img/productDetail/a01.jpg")
+              img.card-img-top.rounded-0(src="../../assets/img/productDetail/a01.jpg")
             .card-body
-              h5.card-title.font-weight-bold.text-secondary 薄蝴蝶裝相片書
+              h5.card-title.text-secondary 薄蝴蝶裝相片書
         .col-6.col-md-3.text-center
-          .card
+          .card.rounded-0
             .imgBox
-              img.card-img-top(src="../../assets/img/productDetail/a01.jpg")
+              img.card-img-top.rounded-0(src="../../assets/img/productDetail/a01.jpg")
             .card-body
-              h5.card-title.font-weight-bold.text-secondary 厚蝴蝶裝裝相片書
+              h5.card-title.text-secondary 厚蝴蝶裝裝相片書
     .container-fluid.bg-gray.secondBannerBox
       .row
         .col-md-6.secondBannerDesBox
           .secondBannerDes
-            p.title.text-primary.mb-md-4 編輯作品比您想得更容易
+            p.title.text-primary.font-weight-bold.mb-md-4 編輯作品比您想得更容易
             p 吻合各種螢幕大小的編輯空間，提供您穩定的編輯流程和隨心所欲的設計方式，我們已經可以預見您收到作品時的笑容。
             .d-flex.try.mb-3
               button.btn.btn-primary.btnInPage.py-0.pr-0 <span class="font-weight-bold">馬上體驗</span> <i class="fas fa-chevron-right fa-xs"></i>
@@ -59,7 +59,7 @@
     .container-fluid
       .row.satisfyAllNeeds
         h2.title.text-center.font-weight-bold.w-100.mb-0 滿足您所有場景的需求
-    .container-fluid.specialEffectleft.my-4
+    .container-fluid.specialEffectleft.my-5
       .row.justify-content-center
         .col-md-7.standard.bgSetting
           img(src="../../assets/img/productDetail//c01.jpg")
@@ -70,7 +70,7 @@
               p.under_secondbanner_des(v-if="fullWidth > 640") 輕薄好攜帶是平裝相片書最大的優勢，作為一份自己珍藏或是送給家人、朋友的禮物，精巧而不顯得過於貴重。些微反光但不沾指紋的光澤，保有了傳統相紙的豔麗，消除了收藏上的缺點。只有這樣的好質感，才襯得出您的珍貴。
               .d-flex.try.mb-3
                 button.btn.btn-primary.btnInPage.py-0.pr-0 <span class="font-weight-bold">馬上體驗</span> <i class="fas fa-chevron-right fa-xs"></i>
-    .container-fluid.my-4.specialEffectRight
+    .container-fluid.my-5.specialEffectRight
       .row.justify-content-center
         .col-md-4
           .under_second_banner_des_box_left
@@ -81,7 +81,7 @@
                 button.btn.btn-primary.btnInPage.py-0.pr-0 <span class="font-weight-bold">馬上體驗</span> <i class="fas fa-chevron-right fa-xs"></i>
         .col-md-7.standard.bgSetting
           img(src="../../assets/img/productDetail//c01.jpg")
-    .container-fluid.specialEffectleft.my-4
+    .container-fluid.specialEffectleft.my-5
       .row.justify-content-center
         .col-md-7.standard.bgSetting
           img(src="../../assets/img/productDetail//c01.jpg")
@@ -92,7 +92,7 @@
               p.under_secondbanner_des(v-if="fullWidth > 640") 輕薄好攜帶是平裝相片書最大的優勢，作為一份自己珍藏或是送給家人、朋友的禮物，精巧而不顯得過於貴重。些微反光但不沾指紋的光澤，保有了傳統相紙的豔麗，消除了收藏上的缺點。只有這樣的好質感，才襯得出您的珍貴。
               .d-flex.try.mb-3
                 button.btn.btn-primary.btnInPage.py-0.pr-0 <span class="font-weight-bold">馬上體驗</span> <i class="fas fa-chevron-right fa-xs"></i>
-    .container-fluid.my-4.specialEffectRight
+    .container-fluid.my-5.specialEffectRight
       .row.justify-content-center
         .col-md-4
           .under_second_banner_des_box_left
@@ -127,21 +127,21 @@ export default {
   mixins: [scroll],
   mounted () {
     const vm = this
-    const {elem: elemleft, distance: distanceleft} = vm.scroll('specialEffectleft')
-    const {elem: elemright, distance: distanceright} = vm.scroll('specialEffectRight')
-    // inner viewport height
-    const IVPH = window.innerHeight
-    window.addEventListener('scroll', function (e) {
-      e.stopPropagation()
-      distanceleft.forEach(function (item, idx) {
-        const checkClassName = elemleft[idx].classList.contains('specialEffectShow')
-        if (item - window.scrollY <= IVPH / 4 && !checkClassName) elemleft[idx].classList.add('specialEffectShow')
-      })
-      distanceright.forEach(function (item, idx) {
-        const checkClassName = elemright[idx].classList.contains('specialEffectShow')
-        if (item - window.scrollY <= IVPH / 4 && !checkClassName) elemright[idx].classList.add('specialEffectShow')
-      })
-    })
+    // const {elem: elemleft, distance: distanceleft} = vm.scroll('specialEffectleft')
+    // const {elem: elemright, distance: distanceright} = vm.scroll('specialEffectRight')
+    // // inner viewport height
+    // const IVPH = window.innerHeight
+    // window.addEventListener('scroll', function (e) {
+    //   e.stopPropagation()
+    //   distanceleft.forEach(function (item, idx) {
+    //     const checkClassName = elemleft[idx].classList.contains('specialEffectShow')
+    //     if (item - window.scrollY <= IVPH / 4 && !checkClassName) elemleft[idx].classList.add('specialEffectShow')
+    //   })
+    //   distanceright.forEach(function (item, idx) {
+    //     const checkClassName = elemright[idx].classList.contains('specialEffectShow')
+    //     if (item - window.scrollY <= IVPH / 4 && !checkClassName) elemright[idx].classList.add('specialEffectShow')
+    //   })
+    // })
     // resize 事件
     window.onresize = () => {
       return (() => {
@@ -229,6 +229,9 @@ export default {
     max-width: 258px;
     box-sizing: border-box;
     cursor: pointer;
+    &:hover{
+      opacity: .5;
+    }
   }
   @media(max-width: 640px){
     .card{
@@ -266,10 +269,10 @@ export default {
       max-width: 258px;
       max-height: 258px;
       transform:scale(1,1);
-      transition: all 1s ease-out;
-      &:hover{
-        transform:scale(1.2,1.2);
-      }
+      // transition: all 1s ease-out;
+      // &:hover{
+      //   transform:scale(1.2,1.2);
+      // }
     }
   }
   // second banner
@@ -294,6 +297,11 @@ export default {
   .secondBannerDesBox{
     display: flex;
     justify-content: flex-end;
+  }
+  @media(max-width: 640px){
+    .secondBannerDesBox{
+      padding: 30px 15px;
+    }
   }
   .secondBannerDes{
     box-sizing: border-box;
@@ -337,7 +345,7 @@ export default {
   }
   .satisfyAllNeeds{
     padding-top: 40px;
-    padding-bottom: 40px;
+    // padding-bottom: 40px;
     box-sizing: border-box;
     .title{
       font-family: $serif;
@@ -455,30 +463,30 @@ export default {
     }
   }
   // 滾動特效
-  .specialEffectleft{
-  transform: translateX(-2000px);
-  transition-property: transform, opacity;
-  transition-duration: 1.2s, 1.7s;
-  transition-timing-function: cubic-bezier(0.32,-0.04, 0.55, 0.71), cubic-bezier(0.05, 0.26, 0.33,-0.2);
-  opacity: 0;
-  overflow: hidden;
-  &.specialEffectShow{
-    transform: translateX(0);
-    opacity: 1;
-  }
-  }
-  .specialEffectRight{
-    transform: translateX(2000px);
-    transition-property: transform, opacity;
-    transition-duration: 1.2s, 1.7s;
-    transition-timing-function: cubic-bezier(0.32,-0.04, 0.55, 0.71), cubic-bezier(0.05, 0.26, 0.33,-0.2);
-    opacity: 0;
-    overflow: hidden;
-    &.specialEffectShow{
-      transform: translateX(0);
-      opacity: 1;
-    }
-  }
+  // .specialEffectleft{
+  // transform: translateX(-2000px);
+  // transition-property: transform, opacity;
+  // transition-duration: 1.2s, 1.7s;
+  // transition-timing-function: cubic-bezier(0.32,-0.04, 0.55, 0.71), cubic-bezier(0.05, 0.26, 0.33,-0.2);
+  // opacity: 0;
+  // overflow: hidden;
+  // &.specialEffectShow{
+  //   transform: translateX(0);
+  //   opacity: 1;
+  // }
+  // }
+  // .specialEffectRight{
+  //   transform: translateX(2000px);
+  //   transition-property: transform, opacity;
+  //   transition-duration: 1.2s, 1.7s;
+  //   transition-timing-function: cubic-bezier(0.32,-0.04, 0.55, 0.71), cubic-bezier(0.05, 0.26, 0.33,-0.2);
+  //   opacity: 0;
+  //   overflow: hidden;
+  //   &.specialEffectShow{
+  //     transform: translateX(0);
+  //     opacity: 1;
+  //   }
+  // }
   @media(max-width: 640px){
     .specialEffectRight{
       .col-md-4{

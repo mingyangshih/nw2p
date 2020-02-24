@@ -1,6 +1,6 @@
 <template lang="pug">
   .container
-    .row.pt-4.justify-content-cneter
+    .row.py-8.justify-content-cneter
       .col-md-3.col-6.footerContent
         p.footerTitle.font-weight-bold 商品資訊
         p 相片書
@@ -23,9 +23,8 @@
         p.footerTitle.font-weight-bold(v-if="viewportWidth > 640") 聯絡我們
         p 週一至週五 9:00~18:00
         p 電子郵件 service@babala.com.tw
-        <i class="fab fa-facebook-square fa-lg"></i>
-    .d-flex.justify-content-center.mt-3.pb-3(v-if="viewportWidth <= 640")
-      button.btn.btn-primary.font-weight-bold.btnInPage.pr-0.py-0 聯絡我們 <i class="fas fa-chevron-right fa-xs"></i>
+        button(v-if="viewportWidth <= 640").btn.btn-primary.font-weight-bold.btnInPage.pr-0.py-0.mt-3 聯絡我們 <i class="fas fa-chevron-right fa-xs"></i>
+        <i class="fab fa-facebook-square fa-lg mt-3"></i>
 </template>
 
 <script>
@@ -60,6 +59,12 @@ export default {
   align-items: center;
   .fa-chevron-right{
     margin-left: 37px;
+  }
+}
+// footer container 窄一點
+@media (min-width: 1200px){
+  .container{
+    max-width: 960px;
   }
 }
 </style>

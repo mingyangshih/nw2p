@@ -17,7 +17,7 @@
 </template>
 
 <script>
-import '../helpers/swiper.css'
+import 'swiper/dist/css/swiper.css'
 import { swiper, swiperSlide } from 'vue-awesome-swiper'
 export default {
   props: ['viewportWidth'],

@@ -22,49 +22,49 @@
   .container.letPhotoForeverProduct
     .row.justify-content-center
       .col-6.col-md-4.text-center
-        .card()
+        .card.rounded-0
           .imgBox
             router-link(to="/productDetail")
-              img.card-img-top(src='../../assets/img/home/a01.jpg' alt='相片書')
+              img.card-img-top.rounded-0(src='../../assets/img/home/a01.jpg' alt='相片書')
           .card-body
-            h5.card-title.font-weight-bold.text-secondary 相片書
+            h5.card-title.text-secondary 相片書
       .col-6.col-md-4.text-center
-        .card()
+        .card.rounded-0
           .imgBox
-            img.card-img-top(src='../../assets/img/home/a02.jpg' alt='帆布袋')
+            img.card-img-top.rounded-0(src='../../assets/img/home/a02.jpg' alt='帆布袋')
           .card-body
-            h5.card-title.font-weight-bold.text-secondary 帆布袋
+            h5.card-title.text-secondary 帆布袋
       .col-6.col-md-4.text-center
-        .card()
+        .card.rounded-0
           .imgBox
-            img.card-img-top(src='../../assets/img/home/a03.jpg' alt='T-shirt')
+            img.card-img-top.rounded-0(src='../../assets/img/home/a03.jpg' alt='T-shirt')
           .card-body
-            h5.card-title.font-weight-bold.text-secondary T恤
+            h5.card-title.text-secondary T恤
       .col-6.col-md-4.text-center.mt-md-2
-        .card()
+        .card.rounded-0
           .imgBox
-            img.card-img-top(src='../../assets/img/home/a04.jpg' alt='T-shirt')
+            img.card-img-top.rounded-0(src='../../assets/img/home/a04.jpg' alt='T-shirt')
           .card-body
-            h5.card-title.font-weight-bold.text-secondary 馬克杯
+            h5.card-title.text-secondary 馬克杯
       .col-6.col-md-4.text-center.mt-md-2
-        .card()
+        .card.rounded-0
           .imgBox
-            img.card-img-top(src='../../assets/img/home/a05.jpg' alt='T-shirt')
+            img.card-img-top.rounded-0(src='../../assets/img/home/a05.jpg' alt='T-shirt')
           .card-body
-            h5.card-title.font-weight-bold.text-secondary 明信片
+            h5.card-title.text-secondary 明信片
       .col-6.col-md-4.text-center.mt-md-2
-        .card()
+        .card.rounded-0
           .imgBox
-            img.card-img-top(src='../../assets/img/home/a06.jpg' alt='T-shirt')
+            img.card-img-top.rounded-0(src='../../assets/img/home/a06.jpg' alt='T-shirt')
           .card-body
-            h5.card-title.font-weight-bold.text-secondary 手機殼
+            h5.card-title.text-secondary 手機殼
   .container-fluid.bg-gray.secondBannerBox
     .row
       .col-md-6.px-0.secondBanner
       .col-md-6.px-0.secondBannerDesBox
-        .secondBannerDes.pt-md-8.px-md-4
-          p.mb-0.title.text-primary 只需簡單的步驟，
-          p.mb-30.title.text-primary 完成您不簡單的作品
+        .secondBannerDes.py-5.px-md-4
+          p.mb-0.title.text-primary.font-weight-bold 只需簡單的步驟，
+          p.mb-30.title.text-primary.font-weight-bold 完成您不簡單的作品
           .glasses.stepDesBox
             div.text-dark.d-flex.align-items-center
               p.border.border-primary.num.mb-0.d-flex.justify-content-center.align-items-center.font-weight-bold.text-primary 1
@@ -92,13 +92,13 @@
         img(src="../../assets/img/home/b01.jpg")
       .col-md-4
         .under_second_banner_des_box_right
-          .glasses
+          .glasses.w-md-50.mx-md-auto
             p.font-weight-bold.text-dark.under_secondbanner_des_title(:class="{'text-center' : fullWidth <= 640}") 更有溫度的相片書
             p.under_secondbanner_des(v-if="fullWidth > 640") 還在用社群軟體分享照片嗎?
             p.under_secondbanner_des(v-if="fullWidth > 640") 您還有其他的選擇
             .d-flex(:class="{'justify-content-center' : fullWidth <= 640}")
               button.btn.btn-primary.font-weight-bold.btnInPage.pr-0.py-0(:class="{'mt-5' : fullWidth > 823}") 我要製作 <i class="fas fa-chevron-right fa-xs"></i>
-  .container-fluid.mt-4.specialEffectRight
+  .container-fluid.mt-5.specialEffectRight
     .row.justify-content-center
       .col-md-4
         .under_second_banner_des_box_left
@@ -110,19 +110,19 @@
               button.btn.btn-primary.font-weight-bold.btnInPage.pr-0.py-0(:class="{'mt-5' : fullWidth > 823}") 我要製作 <i class="fas fa-chevron-right fa-xs"></i>
       .col-md-7.valuablePostCard.bgSetting
         img(src="../../assets/img/home/b02.jpg")
-  .container-fluid.mt-4.specialEffectleft
+  .container-fluid.mt-5.specialEffectleft
     .row.justify-content-center
       .col-md-7.lifeStuff.bgSetting
         img(src="../../assets/img/home/b03.jpg")
       .col-md-4
         .under_second_banner_des_box_right
-          .glasses
+          .glasses.w-md-50.mx-md-auto
             p.font-weight-bold.text-dark.under_secondbanner_des_title(:class="{'text-center' : fullWidth <= 640}") 生活雜貨
             p.under_secondbanner_des(v-if="fullWidth > 640") 花一整天在逛街找最滿意的馬克杯，
             p.under_secondbanner_des(v-if="fullWidth > 640") 不如花一小時做一件屬於自己的！
             .d-flex(:class="{'justify-content-center' : fullWidth <= 640}")
               button.btn.btn-primary.font-weight-bold.btnInPage.pr-0.py-0(:class="{'mt-5' : fullWidth > 823}") 我要製作 <i class="fas fa-chevron-right fa-xs"></i>
-  .container-fluid.mt-4.specialEffectRight
+  .container-fluid.mt-5.specialEffectRight
     .row.justify-content-center
       .col-md-4
         .under_second_banner_des_box_left
@@ -134,19 +134,19 @@
               button.btn.btn-primary.font-weight-bold.btnInPage.pr-0.py-0(:class="{'mt-5' : fullWidth > 823}") 我要製作 <i class="fas fa-chevron-right fa-xs"></i>
       .col-md-7.creativityTech.bgSetting
         img(src="../../assets/img/home/b04.jpg")
-  .container-fluid.mt-4.specialEffectleft
+  .container-fluid.mt-5.specialEffectleft
     .row.justify-content-center
       .col-md-7.clothes.bgSetting
         img(src="../../assets/img/home/b05.jpg")
       .col-md-4
         .under_second_banner_des_box_right
-          .glasses
+          .glasses.w-md-50.mx-md-auto
             p.font-weight-bold.text-dark.under_secondbanner_des_title(:class="{'text-center' : fullWidth <= 640}") 衣料織品
             p.under_secondbanner_des(v-if="fullWidth > 640") 花一整天在逛街找最滿意的T恤，
             p.under_secondbanner_des(v-if="fullWidth > 640") 不如花一小時做一件屬於自己的！
             .d-flex(:class="{'justify-content-center' : fullWidth <= 640}")
               button.btn.btn-primary.font-weight-bold.btnInPage.pr-0.py-0(:class="{'mt-5' : fullWidth > 823}") 我要製作 <i class="fas fa-chevron-right fa-xs"></i>
-  .border-top.mt-30.footer.container-fluid.px-0
+  .border-top.footer.container-fluid.px-0
     footerComponent(:viewportWidth="fullWidth")
   copyright(:viewportWidth="fullWidth")
 
@@ -192,21 +192,21 @@ export default {
   },
   mounted () {
     const vm = this
-    const {elem: elemleft, distance: distanceleft} = vm.scroll('specialEffectleft')
-    const {elem: elemright, distance: distanceright} = vm.scroll('specialEffectRight')
-    // inner viewport height
-    const IVPH = window.innerHeight
-    window.addEventListener('scroll', function (e) {
-      e.stopPropagation()
-      distanceleft.forEach(function (item, idx) {
-        const checkClassName = elemleft[idx].classList.contains('specialEffectShow')
-        if (item - window.scrollY <= IVPH / 4 && !checkClassName) elemleft[idx].classList.add('specialEffectShow')
-      })
-      distanceright.forEach(function (item, idx) {
-        const checkClassName = elemright[idx].classList.contains('specialEffectShow')
-        if (item - window.scrollY <= IVPH / 4 && !checkClassName) elemright[idx].classList.add('specialEffectShow')
-      })
-    })
+    // const {elem: elemleft, distance: distanceleft} = vm.scroll('specialEffectleft')
+    // const {elem: elemright, distance: distanceright} = vm.scroll('specialEffectRight')
+    // // inner viewport height
+    // const IVPH = window.innerHeight
+    // window.addEventListener('scroll', function (e) {
+    //   e.stopPropagation()
+    //   distanceleft.forEach(function (item, idx) {
+    //     const checkClassName = elemleft[idx].classList.contains('specialEffectShow')
+    //     if (item - window.scrollY <= IVPH / 4 && !checkClassName) elemleft[idx].classList.add('specialEffectShow')
+    //   })
+    //   distanceright.forEach(function (item, idx) {
+    //     const checkClassName = elemright[idx].classList.contains('specialEffectShow')
+    //     if (item - window.scrollY <= IVPH / 4 && !checkClassName) elemright[idx].classList.add('specialEffectShow')
+    //   })
+    // })
     // resize 事件
     window.onresize = () => {
       return (() => {
@@ -237,7 +237,6 @@ $serif: 'Noto Serif TC', serif;
 // 最上方促銷活動
 .campaign{
   font-size: $s20;
-  font-weight: bold;
   max-width: 1920px;
 }
 .campaignBox{
@@ -292,6 +291,9 @@ $serif: 'Noto Serif TC', serif;
   max-width: 360px;
   box-sizing: border-box;
   cursor: pointer;
+  &:hover{
+    opacity: .5;
+  }
 }
 @media(max-width:640px){
   .card{
@@ -331,10 +333,10 @@ $serif: 'Noto Serif TC', serif;
     max-width: 360px;
     max-height: 360px;
     transform:scale(1,1);
-    transition: all 1s ease-out;
-    &:hover{
-      transform:scale(1.2,1.2);
-    }
+    // transition: all .5s ease-out;
+    // &:hover{
+    //   opacity: .5;
+    // }
   }
 }
 // 調整讓照片永存的container 設定
@@ -367,6 +369,9 @@ $serif: 'Noto Serif TC', serif;
 }
 .secondBannerDes{
   box-sizing: border-box;
+  display:flex;
+  flex-direction: column;
+  justify-content: center;
   // height: 600px;
   .title{
     font-size: 32px;
@@ -415,7 +420,7 @@ $serif: 'Noto Serif TC', serif;
 }
 // 一個機會
 .aChance{
-  padding-top: 40px;
+  padding-top: 50px;
   padding-bottom: 40px;
   box-sizing: border-box;
   .title{
@@ -466,7 +471,7 @@ $serif: 'Noto Serif TC', serif;
   justify-content: center;
   box-sizing: border-box;
   height: 100%;
-  align-items: flex-end;
+  align-items: center;
   // margin-right: 60px;
 }
 @media (min-width: 640px){
@@ -508,6 +513,7 @@ $serif: 'Noto Serif TC', serif;
 .footer{
   background-color : #f4f4f1;
   position: relative;
+  margin-top: 50px;
 }
 
 // modal
@@ -557,29 +563,29 @@ $serif: 'Noto Serif TC', serif;
   }
 }
 // 滾動特效
-.specialEffectleft{
- transform: translateX(-2000px);
- transition-property: transform, opacity;
- transition-duration: 1.2s, 1.7s;
- transition-timing-function: cubic-bezier(0.32,-0.04, 0.55, 0.71), cubic-bezier(0.05, 0.26, 0.33,-0.2);
- opacity: 0;
- overflow: hidden;
- &.specialEffectShow{
-   transform: translateX(0);
-   opacity: 1;
- }
-}
-.specialEffectRight{
-  transform: translateX(2000px);
-  transition-property: transform, opacity;
-  transition-duration: 1.2s, 1.7s;
-  transition-timing-function: cubic-bezier(0.32,-0.04, 0.55, 0.71), cubic-bezier(0.05, 0.26, 0.33,-0.2);
-  opacity: 0;
-  &.specialEffectShow{
-    transform: translateX(0);
-    opacity: 1;
-  }
-}
+// .specialEffectleft{
+//  transform: translateX(-2000px);
+//  transition-property: transform, opacity;
+//  transition-duration: 1.2s, 1.7s;
+//  transition-timing-function: cubic-bezier(0.32,-0.04, 0.55, 0.71), cubic-bezier(0.05, 0.26, 0.33,-0.2);
+//  opacity: 0;
+//  overflow: hidden;
+//  &.specialEffectShow{
+//    transform: translateX(0);
+//    opacity: 1;
+//  }
+// }
+// .specialEffectRight{
+//   transform: translateX(2000px);
+//   transition-property: transform, opacity;
+//   transition-duration: 1.2s, 1.7s;
+//   transition-timing-function: cubic-bezier(0.32,-0.04, 0.55, 0.71), cubic-bezier(0.05, 0.26, 0.33,-0.2);
+//   opacity: 0;
+//   &.specialEffectShow{
+//     transform: translateX(0);
+//     opacity: 1;
+//   }
+// }
 @media(max-width: 640px){
   .specialEffectRight{
     .col-md-4{
