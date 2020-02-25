@@ -15,11 +15,15 @@
         .col-md-6
           p.productTitle(:class="{'text-center':fullWidth <= 640}") 平裝相片書
           p.text-primary.font-weight-bold.secondTitle(:class="{'text-center':fullWidth <= 640}") 選擇裝訂/尺寸
-          p.font-weight-bold(:class="{'text-center':fullWidth <= 640}") 尺寸
+          p.font-weight-bold(:class="{'text-center':fullWidth <= 640}") 方向
           .d-flex.align-items-end.mb-3
-            .d-flex.flex-column.schematic(v-for="(item,idx) in productSpec" @click.prevent="size = item.specName; specId = idx + 1; shippingDayChange()")
+            .d-flex.flex-column.schematic(v-for="(item,idx) in productSpec" @click.prevent="direction = item.specName; specId = idx + 1; shippingDayChange()")
               img(:src="item.specThumbnail")
               span.fz12.w-100.text-center {{item.specName}}
+          .d-flex.align-items-center.mb-3
+            label.mb-0(for="") 尺寸
+            select#size.form-control.w-75.ml-3(v-model="sizeId")
+              option(v-for="item in productSize" :value = "item.sizeId")  {{item.size}}
           .d-flex.align-items-center
             label.mb-0(for="pageNumber") 頁數
             select#pageNumber.form-control.w-75.ml-3(v-model="pages" @change="shippingDayChange")
@@ -28,9 +32,9 @@
           p.text-primary.font-weight-bold.secondTitle.mb-0 產品資訊
             .row
               .col-4
-                  p 尺寸
+                  p 方向
               .col-8
-                p {{size}}
+                p {{direction}}
               .col-4
                 p 頁數
               .col-8
@@ -129,7 +133,7 @@ import navbarhead from '../navbarhead'
 import swiper from '../swiperComponent'
 import footerComponent from '../footer.vue'
 import copyright from '../copyright'
-import {mapState, mapActions} from 'vuex'
+import {mapState, mapActions, mapGetters} from 'vuex'
 import { mapFields } from 'vuex-map-fields'
 export default {
   components: {
@@ -147,19 +151,21 @@ export default {
     // 從Vuex取出資料
     ...mapState({
       productSpec: state => state.standardModules.productSpec,
-      productPages: state => state.standardModules.productPages,
+      // productPages: state => state.standardModules.productPages,
       productAlbum: state => state.standardModules.productAlbum,
       productInfo: state => state.standardModules.productInfo,
       shippingDay: state => state.standardModules.shippingDay
     }),
     // like v-model
     ...mapFields([
-      'size',
+      'direction',
       'pages',
       'shippingDay',
       'specId',
+      'sizeId',
       'designLink'
-    ])
+    ]),
+    ...mapGetters(['productSize', 'productPages'])
   },
   methods: {
     ...mapActions(['shippingDayChange'])

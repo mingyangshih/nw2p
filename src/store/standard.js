@@ -8,15 +8,21 @@ export default {
     // 全部資料
     productInfo: [],
     // 下拉頁數
-    productPages: [],
+    // productPages: [],
     // 左邊相片
     productAlbum: [],
     productAlbumLength: null,
     // 運送天數
     shippingDay: null,
-    size: '',
+    // 方向
+    direction: '',
+    // 頁數
     pages: '',
+    // 對應方向
     specId: null,
+    // 對應尺寸
+    sizeId: null,
+    // Taopix 連結
     designLink: ''
   },
   actions: {
@@ -38,9 +44,10 @@ export default {
         context.commit('LOADING', false, {root: true})
       })
     },
+    // 因條件不同，篩選運送天數
     shippingDayChange ({commit, state}) {
       state.productInfo.forEach((item, index) => {
-        if (item.productPages === state.pages && item.specId === state.specId) {
+        if (item.productPages === state.pages && item.specId === state.specId && item.sizeId === state.sizeId) {
           let editLink = item.editLink
           let shippingDay = state.productInfo[index]['shippingDay']
           commit('shippingDayChange', {shippingDay, editLink})
@@ -56,9 +63,10 @@ export default {
       state.productAlbumLength = productAlbumLength
       state.productPages = productPages
       state.shippingDay = productInfo[0].shippingDay
-      state.size = productSpec[0].specName
+      state.direction = productSpec[0].specName
       state.pages = productPages[0]
       state.specId = 1
+      state.sizeId = 1
       state.designLink = productInfo[0].editLink
     },
     shippingDayChange (state, {shippingDay, editLink}) {
@@ -68,6 +76,26 @@ export default {
     updateField
   },
   getters: {
-    getField
+    getField,
+    // 改變方向改變尺寸
+    productSize (state) {
+      let productSize = []
+      state.productSpec.forEach(item => {
+        if (item.specName === state.direction) {
+          productSize = item.productSize
+        }
+      })
+      return productSize
+    },
+    // 改變方向改變頁數
+    productPages (state) {
+      let productPages = []
+      state.productInfo.forEach(item => {
+        if (item.specId === state.specId) {
+          productPages.push(item.productPages)
+        }
+      })
+      return productPages
+    }
   }
 }
