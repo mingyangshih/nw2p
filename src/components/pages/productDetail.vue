@@ -106,18 +106,21 @@
     .border-top.mt-30.footer.container-fluid.px-0
       footerComponent(:viewportWidth="fullWidth")
     copyright(:viewportWidth="fullWidth")
+    loginmodal
 </template>
 
 <script>
 import navbarhead from '../navbarhead'
 import footerComponent from '../footer.vue'
 import copyright from '../copyright'
+import loginmodal from '../../components/loginmodal'
 import {scroll} from '../../assets/scroll'
 export default {
   components: {
     navbarhead,
     copyright,
-    footerComponent
+    footerComponent,
+    loginmodal
   },
   data () {
     return {
@@ -230,7 +233,9 @@ export default {
     box-sizing: border-box;
     cursor: pointer;
     &:hover{
-      opacity: .5;
+      .imgBox, .card-body{
+        opacity: .5;
+      }
     }
   }
   @media(max-width: 640px){
@@ -269,19 +274,20 @@ export default {
       max-width: 258px;
       max-height: 258px;
       transform:scale(1,1);
-      // transition: all 1s ease-out;
-      // &:hover{
-      //   transform:scale(1.2,1.2);
-      // }
+    }
+  }
+  // 裝訂方式，手機版相片間距
+  @media(max-width: 640px){
+    .col-6:nth-child(2n){
+    padding: 0 15px 0 5px;
+  }
+    .col-6:nth-child(2n + 1){
+      padding: 0 5px 0 15px;
     }
   }
   // second banner
   .secondBanner{
     max-height: 600px;
-    // background-image: url('../../assets/img/productDetail/b01.jpg');
-    // background-size: 100% auto;
-    // background-repeat: no-repeat;
-    // background-position: center center;
     img{
       width:100%;
       max-width:100%;
@@ -296,7 +302,7 @@ export default {
   }
   .secondBannerDesBox{
     display: flex;
-    justify-content: flex-end;
+    justify-content: center;
   }
   @media(max-width: 640px){
     .secondBannerDesBox{

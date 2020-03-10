@@ -13,13 +13,13 @@
         .col-md-6
           swiper(:viewportWidth="fullWidth")
         .col-md-6
-          p.productTitle(:class="{'text-center':fullWidth <= 640}") 平裝相片書
-          p.text-primary.font-weight-bold.secondTitle(:class="{'text-center':fullWidth <= 640}") 選擇裝訂/尺寸
-          p.font-weight-bold(:class="{'text-center':fullWidth <= 640}") 方向
+          p.productTitle(:class="{'mt-3':fullWidth <= 640}") 平裝相片書
+          p.text-primary.font-weight-bold.secondTitle 選擇裝訂/尺寸
+          p.font-weight-bold 方向
           .d-flex.align-items-end.mb-3
-            .d-flex.flex-column.schematic(v-for="(item,idx) in productSpec" @click.prevent="direction = item.specName; specId = idx + 1; shippingDayChange()")
-              img(:src="item.specThumbnail")
-              span.fz12.w-100.text-center {{item.specName}}
+            .d-flex.flex-column.align-items-center.schematic(v-for="(item,idx) in productSpec" @click.prevent="direction = item.specName; specId = idx + 1; shippingDayChange()")
+              img(:src="item.specThumbnail" :class="{'selected' : item.specName === direction}")
+              span.fz12 {{item.specName}}
           .d-flex.align-items-center.mb-3
             label.mb-0(for="") 尺寸
             select#size.form-control.w-75.ml-3(v-model="sizeId")
@@ -27,9 +27,9 @@
           .d-flex.align-items-center
             label.mb-0(for="pageNumber") 頁數
             select#pageNumber.form-control.w-75.ml-3(v-model="pages" @change="shippingDayChange")
-              option(v-for="item in productPages" :value = "item")  {{item}}
+              option(v-for="(item) in productPages" :value = "item")  {{item}}
           hr
-          p.text-primary.font-weight-bold.secondTitle.mb-0 產品資訊
+          p.text-primary.font-weight-bold.secondTitle 產品資訊
             .row
               .col-4
                   p 方向
@@ -59,10 +59,10 @@
           p(:class="{'justify-content-between' : fullWidth > 640, 'flex-column' : fullWidth <= 640, 'align-items-center' : fullWidth <= 640}").text-primary.d-flex.font-weight-bold 周年慶活動，相片全面85折優惠!<span class="fz26">NT$300</span>
           .d-flex.btnBox(:class="{'justify-content-center' : fullWidth <= 640}")
             a(:href="designLink" target="_blank" :class="{'w-100' : fullWidth <= 640}").btn.btn-primary.font-weight-bold.btnInPage.py-0.text-white 開始製作
-    .container
+    .container.mt-5.mt-md-0
       .row.justify-content-center.py-4
         h2.font-weight-bold.mb-0.text-secondary.secondTitle 產品特性
-      hr(v-if="fullWidth > 640").mt-0
+      hr(v-if="fullWidth > 640").mt-0.mb-5
     .container.specialEffectRight
       .row.justify-content-center
         .col-md-5
@@ -74,7 +74,7 @@
         .col-md-7.bgSetting
           img(src="../../assets/img/standard/c01.jpg")
     .container
-      hr
+      hr.my-5
     .container.mt-4.specialEffectleft
       .row.justify-content-center
         .col-md-7.bgSetting
@@ -86,7 +86,7 @@
               p.under_secondbanner_des.mb-0(:class="{'text-justify' : fullWidth <= 640}") 照片、書名搭配，封面封底採用特殊印刷效果。
               p.under_secondbanner_des.mb-0(:class="{'text-justify' : fullWidth <= 640}") 相片書內頁與封面是以不同紙張與印刷機台印製，且封面均有上膜保護，和紙張吸墨性不同的變數，故會讓同一張照片產生正負10%的色彩差異。
     .container
-      hr
+      hr.my-5
     .container.specialEffectRight
       .row.justify-content-center
         .col-md-5
@@ -104,7 +104,7 @@
     .container
       .row.py-5.justify-content-center
         h2.font-weight-bold.mb-0.text-secondary.secondTitle 您還有更多選擇
-      .row.pb-5
+      .row.pb-5.moreChoicePicBox
         .col-md-4.col-6.d-flex.justify-content-center
           .card
             .imgBox
@@ -123,9 +123,10 @@
               img.card-img-top(src='../../assets/img/standard/d01.jpg')
             .card-body
               h5.card-title.font-weight-bold.text-secondary.text-center 厚蝴蝶裝
-    .container-fluid.border-top.px-0
+    .container-fluid.border-top.px-0.footer
       footerComponent(:viewportWidth="fullWidth")
     copyright(:viewportWidth="fullWidth")
+    loginmodal
 </template>
 
 <script>
@@ -133,6 +134,7 @@ import navbarhead from '../navbarhead'
 import swiper from '../swiperComponent'
 import footerComponent from '../footer.vue'
 import copyright from '../copyright'
+import loginmodal from '../../components/loginmodal'
 import {mapState, mapActions, mapGetters} from 'vuex'
 import { mapFields } from 'vuex-map-fields'
 export default {
@@ -140,7 +142,8 @@ export default {
     navbarhead,
     swiper,
     footerComponent,
-    copyright
+    copyright,
+    loginmodal
   },
   data () {
     return {
@@ -239,13 +242,19 @@ export default {
     font-size: 18px;
   }
   .schematic{
+    img{
+      max-width: 50%;
+      &.selected{
+        opacity: .5;
+      }
+    }
     cursor: pointer;
     &:hover{
       opacity: .5;
     }
-    &:not(:nth-child(1)){
-      margin-left: 16px;
-    }
+    // &:not(:nth-child(1)){
+    //   margin-left: 16px;
+    // }
   }
   // 頁面中的Btn樣式
   .btnBox{
@@ -273,7 +282,7 @@ export default {
   }
   // hr 樣式
   hr{
-    border-top: 2px solid rgba(0,0,0,0.5);
+    border-top: 1px solid rgba(0,0,0,0.5);
   }
   // 下方內容樣式
   .secondTitle{
@@ -376,10 +385,24 @@ export default {
     max-width: 258px;
     box-sizing: border-box;
     cursor: pointer;
+    &:hover{
+      .imgBox, .card-body{
+        opacity: .5;
+      }
+    }
   }
   @media(max-width:640px){
     .card{
       margin-bottom: 46px;
+    }
+  }
+  // 設定col-md-4的寬度
+  @media(min-width: 640px) {
+    .moreChoicePicBox{
+      justify-content: center;
+      .col-md-4{
+        max-width: 28%;
+      }
     }
   }
 
@@ -415,12 +438,21 @@ export default {
       max-width: 258px;
       max-height: 258px;
       transform:scale(1,1);
-      transition: all 1s ease-out;
-      &:hover{
-        transform:scale(1.2,1.2);
-      }
+      // transition: all 1s ease-out;
+      // &:hover{
+      //   transform:scale(1.2,1.2);
+      // }
     }
   }
+  @media(max-width: 640px){
+    .col-6:nth-child(2n){
+    padding: 0 15px 0 5px;
+  }
+    .col-6:nth-child(2n + 1){
+      padding: 0 5px 0 15px;
+    }
+  }
+
   // 您還有更多選擇的container 設定
   @media(max-width: 640px){
     .container{
@@ -436,5 +468,11 @@ export default {
         order:1;
       }
     }
+  }
+  // footer
+  .footer{
+    background-color : #f4f4f1;
+    position: relative;
+    margin-top: 40px;
   }
 </style>

@@ -28,7 +28,7 @@ export default {
   actions: {
     getStandardData (context, {id}) {
       context.commit('LOADING', true, {root: true})
-      axios.get(`http://192.168.20.133:8001/api/v1/product/${id}`).then((response) => {
+      axios.get(`${process.env.API}/product/${id}`).then((response) => {
         let productSpec = response.data.data[1].productSpec
         let productInfo = response.data.data[2].productInfo
         let productAlbum = response.data.data[0].productAlbum
@@ -44,7 +44,7 @@ export default {
         context.commit('LOADING', false, {root: true})
       })
     },
-    // 因條件不同，篩選運送天數
+    // 因條件不同，篩選運送天數，編輯網址，sizeId
     shippingDayChange ({commit, state}) {
       state.productInfo.forEach((item, index) => {
         if (item.productPages === state.pages && item.specId === state.specId && item.sizeId === state.sizeId) {
@@ -66,7 +66,7 @@ export default {
       state.direction = productSpec[0].specName
       state.pages = productPages[0]
       state.specId = 1
-      state.sizeId = 1
+      state.sizeId = productSpec[0].productSize[0].sizeId
       state.designLink = productInfo[0].editLink
     },
     shippingDayChange (state, {shippingDay, editLink}) {
@@ -83,16 +83,18 @@ export default {
       state.productSpec.forEach(item => {
         if (item.specName === state.direction) {
           productSize = item.productSize
+          state.sizeId = item.productSize[0].sizeId
         }
       })
       return productSize
     },
-    // 改變方向改變頁數
+    // 改變方向、尺寸，改變頁數
     productPages (state) {
       let productPages = []
       state.productInfo.forEach(item => {
-        if (item.specId === state.specId) {
+        if (item.specId === state.specId && item.sizeId === state.sizeId) {
           productPages.push(item.productPages)
+          state.pages = productPages[0]
         }
       })
       return productPages

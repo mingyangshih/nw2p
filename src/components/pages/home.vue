@@ -40,19 +40,19 @@
             img.card-img-top.rounded-0(src='../../assets/img/home/a03.jpg' alt='T-shirt')
           .card-body
             h5.card-title.text-secondary T恤
-      .col-6.col-md-4.text-center.mt-md-2
+      .col-6.col-md-4.text-center.mt-md-3
         .card.rounded-0
           .imgBox
             img.card-img-top.rounded-0(src='../../assets/img/home/a04.jpg' alt='T-shirt')
           .card-body
             h5.card-title.text-secondary 馬克杯
-      .col-6.col-md-4.text-center.mt-md-2
+      .col-6.col-md-4.text-center.mt-md-3
         .card.rounded-0
           .imgBox
             img.card-img-top.rounded-0(src='../../assets/img/home/a05.jpg' alt='T-shirt')
           .card-body
             h5.card-title.text-secondary 明信片
-      .col-6.col-md-4.text-center.mt-md-2
+      .col-6.col-md-4.text-center.mt-md-3
         .card.rounded-0
           .imgBox
             img.card-img-top.rounded-0(src='../../assets/img/home/a06.jpg' alt='T-shirt')
@@ -149,39 +149,27 @@
   .border-top.footer.container-fluid.px-0
     footerComponent(:viewportWidth="fullWidth")
   copyright(:viewportWidth="fullWidth")
-
-  //- modal
-  #exampleModal.modal.fade(tabindex='-1' role='dialog' aria-labelledby='exampleModalLabel' aria-hidden='true')
-      .modal-dialog(role='document')
-        .modal-content.border-0.px-30
-          .modal-header.border-bottom-0
-            P#exampleModalLabel.modal-title.mb-0.font-weight-bold 登入帳號
-            button.close(type='button' data-dismiss='modal' aria-label='Close')
-              span(aria-hidden='true') &times;
-          .modal-body.px-0
-            input(type="text").form-control.fz14
-            .form-group.mb-0
-              input(:type="showPassword").form-control.my-3.fz14
-              span.fz14.showPassword(v-if="showPassword === 'password'" @click="showPassword = 'text'") 顯示
-              span.fz14.showPassword(v-if="showPassword === 'text'" @click="showPassword = 'password'") 隱藏
-            .d-flex.justify-content-end
-              a(href="#").fz14.text-secondary 忘記密碼?
-          .modal-footer.flex-column.px-0.py-0.border-top-0
-            button.btn.btn-primary.w-100.ml-0.font-weight-bold(type='button' data-dismiss='modal') 登入
-            p.mb-0.text-secondary.font-weight-bold or
-            button.btn.btn-fb.w-100.ml-0.font-weight-bold.mb-30(type='button') fb帳號登入
+  loginmodal
+  enrollmodal
 </template>
 
 <script>
 import footerComponent from '../footer.vue'
 import copyright from '../copyright'
 import navbarhead from '../navbarhead'
+import loginmodal from '../../components/loginmodal'
+import enrollmodal from '../../components/enrollmodal'
 import {scroll} from '../../assets/scroll'
+
+// import {mapState} from 'vuex'
+// import { mapFields } from 'vuex-map-fields'
 export default {
   components: {
     footerComponent,
     copyright,
-    navbarhead
+    navbarhead,
+    loginmodal,
+    enrollmodal
   },
   mixins: [scroll],
   data () {
@@ -292,7 +280,9 @@ $serif: 'Noto Serif TC', serif;
   box-sizing: border-box;
   cursor: pointer;
   &:hover{
-    opacity: .5;
+    .imgBox,.card-body{
+      opacity: .5;
+    }
   }
 }
 @media(max-width:640px){
@@ -339,6 +329,16 @@ $serif: 'Noto Serif TC', serif;
     // }
   }
 }
+// 讓照片永存，手機般相片間距
+@media(max-width: 640px){
+  .col-6:nth-child(2n){
+  padding: 0 15px 0 5px;
+}
+  .col-6:nth-child(2n + 1){
+    padding: 0 5px 0 15px;
+  }
+}
+
 // 調整讓照片永存的container 設定
 @media(max-width: 640px){
   .container{
@@ -516,31 +516,6 @@ $serif: 'Noto Serif TC', serif;
   margin-top: 50px;
 }
 
-// modal
-.modal-dialog{
-  max-width: 320px;
-  margin: 100px auto;
-  box-shadow: 3px 3px 5px rgba(58, 58, 58, 0.2);
-}
-.modal-header{
-  .modal-title{
-    border-bottom : 2px solid black;
-  }
-}
-.modal-body{
-  .form-control{
-    background: #e8f0fe;
-    border:1px solid #c6bdbc;
-  }
-}
-.showPassword{
-  position:relative;
-  float:right;
-  z-index: 2;
-  margin-top: -43px;
-  margin-right: 16px;
-  cursor: pointer;
-}
 // 頁面中的Btn樣式
 .btnInPage{
   border-radius: 5px;

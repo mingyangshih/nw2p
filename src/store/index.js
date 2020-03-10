@@ -2,10 +2,11 @@ import Vue from 'vue'
 import Vuex from 'vuex'
 import axios from 'axios'
 import standardModules from './standard'
+import loginModules from './login'
+import enrollModules from './enroll'
 Vue.use(Vuex)
 
 export default new Vuex.Store({
-  strict: true,
   state: {
     isLoading: null,
     totalCategory: [],
@@ -18,7 +19,8 @@ export default new Vuex.Store({
     getNavBarList (context, status) {
       // const vm = this
       let totalCategory = []
-      axios.get('http://192.168.20.133:8001/api/v1/product').then((response) => {
+      axios.get(`${process.env.API}/product`).then((response) => {
+        // console.log(response.data.data)
         // 篩出有幾種分類
         response.data.data.forEach((item) => {
           if (totalCategory.indexOf(item.productCategory) < 0) {
@@ -46,6 +48,8 @@ export default new Vuex.Store({
     totalCategory: state => state.total.totalCategory
   },
   modules: {
-    standardModules
+    standardModules,
+    loginModules,
+    enrollModules
   }
 })

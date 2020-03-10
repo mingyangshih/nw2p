@@ -19,7 +19,7 @@
           p 常見問題
           p 退貨須知
           p 付款與運費說明
-      .col-md-3.px-0.mx-0(:class="{'row':viewportWidth <= 640,'flex-column':viewportWidth <= 640,'align-items-center':viewportWidth <= 640}")
+      .col-md-3.px-0.mx-0(:class="{'row':viewportWidth <= 640,'flex-column':viewportWidth <= 640,'align-items-center':viewportWidth <= 640, 'mt-5':viewportWidth <= 640}")
         p.footerTitle.font-weight-bold(v-if="viewportWidth > 640") 聯絡我們
         p 週一至週五 9:00~18:00
         p 電子郵件 service@babala.com.tw

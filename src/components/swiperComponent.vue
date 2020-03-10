@@ -4,7 +4,7 @@
     <!-- slides -->
       <swiper-slide class="bigImg" v-for="item in productAlbum" :key="item.albumId"><img :src="item.productAlbum" alt=""></swiper-slide>
       <!-- Optional controls -->
-      <div class="swiper-pagination"  slot="pagination" v-if="viewportWidth > 640"></div>
+      <div class="swiper-pagination"  slot="pagination"></div>
       <!-- <div class="swiper-button-prev" slot="button-prev"></div> -->
       <!-- <div class="swiper-button-next" slot="button-next"></div> -->
       <!-- <div class="swiper-scrollbar"   slot="scrollbar"></div> -->

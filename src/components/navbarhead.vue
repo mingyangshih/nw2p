@@ -1,6 +1,6 @@
 <template lang="pug">
   .row.justify-content-between
-        nav.navbar.navbar-expand-md.navbar-light.bg-white.d-flex.py-3.w-100
+        nav.navbar.navbar-expand-md.navbar-light.bg-white.d-flex.w-100(:class="{'py-0' : viewportWidth > 640, 'py-3' : viewportWidth <= 640}")
           button.navbar-toggler.border-0.p-0(type='button' data-toggle='collapse' data-target='#navbarNav' aria-controls='navbarNav' aria-expanded='false' aria-label='Toggle navigation')
             //- span.navbar-toggler-icon
             .icon-bar
@@ -10,20 +10,20 @@
           router-link.navbar-brand.d-block.mr-0(to="/")
             img.logo(src="../assets/img/logo.png")
           img.cart(src="../assets/img/home/supermarket.svg" v-if="viewportWidth <= 640")
-          #navbarNav.collapse.navbar-collapse
+          #navbarNav.collapse.navbar-collapse(:class="{'h-100' : viewportWidth > 640}")
             //- sidebar logo
-            .d-flex.flex-column.align-items-center.w-100
+            .d-flex.align-items-center.w-100(:class="{'flex-column' : viewportWidth <= 640, 'h-100' : viewportWidth > 640}")
               .d-flex.justify-content-center.align-items-center.w-75.py-3.logoBox(v-if="viewportWidth <= 640")
                 img.logo(src="../assets/img/logo.png")
                 <i class="fas fa-times" @click.stopPropagation="closeSideBar"></i>
-              ul.navbar-nav
+              ul.navbar-nav(:class="{'h-100' : viewportWidth > 640, 'align-items-center' : viewportWidth > 640}")
                 li.nav-item.pr-lg-5.ml-md-5(@click="closeSideBar" v-if="viewportWidth <= 640")
                   router-link.nav-link.font-weight-bold(to="/") 首頁
-                li.nav-item.dropdown.ml-md-5
+                li.nav-item.dropdown.ml-md-5(:class="{'d-flex' : viewportWidth > 640,'h-100' : viewportWidth > 640,'align-items-center' : viewportWidth > 640}")
                   a.nav-link.font-weight-bold(href='#' data-toggle="dropdown") 所有產品
                   .dropdown-menu.py-0(aria-labelledby='navbarDropdown')
                     .row.px-md-3
-                      a.dropdown-item.py-md-3.photoBook.font-weight-bold.text-center.col-md-4(href='#' v-for="(item,idx) in totalCategory")
+                      a.dropdown-item.py-md-3.font-weight-bold.text-center.col-md-4(href='#' v-for="(item,idx) in totalCategory")
                         label.d-flex.align-items-center.font-weight-bold.text-left(:for="item" :class="{'text-gray':viewportWidth <= 640 && sideBarShow.indexOf(item) >= 0}") {{item}}<i class="fas fa-chevron-down ml-auto" v-if="viewportWidth <= 640 && sideBarShow.indexOf(item) < 0"></i><i class="fas fa-chevron-up ml-auto" v-if="viewportWidth <= 640 && sideBarShow.indexOf(item) >= 0"></i>
                         input.d-none(type="checkbox" :id="item" :value="item" v-model="sideBarShow")
                         ul.pl-3(:class="{'d-none' : viewportWidth <= 640 && sideBarShow.indexOf(item) < 0}")
@@ -38,9 +38,9 @@
                 li.nav-item.pr-lg-5.ml-md-5(@click="closeSideBar" v-if="viewportWidth <= 640")
                   a.nav-link.font-weight-bold(href='#') 聯絡我們
                 li.nav-item.boder-sm-left.ml-md-auto
-                  a.nav-link.font-weight-bold(href='#') <span class="text-primary bar" v-if="viewportWidth > 640">|</span> 註冊
+                  a.nav-link.font-weight-bold(href='#' data-toggle="modal" data-target="#enrollModal") <span class="text-primary bar" v-if="viewportWidth > 640">|</span> 註冊
                 li.nav-item.font-weight-bold
-                  a.nav-link.font-weight-bold(href='#' data-toggle="modal" data-target="#exampleModal") <span class="text-primary" v-if="viewportWidth > 640">|</span> <i class="fas fa-user-circle mr-2 text-primary" v-if="viewportWidth > 913"></i>登入
+                  a.nav-link.font-weight-bold(href='#' data-toggle="modal" data-target="#loginModal") <span class="text-primary" v-if="viewportWidth > 640">|</span> <i class="fas fa-user-circle mr-2 text-primary" v-if="viewportWidth > 913"></i>登入
 </template>
 
 <script>
@@ -158,6 +158,11 @@ export default{
   label{
     cursor:pointer;
   }
+  li a {
+    &:hover{
+      opacity: .5;
+    }
+  }
 }
 @media(max-width: 640px){
   .dropdown-item{
@@ -228,8 +233,8 @@ export default{
   padding: 0 16px;
   box-sizing: border-box;
   // 設定下拉位置
-  left: -45px;
-  top: calc( 100%);
+  left: -222px;
+  top: calc( 100% - 2px);
   ul{
     padding-left: 0;
   }
@@ -240,9 +245,39 @@ export default{
   }
 }
 .dropdown:hover .dropdown-menu {
-    display: block;
-    margin-top: 0; // remove the gap so it doesn't close
- }
+  display: block;
+  margin-top: 0; // remove the gap so it doesn't close
+  background: #fefefe;
+}
+@media(min-width: 640px){
+  .dropdown:hover .dropdown-menu::before {
+    display:block;
+    content: "";
+    width: 20px;
+    height: 20px;
+    border-bottom: solid 10px #fefefe;
+    border-left: solid 10px transparent;
+    border-right: solid 10px transparent;
+    position: absolute;
+    top: -20px;
+    left: calc(50% - 16px);
+    z-index: 100000;
+  }
+  .dropdown:hover .dropdown-menu::after {
+    display:block;
+    content: "";
+    width: 20px;
+    height: 20px;
+    border-bottom: solid 11px rgba(0,0,0,0.15);
+    border-left: solid 11px transparent;
+    border-right: solid 11px transparent;
+    position: absolute;
+    top: -21px;
+    left: calc(50% - 17px);
+    z-index: 1;
+  }
+}
+
 @media(max-width : 640px) {
   .dropdown-menu{
     min-width: auto;
