@@ -10,6 +10,9 @@ import VueAxios from 'vue-axios'
 import Vuex from 'vuex'
 import store from './store'
 import loading from 'vue-loading-overlay'
+import { ValidationProvider, extend } from 'vee-validate'
+import { required, email, digits } from 'vee-validate/dist/rules'
+import { messages } from 'vee-validate/dist/locale/zh_TW.json'
 // Import stylesheet
 import 'vue-loading-overlay/dist/vue-loading.css'
 
@@ -19,6 +22,21 @@ Vue.use(VueAxios, axios)
 Vue.use(Vuex)
 // vue-loading-overlay
 Vue.component('loading', loading)
+// vee validate
+Vue.component('ValidationProvider', ValidationProvider)
+extend('email', {
+  ...email,
+  message: messages.email
+})
+// Override the default message.
+extend('required', {
+  ...required,
+  message: messages.required
+})
+extend('digits', {
+  ...digits,
+  message: messages.digits
+})
 
 Vue.config.productionTip = false
 

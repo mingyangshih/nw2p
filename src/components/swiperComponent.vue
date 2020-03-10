@@ -4,7 +4,7 @@
     <!-- slides -->
       <swiper-slide class="bigImg" v-for="item in productAlbum" :key="item.albumId"><img :src="item.productAlbum" alt=""></swiper-slide>
       <!-- Optional controls -->
-      <div class="swiper-pagination"  slot="pagination" v-if="viewportWidth > 640"></div>
+      <div class="swiper-pagination"  slot="pagination"></div>
       <!-- <div class="swiper-button-prev" slot="button-prev"></div> -->
       <!-- <div class="swiper-button-next" slot="button-next"></div> -->
       <!-- <div class="swiper-scrollbar"   slot="scrollbar"></div> -->
@@ -61,7 +61,7 @@ export default {
   // 處理v-for swiper 跟資料不同步問題
   async mounted () {
     const id = this.$route.params.id
-    await this.$http.get(`http://192.168.20.133:8001/api/v1/product/${id}`).then(response => {
+    await this.$http.get(`${process.env.API}product/getdetail/${id}`).then(response => {
       this.productAlbum = response.data.data[0].productAlbum
       this.swiperOptionTop.loopedSlides = this.productAlbum.length
       this.swiperOptionThumbs.loopedSlides = this.productAlbum.length
