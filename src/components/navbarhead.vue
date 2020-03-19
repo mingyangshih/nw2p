@@ -37,14 +37,31 @@
                   a.nav-link.font-weight-bold(href='#') 售後服務
                 li.nav-item.pr-lg-5.ml-md-5(@click="closeSideBar" v-if="viewportWidth <= 640")
                   a.nav-link.font-weight-bold(href='#') 聯絡我們
-                li.nav-item.boder-sm-left.ml-md-auto
+                //- 沒註冊前顯示
+                li.nav-item.boder-sm-left.ml-md-auto(v-if="!nw2pMemberData.token")
                   a.nav-link.font-weight-bold(href='#' data-toggle="modal" data-target="#enrollModal") <span class="text-primary bar" v-if="viewportWidth > 640">|</span> 註冊
-                li.nav-item.font-weight-bold
+                li.nav-item.font-weight-bold(v-if="!nw2pMemberData.token")
                   a.nav-link.font-weight-bold(href='#' data-toggle="modal" data-target="#loginModal") <span class="text-primary" v-if="viewportWidth > 640">|</span> <i class="fas fa-user-circle mr-2 text-primary" v-if="viewportWidth > 913"></i>登入
+                //- 註冊後顯示
+                li.nav-item.boder-sm-left.ml-md-auto(v-if="nw2pMemberData.token && viewportWidth > 640")
+                  a.nav-link.font-weight-bold(href='#') Hi {{nw2pMemberData.UDNAME}} !
+                li.nav-item.boder-sm-left.h-100.d-flex.align-items-center.myAccount(v-if="nw2pMemberData.token && viewportWidth > 640")
+                  router-link.nav-link.font-weight-bold.px-md-2(to="/modifyEnroll") <span class="text-primary bar">|</span> 我的帳戶
+                  .myAccountBox
+                    ul
+                      li.font-weight-bold.py-2
+                        router-link(to="/modifyEnroll").text-decoration-none 我的帳戶
+                      li.py-2
+                        router-link(to="/modifyEnroll").text-decoration-none -資料修改
+                      li.py-2
+                        router-link(to="/modifyEnroll/changePassword").text-decoration-none -變更密碼
+                      li.py-2 -我的訂單
+                li.nav-item.font-weight-bold(v-if="nw2pMemberData.token" @click.prevent="logOut")
+                  a.nav-link.font-weight-bold(href="#") <span class="text-primary" v-if="viewportWidth > 640">|</span> <i class="fas fa-user-circle mr-2 text-primary" v-if="viewportWidth > 913"></i>登出
 </template>
 
 <script>
-import {mapState} from 'vuex'
+import {mapState, mapActions} from 'vuex'
 export default{
   props: ['viewportWidth'],
   data () {
@@ -58,7 +75,15 @@ export default{
       if (showStatus) {
         $('#navbarNav').removeClass('show')
       }
-    }
+    },
+    ...mapActions(['logOut', 'getNavBarList', 'checkToken'])
+  },
+  computed: {
+    ...mapState({
+      totalCategory: state => state.navbarModules.totalCategory,
+      totalProduct: state => state.navbarModules.totalProduct,
+      nw2pMemberData: state => state.navbarModules.nw2pMemberData
+    })
   },
   mounted () {
     $('.dropdown-menu').on('click', function (event) {
@@ -70,10 +95,10 @@ export default{
   },
   created () {
     const vm = this
-    vm.$store.dispatch('getNavBarList')
-  },
-  computed: {
-    ...mapState(['totalProduct', 'totalCategory'])
+    // 取下拉選單內容
+    vm.getNavBarList()
+    // 檢查local storage 是否有內容，登入過會有內容，有登入過navbar 上方顯示方式直接顯示
+    vm.checkToken()
   }
 }
 </script>
@@ -316,5 +341,64 @@ export default{
   .dropdown-item.col-md-4{
     max-width: none;
   }
+}
+// --------------------------------------------我的帳號 樣式-------------------------------------
+.myAccount{
+  position: relative;
+}
+.myAccountBox{
+  display: none;
+}
+.myAccount{
+  &:hover{
+    .myAccountBox{
+      display: block;
+      position: absolute;
+      width: 200px;
+      top:100%;
+      left: -50%;
+      z-index: 100000;
+      background: white;
+      border:2px solid black;
+      a{
+        color: black;
+        &:hover{
+          color: rgba(0,0,0,.5);
+        }
+      }
+      ul{
+        list-style: none;
+        padding-left: 0;
+        text-align: center;
+      }
+      &::before{
+        display:block;
+        content: "";
+        width: 20px;
+        height: 20px;
+        border-bottom: solid 10px #fefefe;
+        border-left: solid 10px transparent;
+        border-right: solid 10px transparent;
+        position: absolute;
+        top: -20px;
+        left: calc(50% - 16px);
+        z-index: 100000;
+      }
+      &::after{
+        display:block;
+        content: "";
+        width: 20px;
+        height: 20px;
+        border-bottom: solid 11px rgb(0,0,0);
+        border-left: solid 11px transparent;
+        border-right: solid 11px transparent;
+        position: absolute;
+        top: -21px;
+        left: calc(50% - 17px);
+        z-index: 1;
+      }
+  }
+}
+
 }
 </style>

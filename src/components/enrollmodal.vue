@@ -80,24 +80,28 @@
             .form-row
               .form-group.col-md-4.mb-0
                 label.fz14.font-weight-bold.mb-1 區號
-                input.form-control.bg-white(type="text" disabled v-model="postId")
+                input.form-control.bg-white.rounded-0(type="text" disabled v-model="postId")
               .form-group.col-md-4.mb-0
                 label.fz14.font-weight-bold.mb-1 縣市
-                select.form-control(v-model="modeledCityName")
+                select.form-control.rounded-0(v-model="modeledCityName")
                   option(v-for="item in cityName") {{item}}
               .form-group.col-md-4.mb-0
                 label.fz14.font-weight-bold.mb-1 區域
-                select.form-control(v-model="modeledLocationName")
+                select.form-control.rounded-0(v-model="modeledLocationName")
                   option(v-for="(item, idx) in location") {{item.districtName}}
               .form-group.col-md-12
-                label.fz14.font-weight-bold.mt-1 地址
-                input.form-control(type="text" v-model="addr")
+                label.fz14.font-weight-bold.my-1 地址
+                //- input.form-control.rounded-0(type="text" v-model="addr")
+                .input-group.mb-1
+                  .input-group-prepend
+                    label.input-group-text.rounded-0 {{modeledCityName}}{{modeledLocationName}}
+                  input.form-control(v-model="addr")
             .d-flex.flex-column.px-0.py-0.border-top-0
               a(href="#").mt-2.text-primary.font-weight-bold.fz14.text-center 服務條款
               .d-flex.align-items-center.justify-content-center.my-2
                 input(type="checkbox" v-model="readTerms")
                 label.mb-0.fz14.ml-2 我已閱讀並同意相關服務條款
-              button.btn.w-100.ml-0.font-weight-bold.mb-2.fz14(type='submit' :disabled="!readTerms || !enrollData.account || !enrollData.password || !enrollData.UPHONE" :class="{'btn-gray':!readTerms || !enrollData.account || !enrollData.password || !enrollData.UPHONE, 'btn-primary': readTerms}" @click.prevent="enrollAction") 確定建立
+              button.btn.w-100.ml-0.font-weight-bold.mb-2.fz14(:disabled="!readTerms || !enrollData.account || !enrollData.password || !enrollData.UPHONE" :class="{'btn-gray':!readTerms || !enrollData.account || !enrollData.password || !enrollData.UPHONE, 'btn-primary': readTerms}" @click="enrollAction") 確定建立
               .d-flex.justify-content-center
                 span.fz14.font-weight-bold 已有帳號了？
                 a(data-toggle="modal" href="#loginModal" data-dismiss="modal").text-primary 登入
@@ -169,7 +173,6 @@ export default {
       vm.totalCityData.forEach((item) => {
         if (item.cityName === vm.modeledCityName) {
           districtName = item.district
-          // vm.modeledLocationName = item.district[0].districtName
         }
       })
       return districtName
@@ -180,7 +183,6 @@ export default {
       let postId = ''
       vm.totalCityData.forEach((item) => {
         if (item.cityName === vm.modeledCityName) {
-          // console.log(item.district)
           item.district.forEach((item1) => {
             if (item1.districtName === vm.modeledLocationName) {
               postId = item1.zipCode
@@ -193,6 +195,7 @@ export default {
   },
   methods: {
     enrollAction () {
+      $('#enrollModal').modal('toggle')
       let vm = this
       if (vm.birthdayMonth < 10) {
         vm.birthdayMonth = `0${vm.birthdayMonth}`
@@ -201,9 +204,41 @@ export default {
         vm.birthdayDate = `0${vm.birthdayDate}`
       }
       vm.enrollData.UAGE = `${vm.birthdayYear}${vm.birthdayMonth}${vm.birthdayDate}`
-      vm.enrollData.UADDR = `${vm.modeledCityName}${vm.modeledLocationName}${vm.addr}`
+      vm.enrollData.UADDR = `${vm.addr}`
       vm.enrollData.UAID = vm.postId
       vm.$store.dispatch('ENROLL', vm.enrollData)
+      // 註冊後清空
+      vm.birthdayMonth = null
+      vm.birthdayYear = null
+      vm.birthdayDate = null
+      vm.enrollData = {
+        account: '',
+        password: '',
+        UAID: '',
+        UAGE: '',
+        USEX: '',
+        USEND: '',
+        UADDR: '',
+        UDNAME: '',
+        UPHONE: '',
+        UTEL1: '02',
+        UTELPHONE: '22668944',
+        UREF: ''
+      }
+      // 判斷是否重複輸入密碼
+      vm.verifyPassword = ''
+      // 判斷是否同意條款
+      vm.readTerms = false
+      // 所有縣市資料
+      vm.totalCityData = []
+      // 抓近來縣市資料
+      vm.cityName = []
+      // v-model 綁定縣市
+      vm.modeledCityName = ''
+      // v-model 綁定區域名
+      vm.modeledLocationName = ''
+      // addr 地址後面詳細資訊
+      vm.addr = ''
     }
   },
   created () {
