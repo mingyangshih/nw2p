@@ -1,3 +1,4 @@
+import router from '../../router'
 export default {
   actions: {
     // 登出修改state資訊，清空localstorage 內容
@@ -14,6 +15,7 @@ export default {
       localStorage.setItem('nw2pData', nw2pData)
       // 登出commit mutaions 到 navbar.js
       commit('setTokenData', JSON.parse(nw2pData))
+      router.push('/')
       commit('LOADING', false, {root: true})
     }
   }

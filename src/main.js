@@ -48,3 +48,24 @@ new Vue({
   components: { App },
   template: '<App/>'
 })
+
+router.beforeEach((to, from, next) => {
+  let nw2pData = JSON.parse(localStorage.getItem('nw2pData'))
+  if (to.meta.requiresAuth === true) {
+    const API = `${process.env.API}user/getdetail/${nw2pData.UID}`
+    axios.get(API, {
+      headers: {
+        'Content-Type': 'application/json',
+        'Authorization': `Bearer ${nw2pData.token}`
+      }
+    }).then(response => {
+      if (response.data.error_code === '0' || '401') {
+        next()
+      } else {
+        store.dispatch('logOut')
+      }
+    })
+  } else {
+    next()
+  }
+})

@@ -1,4 +1,5 @@
 import axios from 'axios'
+// import router from '../../router'
 import { getField, updateField } from 'vuex-map-fields'
 export default {
   namespaced: true,
@@ -27,16 +28,17 @@ export default {
   actions: {
     getOldData ({commit, dispatch}) {
       let nw2pData = JSON.parse(localStorage.getItem('nw2pData'))
-      // console.log(nw2pData)
+      commit('LOADING', true, {root: true})
       axios.get(`${process.env.API}user/getdetail/${nw2pData.UID}`, {
         headers: {
           'Content-Type': 'application/json',
           'Authorization': `Bearer ${nw2pData.token}`
         }
       }).then((response) => {
-        if (!response.data.data) {
+        if (response.data.error_code === '401') {
           // token 過期 重新取得
           dispatch('refreshToken')
+          // token有效
         } else if (response.data.error_code === '0') {
           let enrolledData = response.data.data[0]
           commit('loadEnrolledData', enrolledData)
@@ -45,6 +47,8 @@ export default {
         }
       }).catch((error) => {
         console.log(error)
+      }).finally(() => {
+        commit('LOADING', false, {root: true})
       })
     },
     // token 過期 重新取得
@@ -59,10 +63,34 @@ export default {
       }).then(res => {
         return res.json()
       }).then(result => {
-        console.log(result)
+        // token 過期
         if (result.error_code === '-1') {
           dispatch('logOut', null, { root: true })
+        } else if (result.error_code === '0') {
+          let refreshtoken = result.data.refreshtoken
+          let expiredAt = result.data.expired_at
+          nw2pData.token = refreshtoken
+          nw2pData.expired_at = expiredAt
+          localStorage.setItem('nw2pData', JSON.stringify(nw2pData))
+          let UID = nw2pData.UID
+          dispatch('afterRefreshToken', {refreshtoken, UID})
         }
+      })
+    },
+    // 重新取得token重新取資料
+    afterRefreshToken ({commit, dispatch}, {refreshtoken, UID}) {
+      axios.get(`${process.env.API}user/getdetail/${UID}`, {
+        headers: {
+          'Content-Type': 'application/json',
+          'Authorization': `Bearer ${refreshtoken}`
+        }
+      }).then((response) => {
+        let enrolledData = response.data.data[0]
+        commit('loadEnrolledData', enrolledData)
+        // 觸發取郵遞區號
+        dispatch('getAddressData')
+      }).catch((error) => {
+        console.log(error)
       })
     },
     // 取郵遞區號對應的縣市

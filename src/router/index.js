@@ -34,7 +34,8 @@ export default new Router({
       children: [{
         path: '',
         name: 'products',
-        component: accountdata
+        component: accountdata,
+        meta: { requiresAuth: true }
       }, {
         path: 'changePassword',
         name: 'changePassword',

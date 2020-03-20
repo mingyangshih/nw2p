@@ -191,23 +191,23 @@ export default {
       }
     }
     .buttonBox{
-      width: 100%;
+      width: 75%;
     }
   }
   // 頁面中的Btn樣式
-.btnInPage{
-  border-radius:3px;
-  width: 150px;
-  height: 39px;
-  font-size: 16px;
-  box-sizing: border-box;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  // .fa-chevron-right{
-  //   margin-left: 37px;
-  // }
-}
+  .btnInPage{
+    border-radius:3px;
+    width: 150px;
+    height: 39px;
+    font-size: 16px;
+    box-sizing: border-box;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    // .fa-chevron-right{
+    //   margin-left: 37px;
+    // }
+  }
   @media(max-width: 640px){
     input{
       &.full{
