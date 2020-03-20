@@ -1,5 +1,5 @@
 <template lang="pug">
-  .row.justify-content-between
+  .row.justify-content-between(v-if="viewportWidth > 640")
         nav.navbar.navbar-expand-md.navbar-light.bg-white.d-flex.w-100(:class="{'py-0' : viewportWidth > 640, 'py-3' : viewportWidth <= 640}")
           button.navbar-toggler.border-0.p-0(type='button' data-toggle='collapse' data-target='#navbarNav' aria-controls='navbarNav' aria-expanded='false' aria-label='Toggle navigation')
             //- span.navbar-toggler-icon
