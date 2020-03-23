@@ -5,7 +5,9 @@
         p.mb-0.w-100.campaignDes 全商品8折優惠 / 20% OFF．滿499免運費
     .container
       navbarhead(:viewportWidth="fullWidth")
+      navCustomize(:viewportWidth="fullWidth")
     .container
+      p.font-weight-bold.name(v-if="fullWidth<= 640") Hi {{nw2pMemberData.UDNAME}}!
       nav(aria-label="breadcrumb")
         ol.breadcrumb.bg-white.pl-0
           router-link(to="/").text-gray.breadcrumb-item.text-decoration-none 首頁
@@ -26,14 +28,16 @@
 
 <script>
 import navbarhead from '../navbarhead'
-import {mapActions} from 'vuex'
+import navCustomize from '../navCustomize'
+import {mapActions, mapState} from 'vuex'
 import enrollmodal from '../../components/enrollmodal'
 import loginmodal from '../../components/loginmodal'
 export default {
   components: {
     navbarhead,
     enrollmodal,
-    loginmodal
+    loginmodal,
+    navCustomize
   },
   data () {
     return {
@@ -42,6 +46,11 @@ export default {
   },
   methods: {
     ...mapActions('modifyEnrollModules', ['getOldData'])
+  },
+  computed: {
+    ...mapState({
+      nw2pMemberData: state => state.navbarModules.nw2pMemberData
+    })
   },
   created () {
     // 取得舊資料
@@ -90,5 +99,8 @@ hr{
   &:hover{
     color:rgba(0,0,0,.5)
   }
+}
+.name{
+  font-family:'DFKai-sb';
 }
 </style>
