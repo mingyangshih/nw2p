@@ -6,6 +6,7 @@
     //- navbar
   .container
     navbarhead(:viewportWidth="fullWidth")
+    navCustomize(:viewportWidth="fullWidth")
   .container-fluid
     .row.px-0.campaign.campaignBox.bg-primary(v-if="fullWidth < 640")
       p.mb-0.w-100.campaignDes 全商品8折優惠 / 20% OFF．滿499免運費
@@ -157,6 +158,7 @@
 import footerComponent from '../footer.vue'
 import copyright from '../copyright'
 import navbarhead from '../navbarhead'
+import navCustomize from '../navCustomize'
 import loginmodal from '../../components/loginmodal'
 import enrollmodal from '../../components/enrollmodal'
 import {scroll} from '../../assets/scroll'
@@ -169,7 +171,8 @@ export default {
     copyright,
     navbarhead,
     loginmodal,
-    enrollmodal
+    enrollmodal,
+    navCustomize
   },
   mixins: [scroll],
   data () {

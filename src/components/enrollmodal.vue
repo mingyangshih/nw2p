@@ -269,6 +269,14 @@ export default {
     margin: 20px auto;
     box-shadow: 3px 3px 5px rgba(58, 58, 58, 0.2);
   }
+  @media(max-width: 640px){
+    .modal-dialog{
+      margin: 0 auto;
+    }
+  }
+  .modal-content{
+    z-index: 100;
+  }
 
   .modal-title{
     font-size: $s20;

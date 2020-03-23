@@ -35,7 +35,7 @@ export default {
           'Authorization': `Bearer ${nw2pData.token}`
         }
       }).then((response) => {
-        if (response.data.error_code === '401') {
+        if (response.data.error_code === 401) {
           // token 過期 重新取得
           dispatch('refreshToken')
           // token有效
@@ -85,6 +85,7 @@ export default {
           'Authorization': `Bearer ${refreshtoken}`
         }
       }).then((response) => {
+        console.log(response.data.data[0])
         let enrolledData = response.data.data[0]
         commit('loadEnrolledData', enrolledData)
         // 觸發取郵遞區號

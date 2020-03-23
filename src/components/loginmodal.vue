@@ -60,6 +60,9 @@ $s20: 20px;
   margin: 100px auto;
   box-shadow: 3px 3px 5px rgba(58, 58, 58, 0.2);
 }
+.modal-content{
+  z-index:100;
+}
 
 .modal-title{
   font-size: $s20;
