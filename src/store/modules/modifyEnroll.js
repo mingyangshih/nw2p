@@ -35,7 +35,8 @@ export default {
           'Authorization': `Bearer ${nw2pData.token}`
         }
       }).then((response) => {
-        if (response.data.error_code === 401) {
+        console.log(typeof (response.data.error_code))
+        if (response.data.error_code === '401') {
           // token 過期 重新取得
           dispatch('refreshToken')
           // token有效
@@ -52,7 +53,7 @@ export default {
       })
     },
     // token 過期 重新取得
-    refreshToken ({dispatch}) {
+    refreshToken ({dispatch, commit}) {
       let nw2pData = JSON.parse(localStorage.getItem('nw2pData'))
       fetch(`${process.env.API}auth/refresh`, {
         method: 'POST',
@@ -64,7 +65,8 @@ export default {
         return res.json()
       }).then(result => {
         // token 過期
-        if (result.error_code === '-1') {
+        console.log(result)
+        if (result.error_code !== '0') {
           dispatch('logOut', null, { root: true })
         } else if (result.error_code === '0') {
           let refreshtoken = result.data.refreshtoken

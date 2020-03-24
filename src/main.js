@@ -38,6 +38,10 @@ extend('digits', {
   message: messages.digits
 })
 
+// event bus
+Vue.prototype.$bus = new Vue()
+console.log(Vue.prototype)
+
 Vue.config.productionTip = false
 
 /* eslint-disable no-new */
