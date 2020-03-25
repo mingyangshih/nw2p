@@ -152,6 +152,7 @@
   copyright(:viewportWidth="fullWidth")
   loginmodal
   enrollmodal
+  alert
 </template>
 
 <script>
@@ -161,6 +162,7 @@ import navbarhead from '../navbarhead'
 import navCustomize from '../navCustomize'
 import loginmodal from '../../components/loginmodal'
 import enrollmodal from '../../components/enrollmodal'
+import alert from '../../components/alert'
 import {scroll} from '../../assets/scroll'
 
 import {mapState} from 'vuex'
@@ -172,7 +174,8 @@ export default {
     navbarhead,
     loginmodal,
     enrollmodal,
-    navCustomize
+    navCustomize,
+    alert
   },
   mixins: [scroll],
   data () {

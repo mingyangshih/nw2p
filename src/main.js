@@ -40,7 +40,6 @@ extend('digits', {
 
 // event bus
 Vue.prototype.$bus = new Vue()
-console.log(Vue.prototype)
 
 Vue.config.productionTip = false
 
@@ -63,7 +62,7 @@ router.beforeEach((to, from, next) => {
         'Authorization': `Bearer ${nw2pData.token}`
       }
     }).then(response => {
-      if (response.data.error_code === '0' || '401') {
+      if (response.data.error_code === 0 || 401) {
         next()
       } else {
         store.dispatch('logOut')

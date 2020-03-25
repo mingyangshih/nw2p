@@ -129,6 +129,7 @@
     copyright(:viewportWidth="fullWidth")
     loginmodal
     enrollmodal
+    alert
 </template>
 
 <script>
@@ -139,6 +140,7 @@ import footerComponent from '../footer.vue'
 import copyright from '../copyright'
 import loginmodal from '../../components/loginmodal'
 import enrollmodal from '../../components/enrollmodal'
+import alert from '../../components/alert'
 import {mapState, mapActions, mapGetters} from 'vuex'
 import { mapFields } from 'vuex-map-fields'
 export default {
@@ -149,7 +151,8 @@ export default {
     footerComponent,
     copyright,
     loginmodal,
-    enrollmodal
+    enrollmodal,
+    alert
   },
   data () {
     return {

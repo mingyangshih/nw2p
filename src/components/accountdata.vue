@@ -77,11 +77,11 @@
         input.form-control.rounded-0.border-dark(type=
         "text" v-model="enrollData.UADDR")
     .row.justify-content-center.my-5.buttonBox.mx-0
-      button.btn.btn-primary.btnInPage.py-0.px-0 <span class="font-weight-bold">更新</span>
+      button(@click='modifyEnrollData').btn.btn-primary.btnInPage.py-0.px-0 <span class="font-weight-bold">更新</span>
 </template>
 
 <script>
-// import {mapState} from 'vuex'
+import {mapActions} from 'vuex'
 // import { mapFields } from 'vuex-map-fields'
 import { createHelpers } from 'vuex-map-fields'
 
@@ -100,6 +100,9 @@ export default {
       // birthdayYear: null,
       // birthdayDate: null
     }
+  },
+  methods: {
+    ...mapActions('modifyEnrollModules', ['modifyEnrollData'])
   },
   computed: {
     date () {

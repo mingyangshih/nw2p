@@ -109,6 +109,7 @@
     copyright(:viewportWidth="fullWidth")
     loginmodal
     enrollmodal
+    alert
 </template>
 
 <script>
@@ -118,6 +119,7 @@ import footerComponent from '../footer.vue'
 import copyright from '../copyright'
 import loginmodal from '../../components/loginmodal'
 import enrollmodal from '../../components/enrollmodal'
+import alert from '../../components/alert'
 import {scroll} from '../../assets/scroll'
 export default {
   components: {
@@ -126,7 +128,8 @@ export default {
     copyright,
     footerComponent,
     loginmodal,
-    enrollmodal
+    enrollmodal,
+    alert
   },
   data () {
     return {

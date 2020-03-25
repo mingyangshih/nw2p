@@ -1,4 +1,5 @@
 import axios from 'axios'
+// import qs from 'querystring'
 // import router from '../../router'
 import { getField, updateField } from 'vuex-map-fields'
 export default {
@@ -6,6 +7,7 @@ export default {
   state: {
     enrollData: {
       account: '',
+      password: '',
       UAID: '',
       UAGE: '',
       USEX: '',
@@ -35,12 +37,11 @@ export default {
           'Authorization': `Bearer ${nw2pData.token}`
         }
       }).then((response) => {
-        console.log(typeof (response.data.error_code))
-        if (response.data.error_code === '401') {
+        if (response.data.error_code === 401) {
           // token 過期 重新取得
           dispatch('refreshToken')
           // token有效
-        } else if (response.data.error_code === '0') {
+        } else if (response.data.error_code === 0) {
           let enrolledData = response.data.data[0]
           commit('loadEnrolledData', enrolledData)
           // 觸發取郵遞區號
@@ -65,10 +66,9 @@ export default {
         return res.json()
       }).then(result => {
         // token 過期
-        console.log(result)
-        if (result.error_code !== '0') {
+        if (result.error_code !== 0) {
           dispatch('logOut', null, { root: true })
-        } else if (result.error_code === '0') {
+        } else if (result.error_code === 0) {
           let refreshtoken = result.data.refreshtoken
           let expiredAt = result.data.expired_at
           nw2pData.token = refreshtoken
@@ -87,7 +87,6 @@ export default {
           'Authorization': `Bearer ${refreshtoken}`
         }
       }).then((response) => {
-        console.log(response.data.data[0])
         let enrolledData = response.data.data[0]
         commit('loadEnrolledData', enrolledData)
         // 觸發取郵遞區號
@@ -119,11 +118,35 @@ export default {
         else districtName = districtNameAry[0]
         commit('changeAddrData', {cityName, districtName, location, totalData})
       })
+    },
+    // 更改資料
+    modifyEnrollData ({state, commit}) {
+      commit('LOADING', true, {root: true})
+      let enrollData = state.enrollData
+      let birthdayDate = (String(state.birthdayDate).length === 1) ? `0${String(state.birthdayDate)}` : `${String(state.birthdayDate)}`
+      let birthdayMonth = (String(state.birthdayMonth).length === 1) ? `0${String(state.birthdayMonth)}` : `${String(state.birthdayMonth)}`
+      enrollData.UAGE = state.birthdayYear + birthdayMonth + birthdayDate
+      let token = JSON.parse(localStorage.getItem('nw2pData')).token
+      console.log(enrollData)
+
+      fetch(`${process.env.API}user/updateuser`, {
+        method: 'POST',
+        body: enrollData,
+        headers: {
+          'Authorization': `Bearer ${token}`
+        }
+      }).then(res => {
+        return res.json()
+      }).then(result => {
+        commit('LOADING', false, {root: true})
+        console.log(result)
+      })
     }
   },
   mutations: {
     updateField,
     loadEnrolledData (state, enrolledData) {
+      console.log(enrolledData)
       state.enrollData.account = enrolledData.account
       state.enrollData.UAID = enrolledData.UAID
       state.enrollData.USEX = enrolledData.USEX
@@ -158,6 +181,15 @@ export default {
     changeCityChangeLocation (state) {
       state.totalCityData.forEach(item => {
         if (item.cityName === state.cityName) state.location = item.district
+      })
+    },
+    changeUAID (state) {
+      state.totalCityData.forEach(item => {
+        if (item.cityName === state.cityName) {
+          item.district.forEach(item1 => {
+            if (item1.districtName === state.districtName) state.enrollData.UAID = item1.zipCode
+          })
+        }
       })
     }
   }

@@ -15,7 +15,9 @@ export default {
       localStorage.setItem('nw2pData', nw2pData)
       // 登出commit mutaions 到 navbar.js
       commit('setTokenData', JSON.parse(nw2pData))
-      router.push('/')
+      if (location.hash === '#/modifyEnroll') {
+        router.push('/')
+      }
       commit('LOADING', false, {root: true})
     }
   }
