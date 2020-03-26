@@ -3,11 +3,11 @@
     h4.font-weight-bold 資料修改
     hr.mb-5
     p.font-weight-bold.fz14.mb-0 會員帳號*
-    input(type="text" v-model="enrollData.account").form-control.rounded-0.border-dark.mb-3.full
+    input(type="text" v-model="enrollData.account" disabled).form-control.rounded-0.border-dark.mb-3.full
     p.font-weight-bold.fz14.mb-0 會員姓名*
     input(type="text" v-model="enrollData.UDNAME").form-control.rounded-0.border-dark.mb-3.full
     p.font-weight-bold.fz14.mb-0 手機號碼*
-    input(type="text" v-model="enrollData.EN_UPHONE").form-control.rounded-0.border-dark.mb-3.full
+    input(type="text" v-model="enrollData.UPHONE").form-control.rounded-0.border-dark.mb-3.full
     p.font-weight-bold.fz14.mb-0 生日*
     .row.birth.mx-0.mb-3
       .col-md-4.year

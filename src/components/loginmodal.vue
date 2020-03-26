@@ -33,8 +33,8 @@ export default {
   data () {
     return {
       showPassword: 'password',
-      memberId: 'jckychen@gmail.com',
-      password: '660822'
+      memberId: 'jsps595214@yfp.com.tw',
+      password: '12345678'
     }
   },
   methods: {

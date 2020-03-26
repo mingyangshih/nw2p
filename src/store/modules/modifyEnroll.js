@@ -1,5 +1,5 @@
 import axios from 'axios'
-// import qs from 'querystring'
+import qs from 'querystring'
 // import router from '../../router'
 import { getField, updateField } from 'vuex-map-fields'
 export default {
@@ -7,7 +7,7 @@ export default {
   state: {
     enrollData: {
       account: '',
-      password: '',
+      password: '123456',
       UAID: '',
       UAGE: '',
       USEX: '',
@@ -15,8 +15,8 @@ export default {
       UADDR: '',
       UDNAME: '',
       UPHONE: '',
-      UTEL1: '',
-      UTELPHONE: '',
+      UTEL1: '02',
+      UTELPHONE: '22668944#123',
       UREF: ''
     },
     birthdayYear: null,
@@ -119,7 +119,7 @@ export default {
         commit('changeAddrData', {cityName, districtName, location, totalData})
       })
     },
-    // 更改資料
+    // 更改註冊資料
     modifyEnrollData ({state, commit}) {
       commit('LOADING', true, {root: true})
       let enrollData = state.enrollData
@@ -127,31 +127,31 @@ export default {
       let birthdayMonth = (String(state.birthdayMonth).length === 1) ? `0${String(state.birthdayMonth)}` : `${String(state.birthdayMonth)}`
       enrollData.UAGE = state.birthdayYear + birthdayMonth + birthdayDate
       let token = JSON.parse(localStorage.getItem('nw2pData')).token
-      console.log(enrollData)
 
       fetch(`${process.env.API}user/updateuser`, {
-        method: 'POST',
-        body: enrollData,
+        method: 'PUT',
+        body: qs.stringify(enrollData),
         headers: {
-          'Authorization': `Bearer ${token}`
+          'Authorization': `Bearer ${token}`,
+          'Content-Type': 'application/x-www-form-urlencoded'
         }
       }).then(res => {
         return res.json()
       }).then(result => {
+        let modifiedData = result.data
+        commit('afterModify', modifiedData)
         commit('LOADING', false, {root: true})
-        console.log(result)
       })
     }
   },
   mutations: {
     updateField,
     loadEnrolledData (state, enrolledData) {
-      console.log(enrolledData)
       state.enrollData.account = enrolledData.account
       state.enrollData.UAID = enrolledData.UAID
       state.enrollData.USEX = enrolledData.USEX
-      state.enrollData.EN_UPHONE = enrolledData.EN_UPHONE
-      state.enrollData.UTELPHONE = enrolledData.EN_UTELPHONE
+      state.enrollData.UPHONE = enrolledData.UPHONE
+      state.enrollData.UTELPHONE = enrolledData.UTELPHONE
       state.enrollData.UDNAME = enrolledData.UDNAME
       state.enrollData.USEND = enrolledData.USEND
       state.enrollData.UADDR = enrolledData.UADDR
@@ -174,6 +174,9 @@ export default {
       state.districtName = districtName
       state.location = location
       state.totalCityData = totalData
+    },
+    afterModify (state, modifiedData) {
+      state.enrollData = modifiedData
     }
   },
   getters: {

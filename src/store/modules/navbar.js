@@ -28,8 +28,18 @@ export default {
       })
     },
     // 檢查local storage 是否有內容，登入過會有內容，有登入過navbar 上方顯示方式直接顯示
-    checkToken ({commit}) {
+    checkToken ({commit, state}) {
       let nw2pData = JSON.parse(localStorage.getItem('nw2pData'))
+      if (nw2pData === null) {
+        nw2pData = {
+          UAID: '',
+          UNAME: '',
+          UDNAME: '',
+          token: '',
+          expired_at: ''
+        }
+        localStorage.setItem('nw2pData', JSON.stringify(nw2pData))
+      }
       commit('setTokenData', nw2pData)
     }
   },
