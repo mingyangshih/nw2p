@@ -1,6 +1,6 @@
 <template lang="pug">
-  .px-3.py-2(v-if="viewportWidth <= 640")
-    .topBox.d-flex.align-items-center.justify-content-between
+  .px-3.py-2(v-if="viewportWidth <= 640" id="tpx-basket-bar")
+    .topBox.d-flex.align-items-center.justify-content-between(id="tpx-basket-bar-inner")
       label.hamburger(for="hamburger")
       router-link.d-block(to="/")
         img.logo(src="../assets/img/logo.png")
@@ -26,10 +26,50 @@
         .navItem.font-weight-bold 關於我們
         .navItem.font-weight-bold 售後服務
         .navItem.font-weight-bold 聯絡我們
-        router-link(to="/modifyEnroll").navItem.font-weight-bold.text-decoration-none.text-dark(v-if="nw2pMemberData.token") 我的帳戶
-        .navItem.font-weight-bold( v-if="nw2pMemberData.token" @click.prevent="logOut") 登出
-        .navItem.font-weight-bold( data-toggle="modal" data-target="#loginModal" v-if="!nw2pMemberData.token") 登入
-        .navItem.font-weight-bold(data-toggle="modal" data-target="#enrollModal" v-if="!nw2pMemberData.token") 註冊
+        .navItem
+          a.font-weight-bold.text-decoration-none(href="#" onClick="tpxHighLevelRegisterInitControl()" id="tpx-register")
+            <span class="text-primary bar">|</span> Register
+        .navItem
+          a.font-weight-bold.text-decoration-none(href='#' id="tpx-signIn" onClick="tpxHighLevelSignInInitControl()") Sign In
+        .navItem(id="tpx-projectslinkli")
+          a.font-weight-bold(href="#" id="tpx-projectslist" onClick="tpxMyProjectsOnClick()") My Projects
+        .navItem(id="tpx-basketButtonWrapper")
+          a.tpx.tpx-button.tpx-basketButton(href="#" id="tpx-basketlink" onClick="tpxBasketOnClick()")
+            span.tpx.tpx-basketCount(id="tpx-basketButtonCount") 0
+            span.tpx.tpx-basketLabel Basket
+
+        //- <!-- Basket pop out panel -->
+        <div id="tpx-shoppingcartcontents" class="tpx tpx-shopping-cart">
+            <div class="tpx tpx-shopping-cart-header tpx-clearfix">
+                <span id="tpx-basketcountbadgeinner" class="tpx tpx-badge">0</span>
+                <a href="#" id="tpx-emptyBasketButton" onClick="tpxHighLevelEmptyBasketControl()" class="tpx tpx-button tpx-emptycartbutton">Empty Basket</a>
+            </div>
+            <div id="tpx-basketItemListContainer" class="tpx tpx-shopping-cart-items-container">
+                <ul id="tpx-basketItemList" class="tpx tpx-shopping-cart-items"></ul>
+                <div id="tpx-loadingspinnercontainer" class="tpx tpx-loadingspinnercontainer"></div>
+                <div id="tpx-empty-cart">
+                    <p id="tpx-empty-cart-text">Your basket is currently empty</p>
+                </div>
+            </div>
+            <a href="#" id="tpx-checkoutbutton" onClick="tpxHighLevelCheckoutControl()" class="tpx tpx-button tpx-checkout-button">Checkout</a>
+        </div>
+
+        //- <!-- My Projects pop out panel -->
+        <div id="tpx-projectlistcontents" class="tpx tpx-projectlist">
+            <div id="tpx-projectsItemListContainer" class="tpx tpx-projectlist-items-container">
+                <ul id="tpx-projectsItemList" class="tpx tpx-shopping-cart-items"></ul>
+                <div id="tpx-projectloadingspinnercontainer" class="tpx tpx-loadingspinnercontainer">
+                    <span id="tpx-projectloadingspinner" class="tpx tpx-loading-spinner"></span>
+                </div>
+                <div id="tpx-empty-state">
+                    <p id="tpx-empty-project-text">You don't have any saved projects.</p>
+                </div>
+            </div>
+        </div>
+        //- router-link(to="/modifyEnroll").navItem.font-weight-bold.text-decoration-none.text-dark(v-if="nw2pMemberData.token") 我的帳戶
+        //- .navItem.font-weight-bold( v-if="nw2pMemberData.token" @click.prevent="logOut") 登出
+        //- .navItem.font-weight-bold( data-toggle="modal" data-target="#loginModal" v-if="!nw2pMemberData.token") 登入
+        //- .navItem.font-weight-bold(data-toggle="modal" data-target="#enrollModal" v-if="!nw2pMemberData.token") 註冊
 </template>
 
 <script>
@@ -50,6 +90,9 @@ export default {
     const vm = this
     vm.getNavBarList()
     vm.checkToken()
+  },
+  mounted () {
+    window.tpxHighLevelBasketInitialise()
   }
 }
 </script>
@@ -202,6 +245,15 @@ export default {
     }
     &~.allProdItemDetailItem{
       display:block;
+    }
+  }
+  // taopix
+  @media only screen and (max-width: 780px){
+    #tpx-projectlistcontents .tpx-shopping-cart, .tpx-projectlist {
+        width: 100%;
+        position:fixed;
+        margin: 0 auto;
+        left: 0 !important;
     }
   }
 </style>

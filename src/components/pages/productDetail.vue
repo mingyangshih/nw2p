@@ -5,7 +5,8 @@
         p.mb-0.w-100.campaignDes 全商品8折優惠 / 20% OFF．滿499免運費
       //- navbar
     .container
-      navbarhead(:viewportWidth="fullWidth")
+      //- navbarhead(:viewportWidth="fullWidth")
+      tpxNavbarhead(:viewportWidth="fullWidth")
       navCustomize(:viewportWidth="fullWidth")
     .container-fluid
       .row.px-0.campaign.campaignBox.bg-primary(v-if="fullWidth < 640")
@@ -120,7 +121,7 @@ import copyright from '../copyright'
 import loginmodal from '../../components/loginmodal'
 import enrollmodal from '../../components/enrollmodal'
 import alert from '../../components/alert'
-import {scroll} from '../../assets/scroll'
+import tpxNavbarhead from '../../components/tpxNavbarhead'
 export default {
   components: {
     navbarhead,
@@ -129,31 +130,16 @@ export default {
     footerComponent,
     loginmodal,
     enrollmodal,
-    alert
+    alert,
+    tpxNavbarhead
   },
   data () {
     return {
       fullWidth: document.body.clientWidth
     }
   },
-  mixins: [scroll],
   mounted () {
     const vm = this
-    // const {elem: elemleft, distance: distanceleft} = vm.scroll('specialEffectleft')
-    // const {elem: elemright, distance: distanceright} = vm.scroll('specialEffectRight')
-    // // inner viewport height
-    // const IVPH = window.innerHeight
-    // window.addEventListener('scroll', function (e) {
-    //   e.stopPropagation()
-    //   distanceleft.forEach(function (item, idx) {
-    //     const checkClassName = elemleft[idx].classList.contains('specialEffectShow')
-    //     if (item - window.scrollY <= IVPH / 4 && !checkClassName) elemleft[idx].classList.add('specialEffectShow')
-    //   })
-    //   distanceright.forEach(function (item, idx) {
-    //     const checkClassName = elemright[idx].classList.contains('specialEffectShow')
-    //     if (item - window.scrollY <= IVPH / 4 && !checkClassName) elemright[idx].classList.add('specialEffectShow')
-    //   })
-    // })
     // resize 事件
     window.onresize = () => {
       return (() => {

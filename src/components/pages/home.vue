@@ -5,7 +5,8 @@
       p.mb-0.w-100.campaignDes 全商品8折優惠 / 20% OFF．滿499免運費
     //- navbar
   .container
-    navbarhead(:viewportWidth="fullWidth")
+    //- navbarhead(:viewportWidth="fullWidth")
+    tpxNavbarhead(:viewportWidth="fullWidth")
     navCustomize(:viewportWidth="fullWidth")
   .container-fluid
     .row.px-0.campaign.campaignBox.bg-primary(v-if="fullWidth < 640")
@@ -29,36 +30,6 @@
               img.card-img-top.rounded-0(:src='item.productAlbum' :alt='item.productName')
           .card-body
             h5.card-title.text-secondary {{item.productName}}
-      //- .col-6.col-md-4.text-center
-      //-   .card.rounded-0
-      //-     .imgBox
-      //-       img.card-img-top.rounded-0(src='../../assets/img/home/a02.jpg' alt='帆布袋')
-      //-     .card-body
-      //-       h5.card-title.text-secondary 帆布袋
-      //- .col-6.col-md-4.text-center
-      //-   .card.rounded-0
-      //-     .imgBox
-      //-       img.card-img-top.rounded-0(src='../../assets/img/home/a03.jpg' alt='T-shirt')
-      //-     .card-body
-      //-       h5.card-title.text-secondary T恤
-      //- .col-6.col-md-4.text-center.mt-md-3
-      //-   .card.rounded-0
-      //-     .imgBox
-      //-       img.card-img-top.rounded-0(src='../../assets/img/home/a04.jpg' alt='T-shirt')
-      //-     .card-body
-      //-       h5.card-title.text-secondary 馬克杯
-      //- .col-6.col-md-4.text-center.mt-md-3
-      //-   .card.rounded-0
-      //-     .imgBox
-      //-       img.card-img-top.rounded-0(src='../../assets/img/home/a05.jpg' alt='T-shirt')
-      //-     .card-body
-      //-       h5.card-title.text-secondary 明信片
-      //- .col-6.col-md-4.text-center.mt-md-3
-      //-   .card.rounded-0
-      //-     .imgBox
-      //-       img.card-img-top.rounded-0(src='../../assets/img/home/a06.jpg' alt='T-shirt')
-      //-     .card-body
-      //-       h5.card-title.text-secondary 手機殼
   .container-fluid.bg-gray.secondBannerBox
     .row
       .col-md-6.px-0.secondBanner
@@ -150,8 +121,8 @@
   .border-top.footer.container-fluid.px-0
     footerComponent(:viewportWidth="fullWidth")
   copyright(:viewportWidth="fullWidth")
-  loginmodal
-  enrollmodal
+  //- loginmodal
+  //- enrollmodal
   alert
 </template>
 
@@ -163,7 +134,7 @@ import navCustomize from '../navCustomize'
 import loginmodal from '../../components/loginmodal'
 import enrollmodal from '../../components/enrollmodal'
 import alert from '../../components/alert'
-import {scroll} from '../../assets/scroll'
+import tpxNavbarhead from '../../components/tpxNavbarhead'
 
 import {mapState} from 'vuex'
 // import { mapFields } from 'vuex-map-fields'
@@ -175,9 +146,9 @@ export default {
     loginmodal,
     enrollmodal,
     navCustomize,
-    alert
+    alert,
+    tpxNavbarhead
   },
-  mixins: [scroll],
   data () {
     return {
       showPassword: 'password',
@@ -195,21 +166,6 @@ export default {
   },
   mounted () {
     const vm = this
-    // const {elem: elemleft, distance: distanceleft} = vm.scroll('specialEffectleft')
-    // const {elem: elemright, distance: distanceright} = vm.scroll('specialEffectRight')
-    // // inner viewport height
-    // const IVPH = window.innerHeight
-    // window.addEventListener('scroll', function (e) {
-    //   e.stopPropagation()
-    //   distanceleft.forEach(function (item, idx) {
-    //     const checkClassName = elemleft[idx].classList.contains('specialEffectShow')
-    //     if (item - window.scrollY <= IVPH / 4 && !checkClassName) elemleft[idx].classList.add('specialEffectShow')
-    //   })
-    //   distanceright.forEach(function (item, idx) {
-    //     const checkClassName = elemright[idx].classList.contains('specialEffectShow')
-    //     if (item - window.scrollY <= IVPH / 4 && !checkClassName) elemright[idx].classList.add('specialEffectShow')
-    //   })
-    // })
     // resize 事件
     window.onresize = () => {
       return (() => {
@@ -240,7 +196,7 @@ $serif: 'Noto Serif TC', serif;
 // 最上方促銷活動
 .campaign{
   font-size: $s20;
-  max-width: 1920px;
+  max-width: 100vw;
 }
 .campaignBox{
   height: 60px;

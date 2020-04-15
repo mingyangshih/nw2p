@@ -1,12 +1,6 @@
 <template lang="pug">
-  .row.justify-content-between(v-if="viewportWidth > 640")
-        nav.navbar.navbar-expand-md.navbar-light.bg-white.d-flex.w-100(:class="{'py-0' : viewportWidth > 640, 'py-3' : viewportWidth <= 640}")
-          button.navbar-toggler.border-0.p-0(type='button' data-toggle='collapse' data-target='#navbarNav' aria-controls='navbarNav' aria-expanded='false' aria-label='Toggle navigation')
-            //- span.navbar-toggler-icon
-            .icon-bar
-            .icon-bar
-            .icon-bar
-            //- <i class="fas fa-bars" style="color:rgb(92,135,167); font-size:16px;"></i>
+  .row.justify-content-between.tpx.py-0.border-bottom-0(v-if="viewportWidth > 640" id="tpx-basket-bar")
+        nav.navbar.navbar-expand-md.navbar-light.bg-white.d-flex.w-100.tpx.tpx-bar-container.tpx-clearfix(:class="{'py-0' : viewportWidth > 640}" id="tpx-basket-bar-inner")
           router-link.navbar-brand.d-block.mr-0(to="/")
             img.logo(src="../assets/img/logo.png")
           img.cart(src="../assets/img/home/supermarket.svg" v-if="viewportWidth <= 640")
@@ -20,45 +14,64 @@
                 li.nav-item.pr-lg-5.ml-md-5(@click="closeSideBar" v-if="viewportWidth <= 640")
                   router-link.nav-link.font-weight-bold(to="/") 首頁
                 li.nav-item.dropdown.ml-md-5(:class="{'d-flex' : viewportWidth > 640,'h-100' : viewportWidth > 640,'align-items-center' : viewportWidth > 640}")
-                  a.nav-link.font-weight-bold(href='#' data-toggle="dropdown") 所有產品
+                  a.nav-link.font-weight-bold.text-decoration-none(href='#' data-toggle="dropdown") 所有產品
                   .dropdown-menu.py-0(aria-labelledby='navbarDropdown')
                     .row.px-md-3
                       a.dropdown-item.py-md-3.font-weight-bold.text-center.col-md-4(href='#' v-for="(item,idx) in totalCategory")
                         label.d-flex.align-items-center.font-weight-bold.text-left(:for="item" :class="{'text-gray':viewportWidth <= 640 && sideBarShow.indexOf(item) >= 0}") <router-link to="/productDetail" class="text-decoration-none">{{item}}</router-link><i class="fas fa-chevron-down ml-auto" v-if="viewportWidth <= 640 && sideBarShow.indexOf(item) < 0"></i><i class="fas fa-chevron-up ml-auto" v-if="viewportWidth <= 640 && sideBarShow.indexOf(item) >= 0"></i>
                         input.d-none(type="checkbox" :id="item" :value="item" v-model="sideBarShow")
-                        ul.pl-3(:class="{'d-none' : viewportWidth <= 640 && sideBarShow.indexOf(item) < 0}")
+                        ul.pl-3.d-flex.flex-column(:class="{'d-none' : viewportWidth <= 640 && sideBarShow.indexOf(item) < 0}")
                           li.fz15.mb-2(v-for="item1 in totalProduct" v-if="item1.productCategory === item")
                             router-link.text-decoration-none.text-dark(:to="'/standard/'+item1.productId") - {{item1.productName}}
                 li.nav-item.pr-lg-5.ml-md-5(@click="closeSideBar")
-                  a.nav-link.font-weight-bold(href='#') 幫助中心
+                  a.nav-link.font-weight-bold.text-decoration-none(href='#') 幫助中心
                 li.nav-item.pr-lg-5.ml-md-5(@click="closeSideBar" v-if="viewportWidth <= 640")
-                  a.nav-link.font-weight-bold(href='#') 關於我們
+                  a.nav-link.font-weight-bold.text-decoration-none(href='#') 關於我們
                 li.nav-item.pr-lg-5.ml-md-5(@click="closeSideBar" v-if="viewportWidth <= 640")
-                  a.nav-link.font-weight-bold(href='#') 售後服務
+                  a.nav-link.font-weight-bold.text-decoration-none(href='#') 售後服務
                 li.nav-item.pr-lg-5.ml-md-5(@click="closeSideBar" v-if="viewportWidth <= 640")
-                  a.nav-link.font-weight-bold(href='#') 聯絡我們
+                  a.nav-link.font-weight-bold.text-decoration-none(href='#') 聯絡我們
                 //- 沒註冊前顯示
-                li.nav-item.boder-sm-left.ml-md-auto(v-if="!nw2pMemberData.token")
-                  //- a.nav-link.font-weight-bold(href='#' data-toggle="modal" data-target="#enrollModal") <span class="text-primary bar" v-if="viewportWidth > 640">|</span> 註冊
-                  a.nav-link.font-weight-bold(href='#' @click="tpxHighLevelRegisterInitControl") <span class="text-primary bar" v-if="viewportWidth > 640">|</span> 註冊
-                li.nav-item.font-weight-bold(v-if="!nw2pMemberData.token")
-                  a.nav-link.font-weight-bold(href='#' data-toggle="modal" data-target="#loginModal") <span class="text-primary" v-if="viewportWidth > 640">|</span> <i class="fas fa-user-circle mr-2 text-primary" v-if="viewportWidth > 913"></i>登入
-                //- 註冊後顯示
-                li.nav-item.boder-sm-left.ml-md-auto(v-if="nw2pMemberData.token && viewportWidth > 640")
-                  a.nav-link.font-weight-bold(href='#') Hi {{nw2pMemberData.UDNAME}} !
-                li.nav-item.boder-sm-left.h-100.d-flex.align-items-center.myAccount(v-if="nw2pMemberData.token && viewportWidth > 640")
-                  router-link.nav-link.font-weight-bold.px-md-2(to="/modifyEnroll") <span class="text-primary bar">|</span> 我的帳戶
-                  .myAccountBox
-                    ul
-                      li.font-weight-bold.py-2
-                        router-link(to="/modifyEnroll").text-decoration-none 我的帳戶
-                      li.py-2
-                        router-link(to="/modifyEnroll").text-decoration-none -資料修改
-                      li.py-2
-                        router-link(to="/modifyEnroll/changePassword").text-decoration-none -變更密碼
-                      li.py-2 -我的訂單
-                li.nav-item.font-weight-bold(v-if="nw2pMemberData.token" @click.prevent="logOut")
-                  a.nav-link.font-weight-bold(href="#") <span class="text-primary" v-if="viewportWidth > 640">|</span> <i class="fas fa-user-circle mr-2 text-primary" v-if="viewportWidth > 913"></i>登出
+                li.nav-item.boder-sm-left.ml-md-auto()
+                  a.nav-link.font-weight-bold.text-decoration-none(href='#' onClick="tpxHighLevelRegisterInitControl()" id="tpx-register") <span class="text-primary bar" v-if="viewportWidth > 640">|</span> Register
+                li.nav-item.font-weight-bold.tpx.tpx-accountLinkItem.mr-0
+                  a.nav-link.font-weight-bold.tpx.text-decoration-none(href='#' id="tpx-signIn" onClick="tpxHighLevelSignInInitControl()") <span class="text-primary" v-if="viewportWidth > 640">|</span> <i class="fas fa-user-circlea6102 mr-2 text-primary" v-if="viewportWidth > 913"></i>Sign In
+                li.tpx.tpx-accountLinkItem(id="tpx-projectslinkli")
+                  a.tpx.text-decoration-none(href="#" id="tpx-projectslist" onClick="tpxMyProjectsOnClick()") My Projects
+                li.tpx
+                  .tpx(id="tpx-basketButtonWrapper")
+                    a.tpx.tpx-button.tpx-basketButton(href="#" id="tpx-basketlink" onClick="tpxBasketOnClick()")
+                      span.tpx.tpx-basketCount(id="tpx-basketButtonCount") 0
+                      span.tpx.tpx-basketLabel Basket
+
+                //- <!-- Basket pop out panel -->
+                <div id="tpx-shoppingcartcontents" class="tpx tpx-shopping-cart">
+                    <div class="tpx tpx-shopping-cart-header tpx-clearfix">
+                        <span id="tpx-basketcountbadgeinner" class="tpx tpx-badge">0</span>
+                        <a href="#" id="tpx-emptyBasketButton" onClick="tpxHighLevelEmptyBasketControl()" class="tpx tpx-button tpx-emptycartbutton">Empty Basket</a>
+                    </div>
+                    <div id="tpx-basketItemListContainer" class="tpx tpx-shopping-cart-items-container">
+                        <ul id="tpx-basketItemList" class="tpx tpx-shopping-cart-items"></ul>
+                        <div id="tpx-loadingspinnercontainer" class="tpx tpx-loadingspinnercontainer"></div>
+                        <div id="tpx-empty-cart">
+                            <p id="tpx-empty-cart-text">Your basket is currently empty</p>
+                        </div>
+                    </div>
+                    <a href="#" id="tpx-checkoutbutton" onClick="tpxHighLevelCheckoutControl()" class="tpx tpx-button tpx-checkout-button">Checkout</a>
+                </div>
+
+                //- <!-- My Projects pop out panel -->
+                <div id="tpx-projectlistcontents" class="tpx tpx-projectlist">
+                    <div id="tpx-projectsItemListContainer" class="tpx tpx-projectlist-items-container">
+                        <ul id="tpx-projectsItemList" class="tpx tpx-shopping-cart-items"></ul>
+                        <div id="tpx-projectloadingspinnercontainer" class="tpx tpx-loadingspinnercontainer">
+                            <span id="tpx-projectloadingspinner" class="tpx tpx-loading-spinner"></span>
+                        </div>
+                        <div id="tpx-empty-state">
+                            <p id="tpx-empty-project-text">You don't have any saved projects.</p>
+                        </div>
+                    </div>
+                </div>
 </template>
 
 <script>
@@ -67,7 +80,8 @@ export default{
   props: ['viewportWidth'],
   data () {
     return {
-      sideBarShow: []
+      sideBarShow: [],
+      pJsonResponseObject: {}
     }
   },
   methods: {
@@ -86,27 +100,21 @@ export default{
       nw2pMemberData: state => state.navbarModules.nw2pMemberData
     })
   },
-  mounted () {
-    $('.dropdown-menu').on('click', function (event) {
-      event.stopPropagation()
-    })
-    $('.dropdown-item').on('click', function (event) {
-      event.stopPropagation()
-    })
-  },
   created () {
     const vm = this
     // 取下拉選單內容
     vm.getNavBarList()
     // 檢查local storage 是否有內容，登入過會有內容，有登入過navbar 上方顯示方式直接顯示
     vm.checkToken()
-    // tpxHighLevelBasketInitialise()
+  },
+  mounted () {
+    window.tpxHighLevelBasketInitialise()
   }
 }
 </script>
 
 <style lang="scss" scoped>
-.fz12{
+  .fz12{
   font-size: 12px;
 }
 .fz15{
@@ -135,16 +143,7 @@ export default{
     width: 100%;
   }
 }
-// @media(max-width: 640px){
-//   .navbar-nav{
-//     width: 75%;
-//     .nav-item{
-//       padding: 8px 0;
-//       border-bottom: 1px solid #c1bfc1;
-//       cursor: pointer;
-//     }
-//   }
-// }
+
 .navbar-brand{
   padding:0;
 }
@@ -159,14 +158,7 @@ export default{
     text-align: center;
   }
 }
-// @media(max-width: 640px){
-//   .nav-link{
-//     text-align: left;
-//     height: 50px;
-//     display: flex;
-//     align-items: center;
-//   }
-// }
+
 // hamburger style
 .navbar-light .navbar-toggler {
   border-color: rgb(92,135,167);
@@ -191,17 +183,7 @@ export default{
     }
   }
 }
-// @media(max-width: 640px){
-//   .dropdown-item{
-//     border-bottom:1px solid #c1bfc1;
-//     label{
-//       margin-top: 8px;
-//     }
-//   }
-//   .dropdown-item:last-child{
-//     border-bottom:0px solid #c1b1f1;
-//   }
-// }
+
 .dropdown-item:hover{
   background: none;
   color:black;
@@ -211,49 +193,6 @@ export default{
       padding-left: 0rem !important;
   }
 }
-// @media (max-width : 640px){
-//   // 側邊下拉設定
-//   .navbar-collapse{
-//     position: fixed;
-//     top: 0;
-//     left: 0px;
-//     width: 75%;
-//     z-index: 1000;
-//     background: white;
-//     height: 100vh;
-//     overflow-y:scroll;
-//     scrollbar-width: none;
-//     -ms-overflow-style: none;
-//     &::-moz-scrollbar{
-//       display: none;
-//     }
-//     &::-webkit-scrollbar {
-//       display: none;
-//     }
-//     .logoBox{
-//       border-bottom: 2px solid #333333;
-//       position: relative;
-//     }
-//     .fa-times{
-//       position: absolute;
-//       right:-15%;
-//       top:10px;
-//       border: 1px solid gray;
-//       border-radius: 50%;
-//       width: 16px;
-//       height: 16px;
-//       font-size: 14px;
-//       display: flex;
-//       align-items: center;
-//       justify-content: center;
-//       cursor: pointer;
-//       &:hover{
-//         background: #000;
-//         color: white;
-//       }
-//     }
-//   }
-// }
 
 .dropdown-menu{
   min-width: 35rem;
@@ -304,14 +243,6 @@ export default{
     z-index: 1;
   }
 }
-
-// @media(max-width : 640px) {
-//   .dropdown-menu{
-//     min-width: auto;
-//     border-width: 0;
-//   }
-// }
-// for 640px
 @media(width : 640px){
   .navbar-expand-md .navbar-collapse{
     display:none !important;
@@ -401,5 +332,12 @@ export default{
       }
     }
   }
+}
+// taopix style
+.tpx{
+  font-size: 1rem;
+  text-decoration: none;
+  color: black;
+  font-weight: bold;
 }
 </style>

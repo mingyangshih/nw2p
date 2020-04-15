@@ -5,7 +5,8 @@
         p.mb-0.w-100.campaignDes 全商品8折優惠 / 20% OFF．滿499免運費
       //- navbar
     .container
-      navbarhead(:viewportWidth="fullWidth")
+      //- navbarhead(:viewportWidth="fullWidth")
+      tpxNavbarhead(:viewportWidth="fullWidth")
       navCustomize(:viewportWidth="fullWidth")
       .row.px-0.campaign.campaignBox.bg-primary(v-if="fullWidth < 640")
         p.mb-0.w-100.campaignDes 全商品8折優惠 / 20% OFF．滿499免運費
@@ -141,6 +142,7 @@ import copyright from '../copyright'
 import loginmodal from '../../components/loginmodal'
 import enrollmodal from '../../components/enrollmodal'
 import alert from '../../components/alert'
+import tpxNavbarhead from '../../components/tpxNavbarhead'
 import {mapState, mapActions, mapGetters} from 'vuex'
 import { mapFields } from 'vuex-map-fields'
 export default {
@@ -152,7 +154,8 @@ export default {
     copyright,
     loginmodal,
     enrollmodal,
-    alert
+    alert,
+    tpxNavbarhead
   },
   data () {
     return {

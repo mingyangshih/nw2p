@@ -2,3 +2,6 @@
 /config/
 /dist/
 /*.js
+/src/assets/*.js
+/tpx-includes
+/static
