@@ -1,17 +1,10 @@
 <template lang="pug">
   .productDetail
-    .container-fluid
-      .row.px-0.campaign.campaignBox.bg-primary(v-if="fullWidth >= 640")
-        p.mb-0.w-100.campaignDes 全商品8折優惠 / 20% OFF．滿499免運費
-      //- navbar
     .container
-      //- navbarhead(:viewportWidth="fullWidth")
-      tpxNavbarhead(:viewportWidth="fullWidth")
-      navCustomize(:viewportWidth="fullWidth")
-    .container-fluid
-      .row.px-0.campaign.campaignBox.bg-primary(v-if="fullWidth < 640")
-        p.mb-0.w-100.campaignDes 全商品8折優惠 / 20% OFF．滿499免運費
+      //- tpxNavbarhead(:viewportWidth="fullWidth")
+      //- navCustomize(:viewportWidth="fullWidth")
       //- banner
+    .container-fluid
       .row.px-0
         .col-sm-12.px-0
           img.w-100.firstBanner.img-fluid(src="../../assets/img/productDetail/banner.jpg" v-if="fullWidth >= 640")
@@ -108,9 +101,9 @@
     .border-top.mt-30.footer.container-fluid.px-0
       footerComponent(:viewportWidth="fullWidth")
     copyright(:viewportWidth="fullWidth")
-    loginmodal
-    enrollmodal
-    alert
+    //- loginmodal
+    //- enrollmodal
+    //- alert
 </template>
 
 <script>

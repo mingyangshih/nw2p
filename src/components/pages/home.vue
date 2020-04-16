@@ -1,17 +1,10 @@
 <template lang="pug">
 .home
-  .container-fluid
-    .row.px-0.campaign.campaignBox.bg-primary(v-if="fullWidth >= 640")
-      p.mb-0.w-100.campaignDes 全商品8折優惠 / 20% OFF．滿499免運費
-    //- navbar
   .container
-    //- navbarhead(:viewportWidth="fullWidth")
-    tpxNavbarhead(:viewportWidth="fullWidth")
-    navCustomize(:viewportWidth="fullWidth")
-  .container-fluid
-    .row.px-0.campaign.campaignBox.bg-primary(v-if="fullWidth < 640")
-      p.mb-0.w-100.campaignDes 全商品8折優惠 / 20% OFF．滿499免運費
+    //- tpxNavbarhead(:viewportWidth="fullWidth")
+    //- navCustomize(:viewportWidth="fullWidth")
     //- banner
+  .container-fluid
     .row.px-0
       .col-sm-12.px-0
         img.w-100.firstBanner.img-fluid(src="../../assets/img/home/banner.jpg" v-if="fullWidth >= 640")

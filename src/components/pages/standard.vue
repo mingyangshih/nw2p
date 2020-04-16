@@ -1,15 +1,8 @@
 <template lang="pug">
   .standard
-    .container-fluid
-      .row.px-0.campaign.campaignBox.bg-primary(v-if="fullWidth >= 640")
-        p.mb-0.w-100.campaignDes 全商品8折優惠 / 20% OFF．滿499免運費
-      //- navbar
     .container
-      //- navbarhead(:viewportWidth="fullWidth")
-      tpxNavbarhead(:viewportWidth="fullWidth")
-      navCustomize(:viewportWidth="fullWidth")
-      .row.px-0.campaign.campaignBox.bg-primary(v-if="fullWidth < 640")
-        p.mb-0.w-100.campaignDes 全商品8折優惠 / 20% OFF．滿499免運費
+      //- tpxNavbarhead(:viewportWidth="fullWidth")
+      //- navCustomize(:viewportWidth="fullWidth")
     .container
       .row
         .col-md-6
@@ -60,7 +53,7 @@
           hr.mt-0
           p(:class="{'justify-content-between' : fullWidth > 640, 'flex-column' : fullWidth <= 640, 'align-items-center' : fullWidth <= 640}").text-primary.d-flex.font-weight-bold 周年慶活動，相片全面85折優惠!<span class="fz26">NT$300</span>
           .d-flex.btnBox(:class="{'justify-content-center' : fullWidth <= 640}")
-            a(:href="designLink" target="_blank" :class="{'w-100' : fullWidth <= 640}").btn.btn-primary.font-weight-bold.btnInPage.py-0.text-white 開始製作
+            a(:href="designLink" :class="{'w-100' : fullWidth <= 640}").btn.btn-primary.font-weight-bold.btnInPage.py-0.text-white 開始製作
     .container.mt-5.mt-md-0
       .row.justify-content-center.py-4
         h2.font-weight-bold.mb-0.text-secondary.secondTitle 產品特性
@@ -128,9 +121,9 @@
     .container-fluid.border-top.px-0.footer
       footerComponent(:viewportWidth="fullWidth")
     copyright(:viewportWidth="fullWidth")
-    loginmodal
-    enrollmodal
-    alert
+    //- loginmodal
+    //- enrollmodal
+    //- alert
 </template>
 
 <script>

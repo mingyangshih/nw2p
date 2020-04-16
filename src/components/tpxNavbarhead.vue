@@ -17,7 +17,7 @@
                   a.nav-link.font-weight-bold.text-decoration-none(href='#' data-toggle="dropdown") 所有產品
                   .dropdown-menu.py-0(aria-labelledby='navbarDropdown')
                     .row.px-md-3
-                      a.dropdown-item.py-md-3.font-weight-bold.text-center.col-md-4(href='#' v-for="(item,idx) in totalCategory")
+                      a.dropdown-item.py-md-3.font-weight-bold.text-center.col-md-4.text-decoration-none(v-for="(item,idx) in totalCategory")
                         label.d-flex.align-items-center.font-weight-bold.text-left(:for="item" :class="{'text-gray':viewportWidth <= 640 && sideBarShow.indexOf(item) >= 0}") <router-link to="/productDetail" class="text-decoration-none">{{item}}</router-link><i class="fas fa-chevron-down ml-auto" v-if="viewportWidth <= 640 && sideBarShow.indexOf(item) < 0"></i><i class="fas fa-chevron-up ml-auto" v-if="viewportWidth <= 640 && sideBarShow.indexOf(item) >= 0"></i>
                         input.d-none(type="checkbox" :id="item" :value="item" v-model="sideBarShow")
                         ul.pl-3.d-flex.flex-column(:class="{'d-none' : viewportWidth <= 640 && sideBarShow.indexOf(item) < 0}")
@@ -33,45 +33,45 @@
                   a.nav-link.font-weight-bold.text-decoration-none(href='#') 聯絡我們
                 //- 沒註冊前顯示
                 li.nav-item.boder-sm-left.ml-md-auto()
-                  a.nav-link.font-weight-bold.text-decoration-none(href='#' onClick="tpxHighLevelRegisterInitControl()" id="tpx-register") <span class="text-primary bar" v-if="viewportWidth > 640">|</span> Register
+                  a.nav-link.font-weight-bold.text-decoration-none( onClick="tpxHighLevelRegisterInitControl()" id="tpx-register") <span class="text-primary bar" v-if="viewportWidth > 640">|</span> Register
                 li.nav-item.font-weight-bold.tpx.tpx-accountLinkItem.mr-0
-                  a.nav-link.font-weight-bold.tpx.text-decoration-none(href='#' id="tpx-signIn" onClick="tpxHighLevelSignInInitControl()") <span class="text-primary" v-if="viewportWidth > 640">|</span> <i class="fas fa-user-circlea6102 mr-2 text-primary" v-if="viewportWidth > 913"></i>Sign In
+                  a.nav-link.font-weight-bold.tpx.text-decoration-none( id="tpx-signIn" onClick="tpxHighLevelSignInInitControl()") <span class="text-primary" v-if="viewportWidth > 640">|</span> <i class="fas fa-user-circlea6102 mr-2 text-primary" v-if="viewportWidth > 913"></i> Sign
                 li.tpx.tpx-accountLinkItem(id="tpx-projectslinkli")
-                  a.tpx.text-decoration-none(href="#" id="tpx-projectslist" onClick="tpxMyProjectsOnClick()") My Projects
+                  span.tpx.text-decoration-none( id="tpx-projectslist" onClick="tpxMyProjectsOnClick()") My Project
                 li.tpx
                   .tpx(id="tpx-basketButtonWrapper")
-                    a.tpx.tpx-button.tpx-basketButton(href="#" id="tpx-basketlink" onClick="tpxBasketOnClick()")
+                    p.mb-0.tpx.tpx-button.tpx-basketButton(id="tpx-basketlink" onClick="tpxBasketOnClick()")
                       span.tpx.tpx-basketCount(id="tpx-basketButtonCount") 0
-                      span.tpx.tpx-basketLabel Basket
+                      span.tpx.tpx-basketLabel 購物車
 
                 //- <!-- Basket pop out panel -->
-                <div id="tpx-shoppingcartcontents" class="tpx tpx-shopping-cart">
-                    <div class="tpx tpx-shopping-cart-header tpx-clearfix">
-                        <span id="tpx-basketcountbadgeinner" class="tpx tpx-badge">0</span>
-                        <a href="#" id="tpx-emptyBasketButton" onClick="tpxHighLevelEmptyBasketControl()" class="tpx tpx-button tpx-emptycartbutton">Empty Basket</a>
-                    </div>
-                    <div id="tpx-basketItemListContainer" class="tpx tpx-shopping-cart-items-container">
-                        <ul id="tpx-basketItemList" class="tpx tpx-shopping-cart-items"></ul>
-                        <div id="tpx-loadingspinnercontainer" class="tpx tpx-loadingspinnercontainer"></div>
-                        <div id="tpx-empty-cart">
-                            <p id="tpx-empty-cart-text">Your basket is currently empty</p>
-                        </div>
-                    </div>
-                    <a href="#" id="tpx-checkoutbutton" onClick="tpxHighLevelCheckoutControl()" class="tpx tpx-button tpx-checkout-button">Checkout</a>
-                </div>
+              <div id="tpx-shoppingcartcontents" class="tpx tpx-shopping-cart">
+                  <div class="tpx tpx-shopping-cart-header tpx-clearfix">
+                      <span id="tpx-basketcountbadgeinner" class="tpx tpx-badge">0</span>
+                      <a href="#" id="tpx-emptyBasketButton" onClick="tpxHighLevelEmptyBasketControl()" class="tpx tpx-button tpx-emptycartbutton">Empty Basket</a>
+                  </div>
+                  <div id="tpx-basketItemListContainer" class="tpx tpx-shopping-cart-items-container">
+                      <ul id="tpx-basketItemList" class="tpx tpx-shopping-cart-items"></ul>
+                      <div id="tpx-loadingspinnercontainer" class="tpx tpx-loadingspinnercontainer"></div>
+                      <div id="tpx-empty-cart">
+                          <p id="tpx-empty-cart-text">Your basket is currently empty</p>
+                      </div>
+                  </div>
+                  <a href="#" id="tpx-checkoutbutton" onClick="tpxHighLevelCheckoutControl()" class="tpx tpx-button tpx-checkout-button">Checkout</a>
+              </div>
 
-                //- <!-- My Projects pop out panel -->
-                <div id="tpx-projectlistcontents" class="tpx tpx-projectlist">
-                    <div id="tpx-projectsItemListContainer" class="tpx tpx-projectlist-items-container">
-                        <ul id="tpx-projectsItemList" class="tpx tpx-shopping-cart-items"></ul>
-                        <div id="tpx-projectloadingspinnercontainer" class="tpx tpx-loadingspinnercontainer">
-                            <span id="tpx-projectloadingspinner" class="tpx tpx-loading-spinner"></span>
-                        </div>
-                        <div id="tpx-empty-state">
-                            <p id="tpx-empty-project-text">You don't have any saved projects.</p>
-                        </div>
-                    </div>
-                </div>
+              //- <!-- My Projects pop out panel -->
+              <div id="tpx-projectlistcontents" class="tpx tpx-projectlist">
+                  <div id="tpx-projectsItemListContainer" class="tpx tpx-projectlist-items-container">
+                      <ul id="tpx-projectsItemList" class="tpx tpx-shopping-cart-items"></ul>
+                      <div id="tpx-projectloadingspinnercontainer" class="tpx tpx-loadingspinnercontainer">
+                          <span id="tpx-projectloadingspinner" class="tpx tpx-loading-spinner"></span>
+                      </div>
+                      <div id="tpx-empty-state">
+                          <p id="tpx-empty-project-text">You don't have any saved projects.</p>
+                      </div>
+                  </div>
+              </div>
 </template>
 
 <script>
@@ -106,15 +106,15 @@ export default{
     vm.getNavBarList()
     // 檢查local storage 是否有內容，登入過會有內容，有登入過navbar 上方顯示方式直接顯示
     vm.checkToken()
-  },
-  mounted () {
-    window.tpxHighLevelBasketInitialise()
   }
 }
 </script>
 
 <style lang="scss" scoped>
-  .fz12{
+.nav-item{
+  font-size: 15px;
+}
+.fz12{
   font-size: 12px;
 }
 .fz15{
@@ -335,9 +335,10 @@ export default{
 }
 // taopix style
 .tpx{
-  font-size: 1rem;
+  font-size: 15px;
   text-decoration: none;
   color: black;
   font-weight: bold;
+  cursor:pointer;
 }
 </style>
