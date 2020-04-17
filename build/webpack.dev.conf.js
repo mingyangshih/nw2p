@@ -57,6 +57,11 @@ const devWebpackConfig = merge(baseWebpackConfig, {
       template: 'index.html',
       inject: true
     }),
+    new HtmlWebpackPlugin({
+      filename: 'hlcreate.html',
+      template: 'hlcreate.html',
+      inject: true
+    }),
     // copy custom static assets
     new CopyWebpackPlugin([
       {

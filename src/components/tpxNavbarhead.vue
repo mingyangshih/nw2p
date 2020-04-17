@@ -1,5 +1,5 @@
 <template lang="pug">
-  .row.justify-content-between.tpx.py-0.border-bottom-0(v-if="viewportWidth > 640" id="tpx-basket-bar")
+  .row.justify-content-between.tpx.py-0.border-bottom-0.mx-0(v-if="viewportWidth > 640" id="tpx-basket-bar")
         nav.navbar.navbar-expand-md.navbar-light.bg-white.d-flex.w-100.tpx.tpx-bar-container.tpx-clearfix(:class="{'py-0' : viewportWidth > 640}" id="tpx-basket-bar-inner")
           router-link.navbar-brand.d-block.mr-0(to="/")
             img.logo(src="../assets/img/logo.png")
@@ -33,16 +33,16 @@
                   a.nav-link.font-weight-bold.text-decoration-none(href='#') 聯絡我們
                 //- 沒註冊前顯示
                 li.nav-item.boder-sm-left.ml-md-auto()
-                  a.nav-link.font-weight-bold.text-decoration-none( onClick="tpxHighLevelRegisterInitControl()" id="tpx-register") <span class="text-primary bar" v-if="viewportWidth > 640">|</span> Register
+                  a.nav-link.font-weight-bold.text-decoration-none( onClick="tpxHighLevelRegisterInitControl()" id="tpx-register") <span class="text-primary bar" v-if="viewportWidth > 640">|</span>
                 li.nav-item.font-weight-bold.tpx.tpx-accountLinkItem.mr-0
-                  a.nav-link.font-weight-bold.tpx.text-decoration-none( id="tpx-signIn" onClick="tpxHighLevelSignInInitControl()") <span class="text-primary" v-if="viewportWidth > 640">|</span> <i class="fas fa-user-circlea6102 mr-2 text-primary" v-if="viewportWidth > 913"></i> Sign
+                  a.nav-link.font-weight-bold.tpx.text-decoration-none( id="tpx-signIn" onClick="tpxHighLevelSignInInitControl()") <span class="text-primary" v-if="viewportWidth > 640">|</span> <i class="fas fa-user-circlea6102 mr-2 text-primary" v-if="viewportWidth > 913"></i>
                 li.tpx.tpx-accountLinkItem(id="tpx-projectslinkli")
-                  span.tpx.text-decoration-none( id="tpx-projectslist" onClick="tpxMyProjectsOnClick()") My Project
+                  span.tpx.text-decoration-none( id="tpx-projectslist" onClick="tpxMyProjectsOnClick()")
                 li.tpx
                   .tpx(id="tpx-basketButtonWrapper")
                     p.mb-0.tpx.tpx-button.tpx-basketButton(id="tpx-basketlink" onClick="tpxBasketOnClick()")
-                      span.tpx.tpx-basketCount(id="tpx-basketButtonCount") 0
-                      span.tpx.tpx-basketLabel 購物車
+                      span.tpx.tpx-basketCount(id="tpx-basketButtonCount")
+                      span.tpx.tpx-basketLabel
 
                 //- <!-- Basket pop out panel -->
               <div id="tpx-shoppingcartcontents" class="tpx tpx-shopping-cart">
