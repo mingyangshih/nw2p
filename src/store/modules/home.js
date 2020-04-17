@@ -8,8 +8,9 @@ export default {
   actions: {
     // 取一個理由下面的資料
     getIndex (context) {
+      let API_PATH = window.API
       context.commit('LOADING', true, {root: true})
-      axios.get(`${process.env.API}product/getindex`).then((response) => {
+      axios.get(`${API_PATH}product/getindex`).then((response) => {
         context.commit('changeIndexData', response.data.data)
       }).catch((error) => {
         console.log(error)

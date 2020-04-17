@@ -28,7 +28,8 @@ export default {
   actions: {
     getStandardData (context, {id}) {
       context.commit('LOADING', true, {root: true})
-      let getAPI = `${process.env.API}product/getdetail/${id}`
+      let API_PATH = window.API
+      let getAPI = `${API_PATH}product/getdetail/${id}`
       axios.get(getAPI).then((response) => {
         let productSpec = response.data.data[1].productSpec
         let productInfo = response.data.data[2].productInfo

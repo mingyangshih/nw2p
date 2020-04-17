@@ -1,3 +1,4 @@
+// import API from '../../../static/api-path/apiPath'
 export default {
   state: {
     totalCategory: [],
@@ -14,7 +15,8 @@ export default {
     // 取下拉選單內容
     getNavBarList ({commit}) {
       let totalCategory = []
-      fetch(`${process.env.API}product/getmenu`, {method: 'get'}).then(res => {
+      let API_PATH = window.API
+      fetch(`${API_PATH}product/getmenu`, {method: 'get'}).then(res => {
         return res.json()
       }).then(result => {
         // 過濾有幾種種類

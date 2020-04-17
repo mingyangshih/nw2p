@@ -103,19 +103,19 @@
         .col-md-4.col-6.d-flex.justify-content-center
           .card
             .imgBox
-              img.card-img-top(src='../../assets/img/standard/d01.jpg')
+              img.card-img-top(src='../../assets/img/standard/img01.jpg')
             .card-body
               h5.card-title.font-weight-bold.text-secondary.text-center 精裝
         .col-md-4.col-6.d-flex.justify-content-center
           .card
             .imgBox
-              img.card-img-top(src='../../assets/img/standard/d01.jpg')
+              img.card-img-top(src='../../assets/img/standard/img01.jpg')
             .card-body
               h5.card-title.font-weight-bold.text-secondary.text-center 薄蝴蝶裝
         .col-md-4.col-6.d-flex.justify-content-center
           .card
             .imgBox
-              img.card-img-top(src='../../assets/img/standard/d01.jpg')
+              img.card-img-top(src='../../assets/img/standard/img01.jpg')
             .card-body
               h5.card-title.font-weight-bold.text-secondary.text-center 厚蝴蝶裝
     .container-fluid.border-top.px-0.footer

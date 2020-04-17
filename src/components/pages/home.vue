@@ -1,9 +1,5 @@
 <template lang="pug">
 .home
-  .container
-    //- tpxNavbarhead(:viewportWidth="fullWidth")
-    //- navCustomize(:viewportWidth="fullWidth")
-    //- banner
   .container-fluid
     .row.px-0
       .col-sm-12.px-0
@@ -12,7 +8,8 @@
     //- 第一層產品TITLE
     .row.letPhotoForever
       .col-sm-12.px-0.text-center
-        h2.font-weight-bold.mb-0.text-secondary 一個理由，讓照片永存
+        h2.font-weight-bold.text-secondary.eachTitle 一個理由，讓照片永存
+        p.eachSecondTitle 將照片留在記錄中，讓它成為你的重要“故事”。
   //- 首頁第一層產品介紹
   .container.letPhotoForeverProduct
     .row.justify-content-center
@@ -50,67 +47,58 @@
               button.btn.btn-primary.btnInPage.py-0.pr-0 <span class="font-weight-bold">馬上體驗</span> <i class="fas fa-chevron-right fa-xs"></i>
   .container-fluid
     .row.aChance
-      h2.title.text-center.font-weight-bold.w-100.mb-0 一個機會，讓生活獨特
-  .container-fluid.specialEffectleft
+      h2.eachTitle.text-center.font-weight-bold.w-100 一個機會，讓生活獨特
+      p.text-center.w-100.eachSecondTitle 裝飾你的重要時刻，讓你的日常生活更加快樂
+  .container.aChanceBox
     .row.justify-content-center
-      .col-md-7.warmPhotoBook.bgSetting
-        img(src="../../assets/img/home/b01.jpg")
-      .col-md-4
-        .under_second_banner_des_box_right
-          .glasses.w-md-50.mx-md-auto
-            p.font-weight-bold.text-dark.under_secondbanner_des_title(:class="{'text-center' : fullWidth <= 640}") 更有溫度的相片書
-            p.under_secondbanner_des(v-if="fullWidth > 640") 還在用社群軟體分享照片嗎?
-            p.under_secondbanner_des(v-if="fullWidth > 640") 您還有其他的選擇
-            .d-flex(:class="{'justify-content-center' : fullWidth <= 640}")
-              button.btn.btn-primary.font-weight-bold.btnInPage.pr-0.py-0(:class="{'mt-5' : fullWidth > 823}") 我要製作 <i class="fas fa-chevron-right fa-xs"></i>
-  .container-fluid.mt-5.specialEffectRight
+      .col-sm-6.mb-30
+        .aChanceInsideBox
+          .w-40.wordBox.d-flex.flex-column.align-items-center.justify-content-center.h-100
+            p.wordBoxTitle 相片書
+            P.wordBoxTitleEn Photobook
+            p.font-weight-bold.standard 平裝/精裝
+          img(src="../../assets/img/home/c01.jpg").w-100
+      .col-sm-6.mb-30
+        .aChanceInsideBox
+          .w-40.wordBox.d-flex.flex-column.align-items-center.justify-content-center.h-100
+            p.wordBoxTitle 卡片系列
+            P.wordBoxTitleEn Cards
+            p.font-weight-bold.standard 卡片/明信片/喜帖
+          img(src="../../assets/img/home/c02.jpg").w-100
+      .col-sm-6.mb-30
+        .aChanceInsideBox
+          .w-40.wordBox.d-flex.flex-column.align-items-center.justify-content-center.h-100
+            p.wordBoxTitle 生活雜貨
+            P.wordBoxTitleEn Necessities
+            p.font-weight-bold.standard 吸水杯墊/馬克杯
+          img(src="../../assets/img/home/c03.jpg").w-100
+      .col-sm-6.mb-30
+        .aChanceInsideBox
+          .w-40.wordBox.d-flex.flex-column.align-items-center.justify-content-center.h-100
+            p.wordBoxTitle 便利科技
+            P.wordBoxTitleEn Electronics
+            p.font-weight-bold.standard 悠遊卡/一卡通
+          img(src="../../assets/img/home/c04.jpg").w-100
+      .col-sm-6.mb-30
+        .aChanceInsideBox
+          .w-40.wordBox.d-flex.flex-column.align-items-center.justify-content-center.h-100
+            p.wordBoxTitle 衣料織品
+            P.wordBoxTitleEn Fabrics
+            p.font-weight-bold.standard T恤/帆布袋
+          img(src="../../assets/img/home/c05.jpg").w-100
+      .col-sm-6.mb-30
+        .aChanceInsideBox
+          .w-40.wordBox.d-flex.flex-column.align-items-center.justify-content-center.h-100
+            p.wordBoxTitle 更多客製化商品
+            P.wordBoxTitleEn More
+            p.font-weight-bold.standard 其他客製化商品
+          img(src="../../assets/img/home/c06.jpg").w-100
+  .container-fluid
     .row.justify-content-center
-      .col-md-4
-        .under_second_banner_des_box_left
-          .glasses
-            p.font-weight-bold.text-dark.under_secondbanner_des_title(:class="{'text-center' : fullWidth <= 640}") 更值得收藏的卡片
-            p.under_secondbanner_des(v-if="fullWidth > 640") 寄一張您留戀的街道，
-            p.under_secondbanner_des(v-if="fullWidth > 640") 給旅行時最惦記的人。
-            .d-flex(:class="{'justify-content-center' : fullWidth <= 640}")
-              button.btn.btn-primary.font-weight-bold.btnInPage.pr-0.py-0(:class="{'mt-5' : fullWidth > 823}") 我要製作 <i class="fas fa-chevron-right fa-xs"></i>
-      .col-md-7.valuablePostCard.bgSetting
-        img(src="../../assets/img/home/b02.jpg")
-  .container-fluid.mt-5.specialEffectleft
-    .row.justify-content-center
-      .col-md-7.lifeStuff.bgSetting
-        img(src="../../assets/img/home/b03.jpg")
-      .col-md-4
-        .under_second_banner_des_box_right
-          .glasses.w-md-50.mx-md-auto
-            p.font-weight-bold.text-dark.under_secondbanner_des_title(:class="{'text-center' : fullWidth <= 640}") 生活雜貨
-            p.under_secondbanner_des(v-if="fullWidth > 640") 花一整天在逛街找最滿意的馬克杯，
-            p.under_secondbanner_des(v-if="fullWidth > 640") 不如花一小時做一件屬於自己的！
-            .d-flex(:class="{'justify-content-center' : fullWidth <= 640}")
-              button.btn.btn-primary.font-weight-bold.btnInPage.pr-0.py-0(:class="{'mt-5' : fullWidth > 823}") 我要製作 <i class="fas fa-chevron-right fa-xs"></i>
-  .container-fluid.mt-5.specialEffectRight
-    .row.justify-content-center
-      .col-md-4
-        .under_second_banner_des_box_left
-          .glasses
-            p.font-weight-bold.text-dark.under_secondbanner_des_title(:class="{'text-center' : fullWidth <= 640}") 創意科技
-            p.under_secondbanner_des(v-if="fullWidth > 640") 花一整天在逛街找最滿意的手機殼，
-            p.under_secondbanner_des(v-if="fullWidth > 640") 不如花一小時做一件屬於自己的！
-            .d-flex(:class="{'justify-content-center' : fullWidth <= 640}")
-              button.btn.btn-primary.font-weight-bold.btnInPage.pr-0.py-0(:class="{'mt-5' : fullWidth > 823}") 我要製作 <i class="fas fa-chevron-right fa-xs"></i>
-      .col-md-7.creativityTech.bgSetting
-        img(src="../../assets/img/home/b04.jpg")
-  .container-fluid.mt-5.specialEffectleft
-    .row.justify-content-center
-      .col-md-7.clothes.bgSetting
-        img(src="../../assets/img/home/b05.jpg")
-      .col-md-4
-        .under_second_banner_des_box_right
-          .glasses.w-md-50.mx-md-auto
-            p.font-weight-bold.text-dark.under_secondbanner_des_title(:class="{'text-center' : fullWidth <= 640}") 衣料織品
-            p.under_secondbanner_des(v-if="fullWidth > 640") 花一整天在逛街找最滿意的T恤，
-            p.under_secondbanner_des(v-if="fullWidth > 640") 不如花一小時做一件屬於自己的！
-            .d-flex(:class="{'justify-content-center' : fullWidth <= 640}")
-              button.btn.btn-primary.font-weight-bold.btnInPage.pr-0.py-0(:class="{'mt-5' : fullWidth > 823}") 我要製作 <i class="fas fa-chevron-right fa-xs"></i>
+      h2.eachTitle.text-center.font-weight-bold.w-100 全新的線上編輯器
+      p.text-center.w-100.eachSecondTitle 從電腦到手機，讓你隨時隨地編輯都便利
+      img.my-30(src="../../assets/img/home/3c.jpg")
+
   .border-top.footer.container-fluid.px-0
     footerComponent(:viewportWidth="fullWidth")
   copyright(:viewportWidth="fullWidth")
@@ -179,6 +167,14 @@ export default {
 $s14: 14px;
 $s20: 20px;
 $serif: 'Noto Serif TC', serif;
+.eachTitle{
+  font-family: $serif;
+  letter-spacing: 1px;
+  font-size: 24px;
+}
+.eachSecondTitle{
+  font-size: 20px;
+}
 .home{
   width:100%;
   overflow-x: hidden;
@@ -223,11 +219,6 @@ $serif: 'Noto Serif TC', serif;
 .letPhotoForever{
   padding-top: 40px;
   padding-bottom: 40px;
-  h2{
-    font-family: $serif;
-    letter-spacing: 1px;
-    font-size: 24px;
-  }
 }
 .letPhotoForeverProduct{
   padding-bottom: 40px;
@@ -382,15 +373,38 @@ $serif: 'Noto Serif TC', serif;
     }
   }
 }
-// 一個機會
+// 一個機會，讓生活獨特
 .aChance{
   padding-top: 50px;
   padding-bottom: 40px;
   box-sizing: border-box;
-  .title{
-    font-family: $serif;
-    font-size: 24px;
-    letter-spacing: 1px;
+}
+.aChanceBox{
+  .aChanceInsideBox{
+    position:relative;
+    .wordBox{
+      position: absolute;
+      top:0;
+      left:0;
+      z-index: 100;
+      &:hover{
+        background: rgba(255,255,255,.4);
+      }
+      .wordBoxTitle{
+        font-size: 1.5vw;
+        font-weight: bold;
+      }
+      .wordBoxTitleEn{
+        font-size: 1.0vw;
+      }
+      .standard{
+        font-size:1.0vw;
+      }
+    }
+    img{
+      z-index: 1;
+      max-width:650px;
+    }
   }
 }
 
@@ -501,30 +515,6 @@ $serif: 'Noto Serif TC', serif;
     padding-left: 0;
   }
 }
-// 滾動特效
-// .specialEffectleft{
-//  transform: translateX(-2000px);
-//  transition-property: transform, opacity;
-//  transition-duration: 1.2s, 1.7s;
-//  transition-timing-function: cubic-bezier(0.32,-0.04, 0.55, 0.71), cubic-bezier(0.05, 0.26, 0.33,-0.2);
-//  opacity: 0;
-//  overflow: hidden;
-//  &.specialEffectShow{
-//    transform: translateX(0);
-//    opacity: 1;
-//  }
-// }
-// .specialEffectRight{
-//   transform: translateX(2000px);
-//   transition-property: transform, opacity;
-//   transition-duration: 1.2s, 1.7s;
-//   transition-timing-function: cubic-bezier(0.32,-0.04, 0.55, 0.71), cubic-bezier(0.05, 0.26, 0.33,-0.2);
-//   opacity: 0;
-//   &.specialEffectShow{
-//     transform: translateX(0);
-//     opacity: 1;
-//   }
-// }
 @media(max-width: 640px){
   .specialEffectRight{
     .col-md-4{

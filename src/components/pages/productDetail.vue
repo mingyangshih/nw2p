@@ -20,25 +20,25 @@
           .card.rounded-0
             .imgBox
               router-link(to="/standard/14")
-                img.card-img-top.rounded-0(src="../../assets/img/productDetail/a01.jpg")
+                img.card-img-top.rounded-0(src="../../assets/img/productDetail/img01.jpg")
             .card-body
               h5.card-title.text-secondary 平裝相片書
         .col-6.col-md-3.text-center
           .card.rounded-0
             .imgBox
-              img.card-img-top.rounded-0(src="../../assets/img/productDetail/a01.jpg")
+              img.card-img-top.rounded-0(src="../../assets/img/productDetail/img01.jpg")
             .card-body
               h5.card-title.text-secondary 精裝相片書
         .col-6.col-md-3.text-center
           .card.rounded-0
             .imgBox
-              img.card-img-top.rounded-0(src="../../assets/img/productDetail/a01.jpg")
+              img.card-img-top.rounded-0(src="../../assets/img/productDetail/img01.jpg")
             .card-body
               h5.card-title.text-secondary 薄蝴蝶裝相片書
         .col-6.col-md-3.text-center
           .card.rounded-0
             .imgBox
-              img.card-img-top.rounded-0(src="../../assets/img/productDetail/a01.jpg")
+              img.card-img-top.rounded-0(src="../../assets/img/productDetail/img01.jpg")
             .card-body
               h5.card-title.text-secondary 厚蝴蝶裝裝相片書
     .container-fluid.bg-gray.secondBannerBox
@@ -57,7 +57,7 @@
     .container-fluid.specialEffectleft.my-5
       .row.justify-content-center
         .col-md-7.standard.bgSetting
-          img(src="../../assets/img/productDetail//c01.jpg")
+          img(src="../../assets/img/productDetail/img02.jpg")
         .col-md-4
           .under_second_banner_des_box_right
             .glasses
@@ -75,11 +75,11 @@
               .d-flex.try.mb-3
                 button.btn.btn-primary.btnInPage.py-0.pr-0 <span class="font-weight-bold">馬上體驗</span> <i class="fas fa-chevron-right fa-xs"></i>
         .col-md-7.standard.bgSetting
-          img(src="../../assets/img/productDetail//c01.jpg")
+          img(src="../../assets/img/productDetail/img02.jpg")
     .container-fluid.specialEffectleft.my-5
       .row.justify-content-center
         .col-md-7.standard.bgSetting
-          img(src="../../assets/img/productDetail//c01.jpg")
+          img(src="../../assets/img/productDetail/img02.jpg")
         .col-md-4
           .under_second_banner_des_box_right
             .glasses
@@ -97,7 +97,7 @@
               .d-flex.try.mb-3
                 button.btn.btn-primary.btnInPage.py-0.pr-0 <span class="font-weight-bold">馬上體驗</span> <i class="fas fa-chevron-right fa-xs"></i>
         .col-md-7.standard.bgSetting
-          img(src="../../assets/img/productDetail//c01.jpg")
+          img(src="../../assets/img/productDetail/img02.jpg")
     .border-top.mt-30.footer.container-fluid.px-0
       footerComponent(:viewportWidth="fullWidth")
     copyright(:viewportWidth="fullWidth")
