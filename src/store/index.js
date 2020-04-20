@@ -13,9 +13,8 @@ Vue.use(Vuex)
 
 export default new Vuex.Store({
   state: {
-    isLoading: null
-    // totalCategory: [],
-    // totalProduct: []
+    isLoading: null,
+    sideBarShow: false
   },
   actions: {
     loadingStatus (context, status) {
@@ -26,13 +25,12 @@ export default new Vuex.Store({
     LOADING (context, status) {
       const vm = this
       vm.state.isLoading = status
+    },
+    sideBarShowEvent (state) {
+      state.sideBarShow = !state.sideBarShow
     }
-    // updateField
   },
   getters: {
-    // getField
-    // totalProduct: state => state.totalProduct,
-    // totalCategory: state => state.totalCategory
   },
   modules: {
     standardModules,

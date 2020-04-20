@@ -3,8 +3,8 @@
   .container-fluid
     .row.px-0
       .col-sm-12.px-0
-        img.w-100.firstBanner.img-fluid(src="../../assets/img/home/banner.jpg" v-if="fullWidth >= 640")
-        img.w-100.firstBanner.img-fluid(src="../../assets/img/home/banner01.jpg" v-if="fullWidth < 640")
+        img.w-100.firstBanner.img-fluid.deskTop(src="../../assets/img/home/banner.jpg")
+        img.w-100.firstBanner.img-fluid.mobile(src="../../assets/img/home/banner01.jpg")
     //- 第一層產品TITLE
     .row.letPhotoForever
       .col-sm-12.px-0.text-center
@@ -116,7 +116,7 @@ import navCustomize from '../navCustomize'
 import loginmodal from '../../components/loginmodal'
 import enrollmodal from '../../components/enrollmodal'
 import alert from '../../components/alert'
-import tpxNavbarhead from '../../components/tpxNavbarhead'
+// import tpxNavbarhead from '../../components/tpxNavbarhead'
 
 import {mapState} from 'vuex'
 // import { mapFields } from 'vuex-map-fields'
@@ -128,8 +128,7 @@ export default {
     loginmodal,
     enrollmodal,
     navCustomize,
-    alert,
-    tpxNavbarhead
+    alert
   },
   data () {
     return {
@@ -212,8 +211,21 @@ $serif: 'Noto Serif TC', serif;
   z-index: 0;
 }
 @media(max-width: 640px){
+  img.deskTop{
+    display: none;
+  }
   .firstBanner{
     height: auto;
+  }
+}
+@media(min-width: 640px){
+  img.mobile{
+    display: none;
+  }
+}
+@media(width: 640px){
+  img.mobile{
+    display: initial;
   }
 }
 // 讓照片永存
@@ -488,6 +500,7 @@ $serif: 'Noto Serif TC', serif;
 // new editor 圖片
 .newEditor{
   max-width: 80vw;
+  height: auto;
 }
 
 // footer style

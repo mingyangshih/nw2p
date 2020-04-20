@@ -2,13 +2,14 @@
   #app
     loading(:active.sync="isLoading" :is-full-page="fullPage" :color="color" :loader="loader")
     .container-fluid
-      .row.px-0.campaign.campaignBox.bg-primary(v-if="fullWidth >= 640")
+      .row.px-0.campaign.campaignBox.bg-primary(v-if="fullWidth > 640")
         p.mb-0.w-100.campaignDes 全商品8折優惠 / 20% OFF．滿499免運費
-    .container.px-0
-      tpxNavbarhead(:viewportWidth="fullWidth")
-      navCustomize(:viewportWidth="fullWidth")
+    .container.px-0.mx-md-6
+      //- tpxNavbarhead(:viewportWidth="fullWidth")
+      //- navCustomize(:viewportWidth="fullWidth")
+      combineNav
     .container-fluid
-      .row.px-0.campaign.campaignBox.bg-primary(v-if="fullWidth < 640")
+      .row.px-0.campaign.campaignBox.bg-primary(v-if="fullWidth <= 640")
         p.mb-0.w-100.campaignDes 全商品8折優惠 / 20% OFF．滿499免運費
     router-view
 </template>
@@ -16,12 +17,14 @@
 <script>
 import tpxNavbarhead from './components/tpxNavbarhead'
 import navCustomize from './components/navCustomize'
+import combineNav from './components/combineNav'
 export default {
   name: 'App',
   components: {
     // loading
     tpxNavbarhead,
-    navCustomize
+    navCustomize,
+    combineNav
   },
   data () {
     return {
