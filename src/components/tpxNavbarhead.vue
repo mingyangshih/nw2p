@@ -42,7 +42,7 @@
                   .tpx(id="tpx-basketButtonWrapper")
                     p.mb-0.tpx.tpx-button.tpx-basketButton(id="tpx-basketlink" onClick="tpxBasketOnClick()")
                       span.tpx.tpx-basketCount(id="tpx-basketButtonCount")
-                      span.tpx.tpx-basketLabel
+                      //- span.tpx.tpx-basketLabel
 
                 //- <!-- Basket pop out panel -->
               <div id="tpx-shoppingcartcontents" class="tpx tpx-shopping-cart">

@@ -61,7 +61,8 @@ export default {
   // 處理v-for swiper 跟資料不同步問題
   async mounted () {
     const id = this.$route.params.id
-    await this.$http.get(`${process.env.API}product/getdetail/${id}`).then(response => {
+    let API_PATH = window.API
+    await this.$http.get(`${API_PATH}product/getdetail/${id}`).then(response => {
       this.productAlbum = response.data.data[0].productAlbum
       this.swiperOptionTop.loopedSlides = this.productAlbum.length
       this.swiperOptionThumbs.loopedSlides = this.productAlbum.length

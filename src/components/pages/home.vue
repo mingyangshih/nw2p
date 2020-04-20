@@ -9,7 +9,7 @@
     .row.letPhotoForever
       .col-sm-12.px-0.text-center
         h2.font-weight-bold.text-secondary.eachTitle 一個理由，讓照片永存
-        p.eachSecondTitle 將照片留在記錄中，讓它成為你的重要“故事”。
+        p.eachSecondTitle.px-2 將照片留在記錄中，讓它成為你的重要“故事”。
   //- 首頁第一層產品介紹
   .container.letPhotoForeverProduct
     .row.justify-content-center
@@ -23,6 +23,7 @@
   .container-fluid.bg-gray.secondBannerBox
     .row
       .col-md-6.px-0.secondBanner
+        img(src="../../assets/img/home/Experience_1.jpg")
       .col-md-6.px-0.secondBannerDesBox
         .secondBannerDes.py-5.px-md-4
           p.mb-0.title.text-primary.font-weight-bold 只需簡單的步驟，
@@ -48,7 +49,7 @@
   .container-fluid
     .row.aChance
       h2.eachTitle.text-center.font-weight-bold.w-100 一個機會，讓生活獨特
-      p.text-center.w-100.eachSecondTitle 裝飾你的重要時刻，讓你的日常生活更加快樂
+      p.text-center.w-100.eachSecondTitle.px-2 裝飾你的重要時刻，讓你的日常生活更加快樂
   .container.aChanceBox
     .row.justify-content-center
       .col-sm-6.mb-30
@@ -96,8 +97,8 @@
   .container-fluid
     .row.justify-content-center
       h2.eachTitle.text-center.font-weight-bold.w-100 全新的線上編輯器
-      p.text-center.w-100.eachSecondTitle 從電腦到手機，讓你隨時隨地編輯都便利
-      img.my-30(src="../../assets/img/home/3c.jpg")
+      p.text-center.w-100.eachSecondTitle.px-2 從電腦到手機，讓你隨時隨地編輯都便利
+      img.my-30.newEditor(src="../../assets/img/home/3c.jpg")
 
   .border-top.footer.container-fluid.px-0
     footerComponent(:viewportWidth="fullWidth")
@@ -303,14 +304,15 @@ $serif: 'Noto Serif TC', serif;
 
 // second banner
 .secondBanner{
-  max-height: 600px;
-  background-image: url("../../assets/img/home/Experience_1.jpg");
-  background-size:cover;
-  background-repeat: no-repeat;
-  background-position: center center;
+  img{
+    max-height: 600px;
+  }
 }
 @media(max-width: 640px){
   .secondBanner{
+    img{
+      max-height: 480px;
+    }
     height: 480px;
     order:2;
   }
@@ -391,19 +393,37 @@ $serif: 'Noto Serif TC', serif;
         background: rgba(255,255,255,.4);
       }
       .wordBoxTitle{
-        font-size: 1.5vw;
+        font-size: 20px;
         font-weight: bold;
       }
       .wordBoxTitleEn{
-        font-size: 1.0vw;
+        font-size: 14px;
       }
       .standard{
-        font-size:1.0vw;
+        font-size:14px;
       }
     }
     img{
       z-index: 1;
       max-width:650px;
+    }
+  }
+}
+@media(max-width: 640px) {
+  .aChanceBox{
+    .aChanceInsideBox{
+      .wordBox{
+        .wordBoxTitle{
+          font-size: 4vw;
+          font-weight: bold;
+        }
+        .wordBoxTitleEn{
+          font-size: 2vw;
+        }
+        .standard{
+          font-size:2vw;
+        }
+      }
     }
   }
 }
@@ -465,26 +485,9 @@ $serif: 'Noto Serif TC', serif;
     align-items: center;
   }
 }
-
-// 背景圖片樣式設定
-.bgSetting{
-  max-width: 880px;
-  height: auto;
-  box-sizing: border-box;
-  img{
-    width: 100%;
-    height: auto;
-  }
-}
-@media(max-width: 640px){
-  .bgSetting{
-    max-width: 580px;
-    height: auto;
-    img{
-      max-width: 100%;
-      height: auto;
-    }
-  }
+// new editor 圖片
+.newEditor{
+  max-width: 80vw;
 }
 
 // footer style

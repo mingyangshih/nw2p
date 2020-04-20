@@ -787,7 +787,8 @@ function tpxHighLevelBasketLocalise () {
   var basketButtonWrapper = document.getElementById('tpx-basketButtonWrapper')
 
   if (basketButtonWrapper) {
-    basketButtonWrapper.innerHTML = '<a class="tpx tpx-button tpx-basketButton" href="#" id="tpx-basketlink" onClick="tpxBasketOnClick()" ><span class="tpx tpx-basketCount" id="tpx-basketButtonCount">' + gBasketCount + '</span><span class="tpx tpx-basketLabel">' + tpxGetLocaleString(kStr_LabelBasket) + '</span></a>'
+    // basketButtonWrapper.innerHTML = '<a class="tpx tpx-button tpx-basketButton" href="#" id="tpx-basketlink" onClick="tpxBasketOnClick()" ><span class="tpx tpx-basketCount" id="tpx-basketButtonCount">' + gBasketCount + '</span><span class="tpx tpx-basketLabel">' + tpxGetLocaleString(kStr_LabelBasket) + '</span></a>'
+    basketButtonWrapper.innerHTML = '<a class="tpx tpx-button tpx-basketButton" href="#" id="tpx-basketlink" onClick="tpxBasketOnClick()" ><span class="tpx tpx-basketCount" id="tpx-basketButtonCount">' + gBasketCount + '</span></a>'
   }
 
   var emptyBasketButton = document.getElementById('tpx-emptyBasketButton')
@@ -1231,7 +1232,8 @@ function tpxHighLevelLoggedInStatusCallBack (pIsSignedIn) {
     var basketButtonWrapper = document.getElementById('tpx-basketButtonWrapper')
 
     if (basketButtonWrapper) {
-      basketButtonWrapper.innerHTML = '<a class="tpx tpx-button tpx-basketButton" href="#" id="tpx-basketlink" onClick="tpxBasketOnClick()" ><span class="tpx tpx-basketCount" id="tpx-basketButtonCount">' + gBasketCount + '</span><span class="tpx tpx-basketLabel">' + tpxGetLocaleString(kStr_LabelBasket) + '</span></a>'
+      // basketButtonWrapper.innerHTML = '<a class="tpx tpx-button tpx-basketButton" href="#" id="tpx-basketlink" onClick="tpxBasketOnClick()" ><span class="tpx tpx-basketCount" id="tpx-basketButtonCount">' + gBasketCount + '</span><span class="tpx tpx-basketLabel">' + tpxGetLocaleString(kStr_LabelBasket) + '</span></a>'
+      basketButtonWrapper.innerHTML = '<a class="tpx tpx-button tpx-basketButton" href="#" id="tpx-basketlink" onClick="tpxBasketOnClick()" ><span class="tpx tpx-basketCount" id="tpx-basketButtonCount">' + gBasketCount + '</span></a>'
     }
   } else {
     var basketCountElement = document.getElementById('tpx-basketcountbadgeinner')

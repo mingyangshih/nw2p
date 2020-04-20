@@ -89,11 +89,7 @@ export default {
   created () {
     const vm = this
     vm.getNavBarList()
-    // vm.checkToken()
   }
-  // activated () {
-  //   window.tpxHighLevelBasketInitialise()
-  // }
 }
 </script>
 
