@@ -2,6 +2,7 @@
 export default {
   state: {
     totalCategory: [],
+    categoryId: [],
     totalProduct: [],
     nw2pMemberData: {
       UAID: '',
@@ -15,6 +16,7 @@ export default {
     // 取下拉選單內容
     getNavBarList ({commit}) {
       let totalCategory = []
+      let categoryId = []
       let API_PATH = window.API
       fetch(`${API_PATH}product/getmenu`, {method: 'get'}).then(res => {
         return res.json()
@@ -23,10 +25,12 @@ export default {
         result.data.forEach((item) => {
           if (totalCategory.indexOf(item.productCategory) < 0) {
             totalCategory.push(item.productCategory)
+            // 取得進入大類的ID
+            categoryId.push(item.categoryId)
           }
         })
         let totalProduct = result.data
-        commit('listDetail', {totalCategory, totalProduct})
+        commit('listDetail', {totalCategory, totalProduct, categoryId})
       })
     },
     // 檢查local storage 是否有內容，登入過會有內容，有登入過navbar 上方顯示方式直接顯示
@@ -47,9 +51,10 @@ export default {
   },
   mutations: {
     // 上方下拉選單種類
-    listDetail (state, {totalCategory, totalProduct}) {
+    listDetail (state, {totalCategory, totalProduct, categoryId}) {
       state.totalCategory = totalCategory
       state.totalProduct = totalProduct
+      state.categoryId = categoryId
     },
     // 登入後修改資料、登出後清空資料
     setTokenData (state, nw2pData) {

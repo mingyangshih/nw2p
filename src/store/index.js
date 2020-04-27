@@ -9,6 +9,7 @@ import navbarModules from './modules/navbar'
 import modifyEnrollModules from './modules/modifyEnroll'
 import logOutModules from './modules/logout'
 import alertModules from './modules/alert'
+import productDetailModules from './modules/productDetail'
 Vue.use(Vuex)
 
 export default new Vuex.Store({
@@ -37,6 +38,7 @@ export default new Vuex.Store({
     loginModules,
     enrollModules,
     homeModules,
+    productDetailModules,
     navbarModules,
     modifyEnrollModules,
     logOutModules,

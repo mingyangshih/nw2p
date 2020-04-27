@@ -98,7 +98,7 @@
     .row.justify-content-center
       h2.eachTitle.text-center.font-weight-bold.w-100 全新的線上編輯器
       p.text-center.w-100.eachSecondTitle.px-2 從電腦到手機，讓你隨時隨地編輯都便利
-      img.my-30.newEditor(src="../../assets/img/home/3c.jpg")
+      img.my-30.newEditor.img-fluid(src="../../assets/img/home/3c.jpg")
 
   .border-top.footer.container-fluid.px-0
     footerComponent(:viewportWidth="fullWidth")
@@ -498,10 +498,10 @@ $serif: 'Noto Serif TC', serif;
   }
 }
 // new editor 圖片
-.newEditor{
-  max-width: 80vw;
-  height: auto;
-}
+// .newEditor{
+//   max-width: 80%;
+//   height: auto;
+// }
 
 // footer style
 .footer{

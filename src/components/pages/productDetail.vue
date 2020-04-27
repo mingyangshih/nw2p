@@ -1,9 +1,9 @@
 <template lang="pug">
   .productDetail
-    .container
-      //- tpxNavbarhead(:viewportWidth="fullWidth")
-      //- navCustomize(:viewportWidth="fullWidth")
-      //- banner
+    .container.d-flex.my-3
+      router-link(to="/").mb-0.text-gray.text-decoration-none 首頁
+      p.mb-0.text-gray.mx-2 /
+      p.mb-0 {{categoryName}}
     .container-fluid
       .row.px-0
         .col-sm-12.px-0
@@ -16,31 +16,13 @@
     //- 不同的裝訂方式
     .container.bookBindingProduct
       .row.justify-content-center
-        .col-6.col-md-3.text-center
+        .col-6.col-md-3.text-center.mb-3(v-for = "(itm, idx) in subMenuTotalData" :class="{'mr-auto' : subMenuTotalData.length >4 && idx == subMenuTotalData.length-1}")
           .card.rounded-0
             .imgBox
-              router-link(to="/standard/14")
-                img.card-img-top.rounded-0(src="../../assets/img/productDetail/img01.jpg")
+              router-link(:to="'/standard/' + itm.productId")
+                img.card-img-top.rounded-0(:src="itm.subMenuSmallImg")
             .card-body
-              h5.card-title.text-secondary 平裝相片書
-        .col-6.col-md-3.text-center
-          .card.rounded-0
-            .imgBox
-              img.card-img-top.rounded-0(src="../../assets/img/productDetail/img01.jpg")
-            .card-body
-              h5.card-title.text-secondary 精裝相片書
-        .col-6.col-md-3.text-center
-          .card.rounded-0
-            .imgBox
-              img.card-img-top.rounded-0(src="../../assets/img/productDetail/img01.jpg")
-            .card-body
-              h5.card-title.text-secondary 薄蝴蝶裝相片書
-        .col-6.col-md-3.text-center
-          .card.rounded-0
-            .imgBox
-              img.card-img-top.rounded-0(src="../../assets/img/productDetail/img01.jpg")
-            .card-body
-              h5.card-title.text-secondary 厚蝴蝶裝裝相片書
+              h6.card-title.text-secondary {{itm.productName}}
     .container-fluid.bg-gray.secondBannerBox
       .row
         .col-md-6.secondBannerDesBox
@@ -54,82 +36,48 @@
     .container-fluid
       .row.satisfyAllNeeds
         h2.title.text-center.font-weight-bold.w-100.mb-0 滿足您所有場景的需求
-    .container-fluid.specialEffectleft.my-5
+    .container-fluid.specialEffectleft.my-5(v-for = "(itm, idx) in subMenuTotalData")
       .row.justify-content-center
         .col-md-7.standard.bgSetting
-          img(src="../../assets/img/productDetail/img02.jpg")
+          img(:src="itm.subMenuBigImg")
         .col-md-4
           .under_second_banner_des_box_right
             .glasses
-              p.font-weight-bold.text-dark.under_secondbanner_des_title(:class="{'text-center':fullWidth <= 640}") 平裝相片書
-              p.under_secondbanner_des(v-if="fullWidth > 640") 輕薄好攜帶是平裝相片書最大的優勢，作為一份自己珍藏或是送給家人、朋友的禮物，精巧而不顯得過於貴重。些微反光但不沾指紋的光澤，保有了傳統相紙的豔麗，消除了收藏上的缺點。只有這樣的好質感，才襯得出您的珍貴。
+              p.font-weight-bold.text-dark.under_secondbanner_des_title(:class="{'text-center':fullWidth <= 640}") {{itm.productName}}
+              p.under_secondbanner_des(v-if="fullWidth > 640") {{itm.productDesc}}
               .d-flex.try.mb-3
-                button.btn.btn-primary.btnInPage.py-0.pr-0 <span class="font-weight-bold">我要製作</span> <i class="fas fa-chevron-right fa-xs"></i>
-    .container-fluid.my-5.specialEffectRight
-      .row.justify-content-center
-        .col-md-4
-          .under_second_banner_des_box_left
-            .glasses
-              p.font-weight-bold.text-dark.under_secondbanner_des_title(:class="{'text-center':fullWidth <= 640}") 精裝相片書
-              p.under_secondbanner_des(v-if="fullWidth > 640") 輕薄好攜帶是平裝相片書最大的優勢，作為一份自己珍藏或是送給家人、朋友的禮物，精巧而不顯得過於貴重。些微反光但不沾指紋的光澤，保有了傳統相紙的豔麗，消除了收藏上的缺點。只有這樣的好質感，才襯得出您的珍貴。
-              .d-flex.try.mb-3
-                button.btn.btn-primary.btnInPage.py-0.pr-0 <span class="font-weight-bold">我要製作</span> <i class="fas fa-chevron-right fa-xs"></i>
-        .col-md-7.standard.bgSetting
-          img(src="../../assets/img/productDetail/img02.jpg")
-    .container-fluid.specialEffectleft.my-5
-      .row.justify-content-center
-        .col-md-7.standard.bgSetting
-          img(src="../../assets/img/productDetail/img02.jpg")
-        .col-md-4
-          .under_second_banner_des_box_right
-            .glasses
-              p.font-weight-bold.text-dark.under_secondbanner_des_title(:class="{'text-center':fullWidth <= 640}") 薄蝴蝶裝相片書
-              p.under_secondbanner_des(v-if="fullWidth > 640") 輕薄好攜帶是平裝相片書最大的優勢，作為一份自己珍藏或是送給家人、朋友的禮物，精巧而不顯得過於貴重。些微反光但不沾指紋的光澤，保有了傳統相紙的豔麗，消除了收藏上的缺點。只有這樣的好質感，才襯得出您的珍貴。
-              .d-flex.try.mb-3
-                button.btn.btn-primary.btnInPage.py-0.pr-0 <span class="font-weight-bold">我要製作</span> <i class="fas fa-chevron-right fa-xs"></i>
-    .container-fluid.my-5.specialEffectRight
-      .row.justify-content-center
-        .col-md-4
-          .under_second_banner_des_box_left
-            .glasses
-              p.font-weight-bold.text-dark.under_secondbanner_des_title(:class="{'text-center':fullWidth <= 640}") 厚蝴蝶裝裝相片書
-              p.under_secondbanner_des(v-if="fullWidth > 640") 輕薄好攜帶是平裝相片書最大的優勢，作為一份自己珍藏或是送給家人、朋友的禮物，精巧而不顯得過於貴重。些微反光但不沾指紋的光澤，保有了傳統相紙的豔麗，消除了收藏上的缺點。只有這樣的好質感，才襯得出您的珍貴。
-              .d-flex.try.mb-3
-                button.btn.btn-primary.btnInPage.py-0.pr-0 <span class="font-weight-bold">我要製作</span> <i class="fas fa-chevron-right fa-xs"></i>
-        .col-md-7.standard.bgSetting
-          img(src="../../assets/img/productDetail/img02.jpg")
+                router-link(:to="'/standard/'+itm.productId").btn.btn-primary.btnInPage.py-0.pr-0 <span class="font-weight-bold">我要製作</span> <i class="fas fa-chevron-right fa-xs"></i>
     .border-top.mt-30.footer.container-fluid.px-0
       footerComponent(:viewportWidth="fullWidth")
     copyright(:viewportWidth="fullWidth")
-    //- loginmodal
-    //- enrollmodal
-    //- alert
 </template>
 
 <script>
 import navbarhead from '../navbarhead'
-import navCustomize from '../navCustomize'
 import footerComponent from '../footer.vue'
 import copyright from '../copyright'
-import loginmodal from '../../components/loginmodal'
-import enrollmodal from '../../components/enrollmodal'
-import alert from '../../components/alert'
-import tpxNavbarhead from '../../components/tpxNavbarhead'
+import {mapState} from 'vuex'
 export default {
   components: {
     navbarhead,
-    navCustomize,
     copyright,
-    footerComponent,
-    loginmodal,
-    enrollmodal,
-    alert,
-    tpxNavbarhead
+    footerComponent
   },
   data () {
     return {
       fullWidth: document.body.clientWidth
     }
+  },
+  computed: {
+    ...mapState({
+      subMenuTotalData: state => state.productDetailModules.subMenuTotalData,
+      categoryName: state => state.productDetailModules.categoryName
+    })
+  },
+  created () {
+    const vm = this
+    const id = this.$route.params.id
+    vm.$store.dispatch('getSubMenu', {id})
   },
   mounted () {
     const vm = this
@@ -235,8 +183,9 @@ export default {
   .card-body{
     height: 62px;
     box-sizing: border-box;
-    h5{
+    h6{
       margin-bottom: 0;
+      font-size: 18px;
     }
   }
   @media(max-width: 1024px){
@@ -245,7 +194,7 @@ export default {
       padding:10px 0;
       font-size: 24px;
     }
-    h5{
+    h6{
       display: flex;
       align-items: center;
       justify-content: center;
@@ -348,6 +297,24 @@ export default {
     }
   }
   // 第二個banner下方產品介紹樣式設定
+  .specialEffectleft:nth-child(even){
+    .col-md-7{
+      order:2;
+    }
+    .col-md-4{
+      order:1;
+    }
+  }
+  @media(max-width: 640px){
+    .specialEffectleft:nth-child(even){
+      .col-md-7{
+        order:1;
+      }
+      .col-md-4{
+        order:2;
+      }
+    }
+  }
   .under_secondbanner_des_title{
     font-size: 27px;
     word-break: keep-all;
@@ -456,31 +423,6 @@ export default {
       justify-content: center;
     }
   }
-  // 滾動特效
-  // .specialEffectleft{
-  // transform: translateX(-2000px);
-  // transition-property: transform, opacity;
-  // transition-duration: 1.2s, 1.7s;
-  // transition-timing-function: cubic-bezier(0.32,-0.04, 0.55, 0.71), cubic-bezier(0.05, 0.26, 0.33,-0.2);
-  // opacity: 0;
-  // overflow: hidden;
-  // &.specialEffectShow{
-  //   transform: translateX(0);
-  //   opacity: 1;
-  // }
-  // }
-  // .specialEffectRight{
-  //   transform: translateX(2000px);
-  //   transition-property: transform, opacity;
-  //   transition-duration: 1.2s, 1.7s;
-  //   transition-timing-function: cubic-bezier(0.32,-0.04, 0.55, 0.71), cubic-bezier(0.05, 0.26, 0.33,-0.2);
-  //   opacity: 0;
-  //   overflow: hidden;
-  //   &.specialEffectShow{
-  //     transform: translateX(0);
-  //     opacity: 1;
-  //   }
-  // }
   @media(max-width: 640px){
     .specialEffectRight{
       .col-md-4{

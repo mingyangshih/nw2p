@@ -13,6 +13,9 @@
     <swiper :options="swiperOptionThumbs" class="gallery-thumbs mt-3" ref="swiperThumbs" v-if="viewportWidth > 640 && productAlbum.length>0">
       <swiper-slide class="slide-1 smallImg" v-for="item in productAlbum" :key="item.albumId" ><img :src="item.productAlbum" alt=""></swiper-slide>
     </swiper>
+    <swiper :options="swiperOptionThumbs" class="gallery-thumbs mt-3" ref="swiperThumbs" v-if="viewportWidth < 640 && productAlbum.length>0">
+      <swiper-slide class="slide-1 smallImg" v-for="item in productAlbum" :key="item.albumId" ><img :src="item.productAlbum" alt=""></swiper-slide>
+    </swiper>
   </div>
 </template>
 
@@ -99,6 +102,11 @@ export default {
   .smallImg{
     max-width: 73px;
     height: auto;
+  }
+  @media(max-width: 640px){
+    .gallery-thumbs{
+      height: 0;
+    }
   }
   .gallery-thumbs .swiper-slide {
     width: 25%;

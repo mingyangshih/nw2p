@@ -1,59 +1,37 @@
 <template lang="pug">
   .standard
     .container
-      //- tpxNavbarhead(:viewportWidth="fullWidth")
-      //- navCustomize(:viewportWidth="fullWidth")
-    .container
       .row
         .col-md-6
           swiper(:viewportWidth="fullWidth")
         .col-md-6
-          p.productTitle(:class="{'mt-3':fullWidth <= 640}") 平裝相片書
+          p.productTitle(:class="{'mt-3':fullWidth <= 640}") {{standardTitle}}
           p.text-primary.font-weight-bold.secondTitle 選擇裝訂/尺寸
           p.font-weight-bold 方向
           .d-flex.align-items-end.mb-3
-            .d-flex.flex-column.align-items-center.schematic(v-for="(item,idx) in productSpec" @click.prevent="direction = item.specName; specId = idx + 1; shippingDayChange()")
+            .d-flex.flex-column.align-items-center.schematic(v-for="(item,idx) in productSpec" @click.prevent="direction = item.specName; specId =item.specId;")
               img(:src="item.specThumbnail" :class="{'selected' : item.specName === direction}")
               span.fz12 {{item.specName}}
           .d-flex.align-items-center.mb-3
             label.mb-0(for="") 尺寸
             select#size.form-control.w-75.ml-3(v-model="sizeId")
               option(v-for="item in productSize" :value = "item.sizeId")  {{item.size}}
-          .d-flex.align-items-center
-            label.mb-0(for="pageNumber") 頁數
-            select#pageNumber.form-control.w-75.ml-3(v-model="pages" @change="shippingDayChange")
-              option(v-for="(item) in productPages" :value = "item")  {{item}}
           hr
           p.text-primary.font-weight-bold.secondTitle 產品資訊
             .row
               .col-4
-                  p 方向
+                p 方向
               .col-8
                 p {{direction}}
+            .row(v-for="(itm, idx) in specId_sizeId_info.productIntroLeftCol")
               .col-4
-                p 頁數
+                p {{itm}}
               .col-8
-                p {{pages}}
-              .col-4
-                p 紙張
-              .col-8
-                p 特銅200p
-              .col-4
-                p 翻頁方式
-              .col-8
-                p 左翻
-              .col-4
-                p 出貨天數
-              .col-8
-                p 付款後{{shippingDay}}個工作天寄出
-              .col-4
-                p 郵寄方式
-              .col-8
-                p 宅配
+                p {{specId_sizeId_info.productIntroRightCol[idx]}}
           hr.mt-0
-          p(:class="{'justify-content-between' : fullWidth > 640, 'flex-column' : fullWidth <= 640, 'align-items-center' : fullWidth <= 640}").text-primary.d-flex.font-weight-bold 周年慶活動，相片全面85折優惠!<span class="fz26">NT$300</span>
+          p(:class="{'justify-content-between' : fullWidth > 640, 'flex-column' : fullWidth <= 640, 'align-items-center' : fullWidth <= 640}").text-primary.d-flex.font-weight-bold 周年慶活動，相片全面85折優惠!<span class="fz26">NT${{specId_sizeId_info.price}}</span>
           .d-flex.btnBox(:class="{'justify-content-center' : fullWidth <= 640}")
-            a(:href="designLink" :class="{'w-100' : fullWidth <= 640}").btn.btn-primary.font-weight-bold.btnInPage.py-0.text-white 開始製作
+            a(:href="specId_sizeId_info.link" :class="{'w-100' : fullWidth <= 640}").btn.btn-primary.font-weight-bold.btnInPage.py-0.text-white 開始製作
     .container.mt-5.mt-md-0
       .row.justify-content-center.py-4
         h2.font-weight-bold.mb-0.text-secondary.secondTitle 產品特性
@@ -121,9 +99,6 @@
     .container-fluid.border-top.px-0.footer
       footerComponent(:viewportWidth="fullWidth")
     copyright(:viewportWidth="fullWidth")
-    //- loginmodal
-    //- enrollmodal
-    //- alert
 </template>
 
 <script>
@@ -132,11 +107,8 @@ import navCustomize from '../navCustomize'
 import swiper from '../swiperComponent'
 import footerComponent from '../footer.vue'
 import copyright from '../copyright'
-import loginmodal from '../../components/loginmodal'
-import enrollmodal from '../../components/enrollmodal'
-import alert from '../../components/alert'
 import tpxNavbarhead from '../../components/tpxNavbarhead'
-import {mapState, mapActions, mapGetters} from 'vuex'
+import {mapState, mapGetters} from 'vuex'
 import { mapFields } from 'vuex-map-fields'
 export default {
   components: {
@@ -145,9 +117,6 @@ export default {
     swiper,
     footerComponent,
     copyright,
-    loginmodal,
-    enrollmodal,
-    alert,
     tpxNavbarhead
   },
   data () {
@@ -159,24 +128,18 @@ export default {
     // 從Vuex取出資料
     ...mapState({
       productSpec: state => state.standardModules.productSpec,
-      productPages: state => state.standardModules.productPages,
-      productAlbum: state => state.standardModules.productAlbum,
       productInfo: state => state.standardModules.productInfo,
-      shippingDay: state => state.standardModules.shippingDay
+      // shippingDay: state => state.standardModules.shippingDay,
+      standardTitle: state => state.standardModules.standardTitle,
+      productIntroDesc: state => state.standardModules.productIntroDesc
     }),
     // like v-model
     ...mapFields([
       'direction',
-      'pages',
-      'shippingDay',
       'specId',
-      'sizeId',
-      'designLink'
+      'sizeId'
     ]),
-    ...mapGetters(['productSize', 'productPages'])
-  },
-  methods: {
-    ...mapActions(['shippingDayChange'])
+    ...mapGetters(['productSize', 'specId_sizeId_info'])
   },
   mounted () {
     const vm = this
@@ -195,7 +158,6 @@ export default {
   },
   created () {
     const vm = this
-    // vm.$store.dispatch('loadingStatus', true)
     // 取資料
     const id = this.$route.params.id
     vm.$store.dispatch('getStandardData', {id})
