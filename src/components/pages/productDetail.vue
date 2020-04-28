@@ -47,9 +47,9 @@
               p.under_secondbanner_des(v-if="fullWidth > 640") {{itm.productDesc}}
               .d-flex.try.mb-3
                 router-link(:to="'/standard/'+itm.productId").btn.btn-primary.btnInPage.py-0.pr-0 <span class="font-weight-bold">我要製作</span> <i class="fas fa-chevron-right fa-xs"></i>
-    .border-top.mt-30.footer.container-fluid.px-0
-      footerComponent(:viewportWidth="fullWidth")
-    copyright(:viewportWidth="fullWidth")
+    //- .border-top.mt-30.footer.container-fluid.px-0
+    //-   footerComponent(:viewportWidth="fullWidth")
+    //- copyright(:viewportWidth="fullWidth")
 </template>
 
 <script>
@@ -76,8 +76,8 @@ export default {
   },
   created () {
     const vm = this
-    const id = this.$route.params.id
-    vm.$store.dispatch('getSubMenu', {id})
+    const categoryId = this.$route.params.id
+    vm.$store.dispatch('getSubMenu', {categoryId})
   },
   mounted () {
     const vm = this

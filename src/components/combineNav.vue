@@ -16,7 +16,7 @@
           .text-decoration-none.row
             .col-md-4.py-3(v-for="(item,idx) in totalCategory")
               .d-flex.flex-column
-               p( @click.prevent="getSubMenu(categoryId[idx])").text-decoration-none.mb-2.itemHover {{item}}
+               p( @click.prevent="getSubMenu(categoryId[idx])").text-decoration-none.mb-2.itemHover {{item}} {{productEnCategory[idx]}}
                p.text-decoration-none.pl-3.mb-2.itemHover(v-for="item1 in totalProduct" v-if="item1.productCategory === item" :key="item1.productId" @click.prevent="standard(item1.productId)") - {{item1.productName}}
       //- mobile 所有產品
       .sidebarBox.w-100
@@ -93,14 +93,15 @@ export default{
         $('#navbarNav').removeClass('show')
       }
     },
-    ...mapActions(['logOut', 'getNavBarList', 'checkToken']),
+    ...mapActions(['getNavBarList']),
+    // 在store/index.js
     sideBarShowEvent () {
       this.$store.commit('sideBarShowEvent')
     },
     getSubMenu (id) {
-      this.$router.push(`/productDetail/${id}`)
+      let categoryId = id
+      this.$router.push(`/productDetail/${categoryId}`)
       window.location.reload()
-      // this.$store.dispatch('getSubMenu', {id})
     },
     standard (id) {
       this.$router.push(`/standard/${id}`)
@@ -112,8 +113,8 @@ export default{
       totalCategory: state => state.navbarModules.totalCategory,
       categoryId: state => state.navbarModules.categoryId,
       totalProduct: state => state.navbarModules.totalProduct,
-      nw2pMemberData: state => state.navbarModules.nw2pMemberData,
-      sideBarShow: state => state.sideBarShow
+      sideBarShow: state => state.sideBarShow,
+      productEnCategory: state => state.navbarModules.productEnCategory
     })
   },
   created () {
@@ -121,7 +122,7 @@ export default{
     // 取下拉選單內容
     vm.getNavBarList()
     // 檢查local storage 是否有內容，登入過會有內容，有登入過navbar 上方顯示方式直接顯示
-    vm.checkToken()
+    // vm.checkToken()
   }
 }
 </script>

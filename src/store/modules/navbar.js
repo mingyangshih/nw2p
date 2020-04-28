@@ -4,19 +4,21 @@ export default {
     totalCategory: [],
     categoryId: [],
     totalProduct: [],
-    nw2pMemberData: {
-      UAID: '',
-      UNAME: '',
-      UDNAME: '',
-      token: '',
-      expired_at: ''
-    }
+    productEnCategory: []
+    // nw2pMemberData: {
+    //   UAID: '',
+    //   UNAME: '',
+    //   UDNAME: '',
+    //   token: '',
+    //   expired_at: ''
+    // }
   },
   actions: {
     // 取下拉選單內容
     getNavBarList ({commit}) {
       let totalCategory = []
       let categoryId = []
+      let productEnCategory = []
       let API_PATH = window.API
       fetch(`${API_PATH}product/getmenu`, {method: 'get'}).then(res => {
         return res.json()
@@ -27,34 +29,36 @@ export default {
             totalCategory.push(item.productCategory)
             // 取得進入大類的ID
             categoryId.push(item.categoryId)
+            productEnCategory.push(item.productEnCategory)
           }
         })
         let totalProduct = result.data
-        commit('listDetail', {totalCategory, totalProduct, categoryId})
+        commit('listDetail', {totalCategory, totalProduct, categoryId, productEnCategory})
       })
-    },
-    // 檢查local storage 是否有內容，登入過會有內容，有登入過navbar 上方顯示方式直接顯示
-    checkToken ({commit, state}) {
-      let nw2pData = JSON.parse(localStorage.getItem('nw2pData'))
-      if (nw2pData === null) {
-        nw2pData = {
-          UAID: '',
-          UNAME: '',
-          UDNAME: '',
-          token: '',
-          expired_at: ''
-        }
-        localStorage.setItem('nw2pData', JSON.stringify(nw2pData))
-      }
-      commit('setTokenData', nw2pData)
     }
+    // 檢查local storage 是否有內容，登入過會有內容，有登入過navbar 上方顯示方式直接顯示
+    // checkToken ({commit, state}) {
+    //   let nw2pData = JSON.parse(localStorage.getItem('nw2pData'))
+    //   if (nw2pData === null) {
+    //     nw2pData = {
+    //       UAID: '',
+    //       UNAME: '',
+    //       UDNAME: '',
+    //       token: '',
+    //       expired_at: ''
+    //     }
+    //     localStorage.setItem('nw2pData', JSON.stringify(nw2pData))
+    //   }
+    //   commit('setTokenData', nw2pData)
+    // }
   },
   mutations: {
     // 上方下拉選單種類
-    listDetail (state, {totalCategory, totalProduct, categoryId}) {
+    listDetail (state, {totalCategory, totalProduct, categoryId, productEnCategory}) {
       state.totalCategory = totalCategory
       state.totalProduct = totalProduct
       state.categoryId = categoryId
+      state.productEnCategory = productEnCategory
     },
     // 登入後修改資料、登出後清空資料
     setTokenData (state, nw2pData) {

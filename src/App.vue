@@ -5,26 +5,30 @@
       .row.px-0.campaign.campaignBox.bg-primary(v-if="fullWidth > 640")
         p.mb-0.w-100.campaignDes 全商品8折優惠 / 20% OFF．滿499免運費
     .container.px-0.mx-md-6
-      //- tpxNavbarhead(:viewportWidth="fullWidth")
-      //- navCustomize(:viewportWidth="fullWidth")
       combineNav
     .container-fluid
       .row.px-0.campaign.campaignBox.bg-primary(v-if="fullWidth <= 640")
         p.mb-0.w-100.campaignDes 全商品8折優惠 / 20% OFF．滿499免運費
     router-view
+    .container-fluid.border-top.px-0.footer
+      footerComponent(:viewportWidth="fullWidth")
+    copyright(:viewportWidth="fullWidth")
 </template>
 
 <script>
 import tpxNavbarhead from './components/tpxNavbarhead'
 import navCustomize from './components/navCustomize'
 import combineNav from './components/combineNav'
+import footerComponent from './components/footer'
+import copyright from './components/copyright'
 export default {
   name: 'App',
   components: {
-    // loading
+    footerComponent,
     tpxNavbarhead,
     navCustomize,
-    combineNav
+    combineNav,
+    copyright
   },
   data () {
     return {
@@ -102,5 +106,9 @@ body{
   display: flex;
   justify-content: center;
   align-items: center;
+}
+.footer{
+  background-color: #f4f4f1;
+  position: relative;
 }
 </style>

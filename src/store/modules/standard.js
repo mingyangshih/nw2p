@@ -3,6 +3,12 @@ import { getField, updateField } from 'vuex-map-fields'
 
 export default {
   state: {
+    // 分類名稱 給左上角Break crumb用
+    categoryName: '',
+    categoryId: null,
+    // 篩選下方照片用
+    productId: null,
+    // 規格名稱
     standardTitle: '',
     // 右上方小圖
     productSpec: [],
@@ -27,25 +33,31 @@ export default {
       let API_PATH = window.API
       context.commit('LOADING', true, {root: true})
       let getAPI = `${API_PATH}product/getdetail/${id}`
-      axios.get(getAPI).then((response) => {
+      return axios.get(getAPI).then((response) => {
         let productSpec = response.data.data[1].productSpec
         let productInfo = response.data.data[2].productInfo
         // 規格標題
         let standardTitle = response.data.data[2].productInfo[0].productName
-        context.commit('changeStandardData', {productSpec, productInfo, standardTitle})
+        let categoryName = response.data.data[2].productInfo[0].categoryName
+        let categoryId = response.data.data[2].productInfo[0].categoryId
+        let productId = response.data.data[2].productInfo[0].productId
+        context.commit('changeStandardData', {productSpec, productInfo, standardTitle, categoryName, categoryId, productId})
       }).catch((error) => { console.log(error) }).finally(() => {
         context.commit('LOADING', false, {root: true})
       })
     }
   },
   mutations: {
-    changeStandardData (state, {productSpec, productInfo, standardTitle}) {
+    changeStandardData (state, {productSpec, productInfo, standardTitle, categoryName, categoryId, productId}) {
       state.productSpec = productSpec
       state.productInfo = productInfo
       state.direction = productSpec[0].specName
       state.specId = productSpec[0].specId
       state.sizeId = productSpec[0].productSize[0].sizeId
       state.standardTitle = standardTitle
+      state.categoryName = categoryName
+      state.categoryId = categoryId
+      state.productId = productId
     },
     updateField
   },

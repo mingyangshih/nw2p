@@ -94,17 +94,15 @@
             P.wordBoxTitleEn More
             p.font-weight-bold.standard 其他客製化商品
           img(src="../../assets/img/home/c06.jpg").w-100
-  .container-fluid
+  .container
     .row.justify-content-center
       h2.eachTitle.text-center.font-weight-bold.w-100 全新的線上編輯器
       p.text-center.w-100.eachSecondTitle.px-2 從電腦到手機，讓你隨時隨地編輯都便利
       img.my-30.newEditor.img-fluid(src="../../assets/img/home/3c.jpg")
 
-  .border-top.footer.container-fluid.px-0
-    footerComponent(:viewportWidth="fullWidth")
-  copyright(:viewportWidth="fullWidth")
-  //- loginmodal
-  //- enrollmodal
+  //- .border-top.footer.container-fluid.px-0
+  //-   footerComponent(:viewportWidth="fullWidth")
+  //- copyright(:viewportWidth="fullWidth")
   alert
 </template>
 

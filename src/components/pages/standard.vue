@@ -1,5 +1,11 @@
 <template lang="pug">
   .standard
+    .container.d-flex.my-3
+      router-link(to="/").mb-0.text-gray.text-decoration-none 首頁
+      p.mb-0.text-gray.mx-2 /
+      p.mb-0.text-gray.mx-2.categoryLink(@click="getSubMenu") {{categoryName}}
+      p.mb-0.text-gray.mx-2 /
+      p.mb-0 {{standardTitle}}
     .container
       .row
         .col-md-6
@@ -71,34 +77,22 @@
               p.under_secondbanner_des.text-primary(:class="{'text-justify' : fullWidth <= 640}") 小提醒：平裝書頁數較少時，若書背(小於5mm以下)字體易產生過小且裝訂偏斜不美觀的情況，故少於5mm時不印製書背喔！
         .col-md-7.bgSetting
           img(src="../../assets/img/standard/c03.jpg")
-    .container-fluid.mt-4
-      .row.border-top.border-bottom.py-4.justify-content-center.recommendArticle
-        h2.font-weight-bold.mb-0.text-secondary.secondTitle 網友推薦文章
+    //- .container-fluid.mt-4
+    //-   .row.border-top.border-bottom.py-4.justify-content-center.recommendArticle
+    //-     h2.font-weight-bold.mb-0.text-secondary.secondTitle 網友推薦文章
     .container
       .row.py-5.justify-content-center
         h2.font-weight-bold.mb-0.text-secondary.secondTitle 您還有更多選擇
       .row.pb-5.moreChoicePicBox
-        .col-md-4.col-6.d-flex.justify-content-center
+        .col-md-4.col-6.d-flex.justify-content-center.mb-md-3(v-for="itm in  subMenuTotalData" v-if="itm.productId !== productId")
           .card
             .imgBox
-              img.card-img-top(src='../../assets/img/standard/img01.jpg')
+              img.card-img-top(:src='itm.subMenuSmallImg')
             .card-body
-              h5.card-title.font-weight-bold.text-secondary.text-center 精裝
-        .col-md-4.col-6.d-flex.justify-content-center
-          .card
-            .imgBox
-              img.card-img-top(src='../../assets/img/standard/img01.jpg')
-            .card-body
-              h5.card-title.font-weight-bold.text-secondary.text-center 薄蝴蝶裝
-        .col-md-4.col-6.d-flex.justify-content-center
-          .card
-            .imgBox
-              img.card-img-top(src='../../assets/img/standard/img01.jpg')
-            .card-body
-              h5.card-title.font-weight-bold.text-secondary.text-center 厚蝴蝶裝
-    .container-fluid.border-top.px-0.footer
-      footerComponent(:viewportWidth="fullWidth")
-    copyright(:viewportWidth="fullWidth")
+              h5.card-title.font-weight-bold.text-secondary.text-center {{itm.productName}}
+    //- .container-fluid.border-top.px-0.footer
+    //-   footerComponent(:viewportWidth="fullWidth")
+    //- copyright(:viewportWidth="fullWidth")
 </template>
 
 <script>
@@ -129,9 +123,12 @@ export default {
     ...mapState({
       productSpec: state => state.standardModules.productSpec,
       productInfo: state => state.standardModules.productInfo,
-      // shippingDay: state => state.standardModules.shippingDay,
       standardTitle: state => state.standardModules.standardTitle,
-      productIntroDesc: state => state.standardModules.productIntroDesc
+      productIntroDesc: state => state.standardModules.productIntroDesc,
+      categoryName: state => state.standardModules.categoryName,
+      productId: state => state.standardModules.productId,
+      // productDetail modules的data
+      subMenuTotalData: state => state.productDetailModules.subMenuTotalData
     }),
     // like v-model
     ...mapFields([
@@ -140,6 +137,14 @@ export default {
       'sizeId'
     ]),
     ...mapGetters(['productSize', 'specId_sizeId_info'])
+  },
+  methods: {
+    getSubMenu () {
+      // console.log(this.$store.state.standardModules.categoryId)
+      let categoryId = this.$store.state.standardModules.categoryId
+      this.$router.push(`/productDetail/${categoryId}`)
+      window.location.reload()
+    }
   },
   mounted () {
     const vm = this
@@ -156,11 +161,14 @@ export default {
       this.fullWidth = val
     }
   },
-  created () {
+  async created () {
     const vm = this
     // 取資料
     const id = this.$route.params.id
-    vm.$store.dispatch('getStandardData', {id})
+    await vm.$store.dispatch('getStandardData', {id})
+    // call productDetail.js 內的actions
+    let categoryId = this.$store.state.standardModules.categoryId
+    vm.$store.dispatch('getSubMenu', {categoryId})
   }
 }
 </script>
@@ -174,6 +182,9 @@ export default {
   }
   .fz26{
     font-size: 26px;
+  }
+  .categoryLink{
+    cursor: pointer;
   }
   .standard{
     width: 100%;

@@ -6,13 +6,13 @@ export default{
     categoryName: null
   },
   actions: {
-    getSubMenu (context, {id}) {
+    getSubMenu (context, {categoryId}) {
       let API_PATH = window.API
       context.commit('LOADING', true, {root: true})
-      let getAPI = `${API_PATH}product/getsubmenu/${id}`
+      let getAPI = `${API_PATH}product/getsubmenu/${categoryId}`
       axios.get(getAPI).then(response => {
         let subMenuTotalData = response.data.data
-        let categoryName = subMenuTotalData[0].categoryName
+        let categoryName = response.data.data[0].categoryName
         context.commit('subMenuTotalData', {subMenuTotalData, categoryName})
       }).catch(error => {
         console.log(error)
