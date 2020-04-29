@@ -3,26 +3,39 @@ import axios from 'axios'
 export default {
   state: {
     // 一個理由下面的資料
-    getIndexData: []
+    getIndexData: [],
+    getHomeCategoryData: []
   },
   actions: {
     // 取一個理由下面的資料
-    getIndex (context) {
+    getIndex ({commit}) {
       let API_PATH = window.API
-      context.commit('LOADING', true, {root: true})
-      axios.get(`${API_PATH}product/getindex`).then((response) => {
-        context.commit('changeIndexData', response.data.data)
+      commit('LOADING', true, {root: true})
+      return axios.get(`${API_PATH}product/getindex`).then((response) => {
+        commit('changeIndexData', response.data.data)
       }).catch((error) => {
         console.log(error)
       }).finally(() => {
-        context.commit('LOADING', false, {root: true})
+        commit('LOADING', false, {root: true})
+      })
+    },
+    getHomeCategory ({commit}) {
+      let API_PATH = window.API
+      return axios.get(`${API_PATH}product/getcategory`).then((response) => {
+        commit('changeHomeCategoryData', response.data.data)
+      }).catch((error) => {
+        console.log(error)
+      }).finally(() => {
+        commit('LOADING', false, {root: true})
       })
     }
   },
   mutations: {
     changeIndexData (state, indexData) {
-      // console.log(indexData)
       state.getIndexData = indexData
+    },
+    changeHomeCategoryData (state, getHomeCategoryData) {
+      state.getHomeCategoryData = getHomeCategoryData
     }
   }
 }

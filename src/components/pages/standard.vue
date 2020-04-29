@@ -16,12 +16,12 @@
           p.font-weight-bold 方向
           .d-flex.align-items-end.mb-3
             .d-flex.flex-column.align-items-center.schematic(v-for="(item,idx) in productSpec" @click.prevent="direction = item.specName; specId =item.specId;")
-              img(:src="item.specThumbnail" :class="{'selected' : item.specName === direction}")
+              img.mb-2(:src="item.specThumbnail" :class="{'selected' : item.specName === direction}")
               span.fz12 {{item.specName}}
           .d-flex.align-items-center.mb-3
             label.mb-0(for="") 尺寸
             select#size.form-control.w-75.ml-3(v-model="sizeId")
-              option(v-for="item in productSize" :value = "item.sizeId")  {{item.size}}
+              option(v-for="item in productSize" :value = "item.sizeId")  {{item.sizeDesc}}
           hr
           p.text-primary.font-weight-bold.secondTitle 產品資訊
             .row
@@ -33,7 +33,8 @@
               .col-4
                 p {{itm}}
               .col-8
-                p {{specId_sizeId_info.productIntroRightCol[idx]}}
+                p(v-if="specId_sizeId_info.productIntroId[idx] === '6'") 付款後{{specId_sizeId_info.productIntroRightCol[idx]}}個工作天寄出
+                p(v-else) {{specId_sizeId_info.productIntroRightCol[idx]}}
           hr.mt-0
           p(:class="{'justify-content-between' : fullWidth > 640, 'flex-column' : fullWidth <= 640, 'align-items-center' : fullWidth <= 640}").text-primary.d-flex.font-weight-bold 周年慶活動，相片全面85折優惠!<span class="fz26">NT${{specId_sizeId_info.price}}</span>
           .d-flex.btnBox(:class="{'justify-content-center' : fullWidth <= 640}")
@@ -84,7 +85,7 @@
       .row.py-5.justify-content-center
         h2.font-weight-bold.mb-0.text-secondary.secondTitle 您還有更多選擇
       .row.pb-5.moreChoicePicBox
-        .col-md-4.col-6.d-flex.justify-content-center.mb-md-3(v-for="itm in  subMenuTotalData" v-if="itm.productId !== productId")
+        .col-md-3.col-6.d-flex.justify-content-center.mb-md-3(v-for="itm in  subMenuTotalData" v-if="itm.productId !== productId")
           .card
             .imgBox
               img.card-img-top(:src='itm.subMenuSmallImg')

@@ -52,58 +52,18 @@
       p.text-center.w-100.eachSecondTitle.px-2 裝飾你的重要時刻，讓你的日常生活更加快樂
   .container.aChanceBox
     .row.justify-content-center
-      .col-sm-6.mb-30
+      router-link(:to="`/productDetail/${itm.categoryId}`" v-for="itm in getHomeCategoryData" :key="itm.categoryId").col-sm-6.mb-30
         .aChanceInsideBox
           .w-40.wordBox.d-flex.flex-column.align-items-center.justify-content-center.h-100
-            p.wordBoxTitle 相片書
-            P.wordBoxTitleEn Photobook
-            p.font-weight-bold.standard 平裝/精裝
-          img(src="../../assets/img/home/c01.jpg").w-100
-      .col-sm-6.mb-30
-        .aChanceInsideBox
-          .w-40.wordBox.d-flex.flex-column.align-items-center.justify-content-center.h-100
-            p.wordBoxTitle 卡片系列
-            P.wordBoxTitleEn Cards
-            p.font-weight-bold.standard 卡片/明信片/喜帖
-          img(src="../../assets/img/home/c02.jpg").w-100
-      .col-sm-6.mb-30
-        .aChanceInsideBox
-          .w-40.wordBox.d-flex.flex-column.align-items-center.justify-content-center.h-100
-            p.wordBoxTitle 生活雜貨
-            P.wordBoxTitleEn Necessities
-            p.font-weight-bold.standard 吸水杯墊/馬克杯
-          img(src="../../assets/img/home/c03.jpg").w-100
-      .col-sm-6.mb-30
-        .aChanceInsideBox
-          .w-40.wordBox.d-flex.flex-column.align-items-center.justify-content-center.h-100
-            p.wordBoxTitle 便利科技
-            P.wordBoxTitleEn Electronics
-            p.font-weight-bold.standard 悠遊卡/一卡通
-          img(src="../../assets/img/home/c04.jpg").w-100
-      .col-sm-6.mb-30
-        .aChanceInsideBox
-          .w-40.wordBox.d-flex.flex-column.align-items-center.justify-content-center.h-100
-            p.wordBoxTitle 衣料織品
-            P.wordBoxTitleEn Fabrics
-            p.font-weight-bold.standard T恤/帆布袋
-          img(src="../../assets/img/home/c05.jpg").w-100
-      .col-sm-6.mb-30
-        .aChanceInsideBox
-          .w-40.wordBox.d-flex.flex-column.align-items-center.justify-content-center.h-100
-            p.wordBoxTitle 更多客製化商品
-            P.wordBoxTitleEn More
-            p.font-weight-bold.standard 其他客製化商品
-          img(src="../../assets/img/home/c06.jpg").w-100
+            p.wordBoxTitle.text-dark {{itm.categoryName}}
+            P.wordBoxTitleEn.text-dark {{itm.categoryEName}}
+            p.font-weight-bold.standard.text-dark.mb-0(v-for="item in totalProduct" v-if="item.categoryId === itm.categoryId") {{item.productName}}
+          img(:src="itm.categoryImg").w-100
   .container
-    .row.justify-content-center
+    .row.justify-content-center.w-100.mx-auto
       h2.eachTitle.text-center.font-weight-bold.w-100 全新的線上編輯器
       p.text-center.w-100.eachSecondTitle.px-2 從電腦到手機，讓你隨時隨地編輯都便利
-      img.my-30.newEditor.img-fluid(src="../../assets/img/home/3c.jpg")
-
-  //- .border-top.footer.container-fluid.px-0
-  //-   footerComponent(:viewportWidth="fullWidth")
-  //- copyright(:viewportWidth="fullWidth")
-  alert
+      img.my-30.newEditor(src="../../assets/img/home/3c.jpg")
 </template>
 
 <script>
@@ -113,7 +73,6 @@ import navbarhead from '../navbarhead'
 import navCustomize from '../navCustomize'
 import loginmodal from '../../components/loginmodal'
 import enrollmodal from '../../components/enrollmodal'
-import alert from '../../components/alert'
 // import tpxNavbarhead from '../../components/tpxNavbarhead'
 
 import {mapState} from 'vuex'
@@ -125,8 +84,7 @@ export default {
     navbarhead,
     loginmodal,
     enrollmodal,
-    navCustomize,
-    alert
+    navCustomize
   },
   data () {
     return {
@@ -134,13 +92,17 @@ export default {
       fullWidth: document.body.clientWidth
     }
   },
-  created () {
-    this.$store.dispatch('getIndex')
+  async created () {
+    await this.$store.dispatch('getIndex')
+    await this.$store.dispatch('getHomeCategory')
   },
   computed: {
     ...mapState({
       // 取得一個理由下方的資料
-      getIndexData: state => state.homeModules.getIndexData
+      getIndexData: state => state.homeModules.getIndexData,
+      getHomeCategoryData: state => state.homeModules.getHomeCategoryData,
+      // 從nav 取total product
+      totalProduct: state => state.navbarModules.totalProduct
     })
   },
   mounted () {
@@ -496,10 +458,10 @@ $serif: 'Noto Serif TC', serif;
   }
 }
 // new editor 圖片
-// .newEditor{
-//   max-width: 80%;
-//   height: auto;
-// }
+.newEditor{
+  max-width: 100%;
+  max-height: 296px;
+}
 
 // footer style
 .footer{

@@ -3,11 +3,7 @@
     .row.py-8.justify-content-cneter
       .col-md-3.col-6.footerContent
         p.footerTitle.font-weight-bold 商品資訊
-        p 相片書
-        p 卡片系列
-        p 生活雜貨
-        p 創意科技
-        p 衣料織品
+        p.link(v-for="(itm,idx) in totalCategory" @click="getSubMenu(categoryId[idx])") {{itm}}
       .col-md-6.col-6.d-flex(:class="{'flex-column':viewportWidth<=640}")
         .aboutUs.w-100.w-md-50
           p.footerTitle.font-weight-bold 關於我們
@@ -28,8 +24,23 @@
 </template>
 
 <script>
+import {mapState} from 'vuex'
 export default {
-  props: ['viewportWidth']
+  props: ['viewportWidth'],
+  computed: {
+    ...mapState({
+      // combineNav js為了連到Category頁面
+      totalCategory: state => state.navbarModules.totalCategory,
+      categoryId: state => state.navbarModules.categoryId
+    })
+  },
+  methods: {
+    getSubMenu (id) {
+      let categoryId = id
+      this.$router.push(`/productDetail/${categoryId}`)
+      window.location.reload()
+    }
+  }
 }
 </script>
 <style lang="scss" scoped>
@@ -65,6 +76,12 @@ export default {
 @media (min-width: 1200px){
   .container{
     max-width: 960px;
+  }
+}
+.link{
+  cursor: pointer;
+  &:hover{
+    opacity: .4;
   }
 }
 </style>

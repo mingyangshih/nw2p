@@ -5,7 +5,7 @@ For use with Taopix 2020r1
 Copyright 2011 - 2020 Taopix Limited
 */
 
-var kServerURL = 'https://staging.cloudw2p.com/Branding/ming/' // kServerURL needs to be set to the weburl for the corresponding brand in Taopix Control Centre.
+var kServerURL = 'https://staging.cloudw2p.com/' // kServerURL needs to be set to the weburl for the corresponding brand in Taopix Control Centre.
 var kGTMID = '' // kGTMID needs to be set if you wish to use Google Tag Manager. Set this to be you Google Tag Manager ID
 var gBasketCount = 0
 var gBasketLoaded = false
@@ -14,7 +14,7 @@ var gProjectListCount = 0
 var gOldBasketCount = 0
 var gContinueShoppingMessageEnabled = 1
 
-var kStr_LabelMyProjects = 'en My Projects<p>cs Moje projekty<p>da Mine projekter<p>de Meine Projekte<p>es Mis Proyectos<p>fi Omat projektit<p>fr Mes projets<p>it I Miei Progetti<p>ja マイプロジェクト<p>ko 내 프로젝트<p>nl Mijn projecten<p>no Mine prosjekter<p>pl Moje projekty<p>pt Meus projetos<p>ru Мои проекты<p>sv Mina projekt<p>th โปรเจ็คของฉัน<p>zh_cn 我的项目<p>zh_tw 我的項目<p>mk Мои проекти'
+var kStr_LabelMyProjects = 'en My Projects<p>cs Moje projekty<p>da Mine projekter<p>de Meine Projekte<p>es Mis Proyectos<p>fi Omat projektit<p>fr Mes projets<p>it I Miei Progetti<p>ja マイプロジェクト<p>ko 내 프로젝트<p>nl Mijn projecten<p>no Mine prosjekter<p>pl Moje projekty<p>pt Meus projetos<p>ru Мои проекты<p>sv Mina projekt<p>th โปรเจ็คของฉัน<p>zh_cn 我的项目<p>zh_tw 我的作品<p>mk Мои проекти'
 var kStr_LabelBasket = 'en Basket<p>cs Košík<p>da Indkøbskurv<p>de Warenkorb<p>es Carrito<p>fi Kori<p>fr Panier<p>it Carrello<p>ja バスケット<p>ko 장바구니<p>nl Winkelmandje<p>no Handlekurv<p>pl Koszyk<p>pt Carrinho<p>ru Корзина<p>sv Korg<p>th ตะกร้า<p>zh_cn 购物车<p>zh_tw 購物車<p>mk Кошничка'
 var kStr_LabelRemoveFromBasket = 'en Remove From Basket<p>cs Vyjmout z košíku<p>da Fjern fra indkøbskurv<p>de aus dem Warenkorb entfernen<p>es Eliminar del Carrito<p>fi Poista korista<p>fr Supprimer du panier<p>it Rimuovi Dal Carrello<p>ja バスケットから削除する<p>ko 장바구니에서 삭제<p>nl Uit winkelmandje verwijderen<p>no Fjern fra handlekurv<p>pl Usuń z koszyka<p>pt Remover do carrinho<p>ru Удалить из корзины<p>sv Ta bort från korg<p>th ลบออกจากตะกร้า<p>zh_cn 从购物车删除<p>zh_tw 從購物車刪除<p>mk Извади од кошничка'
 var kStr_ButtonEmptyBasket = 'en Empty Basket<p>cs Prázdný košík<p>da Tøm indkøbskurv<p>de leerer Warenkorb<p>es Vaciar Carrito<p>fi Tyhjenn kori<p>fr Vider le panier<p>it Svuota Carrello<p>ja バスケットを空にする<p>ko 빈 장바구니<p>nl Winkelmandje legen<p>no Tøm handlekurv<p>pl Pusty koszyk<p>pt Esvaziar carrinho<p>ru Очистить корзину<p>sv Töm korg<p>th ล้างตะกร้า<p>zh_cn 清空购物车<p>zh_tw 清空購物車<p>mk Празна кошничка'

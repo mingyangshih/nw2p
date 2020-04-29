@@ -1,4 +1,5 @@
 import axios from 'axios'
+import router from '@/router'
 
 export default{
   state: {
@@ -16,6 +17,7 @@ export default{
         context.commit('subMenuTotalData', {subMenuTotalData, categoryName})
       }).catch(error => {
         console.log(error)
+        router.push('/')
       }).finally(() => {
         context.commit('LOADING', false, {root: true})
       })

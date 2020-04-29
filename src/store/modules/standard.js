@@ -68,7 +68,7 @@ export default {
     productSize (state) {
       let productSize = []
       state.productSpec.forEach(item => {
-        if (item.specName === state.direction) {
+        if (item.specId === state.specId) {
           productSize = item.productSize
           state.sizeId = item.productSize[0].sizeId
         }
@@ -79,6 +79,7 @@ export default {
     specId_sizeId_info (state, getters) {
       let productIntroLeftCol = []
       let productIntroRightCol = []
+      let productIntroId = []
       let link = null
       let price = null
       state.productInfo.forEach((itm) => {
@@ -90,6 +91,7 @@ export default {
           price = itm.price
           itm.productIntroDesc.forEach((item, idx) => {
             productIntroLeftCol.push(item.introName)
+            productIntroId.push(item.productIntroId)
             if (idx === 0) {
               getters.productSize.forEach(itm => {
                 if (itm.sizeId === state.sizeId) productIntroRightCol.push(itm.sizeDesc)
@@ -98,11 +100,11 @@ export default {
               productIntroRightCol.push(item.productIntroDesc)
             }
           })
-          state.productIntroLeftCol = productIntroLeftCol
-          state.productIntroRightCol = productIntroRightCol
         }
       })
-      return {productIntroLeftCol, productIntroRightCol, link, price}
+      state.productIntroLeftCol = productIntroLeftCol
+      state.productIntroRightCol = productIntroRightCol
+      return {productIntroLeftCol, productIntroRightCol, productIntroId, link, price}
     }
   }
 }
