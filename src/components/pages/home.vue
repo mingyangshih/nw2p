@@ -462,7 +462,11 @@ $serif: 'Noto Serif TC', serif;
   max-width: 100%;
   max-height: 296px;
 }
-
+@media(max-width:640px){
+  .newEditor{
+    height: auto;
+  }
+}
 // footer style
 .footer{
   background-color : #f4f4f1;

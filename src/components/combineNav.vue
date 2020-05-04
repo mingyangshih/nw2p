@@ -179,7 +179,8 @@ export default{
     }
     #tpx-basket-bar .tpx-bar-container{
       width: 80vw;
-      overflow-x: scroll;
+      overflow: scroll;
+      height: 100vh;
       &::-webkit-scrollbar {
         display: none;
       }

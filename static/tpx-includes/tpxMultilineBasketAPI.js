@@ -1965,7 +1965,8 @@ function tpxMyProjectsOnClick () {
     var viewportWidth = Math.max(document.documentElement.clientWidth, window.innerWidth || 0)
 
     if ((viewportWidth < 780)) {
-      left = (basketBarInner.width - projectContainerBounds.width) / 2
+      // left = (basketBarInner.width - projectContainerBounds.width) / 2
+      left = 0
     }
 
     document.getElementById('tpx-projectlistcontents').style.left = left + 'px'
