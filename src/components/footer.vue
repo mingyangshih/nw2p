@@ -37,8 +37,10 @@ export default {
   methods: {
     getSubMenu (id) {
       let categoryId = id
-      this.$router.push(`/productDetail/${categoryId}`)
-      window.location.reload()
+      // 用catch err來解決重複路徑的問題
+      this.$router.push(`/productDetail/${categoryId}`).catch(err => {
+        if (err.name === 'NavigationDuplicated') window.location.reload()
+      })
     }
   }
 }

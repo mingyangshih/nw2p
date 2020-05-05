@@ -1,10 +1,10 @@
 <template lang="pug">
   .standard
     .container.d-flex.my-3
-      router-link(to="/").mb-0.text-gray.text-decoration-none 首頁
-      p.mb-0.text-gray.mx-2 /
-      p.mb-0.text-gray.mx-2.categoryLink(@click="getSubMenu") {{categoryName}}
-      p.mb-0.text-gray.mx-2 /
+      router-link(to="/" v-if="categoryName").mb-0.text-gray.text-decoration-none 首頁
+      p.mb-0.text-gray.mx-2(v-if="categoryName") /
+      router-link.mb-0.text-gray.mx-2.categoryLink.text-decoration-none(:to="'/productDetail/' + categoryId") {{categoryName}}
+      p.mb-0.text-gray.mx-2(v-if="categoryName") /
       p.mb-0 {{standardTitle}}
     .container
       .row
@@ -85,15 +85,12 @@
       .row.py-5.justify-content-center
         h2.font-weight-bold.mb-0.text-secondary.secondTitle 您還有更多選擇
       .row.pb-5.moreChoicePicBox
-        .col-md-3.col-6.d-flex.justify-content-center.mb-md-3(v-for="itm in  subMenuTotalData" v-if="itm.productId !== productId")
+        div(@click.prevent="standard(itm.productId)" v-for="itm in subMenuTotalData" v-if="itm.productId !== productId" :key="itm.productId").col-md-3.col-6.d-flex.justify-content-center.mb-md-3.text-decoration-none
           .card
             .imgBox
               img.card-img-top(:src='itm.subMenuSmallImg')
             .card-body
               h5.card-title.font-weight-bold.text-secondary.text-center {{itm.productName}}
-    //- .container-fluid.border-top.px-0.footer
-    //-   footerComponent(:viewportWidth="fullWidth")
-    //- copyright(:viewportWidth="fullWidth")
 </template>
 
 <script>
@@ -116,7 +113,8 @@ export default {
   },
   data () {
     return {
-      fullWidth: document.body.clientWidth
+      fullWidth: document.body.clientWidth,
+      categoryId: null
     }
   },
   computed: {
@@ -141,9 +139,12 @@ export default {
   },
   methods: {
     getSubMenu () {
-      // console.log(this.$store.state.standardModules.categoryId)
       let categoryId = this.$store.state.standardModules.categoryId
       this.$router.push(`/productDetail/${categoryId}`)
+      // window.location.reload()
+    },
+    standard (id) {
+      this.$router.push(`/standard/${id}`)
       window.location.reload()
     }
   },
@@ -167,9 +168,11 @@ export default {
     // 取資料
     const id = this.$route.params.id
     await vm.$store.dispatch('getStandardData', {id})
-    // call productDetail.js 內的actions
     let categoryId = this.$store.state.standardModules.categoryId
+    vm.categoryId = categoryId
+    // call productDetail.js 內的actions
     vm.$store.dispatch('getSubMenu', {categoryId})
+    // 切換畫面重載
   }
 }
 </script>
@@ -223,8 +226,9 @@ export default {
   .schematic{
     img{
       max-width: 50%;
+      opacity: .5;
       &.selected{
-        opacity: .5;
+        opacity: 1;
       }
     }
     cursor: pointer;

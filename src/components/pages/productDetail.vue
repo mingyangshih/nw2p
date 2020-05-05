@@ -3,7 +3,7 @@
     .container.d-flex.my-3
       router-link(to="/").mb-0.text-gray.text-decoration-none 首頁
       p.mb-0.text-gray.mx-2 /
-      p.mb-0 {{categoryName}}
+      p.mb-0(v-if="categoryName") {{categoryName}}
     .container-fluid
       .row.px-0
         .col-sm-12.px-0
@@ -30,7 +30,7 @@
             p.title.text-primary.font-weight-bold.mb-md-4 編輯作品比您想得更容易
             p 吻合各種螢幕大小的編輯空間，提供您穩定的編輯流程和隨心所欲的設計方式，我們已經可以預見您收到作品時的笑容。
             .d-flex.try.mb-3
-              button.btn.btn-primary.btnInPage.py-0.pr-0 <span class="font-weight-bold">馬上體驗</span> <i class="fas fa-chevron-right fa-xs"></i>
+              router-link(:to="'/standard/'+productId").btn.btn-primary.btnInPage.py-0.pr-0 <span class="font-weight-bold">馬上體驗</span> <i class="fas fa-chevron-right fa-xs"></i>
         .col-md-6.px-0.secondBanner
           img(src="../../assets/img/productDetail/b01.jpg")
     .container-fluid
@@ -65,19 +65,23 @@ export default {
   },
   data () {
     return {
-      fullWidth: document.body.clientWidth
+      fullWidth: document.body.clientWidth,
+      // 馬上體驗
+      productId: null
     }
   },
   computed: {
+    // productdeatilmodule 取回的資料
     ...mapState({
       subMenuTotalData: state => state.productDetailModules.subMenuTotalData,
       categoryName: state => state.productDetailModules.categoryName
     })
   },
-  created () {
+  async created () {
     const vm = this
     const categoryId = this.$route.params.id
-    vm.$store.dispatch('getSubMenu', {categoryId})
+    await vm.$store.dispatch('getSubMenu', {categoryId})
+    vm.productId = vm.subMenuTotalData[0].productId
   },
   mounted () {
     const vm = this
@@ -92,6 +96,15 @@ export default {
     // val 為改變的值
     fullWidth (val) {
       this.fullWidth = val
+    },
+    // navbar 載入同個component 不同id時用這個方法重取資料
+    async '$route' (to, from) {
+      const vm = this
+      const categoryId = to.params.id
+      if (to.params.id !== from.params.id) {
+        await vm.$store.dispatch('getSubMenu', {categoryId})
+        vm.productId = vm.subMenuTotalData[0].productId
+      }
     }
   }
 }

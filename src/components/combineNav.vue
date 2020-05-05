@@ -16,7 +16,7 @@
           .text-decoration-none.row
             .col-md-4.py-3(v-for="(item,idx) in totalCategory")
               .d-flex.flex-column
-               p( @click.prevent="getSubMenu(categoryId[idx])").text-decoration-none.mb-2.itemHover {{item}} {{productEnCategory[idx]}}
+               p( @click.prevent="productdetail(categoryId[idx])").text-decoration-none.mb-2.itemHover {{item}} {{productEnCategory[idx]}}
                p.text-decoration-none.pl-3.mb-2.itemHover(v-for="item1 in totalProduct" v-if="item1.productCategory === item" :key="item1.productId" @click.prevent="standard(item1.productId)") - {{item1.productName}}
       //- mobile 所有產品
       .sidebarBox.w-100
@@ -29,7 +29,7 @@
             .navItem.font-weight-bold.allProdItem( v-for="(item,idx) in totalCategory" )
               input.allProdItemDetail.d-none(type="checkbox" :id="idx")
               label.d-flex(:for="idx").mb-0 {{item}} <i class="fas fa-chevron-down ml-auto"></i><i class="fas fa-chevron-up ml-auto"></i>
-              p(@click.prevent="getSubMenu(categoryId[idx])").font-weight-bold.pl-3.py-2.mb-0.allProdItemDetailItem.fz14.text-decoration.none.text-dark <span @click="sideBarShowEvent">{{item}}</span>
+              p(@click.prevent="productdetail(categoryId[idx])").font-weight-bold.pl-3.py-2.mb-0.allProdItemDetailItem.fz14.text-decoration.none.text-dark <span @click="sideBarShowEvent">{{item}}</span>
               p.mb-0.font-weight-bold.pl-3.py-2.allProdItemDetailItem.fz14.text-decoration-none.text-dark( v-for="(item1,idx1) in totalProduct" :key="idx1" v-if="item1.productCategory === item" @click.prevent="standard(item1.productId)") - <span @click="sideBarShowEvent">{{item1.productName}}</span>
       label.item.helpCenter.mb-0.align-items-center 幫助中心
       label.item.aboutUs.mb-0.align-items-center 關於我們
@@ -98,13 +98,18 @@ export default{
     sideBarShowEvent () {
       this.$store.commit('sideBarShowEvent')
     },
-    getSubMenu (id) {
+    productdetail (id) {
+      // catch error 判斷是否點到同一頁 true reload
       let categoryId = id
-      this.$router.push(`/productDetail/${categoryId}`)
-      window.location.reload()
+      this.$router.push(`/productDetail/${categoryId}`).catch(err => {
+        if (err.name === 'NavigationDuplicated') window.location.reload()
+      })
     },
     standard (id) {
-      this.$router.push(`/standard/${id}`)
+      // catch error 判斷是否點到同一頁 true reload
+      this.$router.push(`/standard/${id}`).catch(err => {
+        if (err.name === 'NavigationDuplicated') window.location.reload()
+      })
       window.location.reload()
     }
   },

@@ -62,11 +62,16 @@ export default {
     }
   },
   // 處理v-for swiper 跟資料不同步問題
-  async mounted () {
+  async created () {
     const id = this.$route.params.id
     let API_PATH = window.API
     await this.$http.get(`${API_PATH}product/getdetail/${id}`).then(response => {
-      this.productAlbum = response.data.data[0].productAlbum
+      if (response.data.data[0].productAlbum.length === 0) {
+        let productAlbum = {productAlbum: 'https://fakeimg.pl/599/?text=fake image'}
+        this.productAlbum.push(productAlbum)
+      } else {
+        this.productAlbum = response.data.data[0].productAlbum
+      }
       this.swiperOptionTop.loopedSlides = this.productAlbum.length
       this.swiperOptionThumbs.loopedSlides = this.productAlbum.length
       this.$nextTick(() => {
