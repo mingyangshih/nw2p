@@ -5,7 +5,7 @@
       img.logo(src="../assets/img/logo.png")
     //- 大於 640 秀的畫面
     .darkBg(v-if="sideBarShow")
-    nav.tpx.tpx-bar-container.tpx-clearfix.topNav(id="tpx-basket-bar-inner" :class="{'show' : sideBarShow}")
+    div.tpx.tpx-bar-container.tpx-clearfix.topNav(id="tpx-basket-bar-inner" :class="{'show' : sideBarShow}")
       div.xBox(@click="sideBarShowEvent")
         i.fas.fa-times
       router-link(to="/").home
@@ -35,13 +35,13 @@
       label.item.aboutUs.mb-0.align-items-center 關於我們
       label.item.saledHelp.mb-0.align-items-center 售後服務
       label.item.contactUs.mb-0.align-items-center 聯絡我們
-      label.item.register.mb-0.d-flex.align-items-center
+      label.item.register.mb-0.align-items-center
         a.font-weight-bold.text-decoration-none(onClick="tpxHighLevelRegisterInitControl()" id="tpx-register")
-      label.item.login.mb-0.d-flex.align-items-center
+      label.item.login.mb-0.align-items-center
         a.font-weight-bold.text-decoration-none(id="tpx-signIn" onClick="tpxHighLevelSignInInitControl()")
-      label.item.myItem.mb-0.d-flex.align-items-center.tpx.tpx-accountLinkItem(id="tpx-projectslinkli")
+      label.item.myItem.mb-0.align-items-center.tpx.tpx-accountLinkItem(id="tpx-projectslinkli")
         span(id="tpx-projectslist" onClick="tpxMyProjectsOnClick()")
-      div.item.myItem.mb-0.d-flex.align-items-center.tpx
+      div.item.myItem.mb-0.align-items-center.tpx
         .tpx(id="tpx-basketButtonWrapper")
           p.mb-0.tpx.tpx-button.tpx-basketButton(id="tpx-basketlink" onClick="tpxBasketOnClick()")
             span.tpx.tpx-basketCount(id="tpx-basketButtonCount")
@@ -208,6 +208,7 @@ export default{
     font-size: 15px;
     &.register,&.login,&.myItem{
       cursor: pointer;
+      display: flex;
     }
     &.register{
       margin-left: auto;
@@ -243,6 +244,9 @@ export default{
       }
       &.allProd.deskTop{
         display: none;
+      }
+      &.register,&.login,&.myItem{
+        display: initial;
       }
     }
   }
