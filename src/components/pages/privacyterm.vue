@@ -4,7 +4,7 @@
       .pageTitle.text-center.my-30 隱私保護條款
     .container.px-4
       p.termTitle 隱私權政策(適用於台灣地區)
-      p.termTitle.termDetailUnorder 永豐雲端印刷網網站非常重視個人資料的保護，同時也承諾保障您的隱私權，因此制訂了隱私權保護政策。請細讀以下有關隱私權保護政策的內容。
+      p.termDetail.termDetailUnorder 永豐雲端印刷網網站非常重視個人資料的保護，同時也承諾保障您的隱私權，因此制訂了隱私權保護政策。請細讀以下有關隱私權保護政策的內容。
 
       p.termTitle 1.歡迎您加入成為永豐雲端印刷網網站的會員
       p.termDetail.text-justify (a)非常歡迎您加入成為會員！當您在會員資料登記之電子郵件信箱中收到永豐雲端印刷網網站所發出會員資料確認信並確認加入會員之後，表示您已經閱讀、瞭解且同意接受本條款所有的內容與約定，並完全接受本服務現有與未來衍生之服務項目。
@@ -96,10 +96,10 @@
 
       p.termTitle 9.個人資料及隱私保護諮詢
       p.text-justify.termDetailUnorder 如果您對於我們的隱私權保護政策或是有個人資料蒐集、利用、更新等問題，請於上班時間聯絡：
-      p.termDetailUnorder.text-justify 服務時間：週一至週五 非例假日 10:00 ~ 12:00 及 13:00 ~ 17:
+      p.termDetailUnorder.text-justify 服務時間：週一至週五 非例假日 10:00 ~ 12:00 及 13:00 ~ 17:00
       p.termDetailUnorder.text-justify 客服電話：02-2266-8944 Ext.8800
       p.termDetailUnorder.text-justify 客服傳真：02-2266-5451
-      p.termDetailUnorder.text-justify 客服信箱：webmaster@cloudw2p.com
+      p.termDetailUnorder.text-justify.mb-8 客服信箱：services@cloudw2p.com
 </template>
 
 <script>

@@ -15,7 +15,8 @@ import { required, email, digits } from 'vee-validate/dist/rules'
 import { messages } from 'vee-validate/dist/locale/zh_TW.json'
 // Import stylesheet
 import 'vue-loading-overlay/dist/vue-loading.css'
-
+import filter from './assets/filters/currency'
+Vue.filter('currency', filter)
 window.$ = $ // 將原本的$變成jquery
 Vue.use(VueAxios, axios)
 // 使用Vuex

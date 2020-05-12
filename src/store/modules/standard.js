@@ -14,6 +14,8 @@ export default {
     productSpec: [],
     // 全部資料
     productInfo: [],
+    // 下方文字資料
+    productFeature: [],
     // 規格頁數選資料
     productIntroDesc: [],
     productIntroLeftCol: [],
@@ -26,7 +28,8 @@ export default {
     sizeId: null,
     // Taopix 連結
     editLink: '',
-    price: null
+    price: null,
+    priceRange: null
   },
   actions: {
     getStandardData (context, {id}) {
@@ -36,21 +39,23 @@ export default {
       return axios.get(getAPI).then((response) => {
         let productSpec = response.data.data[1].productSpec
         let productInfo = response.data.data[2].productInfo
+        let productFeature = response.data.data[3].productFeature
         // 規格標題
         let standardTitle = response.data.data[2].productInfo[0].productName
         let categoryName = response.data.data[2].productInfo[0].categoryName
         let categoryId = response.data.data[2].productInfo[0].categoryId
         let productId = response.data.data[2].productInfo[0].productId
-        context.commit('changeStandardData', {productSpec, productInfo, standardTitle, categoryName, categoryId, productId})
+        context.commit('changeStandardData', {productSpec, productInfo, productFeature, standardTitle, categoryName, categoryId, productId})
       }).catch((error) => { console.log(error) }).finally(() => {
         context.commit('LOADING', false, {root: true})
       })
     }
   },
   mutations: {
-    changeStandardData (state, {productSpec, productInfo, standardTitle, categoryName, categoryId, productId}) {
+    changeStandardData (state, {productSpec, productInfo, productFeature, standardTitle, categoryName, categoryId, productId}) {
       state.productSpec = productSpec
       state.productInfo = productInfo
+      state.productFeature = productFeature
       state.direction = productSpec[0].specName
       state.specId = productSpec[0].specId
       state.sizeId = productSpec[0].productSize[0].sizeId
@@ -82,13 +87,23 @@ export default {
       let productIntroId = []
       let link = null
       let price = null
+      let priceRange = null
       state.productInfo.forEach((itm) => {
         if (itm.specId === state.specId && itm.sizeId === state.sizeId) {
           state.productIntroDesc = itm.productIntroDesc
           state.editLink = itm.editLink
           link = itm.editLink
           state.price = itm.price
-          price = itm.price
+          // 判斷價格是否有起
+          if (itm.price[itm.price.length - 1] === '起') {
+            price = itm.price.substring(0, itm.price.length - 1)
+            state.priceRange = true
+            priceRange = true
+          } else {
+            price = itm.price
+            state.priceRange = true
+            priceRange = false
+          }
           itm.productIntroDesc.forEach((item, idx) => {
             productIntroLeftCol.push(item.introName)
             productIntroId.push(item.productIntroId)
@@ -104,7 +119,7 @@ export default {
       })
       state.productIntroLeftCol = productIntroLeftCol
       state.productIntroRightCol = productIntroRightCol
-      return {productIntroLeftCol, productIntroRightCol, productIntroId, link, price}
+      return {productIntroLeftCol, productIntroRightCol, productIntroId, link, price, priceRange}
     }
   }
 }

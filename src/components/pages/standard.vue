@@ -36,48 +36,46 @@
                 p(v-if="specId_sizeId_info.productIntroId[idx] === '6'") 付款後{{specId_sizeId_info.productIntroRightCol[idx]}}個工作天寄出
                 p(v-else) {{specId_sizeId_info.productIntroRightCol[idx]}}
           hr.mt-0
-          p(:class="{'justify-content-between' : fullWidth > 640, 'flex-column' : fullWidth <= 640, 'align-items-center' : fullWidth <= 640}").text-primary.d-flex.font-weight-bold 周年慶活動，相片全面85折優惠!<span class="fz26">NT${{specId_sizeId_info.price}}</span>
+          div(:class="{ 'flex-column' : fullWidth <= 640, 'align-items-center' : fullWidth <= 640}").text-primary.d-flex.font-weight-bold.my-3 周年慶活動，相片全面85折優惠!<p class="mb-0" :class="{'ml-auto' : fullWidth > 640}"><span class="fz26" >NT {{specId_sizeId_info.price | currency}}</span><span class="fz26 ml-2" v-if="specId_sizeId_info.priceRange">起</span></p>
           .d-flex.btnBox(:class="{'justify-content-center' : fullWidth <= 640}")
             a(:href="specId_sizeId_info.link" :class="{'w-100' : fullWidth <= 640}").btn.btn-primary.font-weight-bold.btnInPage.py-0.text-white 開始製作
     .container.mt-5.mt-md-0
       .row.justify-content-center.py-4
         h2.font-weight-bold.mb-0.text-secondary.secondTitle 產品特性
       hr(v-if="fullWidth > 640").mt-0.mb-5
-    .container.specialEffectRight
-      .row.justify-content-center
+    .container.specialEffectRight(v-for="(item,idx) in productFeature")
+      .row.justify-content-center(:class="{'flex-row-reverse': idx%2 !== 0}")
         .col-md-5
           .under_second_banner_des_box_left
             .glasses
-              p.font-weight-bold.text-dark.under_secondbanner_des_title(:class="{'mb-3' : fullWidth <= 640}") 裝訂 ‧ 膠裝成冊，一體成型
-              p.under_secondbanner_des.mb-0(:class="{'text-justify' : fullWidth <= 640}") 書封完整貼覆內頁，不建議使用跨頁編排方式，避免將重要圖文編排至中央部分。
-              p.under_secondbanner_des.mb-0(:class="{'text-justify' : fullWidth <= 640}") 平裝的膠裝方式，無法攤平，會有些許影像為裝訂邊，所以會損失跨頁交接處部分影像，如需完整跨頁影像請選擇蝴蝶裝之裝訂方式。
+              p.font-weight-bold.text-dark.under_secondbanner_des_title(:class="{'mb-3' : fullWidth <= 640}") {{item.featureTitle}}
+              p.under_secondbanner_des.mb-0(:class="{'text-justify' : fullWidth <= 640}") {{item.featureDesc}}
         .col-md-7.bgSetting
-          img(src="../../assets/img/standard/c01.jpg")
-    .container
+          img(:src="item.featurePicture")
       hr.my-5
-    .container.mt-4.specialEffectleft
-      .row.justify-content-center
-        .col-md-7.bgSetting
-          img(src="../../assets/img/standard/c02.jpg")
-        .col-md-5
-          .under_second_banner_des_box_right
-            .glasses
-              p.font-weight-bold.text-dark.under_secondbanner_des_title(:class="{'mb-3' : fullWidth <= 640}") 封面 ‧ 霧面防水處理
-              p.under_secondbanner_des.mb-0(:class="{'text-justify' : fullWidth <= 640}") 照片、書名搭配，封面封底採用特殊印刷效果。
-              p.under_secondbanner_des.mb-0(:class="{'text-justify' : fullWidth <= 640}") 相片書內頁與封面是以不同紙張與印刷機台印製，且封面均有上膜保護，和紙張吸墨性不同的變數，故會讓同一張照片產生正負10%的色彩差異。
-    .container
-      hr.my-5
-    .container.specialEffectRight
-      .row.justify-content-center
-        .col-md-5
-          .under_second_banner_des_box_left
-            .glasses
-              p.font-weight-bold.text-dark.under_secondbanner_des_title(:class="{'mb-3' : fullWidth <= 640}") 書背 ‧ 書名與作者
-              p.under_secondbanner_des.mb-0(:class="{'text-justify' : fullWidth <= 640}") 書寫方向任意變化，(半形)英數字、符號，書寫方向將自動轉為橫向，(全形)為直向書寫。
-              p.under_secondbanner_des.mb-0(:class="{'text-justify' : fullWidth <= 640}") 編輯器書背字體固定為華康楷書體(系統自動產出固定大小)，目前無法依個人喜好自訂大小。
-              p.under_secondbanner_des.text-primary(:class="{'text-justify' : fullWidth <= 640}") 小提醒：平裝書頁數較少時，若書背(小於5mm以下)字體易產生過小且裝訂偏斜不美觀的情況，故少於5mm時不印製書背喔！
-        .col-md-7.bgSetting
-          img(src="../../assets/img/standard/c03.jpg")
+    //- .container.mt-4.specialEffectRight
+    //-   .row.justify-content-center.flex-row-reverse
+    //-     .col-md-5
+    //-       .under_second_banner_des_box_right
+    //-         .glasses
+    //-           p.font-weight-bold.text-dark.under_secondbanner_des_title(:class="{'mb-3' : fullWidth <= 640}") 封面 ‧ 霧面防水處理
+    //-           p.under_secondbanner_des.mb-0(:class="{'text-justify' : fullWidth <= 640}") 照片、書名搭配，封面封底採用特殊印刷效果。
+    //-           p.under_secondbanner_des.mb-0(:class="{'text-justify' : fullWidth <= 640}") 相片書內頁與封面是以不同紙張與印刷機台印製，且封面均有上膜保護，和紙張吸墨性不同的變數，故會讓同一張照片產生正負10%的色彩差異。
+    //-     .col-md-7.bgSetting
+    //-       img(src="../../assets/img/standard/c02.jpg")
+    //- .container
+    //-   hr.my-5
+    //- .container.specialEffectRightspecialEffectRightRow
+    //-   .row.justify-content-center
+    //-     .col-md-5
+    //-       .under_second_banner_des_box_left
+    //-         .glasses
+    //-           p.font-weight-bold.text-dark.under_secondbanner_des_title(:class="{'mb-3' : fullWidth <= 640}") 書背 ‧ 書名與作者
+    //-           p.under_secondbanner_des.mb-0(:class="{'text-justify' : fullWidth <= 640}") 書寫方向任意變化，(半形)英數字、符號，書寫方向將自動轉為橫向，(全形)為直向書寫。
+    //-           p.under_secondbanner_des.mb-0(:class="{'text-justify' : fullWidth <= 640}") 編輯器書背字體固定為華康楷書體(系統自動產出固定大小)，目前無法依個人喜好自訂大小。
+    //-           p.under_secondbanner_des.text-primary(:class="{'text-justify' : fullWidth <= 640}") 小提醒：平裝書頁數較少時，若書背(小於5mm以下)字體易產生過小且裝訂偏斜不美觀的情況，故少於5mm時不印製書背喔！
+    //-     .col-md-7.bgSetting
+    //-       img(src="../../assets/img/standard/c03.jpg")
     //- .container-fluid.mt-4
     //-   .row.border-top.border-bottom.py-4.justify-content-center.recommendArticle
     //-     h2.font-weight-bold.mb-0.text-secondary.secondTitle 網友推薦文章
@@ -122,6 +120,7 @@ export default {
     ...mapState({
       productSpec: state => state.standardModules.productSpec,
       productInfo: state => state.standardModules.productInfo,
+      productFeature: state => state.standardModules.productFeature,
       standardTitle: state => state.standardModules.standardTitle,
       productIntroDesc: state => state.standardModules.productIntroDesc,
       categoryName: state => state.standardModules.categoryName,

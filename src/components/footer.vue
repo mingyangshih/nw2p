@@ -11,7 +11,7 @@
           router-link.mb-3.text-decoration-none.d-block.text-dark(to="/serviceterm") 服務使用條款
           router-link.mb-3.text-decoration-none.d-block.text-dark(to="/privacyterm") 隱私保護條款
         .saledServiceBox.w-100.w-md-50
-          p.footerTitle.font-weight-bold 售後服務
+          p.footerTitle.font-weight-bold 服務內容
           p 常見問題
           p 退貨須知
           p 付款與運費說明
