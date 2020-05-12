@@ -7,6 +7,8 @@ import modifyEnroll from '@/components/pages/modifyEnroll'
 import accountdata from '@/components/accountdata'
 import changePassword from '@/components/changepassword'
 import loading from '@/components/pages/loading'
+import serviceterm from '@/components/pages/serviceterm'
+import privacyterm from '@/components/pages/privacyterm'
 
 Vue.use(Router)
 
@@ -26,6 +28,16 @@ export default new Router({
       path: '/standard/:id',
       name: 'standard',
       component: standard
+    },
+    {
+      path: '/serviceterm',
+      name: 'serviceterm',
+      component: serviceterm
+    },
+    {
+      path: '/privacyterm',
+      name: 'privacyterm',
+      component: privacyterm
     },
     {
       path: '/modifyEnroll',
