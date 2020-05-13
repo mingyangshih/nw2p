@@ -15,7 +15,7 @@ Vue.use(Vuex)
 export default new Vuex.Store({
   state: {
     isLoading: null,
-    sideBarShow: false
+    sideBarShow: null
   },
   actions: {
     loadingStatus (context, status) {
@@ -27,8 +27,9 @@ export default new Vuex.Store({
       const vm = this
       vm.state.isLoading = status
     },
-    sideBarShowEvent (state) {
-      state.sideBarShow = !state.sideBarShow
+    sideBarShowEvent (state, status) {
+      state.sideBarShow = status
+      // state.sideBarShow = !state.sideBarShow
     }
   },
   getters: {

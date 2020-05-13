@@ -6,8 +6,8 @@
         p.link(v-for="(itm,idx) in totalCategory" @click="getSubMenu(categoryId[idx])") {{itm}}
       .col-md-6.col-6.d-flex(:class="{'flex-column':viewportWidth<=640}")
         .aboutUs.w-100.w-md-50
-          p.footerTitle.font-weight-bold 關於我們
-          p 關於永豐
+          p.footerTitle.font-weight-bold 認識我們
+          router-link.mb-3.text-decoration-none.d-block.text-dark(to="/aboutYFP") 關於我們
           router-link.mb-3.text-decoration-none.d-block.text-dark(to="/serviceterm") 服務使用條款
           router-link.mb-3.text-decoration-none.d-block.text-dark(to="/privacyterm") 隱私保護條款
         .saledServiceBox.w-100.w-md-50

@@ -94,6 +94,7 @@ export default {
     }
   },
   async created () {
+    this.$store.commit('sideBarShowEvent', false)
     await this.$store.dispatch('getIndex')
     await this.$store.dispatch('getHomeCategory')
   },

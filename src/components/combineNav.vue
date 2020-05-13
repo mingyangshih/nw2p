@@ -1,12 +1,12 @@
 <template lang="pug">
   #tpx-basket-bar.row.justify-content-between.align-items-center.tpx.mx-0.py-0.border-bottom-0.topNavBox
-    label.hamburger(for="hamburger" @click="sideBarShowEvent")
+    label.hamburger(for="hamburger" @click="sideBarShowEvent(true)")
     router-link.logoBox(to="/")
       img.logo(src="../assets/img/logo.png")
     //- 大於 640 秀的畫面
     .darkBg(v-if="sideBarShow")
     div.tpx.tpx-bar-container.tpx-clearfix.topNav(id="tpx-basket-bar-inner" :class="{'show' : sideBarShow}")
-      div.xBox(@click="sideBarShowEvent")
+      div.xBox(@click="sideBarShowEvent(false)")
         i.fas.fa-times
       router-link(to="/").home
         img(src="../assets/img/logo.png")
@@ -30,9 +30,9 @@
               input.allProdItemDetail.d-none(type="checkbox" :id="idx")
               label.d-flex(:for="idx").mb-0 {{item}} <i class="fas fa-chevron-down ml-auto"></i><i class="fas fa-chevron-up ml-auto"></i>
               p(@click.prevent="productdetail(categoryId[idx])").font-weight-bold.pl-3.py-2.mb-0.allProdItemDetailItem.fz14.text-decoration.none.text-dark <span @click="sideBarShowEvent">{{item}}</span>
-              p.mb-0.font-weight-bold.pl-3.py-2.allProdItemDetailItem.fz14.text-decoration-none.text-dark( v-for="(item1,idx1) in totalProduct" :key="idx1" v-if="item1.productCategory === item" @click.prevent="standard(item1.productId)") - <span @click="sideBarShowEvent">{{item1.productName}}</span>
+              p.mb-0.font-weight-bold.pl-3.py-2.allProdItemDetailItem.fz14.text-decoration-none.text-dark( v-for="(item1,idx1) in totalProduct" :key="idx1" v-if="item1.productCategory === item" @click.prevent="standard(item1.productId)") - <span >{{item1.productName}}</span>
       label.item.helpCenter.mb-0.align-items-center 幫助中心
-      label.item.aboutUs.mb-0.align-items-center 關於我們
+      router-link(to="/aboutYFP").text-dark.item.aboutUs.mb-0.align-items-center.text-decoration-none 關於我們
       label.item.saledHelp.mb-0.align-items-center 售後服務
       label.item.contactUs.mb-0.align-items-center 聯絡我們
       label.item.register.mb-0.align-items-center
@@ -95,8 +95,8 @@ export default{
     },
     ...mapActions(['getNavBarList']),
     // 在store/index.js
-    sideBarShowEvent () {
-      this.$store.commit('sideBarShowEvent')
+    sideBarShowEvent (status) {
+      this.$store.commit('sideBarShowEvent', status)
     },
     productdetail (id) {
       // catch error 判斷是否點到同一頁 true reload

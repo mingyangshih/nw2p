@@ -9,6 +9,7 @@ import changePassword from '@/components/changepassword'
 import loading from '@/components/pages/loading'
 import serviceterm from '@/components/pages/serviceterm'
 import privacyterm from '@/components/pages/privacyterm'
+import aboutYFP from '@/components/pages/aboutYFP'
 
 Vue.use(Router)
 
@@ -38,6 +39,11 @@ export default new Router({
       path: '/privacyterm',
       name: 'privacyterm',
       component: privacyterm
+    },
+    {
+      path: '/aboutYFP',
+      name: 'aboutYFP',
+      component: aboutYFP
     },
     {
       path: '/modifyEnroll',
