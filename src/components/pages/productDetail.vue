@@ -80,6 +80,8 @@ export default {
   async created () {
     const vm = this
     const categoryId = this.$route.params.id
+    // 把側邊欄關掉
+    vm.$store.commit('sideBarShowEvent', false)
     await vm.$store.dispatch('getSubMenu', {categoryId})
     vm.productId = vm.subMenuTotalData[0].productId
   },

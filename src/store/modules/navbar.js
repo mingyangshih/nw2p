@@ -2,6 +2,7 @@
 export default {
   state: {
     totalCategory: [],
+    eachCategoryNumber: [],
     categoryId: [],
     totalProduct: [],
     productEnCategory: []
@@ -32,8 +33,17 @@ export default {
             productEnCategory.push(item.productEnCategory)
           }
         })
+        // 計算各大類下的產品數量(用來決定是否要讓下拉選單可連到大類頁)
+        let eachCategoryNumber = new Array(totalCategory.length)
+        eachCategoryNumber.fill(0, 0)
+        result.data.forEach(item => {
+          totalCategory.forEach((item1, idx) => {
+            if (item.productCategory === item1) eachCategoryNumber[idx] += 1
+          })
+        })
+        // 全部產品的資料
         let totalProduct = result.data
-        commit('listDetail', {totalCategory, totalProduct, categoryId, productEnCategory})
+        commit('listDetail', {totalCategory, totalProduct, eachCategoryNumber, categoryId, productEnCategory})
       })
     }
     // 檢查local storage 是否有內容，登入過會有內容，有登入過navbar 上方顯示方式直接顯示
@@ -54,8 +64,9 @@ export default {
   },
   mutations: {
     // 上方下拉選單種類
-    listDetail (state, {totalCategory, totalProduct, categoryId, productEnCategory}) {
+    listDetail (state, {totalCategory, totalProduct, eachCategoryNumber, categoryId, productEnCategory}) {
       state.totalCategory = totalCategory
+      state.eachCategoryNumber = eachCategoryNumber
       state.totalProduct = totalProduct
       state.categoryId = categoryId
       state.productEnCategory = productEnCategory
