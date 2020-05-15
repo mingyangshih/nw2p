@@ -10,6 +10,9 @@ import loading from '@/components/pages/loading'
 import serviceterm from '@/components/pages/serviceterm'
 import privacyterm from '@/components/pages/privacyterm'
 import aboutYFP from '@/components/pages/aboutYFP'
+import contactus from '@/components/contactus'
+import workslayout from '@/components/workslayout'
+import serviceContent from '@/components/pages/serviceContent'
 
 Vue.use(Router)
 
@@ -44,6 +47,23 @@ export default new Router({
       path: '/aboutYFP',
       name: 'aboutYFP',
       component: aboutYFP
+    },
+    {
+      path: '/serviceContent',
+      name: 'serviceContent',
+      component: serviceContent,
+      children: [
+        {
+          path: 'contactus',
+          name: 'contactus',
+          component: contactus
+        },
+        {
+          path: 'workslayout',
+          name: 'workslayout',
+          component: workslayout
+        }
+      ]
     },
     {
       path: '/modifyEnroll',

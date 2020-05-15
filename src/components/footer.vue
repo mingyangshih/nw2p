@@ -7,19 +7,23 @@
       .col-md-6.col-6.d-flex(:class="{'flex-column':viewportWidth<=640}")
         .aboutUs.w-100.w-md-50
           p.footerTitle.font-weight-bold 認識我們
-          router-link.mb-3.text-decoration-none.d-block.text-dark(to="/aboutYFP") 關於我們
-          router-link.mb-3.text-decoration-none.d-block.text-dark(to="/serviceterm") 服務使用條款
-          router-link.mb-3.text-decoration-none.d-block.text-dark(to="/privacyterm") 隱私保護條款
+          router-link.mb-3.text-decoration-none.d-block.text-dark.link(to="/aboutYFP") 關於我們
+          router-link.mb-3.text-decoration-none.d-block.text-dark.link(to="/serviceterm") 服務使用條款
+          router-link.mb-3.text-decoration-none.d-block.text-dark.link(to="/privacyterm") 隱私保護條款
         .saledServiceBox.w-100.w-md-50
           p.footerTitle.font-weight-bold 服務內容
-          p 常見問題
-          p 退貨須知
-          p 付款與運費說明
+          router-link.mb-3.text-decoration-none.d-block.text-dark.link(to="/serviceContent") 關於會員
+          p 訂購與取貨
+          p 發票與售後服務
+          p 電子發票
+          router-link.mb-3.text-decoration-none.d-block.text-dark.link(to="/serviceContent/workslayout") 作品編排
+          p 購物車
       .col-md-3.px-0.mx-0(:class="{'row':viewportWidth <= 640,'flex-column':viewportWidth <= 640,'align-items-center':viewportWidth <= 640, 'mt-5':viewportWidth <= 640}")
         p.footerTitle.font-weight-bold(v-if="viewportWidth > 640") 聯絡我們
+        router-link(to="/serviceContent/contactus").d-block.mb-3.text-decoration-none.link.text-dark 客服信箱
         p 週一至週五 9:00~18:00
         p 電子郵件 <span class="w2pemail">services@cloudw2p.com</span>
-        button(v-if="viewportWidth <= 640").btn.btn-primary.font-weight-bold.btnInPage.pr-0.py-0.mt-3 聯絡我們 <i class="fas fa-chevron-right fa-xs"></i>
+        router-link(v-if="viewportWidth <= 640" to="/serviceContent/contactus").btn.btn-primary.font-weight-bold.btnInPage.pr-0.py-0.mt-3.text-decoration-none 聯絡我們 <i class="fas fa-chevron-right fa-xs"></i>
         <i class="fab fa-facebook-square fa-lg mt-3"></i>
 </template>
 

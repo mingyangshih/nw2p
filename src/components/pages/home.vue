@@ -45,7 +45,7 @@
             div.stepDes.text-white.stepDesContent
               p.text-white.text-dark 我們的編輯器提供您完美、自由的操作體驗，只有您才能決定您生活的風格。
             .d-flex.try
-              button.btn.btn-primary.btnInPage.py-0.pr-0 <span class="font-weight-bold">馬上體驗</span> <i class="fas fa-chevron-right fa-xs"></i>
+              router-link(to="/standard/14").btn.btn-primary.btnInPage.py-0.pr-0.text-decoration-none <span class="font-weight-bold">馬上體驗</span> <i class="fas fa-chevron-right fa-xs"></i>
   .container-fluid
     .row.aChance
       h2.eachTitle.text-center.font-weight-bold.w-100 一個機會，讓生活獨特

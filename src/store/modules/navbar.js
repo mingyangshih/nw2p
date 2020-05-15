@@ -34,7 +34,9 @@ export default {
           }
         })
         // 計算各大類下的產品數量(用來決定是否要讓下拉選單可連到大類頁)
+        // 建新array 對應大類總數
         let eachCategoryNumber = new Array(totalCategory.length)
+        // 把全部的值設成0
         eachCategoryNumber.fill(0, 0)
         result.data.forEach(item => {
           totalCategory.forEach((item1, idx) => {
