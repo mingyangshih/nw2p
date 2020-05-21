@@ -6,7 +6,7 @@
       .col-md-3
         p 客服信箱
       .col-md-9
-        p services@cloud2p.com
+        p services@cloudw2p.com
     .d-flex.align-items-center
       .col-md-3
         p 客服時間
@@ -50,7 +50,7 @@
 import VueRecaptcha from 'vue-recaptcha'
 export default {
   components: { VueRecaptcha },
-  data: function () {
+  data () {
     return {
       buttonshow: false
     }

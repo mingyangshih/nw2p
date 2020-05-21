@@ -7,8 +7,8 @@
     .container-fluid
       .row.px-0
         .col-sm-12.px-0
-          img.w-100.firstBanner.img-fluid(src="../../assets/img/productDetail/banner.jpg" v-if="fullWidth >= 640")
-          img.w-100.firstBanner.img-fluid(src="../../assets/img/productDetail/banner_mobile.jpg" v-if="fullWidth < 640")
+          img.w-100.firstBanner.img-fluid(:src="subMenuTotalData[0].categoryBanner" v-if="fullWidth >= 640 && subMenuTotalData")
+          img.w-100.firstBanner.img-fluid(:src="subMenuTotalData[0].categoryBannerM" v-if="fullWidth < 640 && subMenuTotalData")
       //- 裝訂方式
       .row.bookBinding
         .col-sm-12.px-0.text-center
@@ -16,7 +16,7 @@
     //- 不同的裝訂方式
     .container.bookBindingProduct
       .row.justify-content-center
-        .col-6.col-md-3.text-center.mb-3(v-for = "(itm, idx) in subMenuTotalData" :class="{'mr-auto' : subMenuTotalData.length >4 && idx == subMenuTotalData.length-1}")
+        .col-6.col-md-3.text-center.mb-3(v-for = "(itm, idx) in subProducts" :class="{'mr-auto' : subProducts.length >4 && idx == subProducts.length-1}")
           .card.rounded-0
             .imgBox
               router-link(:to="'/standard/' + itm.productId")
@@ -27,16 +27,16 @@
       .row
         .col-md-6.secondBannerDesBox
           .secondBannerDes
-            p.title.text-primary.font-weight-bold.mb-md-4 編輯作品比您想得更容易
-            p 吻合各種螢幕大小的編輯空間，提供您穩定的編輯流程和隨心所欲的設計方式，我們已經可以預見您收到作品時的笑容。
+            p.title.text-primary.font-weight-bold.mb-md-4 {{subMenuTotalData[0].categoryBanner1Title}}
+            p {{subMenuTotalData[0].categoryBanner1Desc}}
             .d-flex.try.mb-3
               router-link(:to="'/standard/'+productId").btn.btn-primary.btnInPage.py-0.pr-0 <span class="font-weight-bold">馬上體驗</span> <i class="fas fa-chevron-right fa-xs"></i>
         .col-md-6.px-0.secondBanner
-          img(src="../../assets/img/productDetail/b01.jpg")
+          img(:src="subMenuTotalData[0].categoryBanner1")
     .container-fluid
       .row.satisfyAllNeeds
         h2.title.text-center.font-weight-bold.w-100.mb-0 滿足您所有場景的需求
-    .container-fluid.specialEffectleft.my-5(v-for = "(itm, idx) in subMenuTotalData")
+    .container-fluid.specialEffectleft.my-5(v-for = "(itm, idx) in subProducts")
       .row.justify-content-center
         .col-md-7.standard.bgSetting
           img(:src="itm.subMenuBigImg")
@@ -74,7 +74,8 @@ export default {
     // productdeatilmodule 取回的資料
     ...mapState({
       subMenuTotalData: state => state.productDetailModules.subMenuTotalData,
-      categoryName: state => state.productDetailModules.categoryName
+      categoryName: state => state.productDetailModules.categoryName,
+      subProducts: state => state.productDetailModules.subProducts
     })
   },
   async created () {
@@ -83,7 +84,7 @@ export default {
     // 把側邊欄關掉
     vm.$store.commit('sideBarShowEvent', false)
     await vm.$store.dispatch('getSubMenu', {categoryId})
-    vm.productId = vm.subMenuTotalData[0].productId
+    vm.productId = vm.subProducts[0].productId
   },
   mounted () {
     const vm = this

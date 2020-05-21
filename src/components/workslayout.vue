@@ -42,10 +42,12 @@ export default {
     font-family: "Noto Serif TC",serif;
   }
   .destitle{
-    border-bottom: 1px solid black;
     line-height: 18px;
     display: block;
     cursor: pointer;
+    &:hover{
+      border-bottom: 1px solid black;
+    }
   }
   .plus{
     width: 20px;

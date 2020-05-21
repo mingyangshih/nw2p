@@ -83,7 +83,7 @@
       .row.py-5.justify-content-center
         h2.font-weight-bold.mb-0.text-secondary.secondTitle 您還有更多選擇
       .row.pb-5.moreChoicePicBox
-        div(@click.prevent="standard(itm.productId)" v-for="itm in subMenuTotalData" v-if="itm.productId !== productId" :key="itm.productId").col-md-3.col-6.d-flex.justify-content-center.mb-md-3.text-decoration-none
+        div(@click.prevent="standard(itm.productId)" v-for="itm in subProducts" v-if="itm.productId !== productId" :key="itm.productId").col-md-3.col-6.d-flex.justify-content-center.mb-md-3.text-decoration-none
           .card
             .imgBox
               img.card-img-top(:src='itm.subMenuSmallImg')
@@ -126,7 +126,7 @@ export default {
       categoryName: state => state.standardModules.categoryName,
       productId: state => state.standardModules.productId,
       // productDetail modules的data
-      subMenuTotalData: state => state.productDetailModules.subMenuTotalData
+      subProducts: state => state.productDetailModules.subProducts
     }),
     // like v-model
     ...mapFields([

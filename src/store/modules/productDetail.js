@@ -4,7 +4,8 @@ import router from '@/router'
 export default{
   state: {
     subMenuTotalData: [],
-    categoryName: null
+    categoryName: null,
+    subProducts: []
   },
   actions: {
     getSubMenu (context, {categoryId}) {
@@ -14,8 +15,9 @@ export default{
       let getAPI = `${API_PATH}product/getsubmenu/${categoryId}`
       return axios.get(getAPI).then(response => {
         let subMenuTotalData = response.data.data
+        let subProducts = response.data.data[0].subProducts
         let categoryName = response.data.data[0].categoryName
-        context.commit('subMenuTotalData', {subMenuTotalData, categoryName})
+        context.commit('subMenuTotalData', {subMenuTotalData, categoryName, subProducts})
       }).catch(error => {
         console.log(error)
         router.push('/')
@@ -25,9 +27,10 @@ export default{
     }
   },
   mutations: {
-    subMenuTotalData (state, {subMenuTotalData, categoryName}) {
+    subMenuTotalData (state, {subMenuTotalData, categoryName, subProducts}) {
       state.subMenuTotalData = subMenuTotalData
       state.categoryName = categoryName
+      state.subProducts = subProducts
     }
   }
 }
