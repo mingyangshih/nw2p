@@ -12,8 +12,8 @@
           swiper(:viewportWidth="fullWidth")
         .col-md-6
           p.productTitle(:class="{'mt-3':fullWidth <= 640}") {{standardTitle}}
-          p.text-primary.font-weight-bold.secondTitle 選擇裝訂/尺寸
-          p.font-weight-bold 方向
+          p.text-primary.font-weight-bold.secondTitle 選擇規格/尺寸
+          p.font-weight-bold 規格
           .d-flex.align-items-end.mb-3
             .d-flex.flex-column.align-items-center.schematic(v-for="(item,idx) in productSpec" @click.prevent="direction = item.specName; specId =item.specId;")
               img.mb-2(:src="item.specThumbnail" :class="{'selected' : item.specName === direction}")
@@ -79,7 +79,7 @@
     //- .container-fluid.mt-4
     //-   .row.border-top.border-bottom.py-4.justify-content-center.recommendArticle
     //-     h2.font-weight-bold.mb-0.text-secondary.secondTitle 網友推薦文章
-    .container
+    .container(v-if = "subProducts.length > 1")
       .row.py-5.justify-content-center
         h2.font-weight-bold.mb-0.text-secondary.secondTitle 您還有更多選擇
       .row.pb-5.moreChoicePicBox
