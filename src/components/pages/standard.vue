@@ -12,8 +12,8 @@
           swiper(:viewportWidth="fullWidth")
         .col-md-6
           p.productTitle(:class="{'mt-3':fullWidth <= 640}") {{standardTitle}}
-          p.text-primary.font-weight-bold.secondTitle 選擇裝訂/尺寸
-          p.font-weight-bold 方向
+          p.text-primary.font-weight-bold.secondTitle 選擇規格/尺寸
+          p.font-weight-bold 規格
           .d-flex.align-items-end.mb-3
             .d-flex.flex-column.align-items-center.schematic(v-for="(item,idx) in productSpec" @click.prevent="direction = item.specName; specId =item.specId;")
               img.mb-2(:src="item.specThumbnail" :class="{'selected' : item.specName === direction}")
@@ -43,7 +43,7 @@
       .row.justify-content-center.py-4
         h2.font-weight-bold.mb-0.text-secondary.secondTitle 產品特性
       hr(v-if="fullWidth > 640").mt-0.mb-5
-    .container.specialEffectRight(v-for="(item,idx) in productFeature")
+    .container.specialEffectRight(v-for="(item,idx) in productFeature" :class="{'mb-8' : idx === (productFeature.length - 1) && (subProducts.length <= 1)}")
       .row.justify-content-center(:class="{'flex-row-reverse': idx%2 !== 0}")
         .col-md-5
           .under_second_banner_des_box_left
@@ -52,7 +52,7 @@
               p.under_secondbanner_des.mb-0(:class="{'text-justify' : fullWidth <= 640}") {{item.featureDesc}}
         .col-md-7.bgSetting
           img(:src="item.featurePicture")
-      hr.my-5
+      hr.my-5(:class="{'d-none' : idx === (productFeature.length - 1) && (subProducts.length <= 1)}")
     //- .container.mt-4.specialEffectRight
     //-   .row.justify-content-center.flex-row-reverse
     //-     .col-md-5
@@ -79,7 +79,7 @@
     //- .container-fluid.mt-4
     //-   .row.border-top.border-bottom.py-4.justify-content-center.recommendArticle
     //-     h2.font-weight-bold.mb-0.text-secondary.secondTitle 網友推薦文章
-    .container
+    .container(v-if = "subProducts.length > 1")
       .row.py-5.justify-content-center
         h2.font-weight-bold.mb-0.text-secondary.secondTitle 您還有更多選擇
       .row.pb-5.moreChoicePicBox

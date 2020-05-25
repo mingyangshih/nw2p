@@ -1,5 +1,6 @@
 <template lang="pug">
   .serviceContent.mt-30
+    alert
     //- 桌機看到的樣子
     .container.desktop
       .row
@@ -88,31 +89,51 @@
                 .col-3.px-0.d-flex.align-items-center
                   p.mb-0 姓名
                 .col-10.px-0.d-flex.align-items-start
-                  input.border-dark.form-control.w-95(type="text")
+                  input.border-dark.form-control.w-95(type="text" v-model="contactInfo.name")
               .d-flex.mb-3
                 .col-3.px-0.d-flex.align-items-center
                   p.mb-0 電話
                 .col-10.px-0.d-flex.align-items-start
-                  input.border-dark.form-control.w-95(type="text")
+                  input.border-dark.form-control.w-95(type="text" v-model="contactInfo.phone")
               .d-flex.mb-3
                 .col-3.px-0.d-flex.align-items-center
                   p.mb-0 Email
                 .col-10.px-0.d-flex.align-items-start
-                  input.border-dark.form-control.w-95(type="text")
+                  input.border-dark.form-control.w-95(type="text" v-model="contactInfo.email")
               .d-flex.mb-3
                 .col-3.px-0.d-flex.align-items-center
                   p.mb-0 您的留言
                 .col-10.px-0.d-flex.align-items-start
-                 textarea(cols="30" rows="10").form-control.w-95.border-dark
+                 textarea(cols="30" rows="10" v-model="contactInfo.message").form-control.w-95.border-dark
+              .d-flex.justify-content-end
+                button.btn.btn-primary.font-weight-bold.btnInPage.pr-0.py-0.my-3.text-decoration-none(@click="contactus") 確認送出 <i class="fas fa-chevron-right fa-xs"></i>
 
 </template>
 
 <script>
+import {mapActions} from 'vuex'
+import { createHelpers } from 'vuex-map-fields'
+import alert from '../alert'
+const { mapFields } = createHelpers({
+  getterType: 'contactusModules/getField',
+  mutationType: 'contactusModules/updateField'
+})
 export default {
+  components: {
+    alert
+  },
   data () {
     return {
       active: ''
     }
+  },
+  methods: {
+    ...mapActions('contactusModules', [
+      'contactus'
+    ])
+  },
+  computed: {
+    ...mapFields(['contactInfo'])
   }
 }
 </script>
@@ -162,5 +183,19 @@ export default {
   }
   hr{
     border-color: black;
+  }
+  .btnInPage{
+    border-radius: 5px;
+    width: 203px;
+    height: 39px;
+    font-size: 21px;
+    padding-left: 50px;
+    box-sizing: border-box;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    .fa-chevron-right{
+      margin-left: 37px;
+    }
   }
 </style>
