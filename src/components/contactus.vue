@@ -19,31 +19,32 @@
         p 姓名
       .col-md-9
         input(type="text" v-model="contactInfo.name").form-control
-        p.mb-0.text-danger.text-right.fz14(v-if="contactInfo.name === ''") 此欄位必填
+        p.mb-0.text-danger.text-right.fz14(v-if="contactInfo.name === '' && emptyInput.indexOf(0) > -1") 此欄位必填
     .d-flex.align-items-center.mb-3
       .col-md-3
         p 電話
       .col-md-9
         input(type="text" v-model="contactInfo.phone").form-control
-        p.mb-0.text-danger.text-right.fz14(v-if="contactInfo.phone === ''") 此欄位必填
+        p.mb-0.text-danger.text-right.fz14(v-if="contactInfo.phone === '' && emptyInput.indexOf(1) > -1") 此欄位必填
     .d-flex.align-items-center.mb-3
       .col-md-3
         p Email
       .col-md-9
         input(type="text" v-model="contactInfo.email").form-control
-        p.mb-0.text-danger.text-right.fz14(v-if="contactInfo.email === ''") 此欄位必填
+        p.mb-0.text-danger.text-right.fz14(v-if="contactInfo.email === '' && emptyInput.indexOf(2) > -1") 此欄位必填
     .d-flex.align-items-center.mb-3
       .col-md-3
         p 您的留言
       .col-md-9
         textarea(name="" id="" cols="30" rows="10" v-model="contactInfo.message").form-control
-        p.mb-0.text-danger.text-right.fz14(v-if="contactInfo.message === ''") 此欄位必填
+        p.mb-0.text-danger.text-right.fz14(v-if="contactInfo.message === '' && emptyInput.indexOf(3) > -1") 此欄位必填
     .d-flex.align-items-center.mb-3
       .col-md-3
       .col-md-9
         p 如一直收不到回覆信件，請查明您的垃圾信件夾，並將services@cloudw2p.com 加入通訊錄喔！上列您填入的資料，僅在雲端印刷網上交易使用，不會作為其他用途使用。以上資料請仔細填寫，聯絡將以此資料為主，謝謝您的填寫。
     .d-flex.justify-content-end
-      button.btn.btn-primary.font-weight-bold.btnInPage.pr-0.py-0.my-3.text-decoration-none(@click="contactus" :disabled= "!contactInfo.name || !contactInfo.phone || !contactInfo.email || !contactInfo.message") 確認送出 <i class="fas fa-chevron-right fa-xs"></i>
+      //- button.btn.btn-primary.font-weight-bold.btnInPage.pr-0.py-0.my-3.text-decoration-none(@click="contactus" :disabled= "!contactInfo.name || !contactInfo.phone || !contactInfo.email || !contactInfo.message") 確認送出 <i class="fas fa-chevron-right fa-xs"></i>
+      button.btn.btn-primary.font-weight-bold.btnInPage.pr-0.py-0.my-3.text-decoration-none(@click="contactus") 確認送出 <i class="fas fa-chevron-right fa-xs"></i>
 
   //-   <vue-recaptcha sitekey="6LdHFfcUAAAAADCn3wk3uobB9hE3kWWwIkIA5h-u" @verify="buttonshow =true" @expired="buttonshow = false">
   //- </vue-recaptcha>
@@ -74,7 +75,10 @@ export default {
     ])
   },
   computed: {
-    ...mapFields(['contactInfo'])
+    ...mapFields(['contactInfo', 'emptyInput'])
+  },
+  created () {
+    this.$store.commit('contactusModules/clearContactInfo')
   }
 }
 </script>

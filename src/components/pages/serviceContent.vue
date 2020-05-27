@@ -88,23 +88,27 @@
               .d-flex.mb-3
                 .col-3.px-0.d-flex.align-items-center
                   p.mb-0 姓名
-                .col-10.px-0.d-flex.align-items-start
+                .col-10.px-0.d-flex.flex-column.align-items-start
                   input.border-dark.form-control.w-95(type="text" v-model="contactInfo.name")
+                  p.mb-0.text-danger.text-right.fz14(v-if="contactInfo.name === '' && emptyInput.indexOf(0) > -1") 此欄位必填
               .d-flex.mb-3
                 .col-3.px-0.d-flex.align-items-center
                   p.mb-0 電話
-                .col-10.px-0.d-flex.align-items-start
+                .col-10.px-0.d-flex.flex-column.align-items-start
                   input.border-dark.form-control.w-95(type="text" v-model="contactInfo.phone")
+                  p.mb-0.text-danger.text-right.fz14(v-if="contactInfo.phone === '' && emptyInput.indexOf(1) > -1") 此欄位必填
               .d-flex.mb-3
                 .col-3.px-0.d-flex.align-items-center
                   p.mb-0 Email
-                .col-10.px-0.d-flex.align-items-start
+                .col-10.px-0.d-flex.flex-column.align-items-start
                   input.border-dark.form-control.w-95(type="text" v-model="contactInfo.email")
+                  p.mb-0.text-danger.text-right.fz14(v-if="contactInfo.email === '' && emptyInput.indexOf(2) > -1") 此欄位必填
               .d-flex.mb-3
                 .col-3.px-0.d-flex.align-items-center
                   p.mb-0 您的留言
-                .col-10.px-0.d-flex.align-items-start
+                .col-10.px-0.d-flex.flex-column.align-items-start
                  textarea(cols="30" rows="10" v-model="contactInfo.message").form-control.w-95.border-dark
+                 p.mb-0.text-danger.text-right.fz14(v-if="contactInfo.message === '' && emptyInput.indexOf(3) > -1") 此欄位必填
               .d-flex.justify-content-end
                 button.btn.btn-primary.font-weight-bold.btnInPage.pr-0.py-0.my-3.text-decoration-none(@click="contactus") 確認送出 <i class="fas fa-chevron-right fa-xs"></i>
 
@@ -133,7 +137,10 @@ export default {
     ])
   },
   computed: {
-    ...mapFields(['contactInfo'])
+    ...mapFields(['contactInfo', 'emptyInput'])
+  },
+  created () {
+    this.$store.commit('contactusModules/clearContactInfo')
   }
 }
 </script>
