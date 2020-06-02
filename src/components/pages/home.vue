@@ -3,8 +3,9 @@
   .container-fluid
     .row.px-0
       .col-sm-12.px-0
-        img.w-100.firstBanner.img-fluid.deskTop(src="../../assets/img/home/banner.jpg")
-        img.w-100.firstBanner.img-fluid.mobile(src="../../assets/img/home/banner01.jpg")
+        homeSwiper(:viewportWidth="fullWidth")
+        //- img.w-100.firstBanner.img-fluid.deskTop(src="../../assets/img/home/banner.jpg")
+        //- img.w-100.firstBanner.img-fluid.mobile(src="../../assets/img/home/banner_mobile.jpg")
     //- 第一層產品TITLE
     .row.letPhotoForever
       .col-sm-12.px-0.text-center
@@ -52,13 +53,31 @@
       p.text-center.w-100.eachSecondTitle.px-2 裝飾你的重要時刻，讓你的日常生活更加快樂
   .container.aChanceBox
     .row.justify-content-center
-      router-link(:to="`/productDetail/${itm.categoryId}`" v-for="itm in getHomeCategoryData" :key="itm.categoryId").col-sm-6.mb-30
-        .aChanceInsideBox
+      .col-sm-6.mb-30(v-for="itm in getHomeCategoryData" :key="itm.categoryId")
+        router-link.aChanceInsideBox.d-block(to="/serviceContent/contactus" v-if="itm.isLink === 'Y' && itm.categoryName === '更多客製化商品'")
           .w-40.wordBox.d-flex.flex-column.align-items-center.justify-content-center.h-100
             p.wordBoxTitle.text-dark {{itm.categoryName}}
             P.wordBoxTitleEn.text-dark {{itm.categoryEName}}
             p.font-weight-bold.standard.text-dark.mb-0(v-for="item in totalProduct" v-if="item.categoryId === itm.categoryId") {{item.productName}}
           img(:src="itm.categoryImg").w-100
+        router-link.aChanceInsideBox.d-block(:to="`/productDetail/${itm.categoryId}`" v-if="itm.isLink === 'Y' && itm.categoryName !== '更多客製化商品'" )
+          .w-40.wordBox.d-flex.flex-column.align-items-center.justify-content-center.h-100
+            p.wordBoxTitle.text-dark {{itm.categoryName}}
+            P.wordBoxTitleEn.text-dark {{itm.categoryEName}}
+            p.font-weight-bold.standard.text-dark.mb-0(v-for="item in totalProduct" v-if="item.categoryId === itm.categoryId") {{item.productName}}
+          img(:src="itm.categoryImg").w-100
+        .aChanceInsideBox.d-block(v-if="itm.isLink === ''")
+          .w-40.wordBox.d-flex.flex-column.align-items-center.justify-content-center.h-100
+            p.wordBoxTitle.text-dark {{itm.categoryName}}
+            P.wordBoxTitleEn.text-dark {{itm.categoryEName}}
+            p.font-weight-bold.standard.text-dark.mb-0(v-for="item in totalProduct" v-if="item.categoryId === itm.categoryId") {{item.productName}}
+          img(:src="itm.categoryImg").w-100
+        //- .aChanceInsideBox.d-block(v-if="itm.isLink === 'Y' && itm.categoryName === '更多客製化商品'")
+        //-   .w-40.wordBox.d-flex.flex-column.align-items-center.justify-content-center.h-100
+        //-     p.wordBoxTitle.text-dark {{itm.categoryName}}
+        //-     P.wordBoxTitleEn.text-dark {{itm.categoryEName}}
+        //-     //- p.font-weight-bold.standard.text-dark.mb-0(v-for="item in totalProduct" v-if="item.categoryId === itm.categoryId") {{item.productName}}
+        //-   img(:src="itm.categoryImg").w-100
   .container.px-0
     .row.justify-content-center.w-100.mx-auto.px-0
       h2.eachTitle.text-center.font-weight-bold.w-100 全新的線上編輯器
@@ -74,10 +93,9 @@ import navbarhead from '../navbarhead'
 import navCustomize from '../navCustomize'
 import loginmodal from '../../components/loginmodal'
 import enrollmodal from '../../components/enrollmodal'
-// import tpxNavbarhead from '../../components/tpxNavbarhead'
+import homeSwiper from '../../components/homeSwiper'
 
 import {mapState} from 'vuex'
-// import { mapFields } from 'vuex-map-fields'
 export default {
   components: {
     footerComponent,
@@ -85,7 +103,8 @@ export default {
     navbarhead,
     loginmodal,
     enrollmodal,
-    navCustomize
+    navCustomize,
+    homeSwiper
   },
   data () {
     return {
