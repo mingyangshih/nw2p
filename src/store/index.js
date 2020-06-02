@@ -16,7 +16,8 @@ Vue.use(Vuex)
 export default new Vuex.Store({
   state: {
     isLoading: null,
-    sideBarShow: null
+    sideBarShow: null,
+    imgPath: window.imgPath
   },
   actions: {
     loadingStatus (context, status) {

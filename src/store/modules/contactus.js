@@ -10,10 +10,15 @@ export default{
       message: ''
     },
     // 用來判斷未填的欄位
-    emptyInput: []
+    emptyInput: [],
+    verifyImg: '',
+    code: '',
+    // enter by customer
+    verifyCode: ''
   },
   actions: {
-    contactus ({state, commit}) {
+    // 觸發聯絡我們
+    contactus ({state, commit, dispatch}) {
       let API_PATH = window.API
       let keys = Object.keys(state.contactInfo)
       let emptyInput = []
@@ -47,24 +52,45 @@ export default{
             // 成功後把所有input全部清空
             commit('clearContactInfo')
           }
-          // else {
-          // let message = '傳送失敗，請重試一次'
-          // let theme = 'danger'
-          // let emptyInput = []
-          // 先傳一次把之前檢測的清空
-          // commit('testEmptyInput', emptyInput)
-          // 失敗彈出視窗
-          // commit('changeMessage', {message, theme}, {root: true})
-          // let keys = Object.keys(state.contactInfo)
-          // keys.forEach((itm, idx) => {
-          //   if (state.contactInfo[itm] === '') emptyInput.push(idx)
-          // })
-          // 判斷哪些未填
-          // commit('testEmptyInput', emptyInput)
-          // }
         }).finally(() => {
+          // 重取一次圖片
+          dispatch('getImage')
         })
       }
+    },
+    getImage ({commit}) {
+      let API_PATH = window.API
+      let number = Math.random()
+      fetch(`${API_PATH}captcha/create?${number}`, {
+        method: 'POST'
+      }).then(res => {
+        return res.json()
+      }).then(result => {
+        commit('verifyImgAndCode', result)
+      })
+    },
+    captcha ({state, commit, dispatch}) {
+      let API_PATH = window.API
+      let form = `captcha=${state.verifyCode}&captchacode=${state.code}`
+      // jquery
+      $.ajax({
+        async: true,
+        type: 'post',
+        url: `${API_PATH}captcha/validate`,
+        data: form,
+        success: function (data) {
+          if (data.code === 'N') {
+            let message = '驗證碼輸入錯誤'
+            let theme = 'danger'
+            commit('changeMessage', {message, theme}, {root: true})
+          } else {
+            state.verifyCode = ''
+            dispatch('contactus')
+          }
+        },
+        error: function (jqXHR, textStatus) {
+        }
+      })
     }
   },
   mutations: {
@@ -75,10 +101,15 @@ export default{
       keys.forEach((itm) => {
         state.contactInfo[itm] = ''
       })
+      state.emptyInput = []
     },
     // 設定判斷是否全部都填的array
     testEmptyInput (state, emptyInput) {
       state.emptyInput = emptyInput
+    },
+    verifyImgAndCode (state, result) {
+      state.verifyImg = result.imagedata
+      state.code = result.code
     }
   },
   getters: {

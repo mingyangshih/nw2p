@@ -17,7 +17,7 @@
         .card.rounded-0
           .imgBox
             router-link(:to="`/standard/${item.productId}`")
-              img.card-img-top.rounded-0(:src='item.productAlbum' :alt='item.productName')
+              img.card-img-top.rounded-0(:src='$store.state.imgPath+item.productAlbum' :alt='item.productName')
           .card-body
             h5.card-title.text-secondary {{item.productName}}
   .container-fluid.bg-gray.secondBannerBox

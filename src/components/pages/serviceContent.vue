@@ -89,28 +89,37 @@
                 .col-3.px-0.d-flex.align-items-center
                   p.mb-0 姓名
                 .col-10.px-0.d-flex.flex-column.align-items-start
-                  input.border-dark.form-control.w-95(type="text" v-model="contactInfo.name")
+                  input.border-dark.form-control.w-95.rounded-0(type="text" v-model="contactInfo.name")
                   p.mb-0.text-danger.text-right.fz14(v-if="contactInfo.name === '' && emptyInput.indexOf(0) > -1") 此欄位必填
               .d-flex.mb-3
                 .col-3.px-0.d-flex.align-items-center
                   p.mb-0 電話
                 .col-10.px-0.d-flex.flex-column.align-items-start
-                  input.border-dark.form-control.w-95(type="text" v-model="contactInfo.phone")
+                  input.border-dark.form-control.w-95.rounded-0(type="text" v-model="contactInfo.phone")
                   p.mb-0.text-danger.text-right.fz14(v-if="contactInfo.phone === '' && emptyInput.indexOf(1) > -1") 此欄位必填
               .d-flex.mb-3
                 .col-3.px-0.d-flex.align-items-center
                   p.mb-0 Email
                 .col-10.px-0.d-flex.flex-column.align-items-start
-                  input.border-dark.form-control.w-95(type="text" v-model="contactInfo.email")
+                  input.border-dark.form-control.w-95.rounded-0(type="text" v-model="contactInfo.email")
                   p.mb-0.text-danger.text-right.fz14(v-if="contactInfo.email === '' && emptyInput.indexOf(2) > -1") 此欄位必填
               .d-flex.mb-3
                 .col-3.px-0.d-flex.align-items-center
                   p.mb-0 您的留言
                 .col-10.px-0.d-flex.flex-column.align-items-start
-                 textarea(cols="30" rows="10" v-model="contactInfo.message").form-control.w-95.border-dark
+                 textarea(cols="30" rows="10" v-model="contactInfo.message").form-control.w-95.border-dark.rounded-0
                  p.mb-0.text-danger.text-right.fz14(v-if="contactInfo.message === '' && emptyInput.indexOf(3) > -1") 此欄位必填
+              .d-flex
+                img.ml-auto.captchaImg(:src="verifyImg")
+              .d-flex.my-3.align-items-center
+                .col-3.px-0.d-flex.align-items-center
+                  p.mb-0 輸入驗證碼
+                .col-10.px-0.d-flex.flex-column.align-items-start
+                  input(type="text" v-model="verifyCode").form-control.border-dark.w-95.rounded-0
               .d-flex.justify-content-end
-                button.btn.btn-primary.font-weight-bold.btnInPage.pr-0.py-0.my-3.text-decoration-none(@click="contactus") 確認送出 <i class="fas fa-chevron-right fa-xs"></i>
+                button.btn.btn-primary.font-weight-bold.btnInPage.px-0.py-0.text-decoration-none.rounded-0.mt-3(@click="getImage") 重產驗證碼
+              .d-flex.justify-content-end
+                button.btn.btn-primary.font-weight-bold.btnInPage.pr-0.py-0.my-3.text-decoration-none.rounded-0(@click="captcha") 確認送出 <i class="fas fa-chevron-right fa-xs"></i>
 
 </template>
 
@@ -133,14 +142,15 @@ export default {
   },
   methods: {
     ...mapActions('contactusModules', [
-      'contactus'
+      'contactus', 'captcha', 'getImage'
     ])
   },
   computed: {
-    ...mapFields(['contactInfo', 'emptyInput'])
+    ...mapFields(['contactInfo', 'emptyInput', 'verifyImg', 'code', 'verifyCode'])
   },
   created () {
     this.$store.commit('contactusModules/clearContactInfo')
+    this.$store.dispatch('contactusModules/getImage')
   }
 }
 </script>
@@ -204,5 +214,8 @@ export default {
     .fa-chevron-right{
       margin-left: 37px;
     }
+  }
+  .captchaImg{
+    margin-right: -14px;
   }
 </style>

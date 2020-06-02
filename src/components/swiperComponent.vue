@@ -2,7 +2,7 @@
   <div class="swiperComponent" :class="{'mt-3' : viewportWidth <= 640}">
     <swiper :options="swiperOptionTop" class="gallery-top" ref="swiperTop"  v-if="productAlbum.length>0">
     <!-- slides -->
-      <swiper-slide class="bigImg" v-for="item in productAlbum" :key="item.albumId"><img :src="item.productAlbum" alt=""></swiper-slide>
+      <swiper-slide class="bigImg" v-for="item in productAlbum" :key="item.albumId"><img :src="$store.state.imgPath+item.productAlbum" alt=""></swiper-slide>
       <!-- Optional controls -->
       <div class="swiper-pagination"  slot="pagination"></div>
       <!-- <div class="swiper-button-prev" slot="button-prev"></div> -->
@@ -11,10 +11,10 @@
       <!-- swiper2 Thumbs -->
     </swiper>
     <swiper :options="swiperOptionThumbs" class="gallery-thumbs mt-3" ref="swiperThumbs" v-if="viewportWidth > 640 && productAlbum.length>0">
-      <swiper-slide class="slide-1 smallImg" v-for="item in productAlbum" :key="item.albumId" ><img :src="item.productAlbum" alt=""></swiper-slide>
+      <swiper-slide class="slide-1 smallImg" v-for="item in productAlbum" :key="item.albumId" ><img :src="$store.state.imgPath+item.productAlbum" alt=""></swiper-slide>
     </swiper>
     <swiper :options="swiperOptionThumbs" class="gallery-thumbs mt-3" ref="swiperThumbs" v-if="viewportWidth < 640 && productAlbum.length>0">
-      <swiper-slide class="slide-1 smallImg" v-for="item in productAlbum" :key="item.albumId" ><img :src="item.productAlbum" alt=""></swiper-slide>
+      <swiper-slide class="slide-1 smallImg" v-for="item in productAlbum" :key="item.albumId" ><img :src="$store.state.imgPath+item.productAlbum" alt=""></swiper-slide>
     </swiper>
   </div>
 </template>

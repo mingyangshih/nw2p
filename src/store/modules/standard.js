@@ -16,6 +16,8 @@ export default {
     productInfo: [],
     // 下方文字資料
     productFeature: [],
+    // 網友推薦
+    productRecommend: [],
     // 規格頁數選資料
     productIntroDesc: [],
     productIntroLeftCol: [],
@@ -40,19 +42,20 @@ export default {
         let productSpec = response.data.data[1].productSpec
         let productInfo = response.data.data[2].productInfo
         let productFeature = response.data.data[3].productFeature
+        let productRecommend = response.data.data[4].productRecommend
         // 規格標題
         let standardTitle = response.data.data[2].productInfo[0].productName
         let categoryName = response.data.data[2].productInfo[0].categoryName
         let categoryId = response.data.data[2].productInfo[0].categoryId
         let productId = response.data.data[2].productInfo[0].productId
-        context.commit('changeStandardData', {productSpec, productInfo, productFeature, standardTitle, categoryName, categoryId, productId})
+        context.commit('changeStandardData', {productSpec, productInfo, productFeature, standardTitle, categoryName, categoryId, productId, productRecommend})
       }).catch((error) => { console.log(error) }).finally(() => {
         context.commit('LOADING', false, {root: true})
       })
     }
   },
   mutations: {
-    changeStandardData (state, {productSpec, productInfo, productFeature, standardTitle, categoryName, categoryId, productId}) {
+    changeStandardData (state, {productSpec, productInfo, productFeature, standardTitle, categoryName, categoryId, productId, productRecommend}) {
       state.productSpec = productSpec
       state.productInfo = productInfo
       state.productFeature = productFeature
@@ -63,6 +66,7 @@ export default {
       state.categoryName = categoryName
       state.categoryId = categoryId
       state.productId = productId
+      state.productRecommend = productRecommend
     },
     updateField
   },

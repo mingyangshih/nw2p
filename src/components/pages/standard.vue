@@ -51,34 +51,17 @@
               p.font-weight-bold.text-dark.under_secondbanner_des_title(:class="{'mb-3' : fullWidth <= 640}") {{item.featureTitle}}
               p.under_secondbanner_des.mb-0(:class="{'text-justify' : fullWidth <= 640}") {{item.featureDesc}}
         .col-md-7.bgSetting
-          img(:src="item.featurePicture")
+          img(:src="$store.state.imgPath+item.featurePicture")
       hr.my-5(:class="{'d-none' : idx === (productFeature.length - 1) && (subProducts.length <= 1)}")
-    //- .container.mt-4.specialEffectRight
-    //-   .row.justify-content-center.flex-row-reverse
-    //-     .col-md-5
-    //-       .under_second_banner_des_box_right
-    //-         .glasses
-    //-           p.font-weight-bold.text-dark.under_secondbanner_des_title(:class="{'mb-3' : fullWidth <= 640}") 封面 ‧ 霧面防水處理
-    //-           p.under_secondbanner_des.mb-0(:class="{'text-justify' : fullWidth <= 640}") 照片、書名搭配，封面封底採用特殊印刷效果。
-    //-           p.under_secondbanner_des.mb-0(:class="{'text-justify' : fullWidth <= 640}") 相片書內頁與封面是以不同紙張與印刷機台印製，且封面均有上膜保護，和紙張吸墨性不同的變數，故會讓同一張照片產生正負10%的色彩差異。
-    //-     .col-md-7.bgSetting
-    //-       img(src="../../assets/img/standard/c02.jpg")
-    //- .container
-    //-   hr.my-5
-    //- .container.specialEffectRightspecialEffectRightRow
-    //-   .row.justify-content-center
-    //-     .col-md-5
-    //-       .under_second_banner_des_box_left
-    //-         .glasses
-    //-           p.font-weight-bold.text-dark.under_secondbanner_des_title(:class="{'mb-3' : fullWidth <= 640}") 書背 ‧ 書名與作者
-    //-           p.under_secondbanner_des.mb-0(:class="{'text-justify' : fullWidth <= 640}") 書寫方向任意變化，(半形)英數字、符號，書寫方向將自動轉為橫向，(全形)為直向書寫。
-    //-           p.under_secondbanner_des.mb-0(:class="{'text-justify' : fullWidth <= 640}") 編輯器書背字體固定為華康楷書體(系統自動產出固定大小)，目前無法依個人喜好自訂大小。
-    //-           p.under_secondbanner_des.text-primary(:class="{'text-justify' : fullWidth <= 640}") 小提醒：平裝書頁數較少時，若書背(小於5mm以下)字體易產生過小且裝訂偏斜不美觀的情況，故少於5mm時不印製書背喔！
-    //-     .col-md-7.bgSetting
-    //-       img(src="../../assets/img/standard/c03.jpg")
-    //- .container-fluid.mt-4
-    //-   .row.border-top.border-bottom.py-4.justify-content-center.recommendArticle
-    //-     h2.font-weight-bold.mb-0.text-secondary.secondTitle 網友推薦文章
+    //- 網友推薦文章
+    .container-fluid.mt-4(v-if="productRecommend.length > 0")
+      .row.border-top.border-bottom.py-4.align-items-center.recommendArticle.flex-column
+        h2.font-weight-bold.text-secondary.secondTitle.mb-4 網友推薦文章
+        .eachSuggest.mb-3.w-50.py-2.px-4.bg-white.d-flex.flex-column.justify-content-center(v-for="item in productRecommend")
+          .d-flex
+            p.mb-0.font-weight-bold {{item.recommendName}}
+            p.date.ml-auto {{item.recommendDate}}
+          a(:href="item.recommendLink" target="_blank").mb-0.text-dark {{item.recommendTitle}}
     .container(v-if = "subProducts.length > 1")
       .row.py-5.justify-content-center
         h2.font-weight-bold.mb-0.text-secondary.secondTitle 您還有更多選擇
@@ -125,6 +108,7 @@ export default {
       productIntroDesc: state => state.standardModules.productIntroDesc,
       categoryName: state => state.standardModules.categoryName,
       productId: state => state.standardModules.productId,
+      productRecommend: state => state.standardModules.productRecommend,
       // productDetail modules的data
       subProducts: state => state.productDetailModules.subProducts
     }),
@@ -449,6 +433,15 @@ export default {
       .col-md-7{
         order:1;
       }
+    }
+  }
+  // 網友推薦
+  .eachSuggest{
+    height: 100px;
+    box-shadow: rgba(0, 0, 0, 0.1) 0px 2px 8px;
+    .date{
+      font-size: 14px;
+      color: rgba(0,0,0,.4)
     }
   }
   // footer
