@@ -34,6 +34,7 @@
               p(v-else @click.prevent="standard(eachCategoryProduct[idx][0])").font-weight-bold.pl-3.py-2.mb-0.allProdItemDetailItem.fz14.text-decoration.none.text-dark <span @click="sideBarShowEvent">{{item}}</span>
               p.mb-0.font-weight-bold.pl-3.py-2.allProdItemDetailItem.fz14.text-decoration-none.text-dark( v-for="(item1,idx1) in totalProduct" :key="idx1" v-if="item1.productCategory === item" @click.prevent="standard(item1.productId)") - <span >{{item1.productName}}</span>
       label.item.helpCenter.mb-0.align-items-center 幫助中心
+      label.mb-0.ml-3(data-toggle="modal" data-target="#loginModal") SSO登入測試
       router-link(to="/aboutYFP").text-dark.item.aboutUs.mb-0.align-items-center.text-decoration-none 關於我們
       label.item.saledHelp.mb-0.align-items-center 售後服務
       label.item.contactUs.mb-0.align-items-center 聯絡我們
@@ -49,6 +50,7 @@
             span.tpx.tpx-basketCount(id="tpx-basketButtonCount")
     //- 小於640秀的畫面
     //- <!-- My Projects pop out panel -->
+    loginmodal
     <div id="tpx-projectlistcontents" class="tpx tpx-projectlist">
         <div id="tpx-projectsItemListContainer" class="tpx tpx-projectlist-items-container">
             <ul id="tpx-projectsItemList" class="tpx tpx-shopping-cart-items"></ul>
@@ -79,8 +81,12 @@
 </template>
 
 <script>
+import loginmodal from './loginmodal'
 import {mapState, mapActions} from 'vuex'
 export default{
+  components: {
+    loginmodal
+  },
   props: ['viewportWidth'],
   data () {
     return {
