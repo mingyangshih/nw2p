@@ -8,7 +8,8 @@ export default {
       commit('LOADING', true)
       let data = {account: memberId, password: password}
       // console.log(qs.stringify(data))
-      axios.post(`${process.env.API}auth/login`, qs.stringify(data), {
+      let API_PATH = window.API
+      axios.post(`${API_PATH}auth/login`, qs.stringify(data), {
         headers: {
           'Content-Type': 'application/x-www-form-urlencoded'
         }
