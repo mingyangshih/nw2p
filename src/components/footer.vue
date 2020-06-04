@@ -3,7 +3,8 @@
     .row.py-8.justify-content-cneter
       .col-md-3.col-6.footerContent
         p.footerTitle.font-weight-bold 商品資訊
-        p.link(v-for="(itm,idx) in totalCategory" @click="getSubMenu(categoryId[idx])") {{itm}}
+        p.link( @click="getSubMenu(categoryId[idx])" v-for="(itm,idx) in totalCategory" v-if="eachCategoryProduct[idx].length > 1") {{itm}}
+        p.link(v-else @click="standard(eachCategoryProduct[idx][0])") {{itm}}
       .col-md-6.col-6.d-flex(:class="{'flex-column':viewportWidth<=640}")
         .aboutUs.w-100.w-md-50
           p.footerTitle.font-weight-bold 認識我們
@@ -35,7 +36,9 @@ export default {
     ...mapState({
       // combineNav js為了連到Category頁面
       totalCategory: state => state.navbarModules.totalCategory,
-      categoryId: state => state.navbarModules.categoryId
+      categoryId: state => state.navbarModules.categoryId,
+      eachCategoryNumber: state => state.navbarModules.eachCategoryNumber,
+      eachCategoryProduct: state => state.navbarModules.eachCategoryProduct
     })
   },
   methods: {
@@ -45,6 +48,13 @@ export default {
       this.$router.push(`/productDetail/${categoryId}`).catch(err => {
         if (err.name === 'NavigationDuplicated') window.location.reload()
       })
+    },
+    standard (id) {
+      // catch error 判斷是否點到同一頁 true reload
+      this.$router.push(`/standard/${id}`).catch(err => {
+        if (err.name === 'NavigationDuplicated') window.location.reload()
+      })
+      window.location.reload()
     }
   }
 }

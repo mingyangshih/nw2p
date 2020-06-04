@@ -26,7 +26,7 @@
           p.text-primary.font-weight-bold.secondTitle 產品資訊
             .row
               .col-4
-                p 方向
+                p 規格
               .col-8
                 p {{direction}}
             .row(v-for="(itm, idx) in specId_sizeId_info.productIntroLeftCol")
@@ -49,7 +49,8 @@
           .under_second_banner_des_box_left
             .glasses
               p.font-weight-bold.text-dark.under_secondbanner_des_title(:class="{'mb-3' : fullWidth <= 640}") {{item.featureTitle}}
-              p.under_secondbanner_des.mb-0(:class="{'text-justify' : fullWidth <= 640}") {{item.featureDesc}}
+              p.under_secondbanner_des.mb-0(:class="{'text-justify' : fullWidth <= 640}" v-html="item.featureDesc")
+              //- {{item.featureDesc}}
         .col-md-7.bgSetting
           img(:src="$store.state.imgPath+item.featurePicture")
       hr.my-5(:class="{'d-none' : idx === (productFeature.length - 1) && (subProducts.length <= 1)}")
@@ -57,7 +58,7 @@
     .container-fluid.mt-4(v-if="productRecommend.length > 0")
       .row.border-top.border-bottom.py-4.align-items-center.recommendArticle.flex-column
         h2.font-weight-bold.text-secondary.secondTitle.mb-4 網友推薦文章
-        .eachSuggest.mb-3.w-50.py-2.px-4.bg-white.d-flex.flex-column.justify-content-center(v-for="item in productRecommend")
+        .eachSuggest.mb-3.py-2.px-4.bg-white.d-flex.flex-column.justify-content-center(v-for="item in productRecommend")
           .d-flex
             p.mb-0.font-weight-bold {{item.recommendName}}
             p.date.ml-auto {{item.recommendDate}}
@@ -302,7 +303,7 @@ export default {
     justify-content: center;
     box-sizing: border-box;
     height: 100%;
-    align-items: flex-end;
+    align-items: flex-start;
     // margin-right: 60px;
   }
   @media (min-width: 640px){
@@ -437,11 +438,21 @@ export default {
   }
   // 網友推薦
   .eachSuggest{
-    height: 100px;
+    height: 120px;
     box-shadow: rgba(0, 0, 0, 0.1) 0px 2px 8px;
+    width: 100%;
     .date{
       font-size: 14px;
       color: rgba(0,0,0,.4)
+    }
+    a{
+      height: 20px;
+      overflow:hidden;
+    }
+  }
+  @media(min-width: 640px){
+    .eachSuggest{
+      width: 50%;
     }
   }
   // footer

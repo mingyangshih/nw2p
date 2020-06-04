@@ -66,7 +66,7 @@
             P.wordBoxTitleEn.text-dark {{itm.categoryEName}}
             p.font-weight-bold.standard.text-dark.mb-0(v-for="item in totalProduct" v-if="item.categoryId === itm.categoryId") {{item.productName}}
           img(:src="itm.categoryImg").w-100
-        .aChanceInsideBox.d-block(v-if="itm.isLink === ''")
+        router-link.aChanceInsideBox.d-block(v-if="itm.isLink !== 'Y'" :to="`/standard/${itm.isLink}`")
           .w-40.wordBox.d-flex.flex-column.align-items-center.justify-content-center.h-100
             p.wordBoxTitle.text-dark {{itm.categoryName}}
             P.wordBoxTitleEn.text-dark {{itm.categoryEName}}
@@ -81,9 +81,9 @@
   .container.px-0
     .row.justify-content-center.w-100.mx-auto.px-0
       h2.eachTitle.text-center.font-weight-bold.w-100 全新的線上編輯器
-      p.text-center.w-100.eachSecondTitle.px-2 從電腦到手機，讓你隨時隨地編輯都便利
+      p.text-center.w-100.eachSecondTitle.px-2.mb-0 從電腦到手機，讓你隨時隨地編輯都便利
       .bgSetting
-        img.my-30.newEditor(src="../../assets/img/home/3c.jpg")
+        img.mb-30.newEditor(src="../../assets/img/home/3c.jpg")
 </template>
 
 <script>
@@ -480,7 +480,7 @@ $serif: 'Noto Serif TC', serif;
 }
 // new editor 圖片
 .bgSetting{
-  max-width:520px;
+  max-width:800px;
   height:auto;
   box-sizing: border-box;
   display: flex;
