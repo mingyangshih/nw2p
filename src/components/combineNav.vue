@@ -33,10 +33,10 @@
               p(@click.prevent="productdetail(categoryId[idx])" v-if="eachCategoryNumber[idx] > 1").font-weight-bold.pl-3.py-2.mb-0.allProdItemDetailItem.fz14.text-decoration.none.text-dark <span @click="sideBarShowEvent">{{item}}</span>
               p(v-else @click.prevent="standard(eachCategoryProduct[idx][0])").font-weight-bold.pl-3.py-2.mb-0.allProdItemDetailItem.fz14.text-decoration.none.text-dark <span @click="sideBarShowEvent">{{item}}</span>
               p.mb-0.font-weight-bold.pl-3.py-2.allProdItemDetailItem.fz14.text-decoration-none.text-dark( v-for="(item1,idx1) in totalProduct" :key="idx1" v-if="item1.productCategory === item" @click.prevent="standard(item1.productId)") - <span >{{item1.productName}}</span>
-      label.item.helpCenter.mb-0.align-items-center 幫助中心
+      label(@click="serviceContent").item.helpCenter.mb-0.align-items-center 幫助中心
       router-link(to="/aboutYFP").text-dark.item.aboutUs.mb-0.align-items-center.text-decoration-none 關於我們
-      label.item.saledHelp.mb-0.align-items-center 售後服務
-      label.item.contactUs.mb-0.align-items-center 聯絡我們
+      //- router-link(to="/serviceContent").item.saledHelp.mb-0.align-items-center 售後服務
+      label(@click="serviceContent").item.contactUs.mb-0.align-items-center 聯絡我們
       label.item.register.mb-0.align-items-center
         a.font-weight-bold.text-decoration-none(onClick="tpxHighLevelRegisterInitControl()" id="tpx-register")
       label.item.login.mb-0.align-items-center
@@ -110,6 +110,12 @@ export default{
     standard (id) {
       // catch error 判斷是否點到同一頁 true reload
       this.$router.push(`/standard/${id}`).catch(err => {
+        if (err.name === 'NavigationDuplicated') window.location.reload()
+      })
+      window.location.reload()
+    },
+    serviceContent () {
+      this.$router.push('/serviceContent').catch(err => {
         if (err.name === 'NavigationDuplicated') window.location.reload()
       })
       window.location.reload()
@@ -228,6 +234,9 @@ export default{
     &.allProd.deskTop{
       display: flex;
     }
+    &.helpCenter{
+      cursor: pointer;
+    }
   }
   @media(max-width: 641px){
     .item.register{
@@ -265,7 +274,7 @@ export default{
   }
   .dropDownMenu{
     display: none;
-    min-width: 35rem;
+    min-width: 41rem;
     padding: 0 16px;
     box-sizing: border-box;
     left: -222px;
@@ -283,7 +292,7 @@ export default{
       border-right: solid 10px transparent;
       position: absolute;
       top: -20px;
-      left: calc(50% - 16px);
+      left: calc(50% - 90px);
       z-index: 100000;
     }
     &::after{
@@ -296,7 +305,7 @@ export default{
       border-right: solid 11px transparent;
       position: absolute;
       top: -21px;
-      left: calc(50% - 17px);
+      left: calc(50% - 91px);
       z-index: 1;
     }
     .itemHover{

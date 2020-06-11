@@ -13,12 +13,11 @@
           router-link.mb-3.text-decoration-none.d-block.text-dark.link(to="/privacyterm") 隱私保護條款
         .saledServiceBox.w-100.w-md-50
           p.footerTitle.font-weight-bold 服務內容
-          router-link.mb-3.text-decoration-none.d-block.text-dark.link(to="/serviceContent") 關於會員
-          p 訂購與取貨
-          p 發票與售後服務
-          p 電子發票
-          router-link.mb-3.text-decoration-none.d-block.text-dark.link(to="/serviceContent/workslayout") 作品編排
-          p 購物車
+          p 編輯教學
+          router-link.mb-3.text-decoration-none.d-block.text-dark.link(to="/serviceContent/aboutMember") 關於會員
+          router-link.mb-3.text-decoration-none.d-block.text-dark.link(to="/serviceContent/workslayout") 作品編排須知
+          router-link.mb-3.text-decoration-none.d-block.text-dark.link(to="/serviceContent/buyAndTake") 訂購與取貨
+          router-link.mb-3.text-decoration-none.d-block.text-dark.link(to="/serviceContent/invoiceAndSaledService") 發票與售後服務
       .col-md-3.px-0.mx-0(:class="{'row':viewportWidth <= 640,'flex-column':viewportWidth <= 640,'align-items-center':viewportWidth <= 640, 'mt-5':viewportWidth <= 640}")
         p.footerTitle.font-weight-bold(v-if="viewportWidth > 640") 聯絡我們
         router-link(to="/serviceContent/contactus").d-block.mb-3.text-decoration-none.link.text-dark 客服信箱

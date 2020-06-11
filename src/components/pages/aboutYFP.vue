@@ -32,22 +32,22 @@
           .d-flex.flex-column.w-100.h-100.justify-content-center.align-items-center
             p.pageTitle.text-white.wontRegretTitle 您不會後悔的選擇。
             p.aboutYFPImgDes.text-white.mb-4.wontRegretSecondTitle Your best choice.
-            button.btn.btnInPage.py-0.pr-0.text-primary <span class="font-weight-bold">立即體驗</span> <i class="fas fa-chevron-right fa-xs"></i>
+            router-link(to="/standard/14").btn.btnInPage.py-0.pr-0.text-primary <span class="font-weight-bold">立即體驗</span> <i class="fas fa-chevron-right fa-xs"></i>
     .container-fluid.px-0
       .row.mx-0.reverse
         .col-md-6.col-12.wontRegretDarkBg
           .d-flex.flex-column.w-100.h-100.justify-content-center.align-items-center
             p.pageTitle.text-white.wontRegretTitle 我們永遠在這為您服務。
             p.aboutYFPImgDes.text-white.mb-4.wontRegretSecondTitle We are always waiting for you.
-            button.btn.btnInPage.py-0.pr-0.text-primary <span class="font-weight-bold">聯絡我們</span> <i class="fas fa-chevron-right fa-xs"></i>
+            router-link(to="/serviceContent").btn.btnInPage.py-0.pr-0.text-primary <span class="font-weight-bold">聯絡我們</span> <i class="fas fa-chevron-right fa-xs"></i>
         .col-md-6.col-12.px-0
           img.img-fluid(src="../../../static/chair.jpg")
     .container.px-0.mt-8.mb-5
       .row.justify-content-center.w-100.mx-auto.px-0
-        h2.aboutYFPImgDes.text-center.font-weight-bold.w-100 全新的線上編輯器
-        p.text-center.w-100.eachSecondTitle.px-2 從電腦到手機，讓你隨時隨地編輯都便利
+        h2.pageTitle.text-center.font-weight-bold.w-100 全新的線上編輯器
+        p.text-center.w-100.aboutYFPImgDes.px-2.mb-0 從電腦到手機，讓你隨時隨地編輯都便利
         .bgSetting
-          img.my-30.newEditor(src="../../assets/img/home/3c.jpg")
+          img.newEditor(src="../../assets/img/home/3c.jpg")
 </template>
 
 <script>
@@ -61,7 +61,7 @@ export default {
 <style lang="scss" scoped>
 $nototc: "Noto Serif TC",serif;
 .pageTitle{
-  font-size: 32px;
+  font-size: 24px;
   font-family:$nototc;
   font-weight: bold;
 }
@@ -70,8 +70,8 @@ $nototc: "Noto Serif TC",serif;
   min-width: 100%;
 }
 .aboutYFPImgDes{
-  font-size: 24px;
-  font-family: $nototc;
+  font-size: 20px;
+  // font-family: $nototc;
   font-weight: bold;
 }
 .aboutYFPImgDesSecond{
@@ -151,7 +151,7 @@ $nototc: "Noto Serif TC",serif;
 }
 // new editor 圖片
 .bgSetting{
-  max-width:520px;
+  max-width:800px;
   height:auto;
   box-sizing: border-box;
   display: flex;

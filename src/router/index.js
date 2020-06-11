@@ -13,6 +13,9 @@ import aboutYFP from '@/components/pages/aboutYFP'
 import contactus from '@/components/contactus'
 import workslayout from '@/components/workslayout'
 import serviceContent from '@/components/pages/serviceContent'
+import aboutMember from '@/components/aboutMember'
+import buyAndTake from '@/components/buyAndTake'
+import invoiceAndSaledService from '@/components/invoiceAndSaledService'
 
 Vue.use(Router)
 
@@ -62,6 +65,21 @@ export default new Router({
           path: 'workslayout',
           name: 'workslayout',
           component: workslayout
+        },
+        {
+          path: 'aboutMember',
+          name: 'aboutMember',
+          component: aboutMember
+        },
+        {
+          path: 'buyAndTake',
+          name: 'buyAndTake',
+          component: buyAndTake
+        },
+        {
+          path: 'invoiceAndSaledService',
+          name: 'invoiceAndSaledService',
+          component: invoiceAndSaledService
         }
       ]
     },
