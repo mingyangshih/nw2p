@@ -111,4 +111,7 @@ body{
   background-color: #f4f4f1;
   position: relative;
 }
+.modal-backdrop{
+  z-index: 0;
+}
 </style>

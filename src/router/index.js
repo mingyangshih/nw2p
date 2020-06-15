@@ -16,6 +16,7 @@ import serviceContent from '@/components/pages/serviceContent'
 import aboutMember from '@/components/aboutMember'
 import buyAndTake from '@/components/buyAndTake'
 import invoiceAndSaledService from '@/components/invoiceAndSaledService'
+import teachEdit from '@/components/teachEdit'
 
 Vue.use(Router)
 
@@ -56,6 +57,11 @@ export default new Router({
       name: 'serviceContent',
       component: serviceContent,
       children: [
+        {
+          path: '',
+          name: 'teachEdit',
+          component: teachEdit
+        },
         {
           path: 'contactus',
           name: 'contactus',

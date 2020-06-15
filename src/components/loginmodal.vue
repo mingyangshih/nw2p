@@ -24,17 +24,40 @@
           .modal-footer.flex-column.px-0.py-0.border-top-0
             button.btn.btn-primary.w-100.ml-0.font-weight-bold(type='button' data-dismiss='modal' @click="login") 登入
             p.my-2.text-secondary.font-weight-bold.fz14 你也可以用Facebook或其他方式登入
-            button.btn.btn-fb.w-100.ml-0.font-weight-bold.mb-30(type='button') Facebook帳號登入
-            a(data-toggle="modal" data-dismiss="modal" href="#enrollModal").text-primary 註冊會員
+            .d-flex.justify-content-center
+              facebook-login( class="button" appId="181285726645214" @login="onLogin" @logout="onLogout"  @sdk-loaded="sdkLoaded")
+            //- <v-facebook-login app-id="181285726645214" v-model="model"  version="v7.0" @sdk-init="handleSdkInit" async-delay="1000"></v-facebook-login>
+            //- <button v-if="scope.logout && model.connected" @click="scope.logout">
+            //-   | Logout @get-initial-status="getUserData"
+            //- </button>
+            //- button(@click="test") test
+            | {{name}}
+            img(:src="picture")
+            a(data-toggle="modal" data-dismiss="modal" href="#enrollModal" @sdk-init="handleSdkInit").text-primary 註冊會員
 </template>
-
 <script>
+import facebookLogin from 'facebook-login-vuejs'
+import VFacebookLogin from 'vue-facebook-login-component'
+
 export default {
+  components: {
+    facebookLogin,
+    VFacebookLogin
+  },
   data () {
     return {
       showPassword: 'password',
       memberId: 'jsps595214@yfp.com.tw',
-      password: '12345678'
+      password: '12345678',
+      // FB: {},
+      // model: {},
+      // scope: {}
+      isConnected: false,
+      name: '',
+      email: '',
+      personalID: '',
+      picture: '',
+      FB: undefined
     }
   },
   methods: {
@@ -44,6 +67,68 @@ export default {
       this.$store.dispatch('LOGIN', {memberId, password})
       this.memberId = ''
       this.password = ''
+    },
+    // 2020 v-facebook-login
+    handleSdkInit ({ FB, scope }) {
+      this.FB = FB
+      this.scope = scope
+      console.log(this.FB.getUserID())
+      let UID = this.FB.getUserID()
+      console.log(this.FB.api(
+        UID,
+        {'fields': 'id,name,email'},
+        function (response) {
+          if (response && !response.error) {
+            /* handle the result */
+            console.log(response)
+          }
+        }
+      ))
+    },
+    // v-facebook-login
+    test () {
+      // console.log(this.FB.getUserID())
+      // console.log(this.FB.getAccessToken())
+      // console.log(this.FB.getAuthResponse())
+      let UID = this.FB.getUserID()
+      this.FB.api(
+        UID,
+        {'fields': 'id,name,email'},
+        function (response) {
+          if (response && !response.error) {
+            /* handle the result */
+            console.log(response)
+          }
+        }
+      )
+    },
+    // 2017 facebookLogin
+    getUserData () {
+      this.FB.api('/me', 'GET', { fields: 'id,name,email,picture' },
+        user => {
+          this.personalID = user.id
+          this.email = user.email
+          this.name = user.name
+          this.picture = user.picture.data.url
+        }
+      )
+    },
+    sdkLoaded (payload) {
+      this.isConnected = payload.isConnected
+      this.FB = payload.FB
+      if (this.isConnected) {
+        this.getUserData()
+        // console.log(this.FB.getAccessToken())
+      }
+    },
+    onLogin () {
+      this.isConnected = true
+      this.getUserData()
+      location.reload()
+    },
+    onLogout () {
+      this.isConnected = false
+      location.reload()
     }
   }
 }
