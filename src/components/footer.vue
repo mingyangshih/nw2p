@@ -21,7 +21,8 @@
       .col-md-3.px-0.mx-0(:class="{'row':viewportWidth <= 640,'flex-column':viewportWidth <= 640,'align-items-center':viewportWidth <= 640, 'mt-5':viewportWidth <= 640}")
         p.footerTitle.font-weight-bold(v-if="viewportWidth > 640") 聯絡我們
         router-link(to="/serviceContent/contactus").d-block.mb-3.text-decoration-none.link.text-dark 客服信箱
-        p(v-if="viewportWidth > 640") 週一至週五 非例假日 10:00 ~ 12:00 及 13:00 ~ 17:00
+        p(v-if="viewportWidth > 640") 週一至週五 非例假日
+        p(v-if="viewportWidth > 640") 10:00 ~ 12:00 及 13:00 ~ 17:00
         p(v-if="viewportWidth <= 640") 週一至週五 非例假
         p(v-if="viewportWidth <= 640") 10:00 ~ 12:00 及 13:00 ~ 17:00
         p 電子郵件 <span class="w2pemail">services@cloudw2p.com</span>
