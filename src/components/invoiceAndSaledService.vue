@@ -9,9 +9,10 @@
         label(for="first").mb-0.minus.mr-3 -
         label(for="first").destitle.mb-0 Q1：如何聯絡我們?
       .text-justify.indent.pl-3 A：聯絡資訊
-      .text-justify.indent.pl-3 客服專線： 02-2266-8944 Ext.8800
-      .text-justify.indent.pl-3 services@cloudw2p.com
-      .text-justify.indent.pl-3 週一至週五 ( 非例假日 )，10:00 ~ 12:00 及 13:00 ~ 17:00
+      .text-justify.indent.pl-3 服務時間：週一至週五 ( 非例假日 )，10:00 ~ 12:00 及 13:00 ~ 17:00
+      .text-justify.indent.pl-3 客服電話：02-2266-8944 Ext.8800
+      .text-justify.indent.pl-3 客服傳真：02-2266-5451
+      .text-justify.indent.pl-3 客服信箱：services@cloudw2p.com
     hr
     .d-flex.flex-column
       input(type="checkbox" id="two").d-none

@@ -1,4 +1,5 @@
 var API='https://dev-api.cloudw2p.com/api/v1/'
-var imgPath = 'https://dev-web.cloudw2p.com/'
+var imgPath = ''
+var version = '1.9.4'
 
 // export default API

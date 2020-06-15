@@ -72,7 +72,7 @@ $nototc: "Noto Serif TC",serif;
 .aboutYFPImgDes{
   font-size: 20px;
   // font-family: $nototc;
-  font-weight: bold;
+  // font-weight: bold;
 }
 .aboutYFPImgDesSecond{
   margin-bottom: 50px;

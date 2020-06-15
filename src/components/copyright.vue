@@ -2,7 +2,7 @@
   .copyright.bg-dark
     .container.h-100.d-flex.justify-content-between.align-items-center(:class="{'flex-column':viewportWidth <= 640}")
       p.text-white(:class="{'mb-0':viewportWidth > 640}") 永豐雲端印刷網，給你的 質感印刷提案
-      p.text-white(:class="{'mb-0':viewportWidth > 640}") ©{{fullyear}} 永豐雲端印刷網 Copyright
+      p.text-white(:class="{'mb-0':viewportWidth > 640}") ©{{fullyear}} 永豐雲端印刷網 Copyright{{version}}
 </template>
 
 <script>
@@ -10,7 +10,8 @@ export default {
   props: ['viewportWidth'],
   data () {
     return {
-      fullyear: ''
+      fullyear: '',
+      version: window.version
     }
   },
   created () {

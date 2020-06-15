@@ -7,7 +7,7 @@
         .col-md-2
           .d-flex.flex-column
             //- p.d-flex.justify-content-between.align-items-center 關於會員 <i class="fas fa-chevron-right"></i>
-            p.d-flex.justify-content-between.align-items-center 編輯教學 <i class="fas fa-chevron-right"></i>
+            router-link(to="/serviceContent" :class="{'text-primary': active === '編輯教學'}").mb-3.d-flex.justify-content-between.align-items-center.text-decoration-none.link <span @click="active= '編輯教學'">編輯教學</span> <i class="fas fa-chevron-right"></i>
             router-link(to="/serviceContent/aboutMember" :class="{'text-primary': active === '關於會員'}").mb-3.d-flex.justify-content-between.align-items-center.text-decoration-none.link <span @click="active= '關於會員'">關於會員</span> <i class="fas fa-chevron-right"></i>
             router-link(to="/serviceContent/workslayout" :class="{'text-primary': active === '作品編排'}").mb-3.d-flex.justify-content-between.align-items-center.text-decoration-none.link <span @click="active= '作品編排'">作品編排須知</span> <i class="fas fa-chevron-right"></i>
             router-link(to="/serviceContent/buyAndTake" :class="{'text-primary': active === '訂購與取貨'}").mb-3.d-flex.justify-content-between.align-items-center.text-decoration-none.link <span @click="active= '訂購與取貨'">訂購與取貨</span> <i class="fas fa-chevron-right"></i>
@@ -27,7 +27,199 @@
               .btn.text-decoration-none.text-dark.pl-0
                 | 編輯教學
           #collapseOne.collapse.show(aria-labelledby='headingOne' )
-            .card-body
+            .card-body.px-0
+              .d-flex.flex-column
+                input(type="checkbox" id="teachEditoneone" checked).d-none
+                .d-flex.labelContent
+                  //- label(for="teachEditoneone").mb-0.plus.mr-3 +
+                  //- label(for="teachEditoneone").mb-0.minus.mr-3 -
+                  label(for="teachEditoneone").destitle.mb-0 1.點選「我要製作」開啟編輯器並上傳圖片
+                .text-justify.indent (1) 點選藍色按鈕「添加圖片並開始」
+                .imgBox.justify-content-center
+                  img(src="../../assets/img/serviceContent/1-1.jpg").img-fluid.mt-3
+                .text-justify.indent (2) 上傳圖片
+                .imgBox.justify-content-center
+                  img(src="../../assets/img/serviceContent/1-2.jpg").img-fluid.mt-3
+                .text-justify.indent (3) 將上傳的照片拖拉到編輯區的圖片框中
+                .imgBox.justify-content-center
+                  img(src="../../assets/img/serviceContent/1-3.jpg").img-fluid.mt-3
+              hr
+              .d-flex.flex-column
+                input(type="checkbox" id="teachEdittwoOne" checked).d-none
+                .d-flex.labelContent
+                  //- label(for="teachEdittwoOne").mb-0.plus.mr-3 +
+                  //- label(for="teachEdittwoOne").mb-0.minus.mr-3 -
+                  label(for="teachEdittwoOne").destitle.mb-0 2-1.開始編輯：左方工具列「圖片」功能說明
+                .text-justify.indent (1) 照片排序
+                .imgBox
+                  img(src="../../assets/img/serviceContent/2-1-1.jpg").img-fluid.mt-3
+                .text-justify.indent (2) 圖片管理器
+                .imgBox.justify-content-center
+                  img(src="../../assets/img/serviceContent/2-1-2.jpg").img-fluid.mt-3
+                .text-justify.indent (3) 撤銷(復原鍵入) / 重做 / 照片右上角數字 / 總上傳張數
+                .imgBox
+                  img(src="../../assets/img/serviceContent/2-1-3.jpg").img-fluid.mt-3
+              hr
+              .d-flex.flex-column
+                input(type="checkbox" id="teachEdittwoTwo" checked).d-none
+                .d-flex.labelContent
+                  //- label(for="teachEdittwoTwo").mb-0.plus.mr-3 +
+                  //- label(for="teachEdittwoTwo").mb-0.minus.mr-3 -
+                  label(for="teachEdittwoTwo").destitle.mb-0 2-2.開始編輯：上方工具列「編輯工具」功能說明
+                .imgBox
+                  img(src="../../assets/img/serviceContent/2-2-0.jpg").img-fluid.mt-3
+                .text-justify.indent (1) 添加圖片框 / 添加文本框(文字框)
+                .imgBox
+                  img(src="../../assets/img/serviceContent/2-2-1.jpg").img-fluid.mt-3
+                .text-justify.indent (2) 點選「自動排版」，即跳出下圖視窗，將您上傳的圖片自動編輯到作品。
+                .imgBox
+                  img(src="../../assets/img/serviceContent/2-2-2.jpg").img-fluid.mt-3
+                .text-justify.indent (3) 智能指引：編輯的過程中會顯示參考線。
+                .imgBox
+                  img(src="../../assets/img/serviceContent/2-2-3.jpg").img-fluid.mt-3
+                .text-justify.indent (4) 頁面版式：選擇版型拖拉到編輯區使用
+                .imgBox
+                  img(src="../../assets/img/serviceContent/2-2-4.jpg").img-fluid.mt-3
+                .text-justify.indent (5) 背景：選擇背景拖拉到編輯區使用
+                .imgBox
+                  img(src="../../assets/img/serviceContent/2-2-5.jpg").img-fluid.mt-3
+                .text-justify.indent (6) 素材庫：選擇圖示拖拉到編輯區使用
+                .imgBox
+                  img(src="../../assets/img/serviceContent/2-2-6.jpg").img-fluid.mt-3
+                .text-justify.indent (7) 蒙版：選擇遮色片效果拖拉到圖片上使用
+                .imgBox
+                  img(src="../../assets/img/serviceContent/2-2-7.jpg").img-fluid.mt-3
+              hr
+              .d-flex.flex-column
+                input(type="checkbox" id="teachEdittwoThree" checked).d-none
+                .d-flex.labelContent
+                  //- label(for="teachEdittwoThree").mb-0.plus.mr-3 +
+                  //- label(for="teachEdittwoThree").mb-0.minus.mr-3 -
+                  label(for="teachEdittwoThree").destitle.mb-0 2-3. 開始編輯：上方工具列「圖片選項」功能說明
+                .imgBox
+                  img(src="../../assets/img/serviceContent/2-3-0.jpg").img-fluid.mt-3
+                .text-justify.indent (1) 效果
+                .imgBox
+                  img(src="../../assets/img/serviceContent/2-3-1.jpg").img-fluid.mt-3
+                .text-justify.indent (2) 增強
+                .imgBox
+                  img(src="../../assets/img/serviceContent/2-3-2.jpg").img-fluid.mt-3
+                .text-justify.indent (3) 裁剪 / 整理
+                .imgBox
+                  img(src="../../assets/img/serviceContent/2-3-3.jpg").img-fluid.mt-3
+                .text-justify.indent (4) 邊界
+                .imgBox
+                  img(src="../../assets/img/serviceContent/2-3-4.jpg").img-fluid.mt-3
+                .text-justify.indent (5) 陰影
+                .imgBox
+                  img(src="../../assets/img/serviceContent/2-3-5.jpg").img-fluid.mt-3
+                .text-justify.indent (6) 透明度
+                .imgBox
+                  img(src="../../assets/img/serviceContent/2-3-6.jpg").img-fluid.mt-3
+                .text-justify.indent (7) 方向
+                .imgBox
+                  img(src="../../assets/img/serviceContent/2-3-7.jpg").img-fluid.mt-3
+                .text-justify.indent (8) 形狀
+                .imgBox
+                  img(src="../../assets/img/serviceContent/2-3-8.jpg").img-fluid.mt-3
+                .text-justify.indent (9) 尺寸&位置
+                .imgBox
+                  img(src="../../assets/img/serviceContent/2-3-9.jpg").img-fluid.mt-3
+                .text-justify.indent (10) 對齊
+                .imgBox
+                  img(src="../../assets/img/serviceContent/2-3-10.jpg").img-fluid.mt-3
+                .text-justify.indent (11) 佈置
+                .imgBox
+                  img(src="../../assets/img/serviceContent/2-3-11.jpg").img-fluid.mt-3
+                .text-justify.indent (12) 適合
+                .imgBox
+                  img(src="../../assets/img/serviceContent/2-3-12.jpg").img-fluid.mt-3
+              hr
+              .d-flex.flex-column
+                input(type="checkbox" id="teachEdittwoFour" checked).d-none
+                .d-flex.labelContent
+                  //- label(for="teachEdittwoFour").mb-0.plus.mr-3 +
+                  //- label(for="teachEdittwoFour").mb-0.minus.mr-3 -
+                  label(for="teachEdittwoFour").destitle.mb-0 2-4. 開始編輯：上方工具列「文字選項」功能說明
+                .imgBox
+                  img(src="../../assets/img/serviceContent/2-4-0.jpg").img-fluid.mt-3
+                .text-justify.indent (1) 文本編輯
+                .imgBox
+                  img(src="../../assets/img/serviceContent/2-4-1.jpg").img-fluid.mt-3
+                .text-justify.indent (2) 文本格式
+                .imgBox
+                  img(src="../../assets/img/serviceContent/2-4-2.jpg").img-fluid.mt-3
+                .text-justify.indent (3) 文本對齊
+                .imgBox
+                  img(src="../../assets/img/serviceContent/2-4-3.jpg").img-fluid.mt-3
+                .text-justify.indent (4) 邊界
+                .imgBox
+                  img(src="../../assets/img/serviceContent/2-4-4.jpg").img-fluid.mt-3
+                .text-justify.indent (5) 背景
+                .imgBox
+                  img(src="../../assets/img/serviceContent/2-4-5.jpg").img-fluid.mt-3
+                .text-justify.indent (6) 輪流
+                .imgBox
+                  img(src="../../assets/img/serviceContent/2-4-6.jpg").img-fluid.mt-3
+                .text-justify.indent (7) 文本方向
+                .imgBox
+                  img(src="../../assets/img/serviceContent/2-4-7.jpg").img-fluid.mt-3
+              hr
+              .d-flex.flex-column
+                input(type="checkbox" id="teachEdittwoFive" checked).d-none
+                .d-flex.labelContent
+                  //- label(for="teachEdittwoFive").mb-0.plus.mr-3 +
+                  //- label(for="teachEdittwoFive").mb-0.minus.mr-3 -
+                  label(for="teachEdittwoFive").destitle.mb-0 2-5. 開始編輯：右方工具列「編輯器」功能說明
+                .text-justify.indent (1)  剪下         (2)  複製         (3)  貼上         (4)  刪除
+                .imgBox
+                  img(src="../../assets/img/serviceContent/2-5.jpg").img-fluid.mt-3
+              hr
+              .d-flex.flex-column
+                input(type="checkbox" id="teachEdittwoSix" checked).d-none
+                .d-flex.labelContent
+                  //- label(for="teachEdittwoSix").mb-0.plus.mr-3 +
+                  //- label(for="teachEdittwoSix").mb-0.minus.mr-3 -
+                  label(for="teachEdittwoSix").destitle.mb-0 2-6. 開始編輯：下方工具列「頁次管理」功能說明
+                ol.indent
+                  li 總頁數：下拉可以更改可訂購頁數。(可訂購頁數分別為36、48、60、72、84頁)
+                  li 插入頁：插入頁數一次為 2 頁，編輯完成總頁數請依照36、48、60、72、84頁為主。
+                  li 刪除頁：刪除頁數一次為 2 頁，編輯完成總頁數請依照36、48、60、72、84頁為主。
+                  li 頁次：可以拖拉更換頁面順序。
+                .imgBox
+                  img(src="../../assets/img/serviceContent/2-6.jpg").img-fluid.mt-3
+              hr
+              .d-flex.flex-column
+                input(type="checkbox" id="teachEditthreeThree" checked).d-none
+                .d-flex.labelContent
+                  //- label(for="teachEditthreeThree").mb-0.plus.mr-3 +
+                  //- label(for="teachEditthreeThree").mb-0.minus.mr-3 -
+                  label(for="teachEditthreeThree").destitle.mb-0 3. 編輯完成進行訂購
+                .text-justify.indent (1) 點選右上角「添加到購物車」即可進行結帳
+                .imgBox
+                  img(src="../../assets/img/serviceContent/3.jpg").img-fluid.mt-3
+              hr
+              .d-flex.flex-column
+                input(type="checkbox" id="teachEditfourFour" checked).d-none
+                .d-flex.labelContent
+                  //- label(for="teachEditfourFour").mb-0.plus.mr-3 +
+                  //- label(for="teachEditfourFour").mb-0.minus.mr-3 -
+                  label(for="teachEditfourFour").destitle.mb-0 4. 上方工具列「作品管理」功能說明
+                .imgBox
+                  img(src="../../assets/img/serviceContent/4-0.jpg").img-fluid.mt-3
+                .text-justify.indent (1) 分享：您可以複製連結到您社群網站分享作品
+                .imgBox
+                  img(src="../../assets/img/serviceContent/4-1.jpg").img-fluid.mt-3
+                .text-justify.indent (2) 簡單編輯：可切換到簡單模式編輯
+                .text-justify.indent (3) 保存：輸入作品名稱及可儲存作品
+                .imgBox
+                  img(src="../../assets/img/serviceContent/4-3.jpg").img-fluid.mt-3
+                .text-justify.indent (4) 預覽
+                .imgBox
+                  img(src="../../assets/img/serviceContent/4-4.jpg").img-fluid.mt-3
+                .text-justify.indent (5) 各國語言切換
+                .imgBox(style="width:100%")
+                  img(src="../../assets/img/serviceContent/4-5.jpg").img-fluid.mt-3
         .card.border-left-0.border-right-0.border-bottom
           #headingTwo.card-header.pl-0(data-toggle='collapse' data-target='#collapseTwo')
             h2.mb-0
@@ -390,9 +582,10 @@
                   //- label(for="invoiceAndSaledServicefirst").mb-0.minus.mr-3 -
                   label(for="invoiceAndSaledServicefirst").destitle.mb-0 Q1：如何聯絡我們?
                 .text-justify.indent.pl-0.ml-0 A：聯絡資訊
-                .text-justify.indent.pl-0.ml-0 客服專線： 02-2266-8944 Ext.8800
-                .text-justify.indent.pl-0.ml-0 services@cloudw2p.com
-                .text-justify.indent.pl-0.ml-0 週一至週五 ( 非例假日 )，10:00 ~ 12:00 及 13:00 ~ 17:00
+                .text-justify.indent.pl-0 服務時間：週一至週五 ( 非例假日 )，10:00 ~ 12:00 及 13:00 ~ 17:00
+                .text-justify.indent.pl-0 客服電話：02-2266-8944 Ext.8800
+                .text-justify.indent.pl-0 客服傳真：02-2266-5451
+                .text-justify.indent.pl-0 客服信箱：services@cloudw2p.com
               hr
               .d-flex.flex-column
                 input(type="checkbox" id="invoiceAndSaledServicetwo").d-none
@@ -500,6 +693,7 @@
 import {mapActions} from 'vuex'
 import { createHelpers } from 'vuex-map-fields'
 import alert from '../alert'
+import teachEdit from '../teachEdit'
 import aboutMember from '../aboutMember'
 const { mapFields } = createHelpers({
   getterType: 'contactusModules/getField',
@@ -508,7 +702,8 @@ const { mapFields } = createHelpers({
 export default {
   components: {
     alert,
-    aboutMember
+    aboutMember,
+    teachEdit
   },
   data () {
     return {

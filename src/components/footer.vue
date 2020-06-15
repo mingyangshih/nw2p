@@ -13,7 +13,7 @@
           router-link.mb-3.text-decoration-none.d-block.text-dark.link(to="/privacyterm") 隱私保護條款
         .saledServiceBox.w-100.w-md-50
           p.footerTitle.font-weight-bold 服務內容
-          p 編輯教學
+          router-link.mb-3.text-decoration-none.d-block.text-dark.link(to="/serviceContent") 編輯教學
           router-link.mb-3.text-decoration-none.d-block.text-dark.link(to="/serviceContent/aboutMember") 關於會員
           router-link.mb-3.text-decoration-none.d-block.text-dark.link(to="/serviceContent/workslayout") 作品編排須知
           router-link.mb-3.text-decoration-none.d-block.text-dark.link(to="/serviceContent/buyAndTake") 訂購與取貨
@@ -21,7 +21,9 @@
       .col-md-3.px-0.mx-0(:class="{'row':viewportWidth <= 640,'flex-column':viewportWidth <= 640,'align-items-center':viewportWidth <= 640, 'mt-5':viewportWidth <= 640}")
         p.footerTitle.font-weight-bold(v-if="viewportWidth > 640") 聯絡我們
         router-link(to="/serviceContent/contactus").d-block.mb-3.text-decoration-none.link.text-dark 客服信箱
-        p 週一至週五 9:00~18:00
+        p(v-if="viewportWidth > 640") 週一至週五 非例假日 10:00 ~ 12:00 及 13:00 ~ 17:00
+        p(v-if="viewportWidth <= 640") 週一至週五 非例假
+        p(v-if="viewportWidth <= 640") 10:00 ~ 12:00 及 13:00 ~ 17:00
         p 電子郵件 <span class="w2pemail">services@cloudw2p.com</span>
         router-link(v-if="viewportWidth <= 640" to="/serviceContent/contactus").btn.btn-primary.font-weight-bold.btnInPage.pr-0.py-0.mt-3.text-decoration-none 聯絡我們 <i class="fas fa-chevron-right fa-xs"></i>
         <i class="fab fa-facebook-square fa-lg mt-3"></i>
