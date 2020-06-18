@@ -1,4 +1,4 @@
-var API='https://dev-api.cloudw2p.com/api/v1/'
+let API='https://api.cloudw2p.com/api/v1/'
 var imgPath = ''
 var version = '1.9.4'
 

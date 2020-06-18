@@ -240,21 +240,21 @@ export default {
       // addr 地址後面詳細資訊
       vm.addr = ''
     }
-  },
-  created () {
-    let d = new Date()
-    this.fullYear = d.getFullYear()
-    // 取郵遞區號資料
-    let vm = this
-    this.$http.get(`${process.env.API}addr/postalcode`).then((response) => {
-      vm.totalCityData = response.data.data
-      response.data.data.forEach((item) => {
-        vm.cityName.push(item.cityName)
-      })
-    }).catch((error) => {
-      console.log(error)
-    })
   }
+  // created () {
+  //   let d = new Date()
+  //   this.fullYear = d.getFullYear()
+  //   // 取郵遞區號資料
+  //   let vm = this
+  //   this.$http.get(`${process.env.API}addr/postalcode`).then((response) => {
+  //     vm.totalCityData = response.data.data
+  //     response.data.data.forEach((item) => {
+  //       vm.cityName.push(item.cityName)
+  //     })
+  //   }).catch((error) => {
+  //     console.log(error)
+  //   })
+  // }
 }
 </script>
 

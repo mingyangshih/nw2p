@@ -9,7 +9,7 @@ export default {
   actions: {
     // 取一個理由下面的資料
     getIndex ({commit}) {
-      let API_PATH = window.API
+      let API_PATH = process.env.API
       commit('LOADING', true, {root: true})
       return axios.get(`${API_PATH}product/getindex`).then((response) => {
         commit('changeIndexData', response.data.data)
@@ -20,7 +20,7 @@ export default {
       })
     },
     getHomeCategory ({commit}) {
-      let API_PATH = window.API
+      let API_PATH = process.env.API
       return axios.get(`${API_PATH}product/getcategory`).then((response) => {
         commit('changeHomeCategoryData', response.data.data)
       }).catch((error) => {

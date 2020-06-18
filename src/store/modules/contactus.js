@@ -19,7 +19,7 @@ export default{
   actions: {
     // 觸發聯絡我們
     contactus ({state, commit, dispatch}) {
-      let API_PATH = window.API
+      let API_PATH = process.env.API
       let keys = Object.keys(state.contactInfo)
       let emptyInput = []
       keys.forEach((itm, idx) => {
@@ -59,7 +59,7 @@ export default{
       }
     },
     getImage ({commit}) {
-      let API_PATH = window.API
+      let API_PATH = process.env.API
       let number = Math.random()
       fetch(`${API_PATH}captcha/create?${number}`, {
         method: 'POST'
@@ -70,7 +70,7 @@ export default{
       })
     },
     captcha ({state, commit, dispatch}) {
-      let API_PATH = window.API
+      let API_PATH = process.env.API
       let form = `captcha=${state.verifyCode}&captchacode=${state.code}`
       // jquery
       $.ajax({
