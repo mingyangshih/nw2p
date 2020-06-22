@@ -1,7 +1,7 @@
 <template lang="pug">
   .alert-bg(v-if = "message")
     .alert(v-if = "message")
-      p.h-100.message.d-flex.align-items-center.justify-content-center(:class="{'text-primary': theme == 'primary', 'text-danger': theme == 'danger'}") {{message}}
+      p.h-100.message.d-flex.align-items-center.justify-content-center.text-justify(:class="{'text-primary': theme == 'primary', 'text-danger': theme == 'danger'}") {{message}}
 </template>
 
 <script>
@@ -44,7 +44,7 @@ export default {
     border-radius: 10px;
   }
   .message{
-    font-size: 30px;
+    font-size: 20px;
     font-weight: bold;
   }
 </style>

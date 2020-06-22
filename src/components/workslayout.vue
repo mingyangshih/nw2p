@@ -12,8 +12,8 @@
         li 畫面中的灰色外框為該商品製作時可能會裁切或裝訂的出血(裁切)範圍，文字不可超出或接近黑色外框線，以免被裁切掉，請將重要圖文避開此區。
         li 相片書產品內頁編排勿靠近中線頁面內側(此為裝訂處)以免被裁切或不易閱讀。
         li 編輯時如需滿版或靠齊邊緣，照片必須超出黑色外框線並填滿灰色區域，成品才不會露出白邊。
-      .imgBox.justify-content-center
-        img(src="../assets/img/serviceContent/作品編排須知Q01.jpg").img-fluid.mt-3
+      .imgBox.justify-content-center()
+        img(src="../assets/img/serviceContent/作品編排須知Q01.jpg" style="max-width:80%;").img-fluid.mt-3
     hr
     .d-flex.flex-column
       input(type="checkbox" id="two").d-none
@@ -23,7 +23,7 @@
         label(for="two").destitle.mb-0 Q2：如何知道圖片解析度夠不夠？
       .text-justify.indent.pl-3 A：請您將上傳的圖片拉進編輯區或圖片框內，若圖片框出現驚嘆號圖示就表示圖片解析度不足，會影響印刷成品，建議您更換圖片或縮小圖片至驚嘆號圖示消失，亦表示解析度足夠。
       .imgBox.justify-content-center
-        img(src="../assets/img/serviceContent/作品編排須知Q02.jpg").img-fluid.mt-3
+        img(src="../assets/img/serviceContent/作品編排須知Q02.jpg" style="max-width:80%;").img-fluid.mt-3
     hr
     .d-flex.flex-column
       input(type="checkbox" id="three").d-none
@@ -81,12 +81,12 @@
         label(for="nine").destitle Q9：上傳圖片過程中可否停止上傳或刪除圖片?
       .text-justify.indent.pl-3 A：圖片上傳中無法停止上傳，請您耐心等待圖片上傳完成後，再刪除即可。
       .text-justify.indent.pl-3 簡單編輯：在圖片區選擇不要的照片，再點選該照片左上角的箭頭，即出現「清除」選項。
-      .imgBox.justify-content-center
+      .imgBox.justify-content-center.ml-md-3
         img(src="../assets/img/serviceContent/簡單編輯.jpg").img-fluid.mt-3
       .text-justify.indent.pl-3 高級編輯：可點開圖片管理器後選擇不要的照片，再點選右上方的垃圾桶刪除即可。
-      .imgBox.justify-content-center
+      .imgBox.justify-content-center.ml-md-3
         img(src="../assets/img/serviceContent/高級編輯01.jpg").img-fluid.mt-3
-      .imgBox.justify-content-center
+      .imgBox.justify-content-center.ml-md-3
         img(src="../assets/img/serviceContent/高級編輯02.jpg").img-fluid.mt-3
     hr
     .d-flex.flex-column
@@ -169,14 +169,15 @@ export default {
   input ~ .imgBox{
     display: none;
   }
-  input ~ .imgBox{
+  input:checked ~ .imgBox{
     display: flex;
+    max-width: 980px;
   }
   input ~ .imgBox > img{
     display: none;
   }
   input:checked ~ .imgBox > img{
     display: initial;
-    max-width:550px;
+    width:100%;
   }
 </style>

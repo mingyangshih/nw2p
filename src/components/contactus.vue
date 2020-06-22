@@ -41,16 +41,16 @@
     .d-flex.align-items-center.mb-3
       .col-md-3
       .col-md-9
-        p 如一直收不到回覆信件，請查明您的垃圾信件夾，並將services@cloudw2p.com 加入通訊錄喔！上列您填入的資料，僅在雲端印刷網上交易使用，不會作為其他用途使用。以上資料請仔細填寫，聯絡將以此資料為主，謝謝您的填寫。
+        p 如一直收不到回覆信件，請查明您的垃圾信件夾，並將 services@cloudw2p.com 加入通訊錄喔！上列您填入的資料，僅在雲端印刷網上交易使用，不會作為其他用途使用。以上資料請仔細填寫，聯絡將以此資料為主，謝謝您的填寫。
     .d-flex.justify-content-end
       .col-md-3
       .col-md-9.px-0
         .d-flex.align-items-center
           img(:src="verifyImg")
-          input.ml-3.rounded-0(type="text" v-model="verifyCode").captchaInput.mx-auto
+          input.ml-3.rounded-0(type="text" v-model="contactInfo.captcha").captchaInput.mx-auto
           button.btn.btn-primary.font-weight-bold.btnInPage.px-0.py-0.text-decoration-none.rounded-0(@click="getImage") 重產驗證碼
     .d-flex.justify-content-end
-      button.btn.btn-primary.font-weight-bold.btnInPage.pr-0.py-0.my-3.text-decoration-none(@click="captcha") 確認送出 <i class="fas fa-chevron-right fa-xs"></i>
+      button.btn.btn-primary.font-weight-bold.btnInPage.pr-0.py-0.my-3.text-decoration-none(@click="contactus") 確認送出 <i class="fas fa-chevron-right fa-xs"></i>
   </div>
 
 </template>
@@ -73,7 +73,7 @@ export default {
   },
   methods: {
     ...mapActions('contactusModules', [
-      'contactus', 'captcha', 'getImage'
+      'contactus', 'getImage'
     ])
   },
   computed: {

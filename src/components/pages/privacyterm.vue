@@ -96,7 +96,7 @@
 
       p.termTitle 9.個人資料及隱私保護諮詢
       p.text-justify.termDetailUnorder 如果您對於我們的隱私權保護政策或是有個人資料蒐集、利用、更新等問題，請於上班時間聯絡：
-      p.termDetailUnorder.text-justify 服務時間：週一至週五(非例假日)，10:00 ~ 12:00 及 13:00 ~ 17:00
+      p.termDetailUnorder.text-justify 服務時間：週一至週五 ( 非例假日 )，10:00 ~ 12:00 及 13:00 ~ 17:00
       p.termDetailUnorder.text-justify 客服電話：02-2266-8944 Ext.8800
       p.termDetailUnorder.text-justify 客服傳真：02-2266-5451
       p.termDetailUnorder.text-justify.mb-8 客服信箱：services@cloudw2p.com

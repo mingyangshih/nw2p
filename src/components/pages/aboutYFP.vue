@@ -39,7 +39,7 @@
           .d-flex.flex-column.w-100.h-100.justify-content-center.align-items-center
             p.pageTitle.text-white.wontRegretTitle 我們永遠在這為您服務。
             p.aboutYFPImgDes.text-white.mb-4.wontRegretSecondTitle We are always waiting for you.
-            router-link(to="/serviceContent").btn.btnInPage.py-0.pr-0.text-primary <span class="font-weight-bold">聯絡我們</span> <i class="fas fa-chevron-right fa-xs"></i>
+            router-link(to="/serviceContent/contactus").btn.btnInPage.py-0.pr-0.text-primary <span class="font-weight-bold">聯絡我們</span> <i class="fas fa-chevron-right fa-xs"></i>
         .col-md-6.col-12.px-0
           img.img-fluid(src="../../../static/chair.jpg")
     .container.px-0.mt-8.mb-5

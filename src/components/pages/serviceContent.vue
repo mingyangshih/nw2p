@@ -26,7 +26,7 @@
             h2.mb-0
               .btn.text-decoration-none.text-dark.pl-0
                 | 編輯教學
-          #collapseOne.collapse.show(aria-labelledby='headingOne' )
+          #collapseOne.collapse(aria-labelledby='headingOne' :class="{'show':location === '#/serviceContent'}")
             .card-body.px-0
               .d-flex.flex-column
                 input(type="checkbox" id="teachEditoneone" checked).d-none
@@ -225,7 +225,7 @@
             h2.mb-0
               .btn.collapsed.text-decoration-none.text-dark.pl-0
                 | 關於會員
-          #collapseTwo.collapse(aria-labelledby='headingTwo' data-parent='#accordionExample')
+          #collapseTwo.collapse(aria-labelledby='headingTwo' data-parent='#accordionExample' :class="{'show':location === '#/serviceContent/aboutMember'}")
             .card-body.px-0
               //- aboutMember
               .d-flex.flex-column
@@ -304,7 +304,7 @@
             h2.mb-0
               .btn.collapsed.text-decoration-none.text-dark.pl-0
                 | 作品編排須知
-          #collapseThree.collapse(aria-labelledby='headingThree' data-parent='#accordionExample')
+          #collapseThree.collapse(aria-labelledby='headingThree' data-parent='#accordionExample' :class="{'show':location === '#/serviceContent/workslayout'}")
             .card-body.px-0
               .d-flex.flex-column
                 input(type="checkbox" id="workslayoutfirst").d-none
@@ -407,7 +407,7 @@
             h2.mb-0
               .btn.collapsed.text-decoration-none.text-dark.pl-0
                 | 訂購與取貨
-          #collapseFour.collapse(aria-labelledby='headingThree' data-parent='#accordionExample')
+          #collapseFour.collapse(aria-labelledby='headingThree' data-parent='#accordionExample' :class="{'show' : location === '#/serviceContent/buyAndTake'}")
             .card-body.px-0
               .d-flex.flex-column
                 input(type="checkbox" id="buyAndTakefirst").d-none
@@ -573,7 +573,7 @@
             h2.mb-0
               .btn.collapsed.text-decoration-none.text-dark.pl-0
                 | 發票與售後服務
-          #collapseFive.collapse(aria-labelledby='headingThree' data-parent='#accordionExample')
+          #collapseFive.collapse(aria-labelledby='headingThree' data-parent='#accordionExample' :class="{'show': location === '#/serviceContent/invoiceAndSaledService'}")
             .card-body.pl-0
               .d-flex.flex-column
                 input(type="checkbox" id="invoiceAndSaledServicefirst").d-none
@@ -637,7 +637,7 @@
             h2.mb-0
               .btn.collapsed.text-decoration-none.text-dark.pl-0
                 | 客服信箱
-          #collapseSeven.collapse(aria-labelledby='headingThree' data-parent='#accordionExample')
+          #collapseSeven.collapse(aria-labelledby='headingThree' data-parent='#accordionExample' :class="{'show': location === '#/serviceContent/contactus'}")
             .card-body.pl-0
               .title 客服信箱
               hr
@@ -681,11 +681,11 @@
                 .col-3.px-0.d-flex.align-items-center
                   p.mb-0 輸入驗證碼
                 .col-10.px-0.d-flex.flex-column.align-items-start
-                  input(type="text" v-model="verifyCode").form-control.border-dark.w-95.rounded-0
+                  input(type="text" v-model="contactInfo.captcha").form-control.border-dark.w-95.rounded-0
               .d-flex.justify-content-end
                 button.btn.btn-primary.font-weight-bold.btnInPage.px-0.py-0.text-decoration-none.rounded-0.mt-3(@click="getImage") 重產驗證碼
               .d-flex.justify-content-end
-                button.btn.btn-primary.font-weight-bold.btnInPage.pr-0.py-0.my-3.text-decoration-none.rounded-0(@click="captcha") 確認送出 <i class="fas fa-chevron-right fa-xs"></i>
+                button.btn.btn-primary.font-weight-bold.btnInPage.pr-0.py-0.my-3.text-decoration-none.rounded-0(@click="contactus") 確認送出 <i class="fas fa-chevron-right fa-xs"></i>
 
 </template>
 
@@ -707,12 +707,13 @@ export default {
   },
   data () {
     return {
-      active: ''
+      active: '',
+      location: ''
     }
   },
   methods: {
     ...mapActions('contactusModules', [
-      'contactus', 'captcha', 'getImage'
+      'contactus', 'getImage'
     ])
   },
   computed: {
@@ -721,6 +722,15 @@ export default {
   created () {
     this.$store.commit('contactusModules/clearContactInfo')
     this.$store.dispatch('contactusModules/getImage')
+  },
+  mounted () {
+    let vm = this
+    // let collapse = document.querySelectorAll('.collapse')
+    // let collapseAry = [...collapse]
+    // collapseAry.forEach(itm => {
+    //   itm.classList.remove('show')
+    // })
+    vm.location = window.location.hash
   }
 }
 </script>
@@ -845,8 +855,8 @@ export default {
     display: none;
   }
   input:checked ~ .imgBox{
-    max-width: 550px;
-    display: flex;
+    max-width: 100%;
+    display: initial;
   }
   input ~ .imgBox > img{
     display: none;

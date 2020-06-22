@@ -7,10 +7,15 @@ export default{
       name: '',
       phone: '',
       email: '',
-      message: ''
+      message: '',
+      // 取圖片時回傳的code
+      captchacode: '',
+      // user 填的
+      captcha: ''
     },
     // 用來判斷未填的欄位
     emptyInput: [],
+    // getImage回傳值
     verifyImg: '',
     code: '',
     // enter by customer
@@ -19,6 +24,7 @@ export default{
   actions: {
     // 觸發聯絡我們
     contactus ({state, commit, dispatch}) {
+      // let vm = this
       let API_PATH = process.env.API
       let keys = Object.keys(state.contactInfo)
       let emptyInput = []
@@ -42,7 +48,7 @@ export default{
         // 先檢查是否全部都有填
         // 回傳0: 寄信成功，回傳-1: 代表寄信失敗
           if (result.error_code === 0) {
-            let message = '傳送成功'
+            let message = result.error_message
             let theme = 'primary'
             let emptyInput = []
             // 成功彈出視窗
@@ -51,6 +57,10 @@ export default{
             commit('testEmptyInput', emptyInput)
             // 成功後把所有input全部清空
             commit('clearContactInfo')
+          } else {
+            let message = result.error_message
+            let theme = 'danger'
+            commit('changeMessage', {message, theme}, {root: true})
           }
         }).finally(() => {
           // 重取一次圖片
@@ -68,30 +78,30 @@ export default{
       }).then(result => {
         commit('verifyImgAndCode', result)
       })
-    },
-    captcha ({state, commit, dispatch}) {
-      let API_PATH = process.env.API
-      let form = `captcha=${state.verifyCode}&captchacode=${state.code}`
-      // jquery
-      $.ajax({
-        async: true,
-        type: 'post',
-        url: `${API_PATH}captcha/validate`,
-        data: form,
-        success: function (data) {
-          if (data.code === 'N') {
-            let message = '驗證碼輸入錯誤'
-            let theme = 'danger'
-            commit('changeMessage', {message, theme}, {root: true})
-          } else {
-            state.verifyCode = ''
-            dispatch('contactus')
-          }
-        },
-        error: function (jqXHR, textStatus) {
-        }
-      })
     }
+    // captcha ({state, commit, dispatch}) {
+    //   let API_PATH = process.env.API
+    //   let form = `captcha=${state.verifyCode}&captchacode=${state.code}`
+    //   // jquery
+    //   $.ajax({
+    //     async: true,
+    //     type: 'post',
+    //     url: `${API_PATH}captcha/validate`,
+    //     data: form,
+    //     success: function (data) {
+    //       if (data.code === 'N') {
+    //         let message = '驗證碼輸入錯誤'
+    //         let theme = 'danger'
+    //         commit('changeMessage', {message, theme}, {root: true})
+    //       } else {
+    //         state.verifyCode = ''
+    //         dispatch('contactus')
+    //       }
+    //     },
+    //     error: function (jqXHR, textStatus) {
+    //     }
+    //   })
+    // }
   },
   mutations: {
     updateField,
@@ -109,7 +119,7 @@ export default{
     },
     verifyImgAndCode (state, result) {
       state.verifyImg = result.imagedata
-      state.code = result.code
+      state.contactInfo.captchacode = result.code
     }
   },
   getters: {

@@ -439,7 +439,8 @@ export default {
   }
   // 網友推薦
   .eachSuggest{
-    height: 120px;
+    padding: 14px;
+    // height: 120px;
     box-shadow: rgba(0, 0, 0, 0.1) 0px 2px 8px;
     width: 100%;
     .date{

@@ -145,12 +145,13 @@ export default {
   }
   input ~ .imgBox{
     display: flex;
+    max-width: 980px;
   }
   input ~ .imgBox > img{
     display: none;
   }
   input:checked ~ .imgBox > img{
     display: initial;
-    max-width:550px;
+    width:100%;
   }
 </style>
