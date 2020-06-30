@@ -61,6 +61,7 @@
                 <p id="tpx-empty-project-text">You don't have any saved projects.</p>
             </div>
         </div>
+        button.btn.btn-outline-primary(onClick="tpxMyProjectsOnClick()") 關閉
     </div>
     //- Basket pop out panel
     <div id="tpx-shoppingcartcontents" class="tpx tpx-shopping-cart">
