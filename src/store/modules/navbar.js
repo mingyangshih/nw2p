@@ -22,7 +22,6 @@ export default {
       let categoryId = []
       let productEnCategory = []
       let API_PATH = process.env.API
-      console.log(API_PATH)
       fetch(`${API_PATH}product/getmenu`, {method: 'get'}).then(res => {
         return res.json()
       }).then(result => {
