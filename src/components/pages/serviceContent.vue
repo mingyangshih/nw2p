@@ -45,7 +45,7 @@
                   img(src="../../assets/img/serviceContent/1-3.jpg").img-fluid.mt-3
               hr
               .d-flex.flex-column
-                input(type="checkbox" id="teachEdittwoOne" checked).d-none
+                input(type="checkbox" id="teachEdittwoOne").d-none
                 .d-flex.labelContent
                   //- label(for="teachEdittwoOne").mb-0.plus.mr-3 +
                   //- label(for="teachEdittwoOne").mb-0.minus.mr-3 -
@@ -61,7 +61,7 @@
                   img(src="../../assets/img/serviceContent/2-1-3.jpg").img-fluid.mt-3
               hr
               .d-flex.flex-column
-                input(type="checkbox" id="teachEdittwoTwo" checked).d-none
+                input(type="checkbox" id="teachEdittwoTwo").d-none
                 .d-flex.labelContent
                   //- label(for="teachEdittwoTwo").mb-0.plus.mr-3 +
                   //- label(for="teachEdittwoTwo").mb-0.minus.mr-3 -
@@ -91,7 +91,7 @@
                   img(src="../../assets/img/serviceContent/2-2-7.jpg").img-fluid.mt-3
               hr
               .d-flex.flex-column
-                input(type="checkbox" id="teachEdittwoThree" checked).d-none
+                input(type="checkbox" id="teachEdittwoThree").d-none
                 .d-flex.labelContent
                   //- label(for="teachEdittwoThree").mb-0.plus.mr-3 +
                   //- label(for="teachEdittwoThree").mb-0.minus.mr-3 -
@@ -136,7 +136,7 @@
                   img(src="../../assets/img/serviceContent/2-3-12.jpg").img-fluid.mt-3
               hr
               .d-flex.flex-column
-                input(type="checkbox" id="teachEdittwoFour" checked).d-none
+                input(type="checkbox" id="teachEdittwoFour").d-none
                 .d-flex.labelContent
                   //- label(for="teachEdittwoFour").mb-0.plus.mr-3 +
                   //- label(for="teachEdittwoFour").mb-0.minus.mr-3 -
@@ -166,7 +166,7 @@
                   img(src="../../assets/img/serviceContent/2-4-7.jpg").img-fluid.mt-3
               hr
               .d-flex.flex-column
-                input(type="checkbox" id="teachEdittwoFive" checked).d-none
+                input(type="checkbox" id="teachEdittwoFive").d-none
                 .d-flex.labelContent
                   //- label(for="teachEdittwoFive").mb-0.plus.mr-3 +
                   //- label(for="teachEdittwoFive").mb-0.minus.mr-3 -
@@ -176,7 +176,7 @@
                   img(src="../../assets/img/serviceContent/2-5.jpg").img-fluid.mt-3
               hr
               .d-flex.flex-column
-                input(type="checkbox" id="teachEdittwoSix" checked).d-none
+                input(type="checkbox" id="teachEdittwoSix").d-none
                 .d-flex.labelContent
                   //- label(for="teachEdittwoSix").mb-0.plus.mr-3 +
                   //- label(for="teachEdittwoSix").mb-0.minus.mr-3 -
@@ -190,7 +190,7 @@
                   img(src="../../assets/img/serviceContent/2-6.jpg").img-fluid.mt-3
               hr
               .d-flex.flex-column
-                input(type="checkbox" id="teachEditthreeThree" checked).d-none
+                input(type="checkbox" id="teachEditthreeThree").d-none
                 .d-flex.labelContent
                   //- label(for="teachEditthreeThree").mb-0.plus.mr-3 +
                   //- label(for="teachEditthreeThree").mb-0.minus.mr-3 -
@@ -200,7 +200,7 @@
                   img(src="../../assets/img/serviceContent/3.jpg").img-fluid.mt-3
               hr
               .d-flex.flex-column
-                input(type="checkbox" id="teachEditfourFour" checked).d-none
+                input(type="checkbox" id="teachEditfourFour").d-none
                 .d-flex.labelContent
                   //- label(for="teachEditfourFour").mb-0.plus.mr-3 +
                   //- label(for="teachEditfourFour").mb-0.minus.mr-3 -
@@ -320,11 +320,20 @@
                   img(src="../../assets/img/serviceContent/作品編排須知Q01.jpg").img-fluid.mt-3
               hr
               .d-flex.flex-column
+                input(type="checkbox" id="highlow").d-none
+                .d-flex.labelContent
+                  //- label(for="workslayoutfirst").mb-0.plus.mr-3 +
+                  //- label(for="workslayoutfirst").mb-0.minus.mr-3 -
+                  label(for="highlow").destitle.mb-0 Q2：「高級編輯」和「簡單編輯」的差異？
+                .text-justify.indent.pl-0.ml-0 A：高級編輯：適用「電腦版」，編輯功能較豐富。
+                .text-justify.indent.pl-0.ml-0 簡單編輯：適用「電腦版」和「手機版」。因手機裝置的螢幕寬度限制，若使用手機編排作品僅限使用簡單編輯。
+              hr
+              .d-flex.flex-column
                 input(type="checkbox" id="workslayouttwo").d-none
                 .d-flex.labelContent
                   //- label(for="workslayouttwo").mb-0.plus.mr-3 +
                   //- label(for="workslayouttwo").mb-0.minus.mr-3 -
-                  label(for="workslayouttwo").destitle.mb-0 Q2：如何知道圖片解析度夠不夠？
+                  label(for="workslayouttwo").destitle.mb-0 Q3：如何知道圖片解析度夠不夠？
                 .text-justify.indent.pl-0.ml-0 A：請您將上傳的圖片拉進編輯區或圖片框內，若圖片框出現驚嘆號圖示就表示圖片解析度不足，會影響印刷成品，建議您更換圖片或縮小圖片至驚嘆號圖示消失，亦表示解析度足夠。
                 .imgBox.justify-content-center
                   img(src="../../assets/img/serviceContent/作品編排須知Q02.jpg").img-fluid.mt-3
@@ -334,7 +343,7 @@
                 .d-flex.labelContent
                   //- label(for="workslayoutthree").mb-0.plus.mr-3 +
                   //- label(for="workslayoutthree").mb-0.minus.mr-3 -
-                  label(for="workslayoutthree").destitle Q3：圖片可以使用哪些檔案格式和色彩模式？
+                  label(for="workslayoutthree").destitle Q4圖片可以使用哪些檔案格式和色彩模式？
                 .text-justify.indent.pl-0.ml-0 A：可以上傳JPG、JPEG、PNG、TIFF的影像檔案格式；RGB或CMYK的色彩模式皆可上傳。
               hr
               .d-flex.flex-column
@@ -342,7 +351,7 @@
                 .d-flex.labelContent
                   //- label(for="workslayoutfour").mb-0.plus.mr-3 +
                   //- label(for="workslayoutfour").mb-0.minus.mr-3 -
-                  label(for="workslayoutfour").destitle Q4：同一個作品可以不同的行動裝置上編輯嗎？
+                  label(for="workslayoutfour").destitle Q5：同一個作品可以不同的行動裝置上編輯嗎？
                 .text-justify.indent.pl-0.ml-0 A：可以。只要有確定儲存作品就可以在不同的行動裝置(如手機、平板、電腦)登入繼續編輯。
               hr
               .d-flex.flex-column
@@ -350,7 +359,7 @@
                 .d-flex.labelContent
                   //- label(for="workslayoutfive").mb-0.plus.mr-3 +
                   //- label(for="workslayoutfive").mb-0.minus.mr-3 -
-                  label(for="workslayoutfive").destitle Q5：未編輯完成的作品，可以之後繼續編輯嗎？
+                  label(for="workslayoutfive").destitle Q6：未編輯完成的作品，可以之後繼續編輯嗎？
                 .text-justify.indent.pl-0.ml-0 A：未編輯完成的作品，請點選「保存」，若您尚未加入會員，請依步驟註冊，註冊完成作品將會儲存在「我的作品」內。若您已成為本站會員，請登入會員帳號，即可將作品儲存。若要繼續編輯作品時請登入後，可在「我的作品」內，點選作品下方的「編輯」按鈕。
               hr
               .d-flex.flex-column
@@ -358,7 +367,7 @@
                 .d-flex.labelContent
                   //- label(for="workslayoutsix").mb-0.plus.mr-3 +
                   //- label(for="workslayoutsix").mb-0.minus.mr-3 -
-                  label(for="workslayoutsix").destitle Q6：編輯時的操作反應很慢？
+                  label(for="workslayoutsix").destitle Q7：編輯時的操作反應很慢？
                 .text-justify.indent.pl-0.ml-0 A：因本站使用的是即時線上編輯器，主要的原因與您當下的網路速度及網路環境有關。
               hr
               .d-flex.flex-column
@@ -366,7 +375,7 @@
                 .d-flex.labelContent
                   //- label(for="workslayoutseven").mb-0.plus.mr-3 +
                   //- label(for="workslayoutseven").mb-0.minus.mr-3 -
-                  label(for="workslayoutseven").destitle Q7：使用手機編輯作品時，為何不能調整相片框位置及大小或增加文字及插圖？
+                  label(for="workslayoutseven").destitle Q8：使用手機編輯作品時，為何不能調整相片框位置及大小或增加文字及插圖？
                 .text-justify.indent.pl-0.ml-0 A：因手機版瀏覽裝置限制僅能支援「簡易編輯」，請您使用電腦或平板裝置編輯作品，即可使用「進階編輯」操作上列功能。
               hr
               .d-flex.flex-column
@@ -374,7 +383,7 @@
                 .d-flex.labelContent
                   //- label(for="workslayouteight").mb-0.plus.mr-3 +
                   //- label(for="workslayouteight").mb-0.minus.mr-3 -
-                  label(for="workslayouteight").destitle Q8：我可以分享完成訂購的作品嗎？
+                  label(for="workslayouteight").destitle Q9：我可以分享完成訂購的作品嗎？
                 .text-justify.indent.pl-0.ml-0 A：請您登入後，點選「我的帳戶」>「您的訂單」，選擇欲分享的作品並點選「分享」即可透過各種平台分享給您的朋友。
               hr
               .d-flex.flex-column
@@ -382,23 +391,23 @@
                 .d-flex.labelContent
                   //- label(for="workslayoutnine").mb-0.plus.mr-3 +
                   //- label(for="workslayoutnine").mb-0.minus.mr-3 -
-                  label(for="workslayoutnine").destitle Q9：上傳圖片過程中可否停止上傳或刪除圖片?
+                  label(for="workslayoutnine").destitle Q10：上傳圖片過程中可否停止上傳或刪除圖片?
                 .text-justify.indent.pl-0.ml-0 A：圖片上傳中無法停止上傳，請您耐心等待圖片上傳完成後，再刪除即可。
                 .text-justify.indent.pl-0.ml-0  簡單編輯：在圖片區選擇不要的照片，再點選該照片左上角的箭頭，即出現「清除」選項。
                 .imgBox.justify-content-center
-                  img(src="../../assets/img/serviceContent/簡單編輯.jpg").img-fluid.mt-3
+                  img(src="../../assets/img/serviceContent/簡單編輯.jpg").img-fluid.mt-4
                 .text-justify.indent.pl-0.ml-0 高級編輯：可點開圖片管理器後選擇不要的照片，再點選右上方的垃圾桶刪除即可。
                 .imgBox.justify-content-center
-                  img(src="../../assets/img/serviceContent/高級編輯01.jpg").img-fluid.mt-3
+                  img(src="../../assets/img/serviceContent/高級編輯01.jpg").img-fluid.mt-4
                 .imgBox.justify-content-center
-                  img(src="../../assets/img/serviceContent/高級編輯02.jpg").img-fluid.mt-3
+                  img(src="../../assets/img/serviceContent/高級編輯02.jpg").img-fluid.mt-4
               hr
               .d-flex.flex-column
                 input(type="checkbox" id="workslayouten").d-none
                 .d-flex.labelContent
                   //- label(for="workslayouten").mb-0.plus.mr-3 +
                   //- label(for="workslayouten").mb-0.minus.mr-3 -
-                  label(for="workslayouten").destitle Q10：「色差」說明？
+                  label(for="workslayouten").destitle Q11：「色差」說明？
                 .text-justify.indent.pl-0.ml-0 A：圖片上傳中無法停止上傳，請您耐心等待圖片上傳完成後，再刪除即可。
                 .text-justify.indent.pl-0.ml-0 關於色彩差異部分，因每台螢幕設定的色彩明亮及品牌皆不同，不同螢幕看同一張照片或圖片，會呈現不同顏色，電腦顯示的色彩模式為RGB，印刷品的色彩模式為CMYK，顯示的色域有差異會有一定的色差，間接造成印刷成品與螢幕上有所差異。
                 .text-justify.indent.pl-0.ml-0 印刷品皆屬影像複製，影響色彩呈現的原因有油墨、紙張、色彩曲線、時間、機台等等，所以同一圖檔在不同次印刷時，色彩都會有些微差距，有色差皆屬正常。就如同沖印相片即使到同一個相館，不同天洗出來，色彩亦有差異一樣，即使大量同時印刷，前後時段印出的產品，也會略有差異，這是色彩複製一定會有的問題，詳情請參閱國際膠印印刷標準ISO12647-2。
@@ -846,10 +855,11 @@ export default {
     display: none;
     // margin-left: 1.6rem;
     // text-indent: -1.6rem;
-    margin-top: 16px;
+    margin-top: 24px;
   }
   input[type="checkbox"]:checked ~ .indent{
     display: initial;
+    margin-top: 24px;
   }
   input ~ .imgBox{
     display: none;

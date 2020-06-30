@@ -217,12 +217,16 @@ export default {
       }
     }
     cursor: pointer;
-    &:hover{
-      opacity: .5;
-    }
-    // &:not(:nth-child(1)){
-    //   margin-left: 16px;
+    // &:hover{
+    //   opacity: .5;
     // }
+  }
+  @media(min-width: 640px){
+    .schematic{
+      &:hover{
+        opacity: .5;
+      }
+    }
   }
   // 頁面中的Btn樣式
   .btnBox{
@@ -371,6 +375,11 @@ export default {
       .col-md-4{
         max-width: 28%;
       }
+    }
+  }
+  @media(max-width: 640px) {
+    .moreChoicePicBox{
+      justify-content: center;
     }
   }
 

@@ -2,14 +2,14 @@
   #tpx-basket-bar.row.justify-content-between.align-items-center.tpx.mx-0.py-0.border-bottom-0.topNavBox
     label.hamburger(for="hamburger" @click="sideBarShowEvent(true)")
     router-link.logoBox(to="/")
-      img.logo(src="../assets/img/logo.png")
+      img.logo(src="../assets/img/logo-big.png")
     //- 大於 640 秀的畫面
-    .darkBg(v-if="sideBarShow")
+    .darkBg(v-if="sideBarShow" @click="sideBarShowEvent(false)")
     div.tpx.tpx-bar-container.tpx-clearfix.topNav(id="tpx-basket-bar-inner" :class="{'show' : sideBarShow}")
-      div.xBox(@click="sideBarShowEvent(false)")
-        i.fas.fa-times
+      //- div.xBox(@click="sideBarShowEvent(false)")
+      //-   i.fas.fa-times
       router-link(to="/").home
-        img(src="../assets/img/logo.png")
+        img(src="../assets/img/logo-big.png")
       //- desk top 所有產品
       div.item.allProd.mb-0.align-items-center.deskTop 所有產品
         .dropDownMenu.bg-white.px-3
@@ -159,12 +159,18 @@ export default{
       display: none;
     }
   }
+  .home{
+    max-width:220px;
+    img{
+      width:100%;
+    }
+  }
   @media(max-width: 641px){
     label.hamburger{
       display: initial;
     }
     .topNav{
-      display: none;
+      // display: none;
       flex-direction: column;
       height: 100vh;
       width: 50vw;
@@ -175,6 +181,7 @@ export default{
       top:0;
       left:0;
       background: white;
+      transform: translateX(-80vw);
       &.show{
         display: flex;
       }
@@ -183,7 +190,7 @@ export default{
         text-align: center;
       }
       img{
-        max-width: 60%;
+        max-width: 100%;
       }
       .xBox{
         width: 18px;
@@ -202,8 +209,13 @@ export default{
       width: 80vw;
       overflow: scroll;
       height: 100vh;
+      transform: translateX(-80vw);
       &::-webkit-scrollbar {
         display: none;
+      }
+      &.show{
+        transform: translateX(0vw);
+        transition: transform 1s;
       }
     }
     #tpx-basket-bar .darkBg{
@@ -324,7 +336,7 @@ export default{
   // 漢堡選單按鈕
   label.hamburger{
     display: none;
-    width: 15px;
+    width: 20px;
     height: 0;
     border-top: 2px solid black;
     position: relative;
@@ -332,7 +344,7 @@ export default{
     &::before{
       content:'';
       display:block;
-      width: 15px;
+      width: 20px;
       position: absolute;
       top:-8px;
       border-top:2px solid black;
@@ -340,7 +352,7 @@ export default{
     &::after{
       content:'';
       display:block;
-      width: 15px;
+      width: 20px;
       position: absolute;
       top: 5px;
       border-top: 2px solid black;
@@ -364,6 +376,9 @@ export default{
       width: 100%;
       padding: 16px 0;
       background : white;
+      img{
+        max-width: 220px;
+      }
     }
   }
   // 側邊欄項目樣式

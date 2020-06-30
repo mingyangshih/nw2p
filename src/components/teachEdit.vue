@@ -19,7 +19,7 @@
         img(src="../assets/img/serviceContent/1-3.jpg").img-fluid.mt-3
     hr
     .d-flex.flex-column
-      input(type="checkbox" id="twoOne" checked).d-none
+      input(type="checkbox" id="twoOne").d-none
       .d-flex.labelContent
         label(for="twoOne").mb-0.plus.mr-3 +
         label(for="twoOne").mb-0.minus.mr-3 -
@@ -35,7 +35,7 @@
         img(src="../assets/img/serviceContent/2-1-3.jpg").img-fluid.mt-3
     hr
     .d-flex.flex-column
-      input(type="checkbox" id="twoTwo" checked).d-none
+      input(type="checkbox" id="twoTwo").d-none
       .d-flex.labelContent
         label(for="twoTwo").mb-0.plus.mr-3 +
         label(for="twoTwo").mb-0.minus.mr-3 -
@@ -65,7 +65,7 @@
         img(src="../assets/img/serviceContent/2-2-7.jpg").img-fluid.mt-3
     hr
     .d-flex.flex-column
-      input(type="checkbox" id="twoThree" checked).d-none
+      input(type="checkbox" id="twoThree").d-none
       .d-flex.labelContent
         label(for="twoThree").mb-0.plus.mr-3 +
         label(for="twoThree").mb-0.minus.mr-3 -
@@ -110,7 +110,7 @@
         img(src="../assets/img/serviceContent/2-3-12.jpg").img-fluid.mt-3
     hr
     .d-flex.flex-column
-      input(type="checkbox" id="twoFour" checked).d-none
+      input(type="checkbox" id="twoFour").d-none
       .d-flex.labelContent
         label(for="twoFour").mb-0.plus.mr-3 +
         label(for="twoFour").mb-0.minus.mr-3 -
@@ -140,7 +140,7 @@
         img(src="../assets/img/serviceContent/2-4-7.jpg").img-fluid.mt-3
     hr
     .d-flex.flex-column
-      input(type="checkbox" id="twoFive" checked).d-none
+      input(type="checkbox" id="twoFive").d-none
       .d-flex.labelContent
         label(for="twoFive").mb-0.plus.mr-3 +
         label(for="twoFive").mb-0.minus.mr-3 -
@@ -150,7 +150,7 @@
         img(src="../assets/img/serviceContent/2-5.jpg").img-fluid.mt-3
     hr
     .d-flex.flex-column
-      input(type="checkbox" id="twoSix" checked).d-none
+      input(type="checkbox" id="twoSix").d-none
       .d-flex.labelContent
         label(for="twoSix").mb-0.plus.mr-3 +
         label(for="twoSix").mb-0.minus.mr-3 -
@@ -164,7 +164,7 @@
         img(src="../assets/img/serviceContent/2-6.jpg").img-fluid.mt-3
     hr
     .d-flex.flex-column
-      input(type="checkbox" id="threeThree" checked).d-none
+      input(type="checkbox" id="threeThree").d-none
       .d-flex.labelContent
         label(for="threeThree").mb-0.plus.mr-3 +
         label(for="threeThree").mb-0.minus.mr-3 -
@@ -174,7 +174,7 @@
         img(src="../assets/img/serviceContent/3.jpg").img-fluid.mt-3
     hr
     .d-flex.flex-column
-      input(type="checkbox" id="fourFour" checked).d-none
+      input(type="checkbox" id="fourFour").d-none
       .d-flex.labelContent
         label(for="fourFour").mb-0.plus.mr-3 +
         label(for="fourFour").mb-0.minus.mr-3 -
@@ -260,6 +260,7 @@ export default {
   }
   input:checked ~ .indent{
     display: initial;
+    margin-top: 24px;
   }
   input ~ .imgBox{
     display: none;

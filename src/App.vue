@@ -3,12 +3,12 @@
     loading(:active.sync="isLoading" :is-full-page="fullPage" :color="color" :loader="loader")
     .container-fluid
       .row.px-0.campaign.campaignBox.bg-primary(v-if="fullWidth > 640")
-        p.mb-0.w-100.campaignDes 全商品8折優惠 / 20% OFF．滿499免運費
+        p.mb-0.w-100.campaignDes 新平台，新體驗，正式上線！
     .container.px-0.mx-md-6
       combineNav
     .container-fluid
       .row.px-0.campaign.campaignBox.bg-primary(v-if="fullWidth <= 640")
-        p.mb-0.w-100.campaignDes 全商品8折優惠 / 20% OFF．滿499免運費
+        p.mb-0.w-100.campaignDes 新平台，新體驗，正式上線！
     router-view
     .container-fluid.border-top.px-0.footer
       footerComponent(:viewportWidth="fullWidth")
