@@ -1,11 +1,11 @@
 <template lang="pug">
   #tpx-basket-bar.row.justify-content-between.align-items-center.tpx.mx-0.py-0.border-bottom-0.topNavBox
-    label.hamburger(for="hamburger" @click="sideBarShowEvent(true)")
+    label.hamburger(for="hamburger" @click="sideBarShowEvent(true)") <i class="fas fa-bars"></i>
     router-link.logoBox(to="/")
       img.logo(src="../assets/img/logo-big.png")
     //- 大於 640 秀的畫面
     .darkBg(v-if="sideBarShow" @click="sideBarShowEvent(false)"  @touchmove.prevent="")
-    div.tpx.tpx-bar-container.tpx-clearfix.topNav(id="tpx-basket-bar-inner" :class="{'show' : sideBarShow}" @touchmove.stop="")
+    div.tpx.tpx-bar-container.tpx-clearfix.topNav(id="tpx-basket-bar-inner" :class="{'show' : sideBarShow}")
       //- div.xBox(@click="sideBarShowEvent(false)")
       //-   i.fas.fa-times
       router-link(to="/").home
@@ -170,6 +170,7 @@ export default{
   @media(max-width: 641px){
     label.hamburger{
       display: initial;
+      font-size: 20px;
     }
     .topNav{
       // display: none;
@@ -219,6 +220,7 @@ export default{
         transform: translateX(0vw);
         transition: transform 1s;
         z-index: 49;
+        padding-bottom: 80px;
       }
     }
     #tpx-basket-bar .darkBg{
@@ -342,25 +344,25 @@ export default{
     display: none;
     width: 20px;
     height: 0;
-    border-top: 2px solid black;
+    // border-top: 2px solid black;
     position: relative;
     margin-bottom: 0;
-    &::before{
-      content:'';
-      display:block;
-      width: 20px;
-      position: absolute;
-      top:-8px;
-      border-top:2px solid black;
-    }
-    &::after{
-      content:'';
-      display:block;
-      width: 20px;
-      position: absolute;
-      top: 5px;
-      border-top: 2px solid black;
-    }
+    // &::before{
+    //   content:'';
+    //   display:block;
+    //   width: 20px;
+    //   position: absolute;
+    //   top:-8px;
+    //   border-top:2px solid black;
+    // }
+    // &::after{
+    //   content:'';
+    //   display:block;
+    //   width: 20px;
+    //   position: absolute;
+    //   top: 5px;
+    //   border-top: 2px solid black;
+    // }
   }
   .logoBox{
     display: none;
@@ -370,7 +372,7 @@ export default{
       display: initial;
       position: absolute;
       left: 10px;
-      top: 50%;
+      top: 35%;
       height: 30px;
       margin-top: 0;
     }

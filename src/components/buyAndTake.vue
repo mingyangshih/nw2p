@@ -406,8 +406,15 @@ export default {
   input ~ .imgBox{
     display: none;
   }
-  input ~ .imgBox{
+  input:checked ~ .imgBox{
     display: flex;
+    max-width: 980px;
+  }
+  @media(max-width: 641px){
+    input:checked ~ .imgBox{
+      display: initial;
+      max-width: 100%;
+    }
   }
   input ~ .imgBox > img{
     display: none;

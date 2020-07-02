@@ -1,5 +1,5 @@
 <template lang="pug">
-  #app
+  #app(:class="{'scrollDiasbled':sideBarShow}")
     loading(:active.sync="isLoading" :is-full-page="fullPage" :color="color" :loader="loader")
     .container-fluid
       .row.px-0.campaign.campaignBox.bg-primary(v-if="fullWidth > 640")
@@ -16,6 +16,7 @@
 </template>
 
 <script>
+import {mapState} from 'vuex'
 import tpxNavbarhead from './components/tpxNavbarhead'
 import navCustomize from './components/navCustomize'
 import combineNav from './components/combineNav'
@@ -41,7 +42,10 @@ export default {
   computed: {
     isLoading () {
       return this.$store.state.isLoading
-    }
+    },
+    ...mapState({
+      sideBarShow: state => state.sideBarShow
+    })
   },
   mounted () {
     const vm = this
@@ -86,6 +90,11 @@ body{
   font-family: Arial, Helvetica, "Microsoft JhengHei", sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+}
+// 側邊欄打開不給滾動
+.scrollDiasbled{
+  height: 100vh;
+  overflow: hidden;
 }
 // 最上方促銷活動
 .campaign{
