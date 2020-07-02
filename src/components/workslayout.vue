@@ -22,7 +22,8 @@
           label(for="highlow").mb-0.plus.mr-3 +
           label(for="highlow").mb-0.minus.mr-3 -
           label(for="highlow").destitle.mb-0 Q2：「高級編輯」和「簡單編輯」的差異？
-        .text-justify.indent.pl-3 A：高級編輯：適用「電腦版」，編輯功能較豐富。
+        .text-justify.indent.pl-3 A：說明如下：
+        .text-justify.indent.pl-0.ml-5 高級編輯：適用「電腦版」，編輯功能較豐富。
         .text-justify.indent.pl-0.ml-5 簡單編輯：適用「電腦版」和「手機版」。因手機裝置的螢幕寬度限制，若使用手機編排作品僅限使用簡單編輯。
       hr
       .d-flex.flex-column
@@ -92,8 +93,8 @@
         .text-justify.indent.pl-3 A：圖片上傳中無法停止上傳，請您耐心等待圖片上傳完成後，再刪除即可。
         .text-justify.indent.pl-3 簡單編輯：在圖片區選擇不要的照片，再點選該照片左上角的箭頭，即出現「清除」選項。
         .imgBox.justify-content-center.ml-md-3
-          img(src="../assets/img/serviceContent/簡單編輯.jpg").img-fluid.mt-3
-        .text-justify.indent.pl-3 高級編輯：可點開圖片管理器後選擇不要的照片，再點選右上方的垃圾桶刪除即可。
+          img(src="../assets/img/serviceContent/簡單編輯.jpg").img-fluid.my-3
+        .text-justify.indent.pl-3.my-4 高級編輯：可點開圖片管理器後選擇不要的照片，再點選右上方的垃圾桶刪除即可。
         .imgBox.justify-content-center.ml-md-3
           img(src="../assets/img/serviceContent/高級編輯01.jpg").img-fluid.mt-3
         .imgBox.justify-content-center.ml-md-3
@@ -131,7 +132,8 @@
             //- label(for="workslayoutfirst").mb-0.plus.mr-3 +
             //- label(for="workslayoutfirst").mb-0.minus.mr-3 -
             label(for="highlowtwo").destitle.mb-0 Q2：「高級編輯」和「簡單編輯」的差異？
-          .text-justify.indent.pl-0.ml-0 A：高級編輯：適用「電腦版」，編輯功能較豐富。
+          .text-justify.indent.pl-0.ml-0 A：說明如下：
+          .text-justify.indent.pl-0.ml-0 高級編輯：適用「電腦版」，編輯功能較豐富。
           .text-justify.indent.pl-0.ml-0 簡單編輯：適用「電腦版」和「手機版」。因手機裝置的螢幕寬度限制，若使用手機編排作品僅限使用簡單編輯。
         hr
         .d-flex.flex-column
