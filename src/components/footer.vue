@@ -13,11 +13,11 @@
           router-link.mb-3.text-decoration-none.d-block.text-dark.link(to="/privacyterm") 隱私保護條款
         .saledServiceBox.w-100.w-md-50
           p.footerTitle.font-weight-bold 服務內容
-          router-link.mb-3.text-decoration-none.d-block.text-dark.link(to="/serviceContent") 編輯教學
-          router-link.mb-3.text-decoration-none.d-block.text-dark.link(to="/serviceContent/aboutMember") 關於會員
-          router-link.mb-3.text-decoration-none.d-block.text-dark.link(to="/serviceContent/workslayout") 作品編排須知
-          router-link.mb-3.text-decoration-none.d-block.text-dark.link(to="/serviceContent/buyAndTake") 訂購與取貨
-          router-link.mb-3.text-decoration-none.d-block.text-dark.link(to="/serviceContent/invoiceAndSaledService") 發票與售後服務
+          div.mb-3.text-decoration-none.d-block.text-dark.link(@click="$router.push('/serviceContent'); $store.state.serviceContentDrop = '#/serviceContent'") 編輯教學
+          div.mb-3.text-decoration-none.d-block.text-dark.link(@click="$router.push('/serviceContent/aboutMember'); $store.state.serviceContentDrop = '#/serviceContent/aboutMember'") 關於會員
+          div.mb-3.text-decoration-none.d-block.text-dark.link(@click="$router.push('/serviceContent/workslayout'); $store.state.serviceContentDrop = '#/serviceContent/workslayout'") 作品編排須知
+          div.mb-3.text-decoration-none.d-block.text-dark.link(@click="$router.push('/serviceContent/buyAndTake'); $store.state.serviceContentDrop = '#/serviceContent/buyAndTake'") 訂購與取貨
+          div.mb-3.text-decoration-none.d-block.text-dark.link(@click="$router.push('/serviceContent/invoiceAndSaledService'); $store.state.serviceContentDrop = '#/serviceContent/invoiceAndSaledService'") 發票與售後服務
       .col-md-3.px-0.mx-0(:class="{'row':viewportWidth <= 640,'flex-column':viewportWidth <= 640,'align-items-center':viewportWidth <= 640, 'mt-5':viewportWidth <= 640}")
         p.footerTitle.font-weight-bold(v-if="viewportWidth > 640") 聯絡我們
         router-link(to="/serviceContent/contactus").d-block.mb-3.text-decoration-none.link.text-dark 客服信箱
@@ -26,8 +26,8 @@
         p(v-if="viewportWidth <= 640") 週一至週五 ( 非例假日 )
         p(v-if="viewportWidth <= 640") 10:00 ~ 12:00 及 13:00 ~ 17:00
         p 電子郵件 <span class="w2pemail">services@cloudw2p.com</span>
-        router-link(v-if="viewportWidth <= 640" to="/serviceContent/contactus").btn.btn-primary.font-weight-bold.btnInPage.pr-0.py-0.mt-3.text-decoration-none 聯絡我們 <i class="fas fa-chevron-right fa-xs"></i>
-        <i class="fab fa-facebook-square fa-lg mt-3"></i>
+        button(v-if="viewportWidth <= 640" @click="$router.push('/serviceContent/contactus'); $store.state.serviceContentDrop = '#/serviceContent/contactus'").btn.btn-primary.font-weight-bold.btnInPage.pr-0.py-0.mt-3.text-decoration-none 聯絡我們 <i class="fas fa-chevron-right fa-xs"></i>
+        a(href="https://www.facebook.com/%E6%B0%B8%E8%B1%90%E9%9B%B2%E7%AB%AF%E5%8D%B0%E5%88%B7%E7%B6%B2%E7%B5%A6%E4%BD%A0%E7%9A%84-%E8%B3%AA%E6%84%9F%E5%8D%B0%E5%88%B7%E6%8F%90%E6%A1%88-104953087652948" target="_blank") <i class="fab fa-facebook-square fa-lg mt-3"></i>
 </template>
 
 <script>

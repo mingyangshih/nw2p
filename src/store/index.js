@@ -17,7 +17,8 @@ export default new Vuex.Store({
   state: {
     isLoading: null,
     sideBarShow: null,
-    imgPath: window.imgPath
+    imgPath: window.imgPath,
+    serviceContentDrop: '#/serviceContent'
   },
   actions: {
     loadingStatus (context, status) {

@@ -114,4 +114,29 @@ body{
 .modal-backdrop{
   z-index: 0;
 }
+// .darkBg{
+//   width: 100%;
+//   background: rgba(0,0,0,.4);
+//   height: 100vh;
+//   position: absolute;
+//   top:0;
+//   bottom:0;
+//   right:0;
+//   z-index:99;
+// }
+// .overlay{
+//   position: fixed;
+//   top: 0px;
+//   left: 0px;
+//   right: 0px;
+//   bottom: 0px;
+//   background-color: rgba(0, 0, 0, 0.4);
+//   z-index:100;
+
+//   .overlay-content {
+//     height: 100%;
+//     overflow: scroll;
+//   }
+// }
+
 </style>

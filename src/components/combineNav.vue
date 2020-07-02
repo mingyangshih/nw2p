@@ -4,8 +4,8 @@
     router-link.logoBox(to="/")
       img.logo(src="../assets/img/logo-big.png")
     //- 大於 640 秀的畫面
-    .darkBg(v-if="sideBarShow" @click="sideBarShowEvent(false)")
-    div.tpx.tpx-bar-container.tpx-clearfix.topNav(id="tpx-basket-bar-inner" :class="{'show' : sideBarShow}")
+    .darkBg(v-if="sideBarShow" @click="sideBarShowEvent(false)"  @touchmove.prevent="")
+    div.tpx.tpx-bar-container.tpx-clearfix.topNav(id="tpx-basket-bar-inner" :class="{'show' : sideBarShow}" @touchmove.stop="")
       //- div.xBox(@click="sideBarShowEvent(false)")
       //-   i.fas.fa-times
       router-link(to="/").home
@@ -39,14 +39,14 @@
       //- router-link(to="/serviceContent").item.saledHelp.mb-0.align-items-center 售後服務
       label(@click="serviceContent").item.contactUs.mb-0.align-items-center 聯絡我們
       label.item.register.mb-0.align-items-center
-        a.font-weight-bold.text-decoration-none(onClick="tpxHighLevelRegisterInitControl()" id="tpx-register")
+        a.font-weight-bold.text-decoration-none(onClick="tpxHighLevelRegisterInitControl(); return false;" id="tpx-register")
       label.item.login.mb-0.align-items-center
-        a.font-weight-bold.text-decoration-none(id="tpx-signIn" onClick="tpxHighLevelSignInInitControl()")
+        a.font-weight-bold.text-decoration-none(id="tpx-signIn" onClick="tpxHighLevelSignInInitControl(); return false;")
       label.item.myItem.mb-0.align-items-center.tpx.tpx-accountLinkItem(id="tpx-projectslinkli")
-        span(id="tpx-projectslist" onClick="tpxMyProjectsOnClick()")
+        span(id="tpx-projectslist" onclick="tpxMyProjectsOnClick(); return false;")
       div.item.myItem.mb-0.align-items-center.tpx
         .tpx(id="tpx-basketButtonWrapper")
-          p.mb-0.tpx.tpx-button.tpx-basketButton(id="tpx-basketlink" onClick="tpxBasketOnClick()")
+          p.mb-0.tpx.tpx-button.tpx-basketButton(id="tpx-basketlink" onclick="tpxBasketOnClick(); return false;")
             span.tpx.tpx-basketCount(id="tpx-basketButtonCount")
     //- 小於640秀的畫面
     //- <!-- My Projects pop out panel -->
@@ -61,7 +61,7 @@
                 <p id="tpx-empty-project-text">You don't have any saved projects.</p>
             </div>
         </div>
-        button.btn.btn-outline-primary(onClick="tpxMyProjectsOnClick()") 關閉
+        button.btn.btn-secondary(onClick="tpxMyProjectsOnClick()") X
     </div>
     //- Basket pop out panel
     <div id="tpx-shoppingcartcontents" class="tpx tpx-shopping-cart">
@@ -77,7 +77,8 @@
           </div>
       </div>
       <a href="#" id="tpx-checkoutbutton" onClick="tpxHighLevelCheckoutControl()" class="tpx tpx-button tpx-checkout-button">Checkout</a>
-  </div>
+      a(onclick="tpxBasketOnClick()" class="tpx tpx-button tpx-checkout-button bg-secondary mt-1 text-light" id="tpx-checkoutbutton") 關閉
+    </div>
 
 </template>
 
@@ -217,16 +218,18 @@ export default{
       &.show{
         transform: translateX(0vw);
         transition: transform 1s;
+        z-index: 49;
       }
     }
     #tpx-basket-bar .darkBg{
-      width: 20vw;
+      width: 100%;
       background: rgba(0,0,0,.4);
       height: 100vh;
       position: absolute;
       top:0;
       bottom:0;
       right:0;
+      z-index:48;
     }
   }
   // item 設定
@@ -377,6 +380,7 @@ export default{
       width: 100%;
       padding: 16px 0;
       background : white;
+      // z-index:98;
       img{
         max-width: 220px;
       }
