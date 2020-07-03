@@ -24,23 +24,19 @@
           label(for="two").mb-0.minus.mr-3 -
           label(for="two").destitle.mb-0 Q2：付款方式有哪些?
         .text-justify.indent.pl-3 A：您可以選用信用卡付費、ATM 轉帳或臨櫃匯款。
-        ol.indent
-          li 信用卡付費：目前接受 VISA 信用卡、Master Card 信用卡、JCB Card 信用卡或 NCCC 信用卡，使用信用線上付款，以台幣支付「一次付清」。
-          li 轉帳匯款：
-            ol
-              li ATM 轉帳：「請於訂購日起，七日內需完成轉帳」，在未確認收到款項之前，此筆訂單尚未正式成立。系統根據您的訂單產生一組專屬於這筆訂單的轉帳帳號，請您根據此組帳號及您購買的總金額進行轉帳即可。
-              li 臨櫃匯款：「請於訂購日起，七日內需完成轉帳」，在未確認收到款項之前，此筆訂單尚未正式成立。
+
+        .text-justify.indent.pl-3 1. 信用卡付費：目前接受 VISA、Master Card、JCB Card 信用卡，使用線上付款，以台幣支付「一次付清」。
+        .text-justify.indent.pl-3 2. ATM 轉帳或臨櫃匯款：
         .text-justify.indent.pl-3 戶名：永豐紙業股份有限公司
-        .text-justify.indent.pl-3 銀行：永豐銀行
-        .text-justify.indent.pl-3 分行：南門分行
-        .text-justify.indent.pl-3 帳號：系統根據您的訂單產生一組專屬於這筆訂單的轉帳帳號，請您根據此組帳號及您購買的總金額進行轉帳即可。
+        .text-justify.indent.pl-3 銀行代號：812「台新銀行-南松山分行」
+        .text-justify.indent.pl-3 銀行帳號：08201071032700
         .text-justify.indent.pl-3 需告知櫃台服務人員此帳號為虛擬帳號，並匯入與訂單相同金額(勿自行扣匯費)。
-        .text-justify.indent.pl-3 ※ 如何確認轉帳成功：
-        ol.indent
-          li 轉帳完成後系統會發出訂單確認的通知信件，到您的帳號信箱。
-          li 在我的帳戶內>您的訂單中，訂單狀態會顯示收到付款。
-        .text-justify.indent.pl-3 ※ 確認繳費成功前請保留 ATM 交易明細表以保障您的權益。
-        .text-justify.indent.pl-3 ※ 提醒您，若您為海外會員或未持有台灣國內銀行所發行晶片金融卡，請勿選擇 ATM 轉帳付款方式。「ATM 轉帳」僅限台灣國內銀行發行之晶片金融卡，以台幣支付。
+        .text-justify.indent.pl-3 匯款後請來信 services@cloudw2p.com 告知轉帳資訊：
+        .text-justify.indent.pl-3 訂單編號：
+        .text-justify.indent.pl-3 轉帳日期：
+        .text-justify.indent.pl-3 轉帳金額：
+        .text-justify.indent.pl-3 轉帳帳號後五碼：  (臨櫃匯款,請提供匯款人姓名)
+        .text-justify.indent.pl-3 ※ ATM 轉帳：「請於訂購日起，七日內需完成轉帳並Email回覆告知」，在未確認收到款項之前，此筆訂單尚未正式成立。
       hr
       .d-flex.flex-column
         input(type="checkbox" id="three").d-none
@@ -48,8 +44,12 @@
           label(for="three").mb-0.plus.mr-3 +
           label(for="three").mb-0.minus.mr-3 -
           label(for="three").destitle.mb-0 Q3：如何知道「轉帳」是否成功？
-        .text-justify.indent.pl-3 A：永豐雲端印刷網會在收到您的轉帳通知，確認帳款後，發送訂單款項確認 email 到您登錄之會員帳號中，或是您可在轉帳完成之後的下一個工作天，直接至訂單查詢中，查詢該筆訂單狀況。
-        .text-justify.indent.pl-3 ※ 如為假日轉帳，將於工作日回覆。
+        .text-justify.indent.pl-3 A：說明如下：
+        .text-justify.indent.pl-3 1.轉帳完成後，請來信 services@cloudw2p.com 告知轉帳資訊，以便為您核對。
+        .text-justify.indent.pl-3 永豐雲端印刷網會在收到您的轉帳通知，確認帳款後您可在轉帳完成之後的下一個工作天，直接至訂單查詢中，查詢該筆訂單狀況。
+        .text-justify.indent.pl-3 ※ 如為假日轉帳，將於工作日確認款項。
+        .text-justify.indent.pl-3 2. 對帳完成後即訂單成立，在「我的帳戶」內「您的訂單」中，訂單狀態會顯示「收到付款」。
+        .text-justify.indent.pl-3 ※ 確認繳費成功前請保留 ATM 交易明細表以保障您的權益。
       hr
       .d-flex.flex-column
         input(type="checkbox" id="four").d-none
@@ -110,15 +110,15 @@
       hr
       .d-flex.flex-column
         input(type="checkbox" id="eleven").d-none
-        .d-flex.labelConelevent
+        .d-flex.labelContent
           label(for="eleven").mb-0.plus.mr-3 +
           label(for="eleven").mb-0.minus.mr-3 -
-          label(for="eleven").destitle.mb-0 Q11：購物車內的商品，保存期限有多長？
-        .text-justify.indent.pl-3 A：購物車內的商品會為您保留24小時，如超過24小時，系統將會自動將購物車商品移除，不另行通知。此動作不影響原作品的保存。重新訂購請由「我的作品」中將該作品加入購物車。
+          label(for="eleven").destitle.mb-0 Q11：購物車內的作品，保存期限有多長？
+        .text-justify.indent.pl-3 A：購物車內的作品等同「我的作品」，編輯期限是由最新的編輯日起算，如果您超過60天未編輯作品，系統會自動將購物車作品移除。
       hr
       .d-flex.flex-column
         input(type="checkbox" id="twelve").d-none
-        .d-flex.labelConelevent
+        .d-flex.labelContent
           label(for="twelve").mb-0.plus.mr-3 +
           label(for="twelve").mb-0.minus.mr-3 -
           label(for="twelve").destitle.mb-0 Q12：配送方式
@@ -126,7 +126,7 @@
       hr
       .d-flex.flex-column
         input(type="checkbox" id="thirteen").d-none
-        .d-flex.labelConelevent
+        .d-flex.labelContent
           label(for="thirteen").mb-0.plus.mr-3 +
           label(for="thirteen").mb-0.minus.mr-3 -
           label(for="thirteen").destitle.mb-0 Q13：訂購付款後多久會收到商品？
@@ -140,7 +140,7 @@
       hr
       .d-flex.flex-column
         input(type="checkbox" id="fourteen").d-none
-        .d-flex.labelConelevent
+        .d-flex.labelContent
           label(for="fourteen").mb-0.plus.mr-3 +
           label(for="fourteen").mb-0.minus.mr-3 -
           label(for="fourteen").destitle.mb-0 Q14：商品可以提早出貨嗎?
@@ -148,7 +148,7 @@
       hr
       .d-flex.flex-column
         input(type="checkbox" id="fifteen").d-none
-        .d-flex.labelConelevent
+        .d-flex.labelContent
           label(for="fifteen").mb-0.plus.mr-3 +
           label(for="fifteen").mb-0.minus.mr-3 -
           label(for="fifteen").destitle.mb-0 Q15：訂單成立後，可否取消或更改訂單數量及商品?
@@ -156,13 +156,21 @@
       hr
       .d-flex.flex-column
         input(type="checkbox" id="sisteen").d-none
-        .d-flex.labelConelevent
+        .d-flex.labelContent
           label(for="sisteen").mb-0.plus.mr-3 +
           label(for="sisteen").mb-0.minus.mr-3 -
           label(for="sisteen").destitle.mb-0 Q16：客戶忘記轉帳帳號如何查詢
-        ol.indent
-          li 轉帳完成後系統會發出訂單確認的通知信件，到您的帳號信箱。
-          li 在我的帳戶內>您的訂單中，訂單狀態會顯示收到付款。
+        .text-justify.indent.pl-3 1. 訂購完成後系統會發出訂單確認信，到您的帳號信箱即可查看匯款資訊。
+        .text-justify.indent.pl-3 2. ATM 轉帳或臨櫃匯款：
+        .text-justify.indent.pl-3 戶名：永豐紙業股份有限公司
+        .text-justify.indent.pl-3 銀行代號：812「台新銀行-南松山分行」
+        .text-justify.indent.pl-3 08201071032700
+        .text-justify.indent.pl-3 匯款後請來信 services@cloudw2p.com 告知轉帳資訊：
+        .text-justify.indent.pl-3 (1)訂單編號：
+        .text-justify.indent.pl-3 (2)轉帳日期：
+        .text-justify.indent.pl-3 (3)轉帳金額：
+        .text-justify.indent.pl-3 (4)轉帳帳號後五碼：  (臨櫃匯款,請提供匯款人姓名)
+        .text-justify.indent.pl-3 ※ ATM 轉帳：「請於訂購日起，七日內需完成轉帳並Email回覆告知」，在未確認收到款項之前，此筆訂單尚未正式成立。
       hr
     //- mobile看到的樣子
     .mobileContent
@@ -188,32 +196,28 @@
             //- label(for="buyAndTaketwo").mb-0.minus.mr-3 -
             label(for="buyAndTaketwo").destitle.mb-0 Q2：付款方式有哪些?
           .text-justify.indent.pl-0.ml-0 A：您可以選用信用卡付費、ATM 轉帳或臨櫃匯款。
-          ol.indent.pl-0.ml-3
-            li 信用卡付費：目前接受 VISA 信用卡、Master Card 信用卡、JCB Card 信用卡或 NCCC 信用卡，使用信用線上付款，以台幣支付「一次付清」。
-            li 轉帳匯款：
-              ol
-                li ATM 轉帳：「請於訂購日起，七日內需完成轉帳」，在未確認收到款項之前，此筆訂單尚未正式成立。系統根據您的訂單產生一組專屬於這筆訂單的轉帳帳號，請您根據此組帳號及您購買的總金額進行轉帳即可。
-                li 臨櫃匯款：「請於訂購日起，七日內需完成轉帳」，在未確認收到款項之前，此筆訂單尚未正式成立。
+          .text-justify.indent.pl-0.ml-0 1. 信用卡付費：目前接受 VISA、Master Card、JCB Card 信用卡，使用線上付款，以台幣支付「一次付清」。
+          .text-justify.indent.pl-0.ml-0 2. ATM 轉帳或臨櫃匯款：
           .text-justify.indent.pl-0.ml-0 戶名：永豐紙業股份有限公司
-          .text-justify.indent.pl-0.ml-0 銀行：永豐銀行
-          .text-justify.indent.pl-0.ml-0 分行：南門分行
-          .text-justify.indent.pl-0.ml-0 帳號：系統根據您的訂單產生一組專屬於這筆訂單的轉帳帳號，請您根據此組帳號及您購買的總金額進行轉帳即可。
-          .text-justify.indent.pl-0.ml-0 需告知櫃台服務人員此帳號為虛擬帳號，並匯入與訂單相同金額(勿自行扣匯費)。
-          .text-justify.indent.pl-0.ml-0 ※ 如何確認轉帳成功：
-          ol.indent
-            li 轉帳完成後系統會發出訂單確認的通知信件，到您的帳號信箱。
-            li 在我的帳戶內>您的訂單中，訂單狀態會顯示收到付款。
-          .text-justify.indent.pl-0.ml-0 ※ 確認繳費成功前請保留 ATM 交易明細表以保障您的權益。
-          .text-justify.indent.pl-0.ml-0 ※ 提醒您，若您為海外會員或未持有台灣國內銀行所發行晶片金融卡，請勿選擇 ATM 轉帳付款方式。「ATM 轉帳」僅限台灣國內銀行發行之晶片金融卡，以台幣支付。
+          .text-justify.indent.pl-0.ml-0 銀行代號：812「台新銀行-南松山分行」
+          .text-justify.indent.pl-0.ml-0 銀行帳號：08201071032700
+          .text-justify.indent.pl-0.ml-0 匯款後請來信 services@cloudw2p.com 告知轉帳資訊：
+          .text-justify.indent.pl-0.ml-0 (1)訂單編號：
+          .text-justify.indent.pl-0.ml-0 (2)轉帳日期：
+          .text-justify.indent.pl-0.ml-0 (3)轉帳金額：
+          .text-justify.indent.pl-0.ml-0 (4)轉帳帳號後五碼：  (臨櫃匯款,請提供匯款人姓名)
+          .text-justify.indent.pl-0.ml-0 ※ ATM 轉帳：「請於訂購日起，七日內需完成轉帳並Email回覆告知」，在未確認收到款項之前，此筆訂單尚未正式成立。
         hr
         .d-flex.flex-column
           input(type="checkbox" id="buyAndTakethree").d-none
           .d-flex.labelContent
-            //- label(for="buyAndTakethree").mb-0.plus.mr-3 +
-            //- label(for="buyAndTakethree").mb-0.minus.mr-3 -
             label(for="buyAndTakethree").destitle.mb-0 Q3：如何知道「轉帳」是否成功？
-          .text-justify.indent.pl-0.ml-0 A：永豐雲端印刷網會在收到您的轉帳通知，確認帳款後，發送訂單款項確認 email 到您登錄之會員帳號中，或是您可在轉帳完成之後的下一個工作天，直接至訂單查詢中，查詢該筆訂單狀況。
-          .text-justify.indent.pl-0.ml-0 ※ 如為假日轉帳，將於工作日回覆。
+          .text-justify.indent.pl-0.ml-0 A：說明如下
+          .text-justify.indent.pl-0.ml-0 1.轉帳完成後，請來信 services@cloudw2p.com 告知轉帳資訊，以便為您核對。
+          .text-justify.indent.pl-0.ml-0 永豐雲端印刷網會在收到您的轉帳通知，確認帳款後您可在轉帳完成之後的下一個工作天，直接至訂單查詢中，查詢該筆訂單狀況。
+          .text-justify.indent.pl-0.ml-0 ※ 如為假日轉帳，將於工作日確認款項。
+          .text-justify.indent.pl-0.ml-0 2.對帳完成後即訂單成立，在「我的帳戶」內「您的訂單」中，訂單狀態會顯示「收到付款」。
+          .text-justify.indent.pl-0.ml-0 ※ 確認繳費成功前請保留 ATM 交易明細表以保障您的權益。
         hr
         .d-flex.flex-column
           input(type="checkbox" id="buyAndTakefour").d-none
@@ -277,8 +281,8 @@
           .d-flex.labelConelevent
             //- label(for="buyAndTakeeleven").mb-0.plus.mr-3 +
             //- label(for="buyAndTakeeleven").mb-0.minus.mr-3 -
-            label(for="buyAndTakeeleven").destitle.mb-0 Q11：購物車內的商品，保存期限有多長？
-          .text-justify.indent.pl-0.ml-0 A：購物車內的商品會為您保留24小時，如超過24小時，系統將會自動將購物車商品移除，不另行通知。此動作不影響原作品的保存。重新訂購請由「我的作品」中將該作品加入購物車。
+            label(for="buyAndTakeeleven").destitle.mb-0 Q11：購物車內的作品，保存期限有多長？
+          .text-justify.indent.pl-0.ml-0 A：購物車內的作品等同「我的作品」，編輯期限是由最新的編輯日起算，如果您超過60天未編輯作品，系統會自動將購物車作品移除。
         hr
         .d-flex.flex-column
           input(type="checkbox" id="buyAndTaketwelve").d-none
@@ -321,12 +325,18 @@
         .d-flex.flex-column
           input(type="checkbox" id="buyAndTakesisteen").d-none
           .d-flex.labelConelevent
-            //- label(for="buyAndTakesisteen").mb-0.plus.mr-3 +
-            //- label(for="buyAndTakesisteen").mb-0.minus.mr-3 -
             label(for="buyAndTakesisteen").destitle.mb-0 Q16：客戶忘記轉帳帳號如何查詢
-          ol.indent.pl-0.ml-3.mb-0
-            li 轉帳完成後系統會發出訂單確認的通知信件，到您的帳號信箱。
-            li 在我的帳戶內>您的訂單中，訂單狀態會顯示收到付款。
+          .text-justify.indent.pl-0.ml-0 1.訂購完成後系統會發出訂單確認信，到您的帳號信箱即可查看匯款資訊。
+          .text-justify.indent.pl-0.ml-0 2. ATM 轉帳或臨櫃匯款：
+          .text-justify.indent.pl-0.ml-0 戶名：永豐紙業股份有限公司
+          .text-justify.indent.pl-0.ml-0 銀行代號：812「台新銀行-南松山分行」
+          .text-justify.indent.pl-0.ml-0 銀行帳號：08201071032700
+          .text-justify.indent.pl-0.ml-0 匯款後請來信 services@cloudw2p.com 告知轉帳資訊：
+          .text-justify.indent.pl-0.ml-0 (1)訂單編號：
+          .text-justify.indent.pl-0.ml-0 (2)轉帳日期：
+          .text-justify.indent.pl-0.ml-0 (3)轉帳金額：
+          .text-justify.indent.pl-0.ml-0 (4)轉帳帳號後五碼：(臨櫃匯款,請提供匯款人姓名)
+          .text-justify.indent.pl-0.ml-0 ※ ATM 轉帳：「請於訂購日起，七日內需完成轉帳並Email回覆告知」，在未確認收到款項之前，此筆訂單尚未正式成立。
 </template>
 
 <script>

@@ -1,5 +1,5 @@
 let API=''
 var imgPath = ''
-var version = '1.9.4'
+var version = '1.0.0'
 
 // export default API

@@ -61,11 +61,23 @@
         .text-justify.indent.pl-3 A：未編輯完成的作品，請點選「保存」，若您尚未加入會員，請依步驟註冊，註冊完成作品將會儲存在「我的作品」內。若您已成為本站會員，請登入會員帳號，即可將作品儲存。若要繼續編輯作品時請登入後，可在「我的作品」內，點選作品下方的「編輯」按鈕。
       hr
       .d-flex.flex-column
+        input(type="checkbox" id="sevenZero").d-none
+        .d-flex.labelContent
+          label(for="sevenZero").mb-0.plus.mr-3 +
+          label(for="sevenZero").mb-0.minus.mr-3 -
+          label(for="sevenZero").destitle Q7：「我的作品」和「購買後的作品」保存期限有多長?
+        .text-justify.indent.pl-3 A：說明如下：
+        .text-justify.indent.pl-3 因系統空間有限，「我的作品」的編輯期限是由最新的編輯日起算，如果您超過60天未編輯作品，我們會假設您已經不需要這個作品，系統就會自動刪除作品。請大家隨時回來「我的作品」編輯您未完成的作品喔！
+        .text-justify.indent.pl-3 「購買後的作品」的保存期限是由訂購完成後起算，如果您超過365天未再「重新訂購」或「複製」作品，系統就會自動刪除作品，造成您的不便，敬請見諒。
+        .text-justify.indent.pl-3 ※ 當系統空間不足，逾期作品 ( 包含上傳照片 ) 將優先被刪除。當您每次登入繼續編輯，系統會重新計算編輯期限，所以只要您有持續的在編輯您的作品，就不用擔心作品會被刪除囉！
+
+      hr
+      .d-flex.flex-column
         input(type="checkbox" id="six").d-none
         .d-flex.labelContent
           label(for="six").mb-0.plus.mr-3 +
           label(for="six").mb-0.minus.mr-3 -
-          label(for="six").destitle Q7：編輯時的操作反應很慢？
+          label(for="six").destitle Q8：編輯時的操作反應很慢？
         .text-justify.indent.pl-3 A：因本站使用的是即時線上編輯器，主要的原因與您當下的網路速度及網路環境有關。
       hr
       .d-flex.flex-column
@@ -73,7 +85,7 @@
         .d-flex.labelContent
           label(for="seven").mb-0.plus.mr-3 +
           label(for="seven").mb-0.minus.mr-3 -
-          label(for="seven").destitle Q8：使用手機編輯作品時，為何不能調整相片框位置及大小或增加文字及插圖？
+          label(for="seven").destitle Q9：使用手機編輯作品時，為何不能調整相片框位置及大小或增加文字及插圖？
         .text-justify.indent.pl-3 A：因手機版瀏覽裝置限制僅能支援「簡易編輯」，請您使用電腦或平板裝置編輯作品，即可使用「進階編輯」操作上列功能。
       hr
       .d-flex.flex-column
@@ -81,7 +93,7 @@
         .d-flex.labelContent
           label(for="eight").mb-0.plus.mr-3 +
           label(for="eight").mb-0.minus.mr-3 -
-          label(for="eight").destitle Q9：我可以分享完成訂購的作品嗎？
+          label(for="eight").destitle Q10：我可以分享完成訂購的作品嗎？
         .text-justify.indent.pl-3 A：請您登入後，點選「我的帳戶」>「您的訂單」，選擇欲分享的作品並點選「分享」即可透過各種平台分享給您的朋友。
       hr
       .d-flex.flex-column
@@ -89,7 +101,7 @@
         .d-flex.labelContent
           label(for="nine").mb-0.plus.mr-3 +
           label(for="nine").mb-0.minus.mr-3 -
-          label(for="nine").destitle Q10：上傳圖片過程中可否停止上傳或刪除圖片?
+          label(for="nine").destitle Q11：上傳圖片過程中可否停止上傳或刪除圖片?
         .text-justify.indent.pl-3 A：圖片上傳中無法停止上傳，請您耐心等待圖片上傳完成後，再刪除即可。
         .text-justify.indent.pl-3 簡單編輯：在圖片區選擇不要的照片，再點選該照片左上角的箭頭，即出現「清除」選項。
         .imgBox.justify-content-center.ml-md-3
@@ -105,7 +117,7 @@
         .d-flex.labelContent
           label(for="ten").mb-0.plus.mr-3 +
           label(for="ten").mb-0.minus.mr-3 -
-          label(for="ten").destitle Q11：「色差」說明？
+          label(for="ten").destitle Q12：「色差」說明？
         .text-justify.indent.pl-3 A：圖片上傳中無法停止上傳，請您耐心等待圖片上傳完成後，再刪除即可。
         .text-justify.indent.pl-3 關於色彩差異部分，因每台螢幕設定的色彩明亮及品牌皆不同，不同螢幕看同一張照片或圖片，會呈現不同顏色，電腦顯示的色彩模式為RGB，印刷品的色彩模式為CMYK，顯示的色域有差異會有一定的色差，間接造成印刷成品與螢幕上有所差異。
         .text-justify.indent.pl-3 印刷品皆屬影像複製，影響色彩呈現的原因有油墨、紙張、色彩曲線、時間、機台等等，所以同一圖檔在不同次印刷時，色彩都會有些微差距，有色差皆屬正常。就如同沖印相片即使到同一個相館，不同天洗出來，色彩亦有差異一樣，即使大量同時印刷，前後時段印出的產品，也會略有差異，這是色彩複製一定會有的問題，詳情請參閱國際膠印印刷標準ISO12647-2。
@@ -171,11 +183,21 @@
           .text-justify.indent.pl-0.ml-0 A：未編輯完成的作品，請點選「保存」，若您尚未加入會員，請依步驟註冊，註冊完成作品將會儲存在「我的作品」內。若您已成為本站會員，請登入會員帳號，即可將作品儲存。若要繼續編輯作品時請登入後，可在「我的作品」內，點選作品下方的「編輯」按鈕。
         hr
         .d-flex.flex-column
+          input(type="checkbox" id="workslayoutSevenZero").d-none
+          .d-flex.labelContent
+            //- label(for="workslayoutsix").mb-0.plus.mr-3 +
+            //- label(for="workslayoutsix").mb-0.minus.mr-3 -
+            label(for="workslayoutSevenZero").destitle Q7：「我的作品」和「購買後的作品」保存期限有多長?
+          .text-justify.indent.pl-0.ml-0 A：因系統空間有限，「我的作品」的編輯期限是由最新的編輯日起算，如果您超過60天未編輯作品，我們會假設您已經不需要這個作品，系統就會自動刪除作品。請大家隨時回來「我的作品」編輯您未完成的作品喔！
+          .text-justify.indent.pl-0.ml-0 「購買後的作品」的保存期限是由訂購完成後起算，如果您超過365天未再「重新訂購」或「複製」作品，系統就會自動刪除作品，造成您的不便，敬請見諒。
+          .text-justify.indent.pl-0.ml-0 ※ 當系統空間不足，逾期作品 ( 包含上傳照片 ) 將優先被刪除。當您每次登入繼續編輯，系統會重新計算編輯期限，所以只要您有持續的在編輯您的作品，就不用擔心作品會被刪除囉！
+        hr
+        .d-flex.flex-column
           input(type="checkbox" id="workslayoutsix").d-none
           .d-flex.labelContent
             //- label(for="workslayoutsix").mb-0.plus.mr-3 +
             //- label(for="workslayoutsix").mb-0.minus.mr-3 -
-            label(for="workslayoutsix").destitle Q7：編輯時的操作反應很慢？
+            label(for="workslayoutsix").destitle Q8：編輯時的操作反應很慢？
           .text-justify.indent.pl-0.ml-0 A：因本站使用的是即時線上編輯器，主要的原因與您當下的網路速度及網路環境有關。
         hr
         .d-flex.flex-column
@@ -183,7 +205,7 @@
           .d-flex.labelContent
             //- label(for="workslayoutseven").mb-0.plus.mr-3 +
             //- label(for="workslayoutseven").mb-0.minus.mr-3 -
-            label(for="workslayoutseven").destitle Q8：使用手機編輯作品時，為何不能調整相片框位置及大小或增加文字及插圖？
+            label(for="workslayoutseven").destitle Q9：使用手機編輯作品時，為何不能調整相片框位置及大小或增加文字及插圖？
           .text-justify.indent.pl-0.ml-0 A：因手機版瀏覽裝置限制僅能支援「簡易編輯」，請您使用電腦或平板裝置編輯作品，即可使用「進階編輯」操作上列功能。
         hr
         .d-flex.flex-column
@@ -191,7 +213,7 @@
           .d-flex.labelContent
             //- label(for="workslayouteight").mb-0.plus.mr-3 +
             //- label(for="workslayouteight").mb-0.minus.mr-3 -
-            label(for="workslayouteight").destitle Q9：我可以分享完成訂購的作品嗎？
+            label(for="workslayouteight").destitle Q10：我可以分享完成訂購的作品嗎？
           .text-justify.indent.pl-0.ml-0 A：請您登入後，點選「我的帳戶」>「您的訂單」，選擇欲分享的作品並點選「分享」即可透過各種平台分享給您的朋友。
         hr
         .d-flex.flex-column
@@ -199,7 +221,7 @@
           .d-flex.labelContent
             //- label(for="workslayoutnine").mb-0.plus.mr-3 +
             //- label(for="workslayoutnine").mb-0.minus.mr-3 -
-            label(for="workslayoutnine").destitle Q10：上傳圖片過程中可否停止上傳或刪除圖片?
+            label(for="workslayoutnine").destitle Q11：上傳圖片過程中可否停止上傳或刪除圖片?
           .text-justify.indent.pl-0.ml-0 A：圖片上傳中無法停止上傳，請您耐心等待圖片上傳完成後，再刪除即可。
           .text-justify.indent.pl-0.ml-0  簡單編輯：在圖片區選擇不要的照片，再點選該照片左上角的箭頭，即出現「清除」選項。
           .imgBox.justify-content-center
@@ -215,7 +237,7 @@
           .d-flex.labelContent
             //- label(for="workslayouten").mb-0.plus.mr-3 +
             //- label(for="workslayouten").mb-0.minus.mr-3 -
-            label(for="workslayouten").destitle Q11：「色差」說明？
+            label(for="workslayouten").destitle Q12：「色差」說明？
           .text-justify.indent.pl-0.ml-0 A：圖片上傳中無法停止上傳，請您耐心等待圖片上傳完成後，再刪除即可。
           .text-justify.indent.pl-0.ml-0 關於色彩差異部分，因每台螢幕設定的色彩明亮及品牌皆不同，不同螢幕看同一張照片或圖片，會呈現不同顏色，電腦顯示的色彩模式為RGB，印刷品的色彩模式為CMYK，顯示的色域有差異會有一定的色差，間接造成印刷成品與螢幕上有所差異。
           .text-justify.indent.pl-0.ml-0 印刷品皆屬影像複製，影響色彩呈現的原因有油墨、紙張、色彩曲線、時間、機台等等，所以同一圖檔在不同次印刷時，色彩都會有些微差距，有色差皆屬正常。就如同沖印相片即使到同一個相館，不同天洗出來，色彩亦有差異一樣，即使大量同時印刷，前後時段印出的產品，也會略有差異，這是色彩複製一定會有的問題，詳情請參閱國際膠印印刷標準ISO12647-2。
@@ -286,6 +308,12 @@ export default {
   input:checked ~ .labelContent > .minus{
     display: flex;
   }
+  ol,ul{
+    &.indent{
+      text-indent:0;
+    }
+  }
+
   .indent{
     display: none;
     margin-left: 1.6rem;
