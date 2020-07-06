@@ -13,6 +13,8 @@ import loading from 'vue-loading-overlay'
 import { ValidationProvider, extend } from 'vee-validate'
 import { required, email, digits } from 'vee-validate/dist/rules'
 import { messages } from 'vee-validate/dist/locale/zh_TW.json'
+// GTM
+import VueGtm from 'vue-gtm'
 // Import stylesheet
 import 'vue-loading-overlay/dist/vue-loading.css'
 import filter from './assets/filters/currency'
@@ -23,6 +25,16 @@ Vue.use(VueAxios, axios)
 Vue.use(Vuex)
 // vue-loading-overlay
 Vue.component('loading', loading)
+// GTM
+Vue.use(VueGtm, {
+  // container id
+  id: 'GTM-W2H9PB9',
+  // display console logs debugs or not (optional)
+  debug: true,
+  enabled: true,
+  vueRouter: router,
+  loadScript: true
+})
 // vee validate
 Vue.component('ValidationProvider', ValidationProvider)
 extend('email', {
