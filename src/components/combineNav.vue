@@ -50,7 +50,7 @@
             span.tpx.tpx-basketCount(id="tpx-basketButtonCount")
     //- 小於640秀的畫面
     //- <!-- My Projects pop out panel -->
-    loginmodal
+    //- loginmodal
     <div id="tpx-projectlistcontents" class="tpx tpx-projectlist">
         <div id="tpx-projectsItemListContainer" class="tpx tpx-projectlist-items-container">
             <ul id="tpx-projectsItemList" class="tpx tpx-shopping-cart-items"></ul>

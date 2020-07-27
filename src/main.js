@@ -30,7 +30,7 @@ Vue.use(VueGtm, {
   // container id
   id: 'GTM-W2H9PB9',
   // display console logs debugs or not (optional)
-  debug: true,
+  // debug: true,
   enabled: true,
   vueRouter: router,
   loadScript: true

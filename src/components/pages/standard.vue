@@ -2,8 +2,8 @@
   .standard
     .container.d-flex.my-3
       router-link(to="/" v-if="categoryName").mb-0.text-gray.text-decoration-none 首頁
-      p.mb-0.text-gray.mx-2(v-if="categoryName") /
-      router-link.mb-0.text-gray.mx-2.categoryLink.text-decoration-none(:to="'/productDetail/' + categoryId") {{categoryName}}
+      p.mb-0.text-gray.mx-2(v-if="categoryName && eachCategoryNumber[categoryId - 1] > 1") /
+      router-link.mb-0.text-gray.mx-2.categoryLink.text-decoration-none(:to="'/productDetail/' + categoryId" v-if="eachCategoryNumber[categoryId - 1] > 1") {{categoryName}}
       p.mb-0.text-gray.mx-2(v-if="categoryName") /
       p.mb-0 {{standardTitle}}
     .container
@@ -33,8 +33,8 @@
               .col-4
                 p {{itm}}
               .col-8
-                p(v-if="specId_sizeId_info.productIntroId[idx] === '6'") 付款後{{specId_sizeId_info.productIntroRightCol[idx]}}個工作天寄出
-                p(v-else) {{specId_sizeId_info.productIntroRightCol[idx]}}
+                p(v-if="specId_sizeId_info.productIntroId[idx] === '6'" v-html="'付款後'+specId_sizeId_info.productIntroRightCol[idx]+'個工作天寄出'")
+                p(v-else v-html="specId_sizeId_info.productIntroRightCol[idx]")
           hr.mt-0
           div(:class="{ 'flex-column' : fullWidth <= 640, 'align-items-center' : fullWidth <= 640}").text-primary.d-flex.font-weight-bold.my-3 新平台，新體驗，正式上線！<p class="mb-0" :class="{'ml-auto' : fullWidth > 640}"><span class="fz26" >NT {{specId_sizeId_info.price | currency}}</span><span class="fz26 ml-2" v-if="specId_sizeId_info.priceRange">起</span></p>
           .d-flex.btnBox.flex-wrap(:class="{'justify-content-center' : fullWidth <= 640}")
@@ -112,7 +112,9 @@ export default {
       productId: state => state.standardModules.productId,
       productRecommend: state => state.standardModules.productRecommend,
       // productDetail modules的data
-      subProducts: state => state.productDetailModules.subProducts
+      subProducts: state => state.productDetailModules.subProducts,
+      // navbar modules 的data
+      eachCategoryNumber: state => state.navbarModules.eachCategoryNumber
     }),
     // like v-model
     ...mapFields([
