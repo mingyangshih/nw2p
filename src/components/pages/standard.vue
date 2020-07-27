@@ -33,13 +33,16 @@
               .col-4
                 p {{itm}}
               .col-8
-                p(v-if="specId_sizeId_info.productIntroId[idx] === '6'" v-html="'付款後'+specId_sizeId_info.productIntroRightCol[idx]+'個工作天寄出'")
+                p(v-if="specId_sizeId_info.productIntroId[idx] === '6'" v-html="'付款後' + specId_sizeId_info.productIntroRightCol[idx] + '個工作天寄出'")
                 p(v-else v-html="specId_sizeId_info.productIntroRightCol[idx]")
           hr.mt-0
           div(:class="{ 'flex-column' : fullWidth <= 640, 'align-items-center' : fullWidth <= 640}").text-primary.d-flex.font-weight-bold.my-3 新平台，新體驗，正式上線！<p class="mb-0" :class="{'ml-auto' : fullWidth > 640}"><span class="fz26" >NT {{specId_sizeId_info.price | currency}}</span><span class="fz26 ml-2" v-if="specId_sizeId_info.priceRange">起</span></p>
           .d-flex.btnBox.flex-wrap(:class="{'justify-content-center' : fullWidth <= 640}")
             router-link(to="/serviceContent" target="_blank").btn.btn-outline-primary.font-weight-bold.btnInPage(:class="[{'w-100' : fullWidth <= 640},{'mb-2' : fullWidth <= 640},{'mr-2' : fullWidth > 640}]") 編輯教學
-            a(:href="specId_sizeId_info.link" :class="{'w-100' : fullWidth <= 640}").btn.btn-primary.font-weight-bold.btnInPage.py-0.text-white 開始製作
+            //- 一般產品直接走正常流程
+            a(:href="specId_sizeId_info.link" :class="{'w-100' : fullWidth <= 640}" v-if="specId_sizeId_info.cnt === 1").btn.btn-primary.font-weight-bold.btnInPage.py-0.text-white 開始製作
+            //- 需要選風格的產品走下方的流程
+            router-link(:to="`/stylePage/${productId}/${specId}/${sizeId}`" :class="{'w-100' : fullWidth <= 640}" v-if="specId_sizeId_info.cnt !== 1").btn.btn-primary.font-weight-bold.btnInPage.py-0.text-white 選擇風格
     .container.mt-5.mt-md-0
       .row.justify-content-center.py-4
         h2.font-weight-bold.mb-0.text-secondary.secondTitle 產品特性
@@ -97,7 +100,9 @@ export default {
   data () {
     return {
       fullWidth: document.body.clientWidth,
-      categoryId: null
+      categoryId: null,
+      // 判斷taopix login ornot
+      mawuli: null
     }
   },
   computed: {
@@ -108,6 +113,7 @@ export default {
       productFeature: state => state.standardModules.productFeature,
       standardTitle: state => state.standardModules.standardTitle,
       productIntroDesc: state => state.standardModules.productIntroDesc,
+      productMaster: state => state.standardModules.productMaster,
       categoryName: state => state.standardModules.categoryName,
       productId: state => state.standardModules.productId,
       productRecommend: state => state.standardModules.productRecommend,
@@ -128,7 +134,6 @@ export default {
     getSubMenu () {
       let categoryId = this.$store.state.standardModules.categoryId
       this.$router.push(`/productDetail/${categoryId}`)
-      // window.location.reload()
     },
     standard (id) {
       this.$router.push(`/standard/${id}`)
@@ -160,6 +165,23 @@ export default {
     // call productDetail.js 內的actions
     vm.$store.dispatch('getSubMenu', {categoryId})
     // 切換畫面重載
+
+    // 判斷是否登入
+    // let reg = /mawuli/gi
+    // var ca = document.cookie.split(';') // 會把cookie拆成一個array
+    // ca.forEach(itm => {
+    //   if (itm === 'mawhluid=89847983778080838079807675') {
+    //     // console.log(true)
+    //   }
+    // })
+    // let test = reg.test(document.cookie)
+    // // console.log(test)
+    // // console.log(vm.mawuli)
+    // if (test) {
+    //   vm.mawuli = true
+    // } else {
+    //   vm.mawuli = false
+    // }
   }
 }
 </script>

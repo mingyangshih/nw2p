@@ -16,6 +16,8 @@ export default {
     productInfo: [],
     // 下方文字資料
     productFeature: [],
+    //
+    productMaster: [],
     // 網友推薦
     productRecommend: [],
     // 規格頁數選資料
@@ -39,23 +41,20 @@ export default {
       context.commit('LOADING', true, {root: true})
       let getAPI = `${API_PATH}product/getdetail/${id}`
       return axios.get(getAPI).then((response) => {
-        let productSpec = response.data.data[1].productSpec
-        let productInfo = response.data.data[2].productInfo
-        let productFeature = response.data.data[3].productFeature
-        let productRecommend = response.data.data[4].productRecommend
+        let {productSpec, productInfo, productFeature, productRecommend, productMaster, productIntroDesc} = response.data.data
         // 規格標題
-        let standardTitle = response.data.data[2].productInfo[0].productName
-        let categoryName = response.data.data[2].productInfo[0].categoryName
-        let categoryId = response.data.data[2].productInfo[0].categoryId
-        let productId = response.data.data[2].productInfo[0].productId
-        context.commit('changeStandardData', {productSpec, productInfo, productFeature, standardTitle, categoryName, categoryId, productId, productRecommend})
+        let standardTitle = productInfo[0].productName
+        let categoryName = productInfo[0].categoryName
+        let categoryId = productInfo[0].categoryId
+        let productId = productInfo[0].productId
+        context.commit('changeStandardData', {productSpec, productInfo, productFeature, standardTitle, categoryName, categoryId, productId, productRecommend, productMaster, productIntroDesc})
       }).catch((error) => { console.log(error) }).finally(() => {
         context.commit('LOADING', false, {root: true})
       })
     }
   },
   mutations: {
-    changeStandardData (state, {productSpec, productInfo, productFeature, standardTitle, categoryName, categoryId, productId, productRecommend}) {
+    changeStandardData (state, {productSpec, productInfo, productFeature, standardTitle, categoryName, categoryId, productId, productRecommend, productMaster, productIntroDesc}) {
       state.productSpec = productSpec
       state.productInfo = productInfo
       state.productFeature = productFeature
@@ -67,13 +66,15 @@ export default {
       state.categoryId = categoryId
       state.productId = productId
       state.productRecommend = productRecommend
+      state.productMaster = productMaster
+      state.productIntroDesc = productIntroDesc
     },
     updateField
   },
   // computed
   getters: {
     getField,
-    // 改變方向改變尺寸
+    // 改變規格改變尺寸
     productSize (state) {
       let productSize = []
       state.productSpec.forEach(item => {
@@ -92,9 +93,18 @@ export default {
       let link = null
       let price = null
       let priceRange = null
+      let cnt = null
+      // 取得判斷是否要進到風格的cnt
+      state.productSpec.forEach(itm => {
+        itm.productSize.forEach(item => {
+          if (item.sizeId === state.sizeId) {
+            cnt = item.cnt
+          }
+        })
+      })
+      // 用specid and sizeid 篩選價錢跟編輯連結
       state.productInfo.forEach((itm) => {
         if (itm.specId === state.specId && itm.sizeId === state.sizeId) {
-          state.productIntroDesc = itm.productIntroDesc
           state.editLink = itm.editLink
           link = itm.editLink
           state.price = itm.price
@@ -108,22 +118,23 @@ export default {
             state.priceRange = true
             priceRange = false
           }
-          itm.productIntroDesc.forEach((item, idx) => {
-            productIntroLeftCol.push(item.introName)
-            productIntroId.push(item.productIntroId)
-            if (idx === 0) {
-              getters.productSize.forEach(itm => {
-                if (itm.sizeId === state.sizeId) productIntroRightCol.push(itm.sizeDesc)
-              })
-            } else {
-              productIntroRightCol.push(item.productIntroDesc)
-            }
+        }
+      })
+      // 組合產品特性
+      state.productIntroDesc.forEach((item, idx) => {
+        productIntroLeftCol.push(item.introName)
+        productIntroId.push(item.productIntroId)
+        if (idx === 0) {
+          getters.productSize.forEach(itm => {
+            if (itm.sizeId === state.sizeId) productIntroRightCol.push(itm.sizeDesc)
           })
+        } else {
+          productIntroRightCol.push(item.productIntroDesc)
         }
       })
       state.productIntroLeftCol = productIntroLeftCol
       state.productIntroRightCol = productIntroRightCol
-      return {productIntroLeftCol, productIntroRightCol, productIntroId, link, price, priceRange}
+      return {productIntroLeftCol, productIntroRightCol, productIntroId, link, price, priceRange, cnt}
     }
   }
 }
