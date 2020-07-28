@@ -11,6 +11,7 @@ import logOutModules from './modules/logout'
 import alertModules from './modules/alert'
 import productDetailModules from './modules/productDetail'
 import contactusModules from './modules/contactus'
+import styleModules from './modules/style'
 Vue.use(Vuex)
 
 export default new Vuex.Store({
@@ -32,7 +33,6 @@ export default new Vuex.Store({
     },
     sideBarShowEvent (state, status) {
       state.sideBarShow = status
-      // state.sideBarShow = !state.sideBarShow
     }
   },
   getters: {
@@ -47,6 +47,7 @@ export default new Vuex.Store({
     modifyEnrollModules,
     logOutModules,
     alertModules,
-    contactusModules
+    contactusModules,
+    styleModules
   }
 })

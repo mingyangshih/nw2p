@@ -3,12 +3,12 @@
     loading(:active.sync="isLoading" :is-full-page="fullPage" :color="color" :loader="loader")
     .container-fluid
       .row.px-0.campaign.campaignBox.bg-primary(v-if="fullWidth > 640")
-        p.mb-0.w-100.campaignDes {{topBar}}
+        p.mb-0.w-100.campaignDes.text-center {{topBar}}
     .container.px-0.mx-md-6
       combineNav
     .container-fluid
       .row.px-0.campaign.campaignBox.bg-primary(v-if="fullWidth <= 640")
-        p.mb-0.w-100.campaignDes {{topBar}}
+        p.mb-0.w-100.campaignDes.text-center {{topBar}}
     router-view
     .container-fluid.border-top.px-0.footer
       footerComponent(:viewportWidth="fullWidth")
