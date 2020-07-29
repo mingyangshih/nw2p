@@ -66,11 +66,11 @@ export default {
     const id = this.$route.params.id
     let API_PATH = process.env.API
     await this.$http.get(`${API_PATH}product/getdetail/${id}`).then(response => {
-      if (response.data.data[0].productAlbum.length === 0) {
+      if (response.data.data.productAlbum.length === 0) {
         let productAlbum = {productAlbum: 'https://fakeimg.pl/599/?text=fake image'}
         this.productAlbum.push(productAlbum)
       } else {
-        this.productAlbum = response.data.data[0].productAlbum
+        this.productAlbum = response.data.data.productAlbum
       }
       this.swiperOptionTop.loopedSlides = this.productAlbum.length
       this.swiperOptionThumbs.loopedSlides = this.productAlbum.length
