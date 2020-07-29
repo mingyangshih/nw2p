@@ -3,12 +3,12 @@
     loading(:active.sync="isLoading" :is-full-page="fullPage" :color="color" :loader="loader")
     .container-fluid
       .row.px-0.campaign.campaignBox.bg-primary(v-if="fullWidth > 640")
-        p.mb-0.w-100.campaignDes.text-center {{topBar}}
+        p.mb-0.w-100.campaignDes(v-for="(item,idx) in bulletinArray" v-if="bulletin === idx && Date.parse(item.issueEndDate) > timestemp") {{item.content}}
     .container.px-0.mx-md-6
       combineNav
     .container-fluid
       .row.px-0.campaign.campaignBox.bg-primary(v-if="fullWidth <= 640")
-        p.mb-0.w-100.campaignDes.text-center {{topBar}}
+        p.mb-0.w-100.campaignDes(v-for="(item,idx) in bulletinArray" v-if="bulletin === idx && Date.parse(item.issueEndDate) > timestemp") {{item.content}}
     router-view
     .container-fluid.border-top.px-0.footer
       footerComponent(:viewportWidth="fullWidth")
@@ -37,7 +37,8 @@ export default {
       color: '#5c87a6',
       loader: 'dots',
       fullWidth: document.body.clientWidth,
-      topBar: ''
+      bulletin: 0,
+      timestemp: null
     }
   },
   computed: {
@@ -45,7 +46,9 @@ export default {
       return this.$store.state.isLoading
     },
     ...mapState({
-      sideBarShow: state => state.sideBarShow
+      sideBarShow: state => state.sideBarShow,
+      // bulletin
+      bulletinArray: state => state.bulletinModules.bulletinArray
     })
   },
   mounted () {
@@ -57,9 +60,23 @@ export default {
       })()
     }
   },
-  created () {
-    let topBar = window.topBar
-    this.topBar = topBar
+  async created () {
+    await this.$store.dispatch('getBulletin')
+    const vm = this
+    let date = new Date()
+    let timestemp = date.getTime()
+    vm.timestemp = timestemp
+    // if (vm.bulletinArray.length === 1) {
+    //   vm.bulletin = 0
+    // } else {
+    setInterval(function () {
+      if (vm.bulletin < vm.bulletinArray.length - 1) {
+        vm.bulletin += 1
+      } else {
+        vm.bulletin = 0
+      }
+    }, 2500)
+    // }
   },
   watch: {
     // val 為改變的值
