@@ -109,7 +109,8 @@ export default {
     // 從Vuex取出資料
     ...mapState({
       productSpec: state => state.standardModules.productSpec,
-      productInfo: state => state.standardModules.productInfo,
+      // productInfo: state => state.standardModules.productInfo,
+      productItem: state => state.standardModules.productItem,
       productFeature: state => state.standardModules.productFeature,
       standardTitle: state => state.standardModules.standardTitle,
       productIntroDesc: state => state.standardModules.productIntroDesc,
