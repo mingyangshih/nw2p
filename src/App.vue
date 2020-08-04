@@ -1,5 +1,5 @@
 <template lang="pug">
-  #app(:class="{'scrollDiasbled':sideBarShow}")
+  #app(:class="{'scrollDiasbled':sideBarShow || openStyleModal}")
     loading(:active.sync="isLoading" :is-full-page="fullPage" :color="color" :loader="loader")
     .container-fluid
       .row.px-0.campaign.campaignBox.bg-primary(v-if="fullWidth > 640")
@@ -47,6 +47,7 @@ export default {
     },
     ...mapState({
       sideBarShow: state => state.sideBarShow,
+      openStyleModal: state => state.openStyleModal,
       // bulletin
       bulletinArray: state => state.bulletinModules.bulletinArray
     })

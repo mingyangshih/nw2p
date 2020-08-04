@@ -19,6 +19,7 @@ export default new Vuex.Store({
   state: {
     isLoading: null,
     sideBarShow: null,
+    openStyleModal: null,
     imgPath: window.imgPath,
     serviceContentDrop: '#/serviceContent'
   },

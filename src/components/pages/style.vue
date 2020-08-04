@@ -18,7 +18,7 @@
               option(v-for="(itm,idx) in getStyleClass" :value="itm.styleId") {{itm.styleName}}
           hr.w-100.hr.mt-4.mb-5
       .row
-        .col-md-3.col-6.mb-5(v-for="item in productInfoRender" v-if="item.page_no === activePage").d-flex.justify-content-center(@click="modalShow = !modalShow; $store.state.sideBarShow = true; modalBigImg = item.imgcover; modalRightOne = item.img1; modalRightTwo = item.img2; editLink = item.editLink")
+        .col-md-3.col-6.mb-5(v-for="item in productInfoRender" v-if="item.page_no === activePage").d-flex.justify-content-center(@click="modalShow = !modalShow; $store.state.openStyleModal = true; modalBigImg = item.imgcover; modalRightOne = item.img1; modalRightTwo = item.img2; editLink = item.editLink; templateName = item.templateName")
           .card.rounded-0
             .imgBox
               img.card-img-top.rounded-0.img-fluid(:src="item.imgcover")
@@ -39,14 +39,18 @@
                 span(aria-hidden='true') &raquo;
                 span.sr-only Next
     //-  點擊圖片後顯示的lightbox
-    .lightBox.d-flex.justify-content-center.align-items-center(v-if="modalShow" @click.stop="modalShow = !modalShow; $store.state.sideBarShow = false")
-      .w-50.border.border-dark.bg-white.p-3
+    .lightBox.d-flex.justify-content-center.align-items-center(v-if="modalShow" @click.stop="modalShow = !modalShow; $store.state.openStyleModal = false")
+      .border.border-dark.modalBox.p-3
+        p.modalTitle.mb-4.text-center {{templateName}}
         .d-flex
-          .w-50.d-flex.justify-content-center.align-items-center
-            .lightBoxImgBox(style="max-width:300px;")
+          .w-75.d-flex.justify-content-center.align-items-center.flex-column
+            p 封面
+            .lightBoxImgBox(style="max-width:80%;")
               img.img-fluid(:src="modalBigImg")
-          .w-50.d-flex.flex-column.justify-content-center.align-items-center
+          .w-25.d-flex.flex-column.justify-content-center.align-items-center
+            p 日期頁
             img.img-fluid(:src="modalRightOne").mb-3
+            p 照片頁
             img.img-fluid(:src="modalRightTwo")
         .d-flex.justify-content-center.mt-5
           a(:href="editLink").btn.btn-primary.btnInPage.text-decoration-none 開始製作
@@ -62,7 +66,8 @@ export default {
       modalRightOne: null,
       modalRightTwo: null,
       editLink: null,
-      changeStyleId: null
+      changeStyleId: null,
+      templateName: null
     }
   },
   computed: {
@@ -210,5 +215,19 @@ export default {
       display: flex;
       justify-content: center;
     }
+  }
+  .modalBox{
+    background: #ededed;
+    width: 50%;
+  }
+  @media(max-width:651px){
+    .modalBox{
+      width: 100%;
+    }
+  }
+  .modalTitle{
+    font-size: 24px;
+    font-family:$serif;
+    font-weight:bold;
   }
 </style>
