@@ -3,7 +3,8 @@ import axios from 'axios'
 export default {
   state: {
     productInfo: [],
-    productInfoRender: [],
+    productItem: [],
+    productItemRender: [],
     getStyleClass: [],
     productName: '',
     categoryName: '',
@@ -21,16 +22,16 @@ export default {
       let getAPI = `${API_PATH}product/getdetailwithstyle/${id}/${specId}/${sizeId}/1/templateName/20`
       context.commit('LOADING', true, {root: true})
       return axios.get(getAPI).then((response) => {
-        let {productInfo} = response.data.data
-        let {productName, categoryName, categoryId} = productInfo[0]
+        let {productItem} = response.data.data
+        let {productName, categoryName, categoryId} = productItem[0]
         // count pagination
         let pagination = []
-        productInfo.forEach(itm => {
+        productItem.forEach(itm => {
           if (pagination.indexOf(itm.page_no) === -1) {
             pagination.push(itm.page_no)
           }
         })
-        context.commit('setStyleData', {productInfo, id, specId, sizeId, productName, categoryName, categoryId, pagination})
+        context.commit('setStyleData', {productItem, id, specId, sizeId, productName, categoryName, categoryId, pagination})
       }).catch((error) => {
         console.log(error)
       }).finally(() => {
@@ -54,16 +55,16 @@ export default {
       let getAPI = `${API_PATH}product/getdetailwithstyle/${id}/${specId}/${sizeId}/${changeStyleId}/templateName/20`
       context.commit('LOADING', true, {root: true})
       axios.get(getAPI).then((response) => {
-        let {productInfo} = response.data.data
+        let {productItem} = response.data.data
         let {productName, categoryName, categoryId} = context.state
         // 算pagination
         let pagination = []
-        productInfo.forEach(itm => {
+        productItem.forEach(itm => {
           if (pagination.indexOf(itm.page_no) === -1) {
             pagination.push(itm.page_no)
           }
         })
-        context.commit('setStyleData', {productInfo, id, specId, sizeId, productName, categoryName, categoryId, pagination})
+        context.commit('setStyleData', {productItem, id, specId, sizeId, productName, categoryName, categoryId, pagination})
       }).catch((error) => {
         console.log(error)
       }).finally(() => {
@@ -72,9 +73,9 @@ export default {
     }
   },
   mutations: {
-    setStyleData (state, {productInfo, id, specId, sizeId, productName, categoryName, categoryId, pagination}) {
-      state.productInfo = productInfo
-      state.productInfoRender = productInfo
+    setStyleData (state, {productItem, id, specId, sizeId, productName, categoryName, categoryId, pagination}) {
+      state.productItem = productItem
+      state.productItemRender = productItem
       state.productName = productName
       state.categoryName = categoryName
       state.categoryId = categoryId

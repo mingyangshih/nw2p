@@ -18,7 +18,7 @@
               option(v-for="(itm,idx) in getStyleClass" :value="itm.styleId") {{itm.styleName}}
           hr.w-100.hr.mt-4.mb-5
       .row
-        .col-md-3.col-6.mb-5(v-for="item in productInfoRender" v-if="item.page_no === activePage").d-flex.justify-content-center(@click="modalShow = !modalShow; $store.state.openStyleModal = true; modalBigImg = item.imgcover; modalRightOne = item.img1; modalRightTwo = item.img2; editLink = item.editLink; templateName = item.templateName")
+        .col-md-3.col-6.mb-5(v-for="item in productItemRender" v-if="item.page_no === activePage").d-flex.justify-content-center(@click="modalShow = !modalShow; $store.state.openStyleModal = true; modalBigImg = item.imgcover; modalRightOne = item.img1; modalRightTwo = item.img2; editLink = item.editLink; templateName = item.templateName")
           .card.rounded-0
             .imgBox
               img.card-img-top.rounded-0.img-fluid(:src="item.imgcover")
@@ -43,15 +43,17 @@
       .border.border-dark.modalBox.p-3
         p.modalTitle.mb-4.text-center {{templateName}}
         .d-flex
-          .w-75.d-flex.justify-content-center.align-items-center.flex-column
+          .d-flex.justify-content-center.align-items-center.flex-column(style="width: 60%")
             p 封面
-            .lightBoxImgBox(style="max-width:80%;")
-              img.img-fluid(:src="modalBigImg")
-          .w-25.d-flex.flex-column.justify-content-center.align-items-center
+            .lightBoxImgBox(style="max-width:100%;")
+              img.img-fluid(:src="modalBigImg" style="width: auto; max-height: 500px;")
+          .d-flex.flex-column.justify-content-center.align-items-center(style="width: 40%")
             p 日期頁
-            img.img-fluid(:src="modalRightOne").mb-3
+            img.img-fluid(:src="modalRightOne" style="width: auto; max-height: 300px;").mb-3
+            //- img.img-fluid(src="../../../static/A01-2.jpg" ).mb-3
             p 照片頁
-            img.img-fluid(:src="modalRightTwo")
+            img.img-fluid(:src="modalRightTwo" style="width: auto; max-height: 300px;")
+            //- img.img-fluid(src="../../../static/A01-3.jpg" style="width: auto; max-height: 300px;")
         .d-flex.justify-content-center.mt-5
           a(:href="editLink").btn.btn-primary.btnInPage.text-decoration-none 開始製作
 </template>
@@ -72,7 +74,7 @@ export default {
   },
   computed: {
     ...mapState({
-      productInfoRender: state => state.styleModules.productInfoRender,
+      productItemRender: state => state.styleModules.productItemRender,
       getStyleClass: state => state.styleModules.getStyleClass,
       styleId: state => state.styleModules.styleId,
       productName: state => state.styleModules.productName,
