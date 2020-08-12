@@ -5,9 +5,7 @@
       .mb-0.text-gray.mx-2 /
       router-link(:to="'/productDetail/' + categoryId").mb-0.text-gray.mx-2.categoryLink.text-decoration-none {{categoryName}}
       p.mb-0.text-gray.mx-2 /
-      .mb-0.text-gray.mx-2.categoryLink.text-decoration-none(@click="$router.go(-1)") {{productName}}
-      p.mb-0.text-gray.mx-2 /
-      .mb-0.mx-2.categoryLink.text-decoration-none 經典桌曆風格
+      .mb-0.mx-2.categoryLink.text-decoration-none(@click="$router.go(-1)") {{productName}}
     .container
       .row
         .col-12
@@ -38,8 +36,8 @@
               .page-link(href='#' aria-label='Next')
                 span(aria-hidden='true') &raquo;
                 span.sr-only Next
-    //-  點擊圖片後顯示的lightbox
-    .lightBox.d-flex.justify-content-center.align-items-center(v-if="modalShow" @click.stop="modalShow = !modalShow; $store.state.openStyleModal = false")
+    //-  點擊圖片後顯示的lightbox(三張圖的lightbox)
+    .lightBox.d-flex.justify-content-center.align-items-center(v-if="modalShow && templateImgCount === 3" @click.stop="modalShow = !modalShow; $store.state.openStyleModal = false")
       .border.border-dark.modalBox.p-3
         p.modalTitle.mb-4.text-center {{templateName}}
         .d-flex
@@ -54,6 +52,20 @@
             p 照片頁
             img.img-fluid(:src="modalRightTwo" style="width: auto; max-height: 300px;")
             //- img.img-fluid(src="../../../static/A01-3.jpg" style="width: auto; max-height: 300px;")
+        .d-flex.justify-content-center.mt-5
+          a(:href="editLink").btn.btn-primary.btnInPage.text-decoration-none 開始製作
+    //- 兩張圖的lightbox
+    .lightBox.d-flex.justify-content-center.align-items-center(v-if="modalShow && templateImgCount === 2" @click.stop="modalShow = !modalShow; $store.state.openStyleModal = false")
+      .border.border-dark.modalBox.p-3
+        p.modalTitle.mb-4.text-center {{templateName}}
+        .d-flex
+          .d-flex.justify-content-center.align-items-center.flex-column(style="width: 50%")
+            p 封面
+            .lightBoxImgBox(style="max-width:100%;")
+              img.img-fluid(:src="modalBigImg" style="max-width: 100%")
+          .d-flex.flex-column.justify-content-center.align-items-center(style="width: 50%")
+            p 日期照片頁
+            img.img-fluid(:src="modalRightOne" style="max-width: 100%").mb-3
         .d-flex.justify-content-center.mt-5
           a(:href="editLink").btn.btn-primary.btnInPage.text-decoration-none 開始製作
 </template>
@@ -81,7 +93,8 @@ export default {
       categoryName: state => state.styleModules.categoryName,
       categoryId: state => state.styleModules.categoryId,
       pagination: state => state.styleModules.pagination,
-      activePage: state => state.styleModules.activePage
+      activePage: state => state.styleModules.activePage,
+      templateImgCount: state => state.styleModules.templateImgCount
     })
   },
   methods: {

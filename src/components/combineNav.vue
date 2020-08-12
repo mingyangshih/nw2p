@@ -25,7 +25,7 @@
             .col-md-4.py-3(v-for="(item,idx) in totalDesignCategory")
               .d-flex.flex-column
                p.text-decoration-none.mb-2.itemHover {{item}}
-               router-link.text-decoration-none.pl-3.mb-2.itemHover(v-for="item1 in totalDesign" v-if="item1.groupcode === item" :key="item1.productId" :to="'/designer/' + item1.licensorId + '/' + item1.designerId") - {{item1.designerName}}
+               router-link.text-decoration-none.pl-3.mb-2.itemHover(v-for="item1 in totalDesign" v-if="item1.groupcode === item" :key="item1.productId" :to="'/designer/' + item1.id + '/' + item1.designerId") - {{item1.designerName}}
       //- mobile 所有產品
       .sidebarBox.w-100
         .sidebar.d-flex.flex-column.align-items-center.pt-3

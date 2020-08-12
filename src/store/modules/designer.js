@@ -8,10 +8,10 @@ export default {
   },
   actions: {
     // 取得designer的資料
-    getDesignerDetail ({commit}, {licensorId, designerId}) {
+    getDesignerDetail ({commit}, {id, designerId}) {
       commit('LOADING', true, {root: true})
       let API_PATH = process.env.API
-      return axios.get(`${API_PATH}design/getdesigner/${licensorId}/${designerId}`).then(response => {
+      return axios.get(`${API_PATH}design/getdesigner/${id}/${designerId}`).then(response => {
         let {designerMaster, productItem: designerProductItem, products: designerProducts, productCategory: designerProductCategory} = response.data.data
         commit('setDesignerData', {designerMaster, designerProductItem, designerProducts, designerProductCategory})
       }).catch((error) => {

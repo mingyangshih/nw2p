@@ -3,7 +3,7 @@
     .container-fluid
       .row.px-0
         .col-sm-12.px-0
-          img.w-100.firstBanner.img-fluid(:src="designerMaster[0].designerBannerImg")
+          img.w-100.firstBanner.img-fluid(:src="designerMaster[0].designerBannerImg" v-if="designerMaster")
     .container.mt-3
       .row.align-items-center
         .col-md-3.h-100
@@ -26,8 +26,9 @@
       //- badge 篩選Content
       .d-flex.align-items-center.mb-3(v-if="badgeShowOrnot")
         .badgeContent.text-center.mx-1(v-for="item in designerProducts" v-if="selectedCategoryId === '' || selectedCategoryId === item.categoryId" @click="selectedProductId = item.productId") {{item.productName}}
-      .row.pb-5.moreChoicePicBox.justify-content-between
-        div(v-for="item in renderProductItem").col-md-3.col-6.d-flex.justify-content-center.mb-md-3.text-decoration-none
+      //- designer product item
+      .row.pb-5.moreChoicePicBox.justify-content-start
+        router-link(v-for="item in renderProductItem" :to="'/designerItem/' + item.Id" :key="item.Id").col-md-3.col-6.d-flex.justify-content-center.mb-md-3.text-decoration-none
           .card
             .imgBox
               img.card-img-top(:src="item.imgcover")
@@ -50,9 +51,9 @@ export default {
   },
   async created () {
     const vm = this
-    let licensorId = vm.$route.params.licensorId
+    let id = vm.$route.params.id
     let designerId = vm.$route.params.designerId
-    await vm.$store.dispatch('getDesignerDetail', {licensorId, designerId})
+    await vm.$store.dispatch('getDesignerDetail', {id, designerId})
     vm.renderProductItem = vm.designerProductItem
   },
   computed: {
@@ -67,10 +68,10 @@ export default {
     // 當url改變時可重複render同一個component
     async '$route' (to, from) {
       const vm = this
-      let licensorId = vm.$route.params.licensorId
+      let id = vm.$route.params.id
       let designerId = vm.$route.params.designerId
-      if (to.params.licensorId !== from.params.licensorId || to.params.designerId !== from.params.designerId) {
-        await vm.$store.dispatch('getDesignerDetail', {licensorId, designerId})
+      if (to.params.id !== from.params.id || to.params.designerId !== from.params.designerId) {
+        await vm.$store.dispatch('getDesignerDetail', {id, designerId})
         // vm.selectedProductId = vm.designerProducts[0].productId
         vm.selectedCategoryItem = '全部商品'
         vm.renderProductItem = vm.designerProductItem
@@ -97,11 +98,16 @@ export default {
     selectedProductId () {
       let vm = this
       let renderProductItem = []
-      vm.designerProductItem.forEach(item => {
-        if (item.productId === vm.selectedProductId) {
-          renderProductItem.push(item)
-        }
-      })
+      if (vm.selectedProductId !== '') {
+        vm.designerProductItem.forEach(item => {
+          if (item.productId === vm.selectedProductId) {
+            renderProductItem.push(item)
+          }
+        })
+      } else {
+        renderProductItem = vm.designerProductItem
+      }
+
       vm.renderProductItem = renderProductItem
     }
   },

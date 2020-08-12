@@ -14,6 +14,7 @@ import contactusModules from './modules/contactus'
 import styleModules from './modules/style'
 import bulletinModules from './modules/bulletin'
 import designerModules from './modules/designer'
+import designerItemModules from './modules/designerItem'
 Vue.use(Vuex)
 
 export default new Vuex.Store({
@@ -54,6 +55,7 @@ export default new Vuex.Store({
     contactusModules,
     styleModules,
     bulletinModules,
-    designerModules
+    designerModules,
+    designerItemModules
   }
 })

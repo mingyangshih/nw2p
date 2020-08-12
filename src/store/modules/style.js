@@ -4,6 +4,7 @@ export default {
   state: {
     productInfo: [],
     productItem: [],
+    productMaster: [],
     productItemRender: [],
     getStyleClass: [],
     productName: '',
@@ -14,7 +15,8 @@ export default {
     sizeId: null,
     styleId: 1,
     pagination: [],
-    activePage: null
+    activePage: null,
+    templateImgCount: null
   },
   actions: {
     getStyle (context, {id, specId, sizeId}) {
@@ -22,7 +24,7 @@ export default {
       let getAPI = `${API_PATH}product/getdetailwithstyle/${id}/${specId}/${sizeId}/1/templateName/20`
       context.commit('LOADING', true, {root: true})
       return axios.get(getAPI).then((response) => {
-        let {productItem} = response.data.data
+        let {productItem, productMaster} = response.data.data
         let {productName, categoryName, categoryId} = productItem[0]
         // count pagination
         let pagination = []
@@ -31,7 +33,7 @@ export default {
             pagination.push(itm.page_no)
           }
         })
-        context.commit('setStyleData', {productItem, id, specId, sizeId, productName, categoryName, categoryId, pagination})
+        context.commit('setStyleData', {productItem, id, specId, sizeId, productName, categoryName, categoryId, pagination, productMaster})
       }).catch((error) => {
         console.log(error)
       }).finally(() => {
@@ -49,13 +51,14 @@ export default {
         context.commit('LOADING', false, {root: true})
       })
     },
+    // 換風格重新抓一次資料
     changeStyle (context, {changeStyleId}) {
       let API_PATH = process.env.API
       let {id, specId, sizeId} = context.state
       let getAPI = `${API_PATH}product/getdetailwithstyle/${id}/${specId}/${sizeId}/${changeStyleId}/templateName/20`
       context.commit('LOADING', true, {root: true})
       axios.get(getAPI).then((response) => {
-        let {productItem} = response.data.data
+        let {productItem, productMaster} = response.data.data
         let {productName, categoryName, categoryId} = context.state
         // 算pagination
         let pagination = []
@@ -64,7 +67,7 @@ export default {
             pagination.push(itm.page_no)
           }
         })
-        context.commit('setStyleData', {productItem, id, specId, sizeId, productName, categoryName, categoryId, pagination})
+        context.commit('setStyleData', {productItem, id, specId, sizeId, productName, categoryName, categoryId, pagination, productMaster})
       }).catch((error) => {
         console.log(error)
       }).finally(() => {
@@ -73,8 +76,10 @@ export default {
     }
   },
   mutations: {
-    setStyleData (state, {productItem, id, specId, sizeId, productName, categoryName, categoryId, pagination}) {
+    setStyleData (state, {productItem, id, specId, sizeId, productName, categoryName, categoryId, pagination, productMaster}) {
       state.productItem = productItem
+      state.productMaster = productMaster
+      state.templateImgCount = productMaster[0].templateImgCount
       state.productItemRender = productItem
       state.productName = productName
       state.categoryName = categoryName
