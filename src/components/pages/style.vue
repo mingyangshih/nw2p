@@ -118,7 +118,8 @@ export default {
     let id = vm.$route.params.id
     let specId = vm.$route.params.specid
     let sizeId = vm.$route.params.sizeid
-    await vm.$store.dispatch('getStyle', {id, specId, sizeId})
+    let styleId = vm.$route.params.styleId
+    await vm.$store.dispatch('getStyle', {id, specId, sizeId, styleId})
     await vm.$store.dispatch('getStyleClass', {id})
     vm.changeStyleId = vm.styleId
   }

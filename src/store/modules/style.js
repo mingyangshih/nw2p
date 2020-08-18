@@ -19,9 +19,9 @@ export default {
     templateImgCount: null
   },
   actions: {
-    getStyle (context, {id, specId, sizeId}) {
+    getStyle (context, {id, specId, sizeId, styleId}) {
       let API_PATH = process.env.API
-      let getAPI = `${API_PATH}product/getdetailwithstyle/${id}/${specId}/${sizeId}/1/templateName/20`
+      let getAPI = `${API_PATH}product/getdetailwithstyle/${id}/${specId}/${sizeId}/${styleId}/templateName/20`
       context.commit('LOADING', true, {root: true})
       return axios.get(getAPI).then((response) => {
         let {productItem, productMaster} = response.data.data
@@ -87,6 +87,7 @@ export default {
       state.id = id
       state.specId = specId
       state.sizeId = sizeId
+      state.styleId = productItem[0].styleId
       state.pagination = pagination
       state.activePage = pagination[0]
     },

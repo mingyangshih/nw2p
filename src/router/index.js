@@ -41,7 +41,7 @@ export default new Router({
       component: standard
     },
     {
-      path: '/stylePage/:id/:specid/:sizeid',
+      path: '/stylePage/:id/:specid/:sizeid/:styleId',
       name: 'stylePage',
       component: stylePage
     },

@@ -30,6 +30,7 @@ export default {
     specId: null,
     // 對應尺寸
     sizeId: null,
+    styleId: null,
     // Taopix 連結
     editLink: '',
     price: null,
@@ -61,6 +62,7 @@ export default {
       state.direction = productSpec[0].specName
       state.specId = productSpec[0].specId
       state.sizeId = productSpec[0].productSize[0].sizeId
+      state.styleId = productItem[0].styleId
       state.standardTitle = standardTitle
       state.categoryName = categoryName
       state.categoryId = categoryId
