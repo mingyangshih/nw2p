@@ -40,18 +40,21 @@
     .lightBox.d-flex.justify-content-center.align-items-center(v-if="modalShow && templateImgCount === 3" @click.stop="modalShow = !modalShow; $store.state.openStyleModal = false")
       .border.border-dark.modalBox.p-3
         p.modalTitle.mb-4.text-center {{templateName}}
-        .d-flex
+        .d-flex.align-items-center
           .d-flex.justify-content-center.align-items-center.flex-column(style="width: 60%")
             p 封面
             .lightBoxImgBox(style="max-width:100%;")
+              //- img.img-fluid(src="../../../static/A01-1.jpg" style="width: auto; max-height: 500px;")
               img.img-fluid(:src="modalBigImg" style="width: auto; max-height: 500px;")
-          .d-flex.flex-column.justify-content-center.align-items-center(style="width: 40%")
-            p 日期頁
-            img.img-fluid(:src="modalRightOne" style="width: auto; max-height: 300px;").mb-3
-            //- img.img-fluid(src="../../../static/A01-2.jpg" ).mb-3
-            p 照片頁
-            img.img-fluid(:src="modalRightTwo" style="width: auto; max-height: 300px;")
-            //- img.img-fluid(src="../../../static/A01-3.jpg" style="width: auto; max-height: 300px;")
+          .d-flex.flex-column.h-100
+            .d-flex.flex-column.justify-content-center.align-items-center(style="width: 40%").h-50.w-100
+              p 日期頁
+              img.img-fluid(:src="modalRightOne" style="width: auto; max-height: 300px;")
+              //- img.img-fluid(src="../../../static/A01-2.jpg" style="width: auto; max-height: 300px;")
+            .d-flex.flex-column.justify-content-center.align-items-center(style="width: 40%").h-50.w-100
+              p 照片頁
+              img.img-fluid(:src="modalRightTwo" style="width: auto; max-height: 300px;")
+              //- img.img-fluid(src="../../../static/A01-3.jpg" style="width: auto; max-height: 300px;")
         .d-flex.justify-content-center.mt-5
           a(:href="editLink").btn.btn-primary.btnInPage.text-decoration-none 開始製作
     //- 兩張圖的lightbox
@@ -206,6 +209,7 @@ export default {
     left:0;
     right:0;
     z-index: 901;
+    overflow-y: scroll;
   }
   // 頁面中的Btn樣式
   .btnInPage{
