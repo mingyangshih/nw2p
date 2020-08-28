@@ -2,23 +2,23 @@
   <div class="swiperComponent">
     <swiper :options="swiperOptionTop" class="gallery-top" ref="swiperTop" v-if="viewportWidth > 640">
     <!-- slides -->
+      <swiper-slide class="bigImg" ><img src="../assets/img/home/banner04.jpg" alt="" class="img-fluid"></swiper-slide>
       <swiper-slide class="bigImg" ><img src="../assets/img/home/banner.jpg" alt="" class="img-fluid"></swiper-slide>
       <swiper-slide class="bigImg" ><img src="../assets/img/home/banner02.jpg" alt="" class="img-fluid"></swiper-slide>
       <swiper-slide class="bigImg" ><img src="../assets/img/home/banner03.jpg" alt="" class="img-fluid"></swiper-slide>
-      <swiper-slide class="bigImg" ><img src="../assets/img/home/banner04.jpg" alt="" class="img-fluid"></swiper-slide>
       <!-- Optional controls -->
       <div class="swiper-pagination"  slot="pagination"></div>
     </swiper>
     <swiper :options="swiperOptionTop" class="gallery-top" ref="swiperTop" v-if="viewportWidth < 640">
     <!-- slides -->
+      <swiper-slide class="bigImg" ><img src="../assets/img/home/banner_mobile07.jpg" alt="" class="img-fluid"></swiper-slide>
+      <swiper-slide class="bigImg" ><img src="../assets/img/home/banner_mobile08.jpg" alt="" class="img-fluid"></swiper-slide>
       <swiper-slide class="bigImg" ><img src="../assets/img/home/banner_mobile01.jpg" alt="" class="img-fluid"></swiper-slide>
       <swiper-slide class="bigImg" ><img src="../assets/img/home/banner_mobile02.jpg" alt="" class="img-fluid"></swiper-slide>
       <swiper-slide class="bigImg" ><img src="../assets/img/home/banner_mobile03.jpg" alt="" class="img-fluid"></swiper-slide>
       <swiper-slide class="bigImg" ><img src="../assets/img/home/banner_mobile04.jpg" alt="" class="img-fluid"></swiper-slide>
       <swiper-slide class="bigImg" ><img src="../assets/img/home/banner_mobile05.jpg" alt="" class="img-fluid"></swiper-slide>
       <swiper-slide class="bigImg" ><img src="../assets/img/home/banner_mobile06.jpg" alt="" class="img-fluid"></swiper-slide>
-      <swiper-slide class="bigImg" ><img src="../assets/img/home/banner_mobile07.jpg" alt="" class="img-fluid"></swiper-slide>
-      <swiper-slide class="bigImg" ><img src="../assets/img/home/banner_mobile08.jpg" alt="" class="img-fluid"></swiper-slide>
       <!-- Optional controls -->
       <div class="swiper-pagination"  slot="pagination"></div>
     </swiper>
