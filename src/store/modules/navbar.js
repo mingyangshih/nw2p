@@ -4,16 +4,13 @@ export default {
     totalCategory: [],
     eachCategoryNumber: [],
     categoryId: [],
+    // 所有產品
     totalProduct: [],
     productEnCategory: [],
-    eachCategoryProduct: []
-    // nw2pMemberData: {
-    //   UAID: '',
-    //   UNAME: '',
-    //   UDNAME: '',
-    //   token: '',
-    //   expired_at: ''
-    // }
+    eachCategoryProduct: [],
+    // 設計品牌館
+    totalDesign: [],
+    totalDesignCategory: []
   },
   actions: {
     // 取下拉選單內容
@@ -57,22 +54,22 @@ export default {
         let totalProduct = result.data
         commit('listDetail', {totalCategory, totalProduct, eachCategoryNumber, categoryId, productEnCategory, eachCategoryProduct})
       })
+    },
+    getBrandList ({commit}) {
+      let API_PATH = process.env.API
+      fetch(`${API_PATH}design/getmenu`, {method: 'get'}).then(res => {
+        return res.json()
+      }).then(result => {
+        let totalDesign = result.data
+        let totalDesignCategory = []
+        totalDesign.forEach(itm => {
+          if (totalDesignCategory.indexOf(itm.groupcode) === -1) {
+            totalDesignCategory.push(itm.groupcode)
+          }
+        })
+        commit('brandListDetail', {totalDesign, totalDesignCategory})
+      })
     }
-    // 檢查local storage 是否有內容，登入過會有內容，有登入過navbar 上方顯示方式直接顯示
-    // checkToken ({commit, state}) {
-    //   let nw2pData = JSON.parse(localStorage.getItem('nw2pData'))
-    //   if (nw2pData === null) {
-    //     nw2pData = {
-    //       UAID: '',
-    //       UNAME: '',
-    //       UDNAME: '',
-    //       token: '',
-    //       expired_at: ''
-    //     }
-    //     localStorage.setItem('nw2pData', JSON.stringify(nw2pData))
-    //   }
-    //   commit('setTokenData', nw2pData)
-    // }
   },
   mutations: {
     // 上方下拉選單種類
@@ -84,13 +81,9 @@ export default {
       state.productEnCategory = productEnCategory
       state.eachCategoryProduct = eachCategoryProduct
     },
-    // 登入後修改資料、登出後清空資料
-    setTokenData (state, nw2pData) {
-      state.nw2pMemberData.UAID = nw2pData.UAID
-      state.nw2pMemberData.UNAME = nw2pData.UNAME
-      state.nw2pMemberData.UDNAME = nw2pData.UDNAME
-      state.nw2pMemberData.token = nw2pData.token
-      state.nw2pMemberData.expired_at = nw2pData.expired_at
+    brandListDetail (state, {totalDesign, totalDesignCategory}) {
+      state.totalDesignCategory = totalDesignCategory
+      state.totalDesign = totalDesign
     }
   }
 }

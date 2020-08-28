@@ -42,7 +42,7 @@
             //- 一般產品直接走正常流程
             a(:href="specId_sizeId_info.link" :class="{'w-100' : fullWidth <= 640}" v-if="specId_sizeId_info.cnt === 1").btn.btn-primary.font-weight-bold.btnInPage.py-0.text-white 開始製作
             //- 需要選風格的產品走下方的流程
-            router-link(:to="`/stylePage/${productId}/${specId}/${sizeId}`" :class="{'w-100' : fullWidth <= 640}" v-if="specId_sizeId_info.cnt !== 1").btn.btn-primary.font-weight-bold.btnInPage.py-0.text-white 選擇風格
+            router-link(:to="`/stylePage/${productId}/${specId}/${sizeId}/${styleId}`" :class="{'w-100' : fullWidth <= 640}" v-if="specId_sizeId_info.cnt !== 1").btn.btn-primary.font-weight-bold.btnInPage.py-0.text-white 選擇風格
     .container.mt-5.mt-md-0
       .row.justify-content-center.py-4
         h2.font-weight-bold.mb-0.text-secondary.secondTitle 產品特性
@@ -109,7 +109,8 @@ export default {
     // 從Vuex取出資料
     ...mapState({
       productSpec: state => state.standardModules.productSpec,
-      productInfo: state => state.standardModules.productInfo,
+      // productInfo: state => state.standardModules.productInfo,
+      productItem: state => state.standardModules.productItem,
       productFeature: state => state.standardModules.productFeature,
       standardTitle: state => state.standardModules.standardTitle,
       productIntroDesc: state => state.standardModules.productIntroDesc,
@@ -126,7 +127,8 @@ export default {
     ...mapFields([
       'direction',
       'specId',
-      'sizeId'
+      'sizeId',
+      'styleId'
     ]),
     ...mapGetters(['productSize', 'specId_sizeId_info'])
   },

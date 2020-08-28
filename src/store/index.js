@@ -13,12 +13,15 @@ import productDetailModules from './modules/productDetail'
 import contactusModules from './modules/contactus'
 import styleModules from './modules/style'
 import bulletinModules from './modules/bulletin'
+import designerModules from './modules/designer'
+import designerItemModules from './modules/designerItem'
 Vue.use(Vuex)
 
 export default new Vuex.Store({
   state: {
     isLoading: null,
     sideBarShow: null,
+    openStyleModal: null,
     imgPath: window.imgPath,
     serviceContentDrop: '#/serviceContent'
   },
@@ -51,6 +54,8 @@ export default new Vuex.Store({
     alertModules,
     contactusModules,
     styleModules,
-    bulletinModules
+    bulletinModules,
+    designerModules,
+    designerItemModules
   }
 })

@@ -4,6 +4,8 @@ import home from '@/components/pages/home'
 import productDetail from '@/components/pages/productDetail'
 import standard from '@/components/pages/standard'
 import stylePage from '@/components/pages/style'
+import designer from '@/components/pages/designer'
+import designerItem from '@/components/pages/designerItem'
 import modifyEnroll from '@/components/pages/modifyEnroll'
 import accountdata from '@/components/accountdata'
 import changePassword from '@/components/changepassword'
@@ -39,9 +41,19 @@ export default new Router({
       component: standard
     },
     {
-      path: '/stylePage/:id/:specid/:sizeid',
+      path: '/stylePage/:id/:specid/:sizeid/:styleId',
       name: 'stylePage',
       component: stylePage
+    },
+    {
+      path: '/designer/:id/:designerId',
+      name: 'stylePage',
+      component: designer
+    },
+    {
+      path: '/designerItem/:designerItemId',
+      name: 'designerItem',
+      component: designerItem
     },
     {
       path: '/serviceterm',

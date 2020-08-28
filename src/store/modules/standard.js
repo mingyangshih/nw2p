@@ -13,7 +13,7 @@ export default {
     // 右上方小圖
     productSpec: [],
     // 全部資料
-    productInfo: [],
+    productItem: [],
     // 下方文字資料
     productFeature: [],
     //
@@ -30,6 +30,7 @@ export default {
     specId: null,
     // 對應尺寸
     sizeId: null,
+    styleId: null,
     // Taopix 連結
     editLink: '',
     price: null,
@@ -41,26 +42,27 @@ export default {
       context.commit('LOADING', true, {root: true})
       let getAPI = `${API_PATH}product/getdetail/${id}`
       return axios.get(getAPI).then((response) => {
-        let {productSpec, productInfo, productFeature, productRecommend, productMaster, productIntroDesc} = response.data.data
+        let {productSpec, productItem, productFeature, productRecommend, productMaster, productIntroDesc} = response.data.data
         // 規格標題
-        let standardTitle = productInfo[0].productName
-        let categoryName = productInfo[0].categoryName
-        let categoryId = productInfo[0].categoryId
-        let productId = productInfo[0].productId
-        context.commit('changeStandardData', {productSpec, productInfo, productFeature, standardTitle, categoryName, categoryId, productId, productRecommend, productMaster, productIntroDesc})
+        let standardTitle = productItem[0].productName
+        let categoryName = productItem[0].categoryName
+        let categoryId = productItem[0].categoryId
+        let productId = productItem[0].productId
+        context.commit('changeStandardData', {productSpec, productItem, productFeature, standardTitle, categoryName, categoryId, productId, productRecommend, productMaster, productIntroDesc})
       }).catch((error) => { console.log(error) }).finally(() => {
         context.commit('LOADING', false, {root: true})
       })
     }
   },
   mutations: {
-    changeStandardData (state, {productSpec, productInfo, productFeature, standardTitle, categoryName, categoryId, productId, productRecommend, productMaster, productIntroDesc}) {
+    changeStandardData (state, {productSpec, productItem, productFeature, standardTitle, categoryName, categoryId, productId, productRecommend, productMaster, productIntroDesc}) {
       state.productSpec = productSpec
-      state.productInfo = productInfo
+      state.productItem = productItem
       state.productFeature = productFeature
       state.direction = productSpec[0].specName
       state.specId = productSpec[0].specId
       state.sizeId = productSpec[0].productSize[0].sizeId
+      state.styleId = productItem[0].styleId
       state.standardTitle = standardTitle
       state.categoryName = categoryName
       state.categoryId = categoryId
@@ -103,7 +105,7 @@ export default {
         })
       })
       // 用specid and sizeid 篩選價錢跟編輯連結
-      state.productInfo.forEach((itm) => {
+      state.productItem.forEach((itm) => {
         if (itm.specId === state.specId && itm.sizeId === state.sizeId) {
           state.editLink = itm.editLink
           link = itm.editLink
