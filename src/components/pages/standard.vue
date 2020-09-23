@@ -38,9 +38,10 @@
           hr.mt-0
           //- 沒有活動用這個
           div(:class="{ 'flex-column' : fullWidth <= 640, 'align-items-center' : fullWidth <= 640}" v-if="discountprice === null").text-primary.d-flex.font-weight-bold.my-3 新平台，新體驗，正式上線！<p class="mb-0" :class="{'ml-auto' : fullWidth > 640}"><span class="fz26" >NT {{specId_sizeId_info.price | currency}}</span><span class="fz26 ml-2" v-if="specId_sizeId_info.priceRange">起</span></p>
+          //- 活動用這個
           div(:class="{ 'flex-column' : fullWidth <= 640, 'align-items-center' : fullWidth <= 640}" v-else).text-primary.d-flex.font-weight-bold.my-3.align-items-center 新平台，新體驗，正式上線！
             <p class="mb-0 discountStyle" :class="{'ml-auto' : fullWidth > 640}"><span  >NT {{specId_sizeId_info.price | currency}}</span><span class="ml-2" v-if="specId_sizeId_info.priceRange">起</span></p>
-            .text-danger.fz26 {{discountprice}}
+            .text-danger.activityPrice.ml-2(v-html="discountprice")
           .d-flex.btnBox.flex-wrap(:class="{'justify-content-center' : fullWidth <= 640}")
             router-link(to="/serviceContent" target="_blank").btn.btn-outline-primary.font-weight-bold.btnInPage(:class="[{'w-100' : fullWidth <= 640},{'mb-2' : fullWidth <= 640},{'mr-2' : fullWidth > 640}]") 編輯教學
             //- 一般產品直接走正常流程
@@ -503,8 +504,11 @@ export default {
     position: relative;
     margin-top: 40px;
   }
-  // discount setting
+  // discount setting 活動價格
   .discountStyle{
     text-decoration: line-through;
+  }
+  .activityPrice{
+    font-size: 20px;
   }
 </style>
