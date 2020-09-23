@@ -34,6 +34,7 @@ export default {
     // Taopix 連結
     editLink: '',
     price: null,
+    discountprice: null,
     priceRange: null
   },
   actions: {
@@ -110,6 +111,7 @@ export default {
           state.editLink = itm.editLink
           link = itm.editLink
           state.price = itm.price
+          state.discountprice = itm.discountprice
           // 判斷價格是否有起
           if (itm.price[itm.price.length - 1] === '起') {
             price = itm.price.substring(0, itm.price.length - 1)

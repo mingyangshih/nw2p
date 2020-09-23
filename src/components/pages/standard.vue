@@ -36,7 +36,11 @@
                 p(v-if="specId_sizeId_info.productIntroId[idx] === '6'" v-html="'付款後' + specId_sizeId_info.productIntroRightCol[idx] + '個工作天寄出'")
                 p(v-else v-html="specId_sizeId_info.productIntroRightCol[idx]")
           hr.mt-0
-          div(:class="{ 'flex-column' : fullWidth <= 640, 'align-items-center' : fullWidth <= 640}").text-primary.d-flex.font-weight-bold.my-3 新平台，新體驗，正式上線！<p class="mb-0" :class="{'ml-auto' : fullWidth > 640}"><span class="fz26" >NT {{specId_sizeId_info.price | currency}}</span><span class="fz26 ml-2" v-if="specId_sizeId_info.priceRange">起</span></p>
+          //- 沒有活動用這個
+          div(:class="{ 'flex-column' : fullWidth <= 640, 'align-items-center' : fullWidth <= 640}" v-if="discountprice === null").text-primary.d-flex.font-weight-bold.my-3 新平台，新體驗，正式上線！<p class="mb-0" :class="{'ml-auto' : fullWidth > 640}"><span class="fz26" >NT {{specId_sizeId_info.price | currency}}</span><span class="fz26 ml-2" v-if="specId_sizeId_info.priceRange">起</span></p>
+          div(:class="{ 'flex-column' : fullWidth <= 640, 'align-items-center' : fullWidth <= 640}" v-else).text-primary.d-flex.font-weight-bold.my-3.align-items-center 新平台，新體驗，正式上線！
+            <p class="mb-0 discountStyle" :class="{'ml-auto' : fullWidth > 640}"><span  >NT {{specId_sizeId_info.price | currency}}</span><span class="ml-2" v-if="specId_sizeId_info.priceRange">起</span></p>
+            .text-danger.fz26 {{discountprice}}
           .d-flex.btnBox.flex-wrap(:class="{'justify-content-center' : fullWidth <= 640}")
             router-link(to="/serviceContent" target="_blank").btn.btn-outline-primary.font-weight-bold.btnInPage(:class="[{'w-100' : fullWidth <= 640},{'mb-2' : fullWidth <= 640},{'mr-2' : fullWidth > 640}]") 編輯教學
             //- 一般產品直接走正常流程
@@ -118,6 +122,7 @@ export default {
       categoryName: state => state.standardModules.categoryName,
       productId: state => state.standardModules.productId,
       productRecommend: state => state.standardModules.productRecommend,
+      discountprice: state => state.standardModules.discountprice,
       // productDetail modules的data
       subProducts: state => state.productDetailModules.subProducts,
       // navbar modules 的data
@@ -497,5 +502,9 @@ export default {
     background-color : #f4f4f1;
     position: relative;
     margin-top: 40px;
+  }
+  // discount setting
+  .discountStyle{
+    text-decoration: line-through;
   }
 </style>
