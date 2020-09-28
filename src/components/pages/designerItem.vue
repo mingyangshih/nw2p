@@ -34,6 +34,7 @@
           div(:class="{ 'flex-column' : fullWidth <= 640, 'align-items-center' : fullWidth <= 640}").text-primary.d-flex.font-weight-bold.my-3 新平台，新體驗，正式上線！<p class="mb-0" :class="{'ml-auto' : fullWidth > 640}"><span class="price" >NT {{price | currency}}</span></p>
           .d-flex.btnBox.flex-wrap(:class="{'justify-content-center' : fullWidth <= 640}")
             a(:href="editLink" :class="{'w-100' : fullWidth <= 640}").btn.btn-primary.font-weight-bold.btnInPage.py-0.text-white 我要購買
+    designerItemSwiper
     .container.mt-5.mt-md-0
       .row.justify-content-center.py-4
         h2.font-weight-bold.mb-0.text-secondary.secondTitle 產品特性
@@ -53,14 +54,19 @@
         h2.font-weight-bold.mb-0.text-secondary.secondTitle 購物須知
       .d-flex.justify-content-center
         .purchaseNotice(v-html="purchaseNotice" :class="{'w-75' : fullWidth > 640}")
+    designerItemRecommendSwiper
 </template>
 
 <script>
 import {mapState} from 'vuex'
 import swiperdesigner from '../swiperComponentDesigner'
+import designerItemSwiper from '../designerItemSwiper'
+import designerItemRecommendSwiper from '../designerItemRecommendSwiper'
 export default {
   components: {
-    swiperdesigner
+    swiperdesigner,
+    designerItemSwiper,
+    designerItemRecommendSwiper
   },
   data () {
     return {

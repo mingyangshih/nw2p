@@ -19,13 +19,13 @@
                p( @click.prevent="productdetail(categoryId[idx])" v-if="eachCategoryNumber[idx] > 1").text-decoration-none.mb-2.itemHover {{item}} {{productEnCategory[idx]}}
                p(v-else @click.prevent="standard(eachCategoryProduct[idx][0])").text-decoration-none.mb-2.itemHover {{item}} {{productEnCategory[idx]}}
                p.text-decoration-none.pl-3.mb-2.itemHover(v-for="item1 in totalProduct" v-if="item1.productCategory === item" :key="item1.productId" @click.prevent="standard(item1.productId)") - {{item1.productName}}
-      //- div.item.allProd.mb-0.align-items-center.deskTop 設計品牌館
-      //-   .dropDownMenu.bg-white.px-3
-      //-     .text-decoration-none.row
-      //-       .col-md-4.py-3(v-for="(item,idx) in totalDesignCategory")
-      //-         .d-flex.flex-column
-      //-          p.text-decoration-none.mb-2.itemHover {{item}}
-      //-          router-link.text-decoration-none.pl-3.mb-2.itemHover(v-for="item1 in totalDesign" v-if="item1.groupcode === item" :key="item1.productId" :to="'/designer/' + item1.id + '/' + item1.designerId") - {{item1.designerName}}
+      div.item.allProd.mb-0.align-items-center.deskTop 設計品牌館
+        .dropDownMenu.bg-white.px-3
+          .text-decoration-none.row
+            .col-md-4.py-3(v-for="(item,idx) in totalDesignCategory")
+              .d-flex.flex-column
+               p.text-decoration-none.mb-2.itemHover {{item}}
+               router-link.text-decoration-none.pl-3.mb-2.itemHover(v-for="item1 in totalDesign" v-if="item1.groupcode === item" :key="item1.productId" :to="'/designer/' + item1.id + '/' + item1.designerId") - {{item1.designerName}}
       //- mobile 所有產品
       .sidebarBox.w-100
         .sidebar.d-flex.flex-column.align-items-center.pt-3

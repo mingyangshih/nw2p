@@ -12,15 +12,18 @@ export default {
     productFeature: [],
     purchaseNotice: '',
     choosedPatterenID: null,
-    editLink: ''
+    editLink: '',
+    recommendedDesigner: [],
+    recommendedPrdouct: []
   },
   actions: {
     getDesignerItem ({commit}, {designerItemId}) {
       commit('LOADING', true, {root: true})
       let API_PATH = process.env.API
       return axios.get(`${API_PATH}design/getdetail/${designerItemId}`).then(response => {
-        let {productItem, productIntroDesc, productNotes, productPattern, productFeature, purchaseNotice, designerMaster} = response.data.data
-        commit('init', {productItem, productIntroDesc, productNotes, productPattern, productFeature, purchaseNotice, designerMaster})
+        console.log(response.data.data)
+        let {productItem, productIntroDesc, productNotes, productPattern, productFeature, purchaseNotice, designerMaster, recommendedDesigner, recommendedPrdouct} = response.data.data
+        commit('init', {productItem, productIntroDesc, productNotes, productPattern, productFeature, purchaseNotice, designerMaster, recommendedDesigner, recommendedPrdouct})
       }).catch(error => {
         console.log(error)
       }).finally(() => {
@@ -29,7 +32,7 @@ export default {
     }
   },
   mutations: {
-    init (state, {productItem, productIntroDesc, productNotes, productPattern, productFeature, purchaseNotice, designerMaster}) {
+    init (state, {productItem, productIntroDesc, productNotes, productPattern, productFeature, purchaseNotice, designerMaster, recommendedDesigner, recommendedPrdouct}) {
       state.productItem = productItem
       state.productName = productItem[0].productName
       state.templateName = productItem[0].templateName
@@ -43,6 +46,8 @@ export default {
       state.productFeature = productFeature
       state.purchaseNotice = purchaseNotice
       state.designerName = designerMaster[0].designerName
+      state.recommendedDesigner = recommendedDesigner
+      state.recommendedPrdouct = recommendedPrdouct
     },
     choosedPatteren (state, {Id, editLink}) {
       state.choosedPatterenID = Id
