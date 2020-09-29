@@ -137,7 +137,7 @@ export default {
   // 產品規格設定
   .productTitle{
     font-size: 24px;
-    font-weight: bold;
+    // font-weight: bold;
   }
   .productNotes{
     color: #ad8046;

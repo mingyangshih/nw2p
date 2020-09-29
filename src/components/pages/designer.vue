@@ -8,7 +8,7 @@
       .row.align-items-center
         .col-md-3.h-100
           .d-flex.justify-content-center.h-100.align-items-center
-            img(:src="designerMaster[0].designerIcon").img-fluid
+            img(:src="designerMaster[0].designerIcon").img-fluid.rounded-circle
         .col-md-9.h-100.d-flex.flex-column.justify-content-center
           p.titleFont {{designerMaster[0].designerName}}
           p.designerDesc(v-html="designerMaster[0].designerDesc")
@@ -21,14 +21,14 @@
           p.mb-0 {{item.categoryName}}
       .d-flex.justify-content-between.align-items-center
         p.mb-0.font-weight-bold.categoryText(@click="badgeShowOrnot = !badgeShowOrnot") {{selectedCategoryItem}} <i class="fas fa-angle-down" v-if="!badgeShowOrnot"></i> <i class="fas fa-angle-up" v-if="badgeShowOrnot"></i>
-        p.mb-0.font-weight-bold 共{{renderProductItem.length}}件商品
+        p.mb-0.font-weight-bold 共<span class="text-primary">{{renderProductItem.length}}</span>件商品
       hr
       //- badge 篩選Content
       .d-flex.align-items-center.mb-3(v-if="badgeShowOrnot")
         .badgeContent.text-center.mx-1(v-for="item in designerProducts" v-if="selectedCategoryId === '' || selectedCategoryId === item.categoryId" @click="selectedProductId = item.productId") {{item.productName}}
       //- designer product item
       .row.pb-5.moreChoicePicBox.justify-content-start
-        router-link(v-for="item in renderProductItem" :to="'/designerItem/' + item.Id" :key="item.Id").col-md-3.col-6.d-flex.justify-content-center.mb-md-3.text-decoration-none
+        router-link(v-for="item in renderProductItem" :to="'/designerItem/' + item.Id" :key="item.Id").col-md-3.col-6.d-flex.justify-content-center.mb-md-4.text-decoration-none
           .card
             .imgBox
               img.card-img-top(:src="item.imgcover")

@@ -1,7 +1,6 @@
 <template lang="pug">
   .container.my-4
       swiper.swiper(:options='swiperOption')
-        .d-flex.justify-content-center.w-100
           swiper-slide(v-for="itm in recommendedPrdouct" :key="itm.Id").d-flex.justify-content-center
             router-link(:to="'/designerItem/'+ itm.Id").card.rounded-0.text-decoration-none
               .imgBox
@@ -98,12 +97,12 @@ export default{
   }
 }
 .imgBox{
-  max-height: 360px;
+  max-height: 258px;
   max-width: 360px;
   overflow: hidden;
   img{
-    max-width: 360px;
-    max-height: 360px;
+    max-width: 258px;
+    // max-height: 360px;
     transform:scale(1,1);
     // transition: all .5s ease-out;
     // &:hover{

@@ -98,12 +98,12 @@ export default{
   }
 }
 .imgBox{
-  max-height: 360px;
+  max-height: 258px;
   max-width: 360px;
   overflow: hidden;
   img{
-    max-width: 360px;
-    max-height: 360px;
+    max-width: 258px;
+    // max-height: 360px;
     transform:scale(1,1);
     // transition: all .5s ease-out;
     // &:hover{
