@@ -57,33 +57,6 @@ export default {
       // productPattern: []
     }
   },
-  // 處理v-for swiper 跟資料不同步問題
-  async created () {
-    // let vm = this
-    // let {designerItemId} = vm.$route.params
-    // let API_PATH = process.env.API
-    // await this.$http.get(`${API_PATH}design/getdetail/${designerItemId}`).then(response => {
-    //   let {productPattern, productItem} = response.data.data
-    //   if (productPattern.length === 0) {
-    //     this.swiperOptionTop.loopedSlides = 1
-    //     this.swiperOptionThumbs.loopedSlides = 1
-    //     vm.productPattern = productItem
-    //   } else {
-    //     this.productPattern = productPattern
-    //     this.swiperOptionTop.loopedSlides = productPattern.length
-    //     this.swiperOptionThumbs.loopedSlides = productPattern.length
-    //   }
-    // })
-    console.log(this.productPattern)
-  },
-  mounted () {
-    this.$nextTick(() => {
-      // const swiperTop = this.$refs.swiperTop.swiper
-      // const swiperThumbs = this.$refs.swiperThumbs.swiper
-      // swiperTop.controller.control = swiperThumbs
-      // swiperThumbs.controller.control = swiperTop
-    })
-  },
   computed: {
     ...mapState({
       productItem: state => state.designerItemModules.productItem
