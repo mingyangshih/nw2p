@@ -1,9 +1,9 @@
 <template>
   <div class="swiperComponent">
-    <swiper :options="swiperOptionTop" class="gallery-top" ref="swiperTop" v-if="viewportWidth > 640">
+    <swiper :options="swiperOptionTop" class="gallery-top" ref="swiperTop" v-if="viewportWidth > 640 && pcBanner.length > 0">
     <!-- slides -->
       <swiper-slide class="bigImg" v-for="item in pcBanner" :key="item.displayseq" v-if="Date.parse(item.issueEndDate) > time">
-        <img :src="item.img" alt="" class="img-fluid" v-if="item.enabled === 'Y'" @click="openUrl(item.href)">
+        <img :src="item.img" alt="" class="img-fluid" v-if="item.href !== null" @click="openUrl(item.href)">
         <img :src="item.img" alt="" class="img-fluid" v-else>
       </swiper-slide>
       <!-- <swiper-slide class="bigImg" ><img src="../assets/img/home/banner.jpg" alt="" class="img-fluid"></swiper-slide>
@@ -12,10 +12,10 @@
       <!-- Optional controls -->
       <div class="swiper-pagination"  slot="pagination"></div>
     </swiper>
-    <swiper :options="swiperOptionTop" class="gallery-top" ref="swiperTop" v-if="viewportWidth < 640">
+    <swiper :options="swiperOptionTop" class="gallery-top" ref="swiperTop" v-if="viewportWidth < 640 && mobildBanner.length>0">
     <!-- slides -->
       <swiper-slide class="bigImg" v-for="item in mobildBanner" :key="item.displayseq" v-if="Date.parse(item.issueEndDate) > time">
-        <img :src="item.img" alt="" class="img-fluid" v-if="item.enabled === 'Y'" @click="openUrl(item.href)">
+        <img :src="item.img" alt="" class="img-fluid" v-if="item.href !== null" @click="openUrl(item.href)">
         <img :src="item.img" alt="" class="img-fluid" v-else>
       </swiper-slide>
       <!-- <swiper-slide class="bigImg" ><img src="../assets/img/home/banner_mobile08.jpg" alt="" class="img-fluid"></swiper-slide>
@@ -44,6 +44,7 @@ export default {
   },
   methods: {
     openUrl (url) {
+      console.log(url)
       window.open(url)
     }
   },
@@ -53,11 +54,13 @@ export default {
       mobildBanner: [],
       time: null,
       swiperOptionTop: {
-        spaceBetween: 10,
-        slidesPerView: 1,
-        loopedSlides: 1, // looped slides should be the same
-        effect: 'fade',
+        notNextTick: true,
         loop: true,
+        initialSlide: 0,
+        // spaceBetween: 10,
+        // slidesPerView: 1,
+        // loopedSlides: 1, // looped slides should be the same
+        effect: 'fade',
         pagination: {
           el: '.swiper-pagination',
           clickable: true,
@@ -70,6 +73,22 @@ export default {
         }
       }
     }
+    // swiperOption: {
+    //                 notNextTick: true,
+    //                 loop: true,
+    //                 initialSlide: 0,
+    //                 autoplay: {
+    //                     delay: 1500,
+    //                     disableOnInteraction: true
+    //                 },
+    //                 speed: 800,
+    //                 grabCursor: true,
+    //                 pagination: {
+    //                     el: ".swiper-pagination",
+    //                     clickable: true,
+    //                     type: "bullets"
+    //                 }
+    //             }
   },
   async created () {
     const vm = this
