@@ -1,33 +1,38 @@
 <template>
   <div class="swiperComponent">
-    <swiper :options="swiperOptionTop" class="gallery-top" ref="swiperTop" v-if="viewportWidth > 640 && pcBanner.length > 0">
+    <div class="desktop">
+      <swiper :options="swiperOptionTop" class="gallery-top" ref="swiperTop" v-if="pcBanner.length>0">
     <!-- slides -->
-      <swiper-slide class="bigImg" v-for="item in pcBanner" :key="item.displayseq" v-if="Date.parse(item.issueEndDate) > time">
-        <img :src="item.img" alt="" class="img-fluid" v-if="item.href !== null" @click="openUrl(item.href)">
-        <img :src="item.img" alt="" class="img-fluid" v-else>
-      </swiper-slide>
-      <!-- <swiper-slide class="bigImg" ><img src="../assets/img/home/banner.jpg" alt="" class="img-fluid"></swiper-slide>
-      <swiper-slide class="bigImg" ><img src="../assets/img/home/banner02.jpg" alt="" class="img-fluid"></swiper-slide>
-      <swiper-slide class="bigImg" ><img src="../assets/img/home/banner03.jpg" alt="" class="img-fluid"></swiper-slide> -->
-      <!-- Optional controls -->
-      <div class="swiper-pagination"  slot="pagination"></div>
-    </swiper>
-    <swiper :options="swiperOptionTop" class="gallery-top" ref="swiperTop" v-if="viewportWidth < 640 && mobildBanner.length>0">
+        <swiper-slide class="bigImg" v-for="item in pcBanner" :key="item.displayseq" v-if="Date.parse(item.issueEndDate) > time">
+          <img :src="item.img" alt="" class="img-fluid" v-if="item.href !== null" @click="openUrl(item.href)">
+          <img :src="item.img" alt="" class="img-fluid" v-else>
+        </swiper-slide>
+        <!-- <swiper-slide class="bigImg" ><img src="../assets/img/home/banner.jpg" alt="" class="img-fluid"></swiper-slide>
+        <swiper-slide class="bigImg" ><img src="../assets/img/home/banner02.jpg" alt="" class="img-fluid"></swiper-slide>
+        <swiper-slide class="bigImg" ><img src="../assets/img/home/banner03.jpg" alt="" class="img-fluid"></swiper-slide> -->
+        <!-- Optional controls -->
+        <div class="swiper-pagination"  slot="pagination"></div>
+      </swiper>
+    </div>
+    <div class="mobile">
+      <swiper :options="swiperOptionTop" class="gallery-top" ref="swiperTop" v-if="mobildBanner.length>0">
     <!-- slides -->
-      <swiper-slide class="bigImg" v-for="item in mobildBanner" :key="item.displayseq" v-if="Date.parse(item.issueEndDate) > time">
-        <img :src="item.img" alt="" class="img-fluid" v-if="item.href !== null" @click="openUrl(item.href)">
-        <img :src="item.img" alt="" class="img-fluid" v-else>
-      </swiper-slide>
-      <!-- <swiper-slide class="bigImg" ><img src="../assets/img/home/banner_mobile08.jpg" alt="" class="img-fluid"></swiper-slide>
-      <swiper-slide class="bigImg" ><img src="../assets/img/home/banner_mobile01.jpg" alt="" class="img-fluid"></swiper-slide>
-      <swiper-slide class="bigImg" ><img src="../assets/img/home/banner_mobile02.jpg" alt="" class="img-fluid"></swiper-slide>
-      <swiper-slide class="bigImg" ><img src="../assets/img/home/banner_mobile03.jpg" alt="" class="img-fluid"></swiper-slide>
-      <swiper-slide class="bigImg" ><img src="../assets/img/home/banner_mobile04.jpg" alt="" class="img-fluid"></swiper-slide>
-      <swiper-slide class="bigImg" ><img src="../assets/img/home/banner_mobile05.jpg" alt="" class="img-fluid"></swiper-slide>
-      <swiper-slide class="bigImg" ><img src="../assets/img/home/banner_mobile06.jpg" alt="" class="img-fluid"></swiper-slide> -->
-      <!-- Optional controls -->
-      <div class="swiper-pagination"  slot="pagination"></div>
-    </swiper>
+        <swiper-slide class="bigImg" v-for="item in mobildBanner" :key="item.displayseq" v-if="Date.parse(item.issueEndDate) > time">
+          <img :src="item.img" alt="" class="img-fluid" v-if="item.href !== null" @click="openUrl(item.href)">
+          <img :src="item.img" alt="" class="img-fluid" v-else>
+        </swiper-slide>
+        <!-- <swiper-slide class="bigImg" ><img src="../assets/img/home/banner_mobile08.jpg" alt="" class="img-fluid"></swiper-slide>
+        <swiper-slide class="bigImg" ><img src="../assets/img/home/banner_mobile01.jpg" alt="" class="img-fluid"></swiper-slide>
+        <swiper-slide class="bigImg" ><img src="../assets/img/home/banner_mobile02.jpg" alt="" class="img-fluid"></swiper-slide>
+        <swiper-slide class="bigImg" ><img src="../assets/img/home/banner_mobile03.jpg" alt="" class="img-fluid"></swiper-slide>
+        <swiper-slide class="bigImg" ><img src="../assets/img/home/banner_mobile04.jpg" alt="" class="img-fluid"></swiper-slide>
+        <swiper-slide class="bigImg" ><img src="../assets/img/home/banner_mobile05.jpg" alt="" class="img-fluid"></swiper-slide>
+        <swiper-slide class="bigImg" ><img src="../assets/img/home/banner_mobile06.jpg" alt="" class="img-fluid"></swiper-slide> -->
+        <!-- Optional controls -->
+        <div class="swiper-pagination"  slot="pagination"></div>
+      </swiper>
+    </div>
+
   </div>
 </template>
 
@@ -44,7 +49,6 @@ export default {
   },
   methods: {
     openUrl (url) {
-      console.log(url)
       window.open(url)
     }
   },
@@ -106,4 +110,19 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+  .mobile{
+    display:none;
+  }
+  .desktop{
+    display:initial;
+  }
+  @media(max-width:640px){
+     .mobile{
+       display:initial;
+     }
+     .desktop{
+       display:none;
+     }
+  }
+
 </style>

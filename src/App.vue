@@ -2,12 +2,12 @@
   #app(:class="{'scrollDiasbled':sideBarShow || openStyleModal}")
     loading(:active.sync="isLoading" :is-full-page="fullPage" :color="color" :loader="loader")
     .container-fluid
-      .row.px-0.campaign.campaignBox.bg-primary(v-if="fullWidth > 640")
+      .row.px-0.campaign.campaignBox.bg-primary.desktop
         p.mb-0.w-100.campaignDes(v-for="(item,idx) in bulletinArray" v-if="bulletin === idx && Date.parse(item.issueEndDate) > timestemp") {{item.content}}
     .container.px-0.mx-md-6
       combineNav
     .container-fluid
-      .row.px-0.campaign.campaignBox.bg-primary(v-if="fullWidth <= 640")
+      .row.px-0.campaign.campaignBox.bg-primary.mobile
         p.mb-0.w-100.campaignDes(v-for="(item,idx) in bulletinArray" v-if="bulletin === idx && Date.parse(item.issueEndDate) > timestemp") {{item.content}}
     router-view
     .container-fluid.border-top.px-0.footer
@@ -170,5 +170,18 @@ body{
 //     overflow: scroll;
 //   }
 // }
-
+.mobile{
+  display:none;
+}
+.desktop{
+  display:flex;
+}
+@media(max-width:640px){
+  .mobile{
+    display:flex;
+  }
+  .desktop{
+    display:none;
+  }
+}
 </style>
