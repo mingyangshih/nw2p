@@ -3,7 +3,7 @@
     <div class="desktop">
       <swiper :options="swiperOptionTop" class="gallery-top" ref="swiperTop" v-if="pcBanner.length>0">
     <!-- slides -->
-        <swiper-slide class="bigImg" v-for="item in pcBanner" :key="item.displayseq" v-if="Date.parse(item.issueEndDate) > time">
+        <swiper-slide class="bigImg" v-for="item in pcBanner" :key="item.displayseq" >
           <img :src="item.img" alt="" class="img-fluid" v-if="item.href !== null" @click="openUrl(item.href)">
           <img :src="item.img" alt="" class="img-fluid" v-else>
         </swiper-slide>
@@ -17,7 +17,7 @@
     <div class="mobile">
       <swiper :options="swiperOptionTop" class="gallery-top" ref="swiperTop" v-if="mobildBanner.length>0">
     <!-- slides -->
-        <swiper-slide class="bigImg" v-for="item in mobildBanner" :key="item.displayseq" v-if="Date.parse(item.issueEndDate) > time">
+        <swiper-slide class="bigImg" v-for="item in mobildBanner" :key="item.displayseq">
           <img :src="item.img" alt="" class="img-fluid" v-if="item.href !== null" @click="openUrl(item.href)">
           <img :src="item.img" alt="" class="img-fluid" v-else>
         </swiper-slide>
@@ -39,7 +39,7 @@
 <script>
 import 'swiper/dist/css/swiper.css'
 import { swiper, swiperSlide } from 'vue-awesome-swiper'
-import axios from 'axios'
+// import axios from 'axios'
 
 export default {
   props: ['viewportWidth'],
@@ -95,10 +95,10 @@ export default {
     //                 }
     //             }
   },
-  created () {
+  async created () {
     const vm = this
     let API_PATH = process.env.API
-    axios.get(`${API_PATH}banner/list`).then(response => {
+    await this.$http.get(`${API_PATH}banner/list`).then(response => {
       let pcBanner = response.data.data[0].pc
       let mobildBanner = response.data.data[1].mobile
       vm.pcBanner = pcBanner
@@ -109,8 +109,27 @@ export default {
       }
     }).finally(() => {
     })
-    let time = new Date().getTime()
-    vm.time = time
+    // await fetch(`${API_PATH}banner/list`, {})
+    //   .then((response) => {
+    //     // 這裡會得到一個 ReadableStream 的物件
+    //     // console.log(response)
+    //     // 可以透過 blob(), json(), text() 轉成可用的資訊
+    //     return response.json()
+    //   }).then((jsonData) => {
+    //     // console.log(jsonData)
+    //     let pcBanner = jsonData.data[0].pc
+    //     let mobildBanner = jsonData.data[1].mobile
+    //     vm.pcBanner = pcBanner
+    //     vm.mobildBanner = mobildBanner
+    //     console.log(vm.pcBanner)
+    //   }).catch((err) => {
+    //     console.log('錯誤:', err)
+    //   })
+    // let time = new Date().getTime()
+    // vm.time = time
+  },
+  mounted () {
+    // console.log(this.pcBanner)
   }
 }
 </script>
