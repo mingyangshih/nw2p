@@ -39,6 +39,7 @@
 <script>
 import 'swiper/dist/css/swiper.css'
 import { swiper, swiperSlide } from 'vue-awesome-swiper'
+import axios from 'axios'
 
 export default {
   props: ['viewportWidth'],
@@ -94,14 +95,19 @@ export default {
     //                 }
     //             }
   },
-  async created () {
+  created () {
     const vm = this
     let API_PATH = process.env.API
-    await this.$http.get(`${API_PATH}banner/list`).then(response => {
+    axios.get(`${API_PATH}banner/list`).then(response => {
       let pcBanner = response.data.data[0].pc
       let mobildBanner = response.data.data[1].mobile
       vm.pcBanner = pcBanner
       vm.mobildBanner = mobildBanner
+    }).catch((error) => {
+      if (error.response) {
+        console.log(error)
+      }
+    }).finally(() => {
     })
     let time = new Date().getTime()
     vm.time = time

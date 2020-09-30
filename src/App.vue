@@ -61,8 +61,8 @@ export default {
       })()
     }
   },
-  async created () {
-    await this.$store.dispatch('getBulletin')
+  created () {
+    this.$store.dispatch('getBulletin')
     const vm = this
     let date = new Date()
     let timestemp = date.getTime()
