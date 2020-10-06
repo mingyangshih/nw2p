@@ -15,9 +15,9 @@
       </swiper>
     </div>
     <div class="mobile">
-      <swiper :options="swiperOptionTop" class="gallery-top" ref="swiperTop" v-if="mobildBanner.length>0">
+      <swiper :options="swiperOptionTop" class="gallery-top" ref="swiperTop" v-if="mobileBanner.length>0">
     <!-- slides -->
-        <swiper-slide class="bigImg" v-for="item in mobildBanner" :key="item.displayseq">
+        <swiper-slide class="bigImg" v-for="item in mobileBanner" :key="item.displayseq">
           <img :src="item.img" alt="" class="img-fluid" v-if="item.href !== null" @click="openUrl(item.href)">
           <img :src="item.img" alt="" class="img-fluid" v-else>
         </swiper-slide>
@@ -40,6 +40,7 @@
 import 'swiper/dist/css/swiper.css'
 import { swiper, swiperSlide } from 'vue-awesome-swiper'
 // import axios from 'axios'
+import {mapActions, mapState} from 'vuex'
 
 export default {
   props: ['viewportWidth'],
@@ -51,12 +52,16 @@ export default {
   methods: {
     openUrl (url) {
       window.open(url)
-    }
+    },
+    ...mapActions('homeSwiperModules', ['getBanner'])
+  },
+  computed: {
+    ...mapState('homeSwiperModules', ['pcBanner', 'mobileBanner'])
   },
   data () {
     return {
-      pcBanner: [],
-      mobildBanner: [],
+      // pcBanner: [],
+      // mobildBanner: [],
       time: null,
       swiperOptionTop: {
         notNextTick: true,
@@ -96,40 +101,8 @@ export default {
     //             }
   },
   async created () {
-    const vm = this
-    let API_PATH = process.env.API
-    await this.$http.get(`${API_PATH}banner/list`).then(response => {
-      let pcBanner = response.data.data[0].pc
-      let mobildBanner = response.data.data[1].mobile
-      vm.pcBanner = pcBanner
-      vm.mobildBanner = mobildBanner
-    }).catch((error) => {
-      if (error.response) {
-        console.log(error)
-      }
-    }).finally(() => {
-    })
-    // await fetch(`${API_PATH}banner/list`, {})
-    //   .then((response) => {
-    //     // 這裡會得到一個 ReadableStream 的物件
-    //     // console.log(response)
-    //     // 可以透過 blob(), json(), text() 轉成可用的資訊
-    //     return response.json()
-    //   }).then((jsonData) => {
-    //     // console.log(jsonData)
-    //     let pcBanner = jsonData.data[0].pc
-    //     let mobildBanner = jsonData.data[1].mobile
-    //     vm.pcBanner = pcBanner
-    //     vm.mobildBanner = mobildBanner
-    //     console.log(vm.pcBanner)
-    //   }).catch((err) => {
-    //     console.log('錯誤:', err)
-    //   })
-    // let time = new Date().getTime()
-    // vm.time = time
-  },
-  mounted () {
-    // console.log(this.pcBanner)
+    await this.getBanner()
+    console.log(this.pcBanner)
   }
 }
 </script>

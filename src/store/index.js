@@ -15,6 +15,7 @@ import styleModules from './modules/style'
 import bulletinModules from './modules/bulletin'
 import designerModules from './modules/designer'
 import designerItemModules from './modules/designerItem'
+import homeSwiperModules from './modules/homeswiper'
 Vue.use(Vuex)
 
 export default new Vuex.Store({
@@ -56,6 +57,7 @@ export default new Vuex.Store({
     styleModules,
     bulletinModules,
     designerModules,
-    designerItemModules
+    designerItemModules,
+    homeSwiperModules
   }
 })
