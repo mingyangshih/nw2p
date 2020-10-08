@@ -26,6 +26,7 @@
       //-         .d-flex.flex-column
       //-          p.text-decoration-none.mb-2.itemHover {{item}}
       //-          router-link.text-decoration-none.pl-3.mb-2.itemHover(v-for="item1 in totalDesign" v-if="item1.groupcode === item" :key="item1.productId" :to="'/designer/' + item1.id + '/' + item1.designerId") - {{item1.designerName}}
+
       //- mobile 所有產品
       .sidebarBox.w-100
         .sidebar.d-flex.flex-column.align-items-center.pt-3
@@ -41,6 +42,7 @@
               p(v-else @click.prevent="standard(eachCategoryProduct[idx][0])").font-weight-bold.pl-3.py-2.mb-0.allProdItemDetailItem.fz14.text-decoration.none.text-dark <span @click="sideBarShowEvent">{{item}}</span>
               p.mb-0.font-weight-bold.pl-3.py-2.allProdItemDetailItem.fz14.text-decoration-none.text-dark( v-for="(item1,idx1) in totalProduct" :key="idx1" v-if="item1.productCategory === item" @click.prevent="standard(item1.productId)") - <span >{{item1.productName}}</span>
       label(@click="$router.push('/serviceContent'); $store.state.sideBarShow = false").item.helpCenter.mb-0.align-items-center 幫助中心
+      label(@click="$router.push('/activity'); $store.state.sideBarShow = false").item.helpCenter.mb-0.align-items-center 抽獎活動
       //- label.mb-0.ml-3(data-toggle="modal" data-target="#loginModal") SSO登入測試
       router-link(to="/aboutYFP").text-dark.item.aboutUs.mb-0.align-items-center.text-decoration-none 關於我們
       //- router-link(to="/serviceContent").item.saledHelp.mb-0.align-items-center 售後服務

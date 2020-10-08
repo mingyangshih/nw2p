@@ -3,12 +3,13 @@
     loading(:active.sync="isLoading" :is-full-page="fullPage" :color="color" :loader="loader")
     .container-fluid
       .row.px-0.campaign.campaignBox.bg-primary.desktop
-        p.mb-0.w-100.campaignDes(v-for="(item,idx) in bulletinArray" v-if="bulletin === idx && Date.parse(item.issueEndDate) > timestemp") {{item.content}}
+        p.mb-0.w-100.campaignDes(v-for="(item,idx) in bulletinArray" v-if="bulletin === idx") {{item.content}}
+        //-  && Date.parse(item.issueEndDate) > timestemp
     .container.px-0.mx-md-6
       combineNav
     .container-fluid
       .row.px-0.campaign.campaignBox.bg-primary.mobile
-        p.mb-0.w-100.campaignDes(v-for="(item,idx) in bulletinArray" v-if="bulletin === idx && Date.parse(item.issueEndDate) > timestemp") {{item.content}}
+        p.mb-0.w-100.campaignDes(v-for="(item,idx) in bulletinArray" v-if="bulletin === idx") {{item.content}}
     router-view
     .container-fluid.border-top.px-0.footer
       footerComponent(:viewportWidth="fullWidth")
@@ -16,7 +17,7 @@
 </template>
 
 <script>
-import {mapState} from 'vuex'
+import {mapState, mapActions} from 'vuex'
 import tpxNavbarhead from './components/tpxNavbarhead'
 import navCustomize from './components/navCustomize'
 import combineNav from './components/combineNav'
@@ -41,18 +42,20 @@ export default {
       timestemp: null
     }
   },
+  methods: {
+    ...mapActions('bulletinModules', ['getBulletin'])
+  },
   computed: {
     isLoading () {
       return this.$store.state.isLoading
     },
+    ...mapState('bulletinModules', ['bulletinArray']),
     ...mapState({
       sideBarShow: state => state.sideBarShow,
-      openStyleModal: state => state.openStyleModal,
-      // bulletin
-      bulletinArray: state => state.bulletinModules.bulletinArray
+      openStyleModal: state => state.openStyleModal
     })
   },
-  mounted () {
+  async mounted () {
     const vm = this
     // resize 事件
     window.onresize = () => {
@@ -60,24 +63,21 @@ export default {
         vm.fullWidth = document.documentElement.clientWidth
       })()
     }
-  },
-  created () {
-    this.$store.dispatch('getBulletin')
-    const vm = this
+    await vm.getBulletin()
     let date = new Date()
     let timestemp = date.getTime()
     vm.timestemp = timestemp
-    // if (vm.bulletinArray.length === 1) {
-    //   vm.bulletin = 0
-    // } else {
-    setInterval(function () {
+    // 跑馬燈邏輯
+    await setInterval(function () {
       if (vm.bulletin < vm.bulletinArray.length - 1) {
         vm.bulletin += 1
       } else {
         vm.bulletin = 0
       }
     }, 2500)
-    // }
+  },
+  async created () {
+
   },
   watch: {
     // val 為改變的值

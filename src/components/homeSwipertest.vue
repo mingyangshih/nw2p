@@ -83,9 +83,26 @@ export default {
         }
       }
     }
+    // swiperOption: {
+    //                 notNextTick: true,
+    //                 loop: true,
+    //                 initialSlide: 0,
+    //                 autoplay: {
+    //                     delay: 1500,
+    //                     disableOnInteraction: true
+    //                 },
+    //                 speed: 800,
+    //                 grabCursor: true,
+    //                 pagination: {
+    //                     el: ".swiper-pagination",
+    //                     clickable: true,
+    //                     type: "bullets"
+    //                 }
+    //             }
   },
   async created () {
     await this.getBanner()
+    console.log(this.pcBanner)
   }
 }
 </script>

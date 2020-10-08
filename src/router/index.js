@@ -20,6 +20,8 @@ import aboutMember from '@/components/aboutMember'
 import buyAndTake from '@/components/buyAndTake'
 import invoiceAndSaledService from '@/components/invoiceAndSaledService'
 import teachEdit from '@/components/teachEdit'
+import homeSwipertest from '@/components/homeSwipertest'
+import activity from '@/components/pages/activity'
 
 Vue.use(Router)
 
@@ -29,6 +31,11 @@ export default new Router({
       path: '/',
       name: 'home',
       component: home
+    },
+    {
+      path: '/homeswipertest',
+      name: 'swipertest',
+      component: homeSwipertest
     },
     {
       path: '/productDetail/:id',
@@ -106,6 +113,11 @@ export default new Router({
           component: invoiceAndSaledService
         }
       ]
+    },
+    {
+      path: '/activity',
+      name: 'activity',
+      component: activity
     },
     {
       path: '/modifyEnroll',
