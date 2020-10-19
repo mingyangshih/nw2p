@@ -4,7 +4,10 @@
       <swiper :options="swiperOptionTop" class="gallery-top" ref="swiperTop" v-if="pcBanner.length>0">
     <!-- slides -->
         <swiper-slide class="bigImg" v-for="item in pcBanner" :key="item.displayseq" >
-          <img :src="item.img" alt="" class="img-fluid" v-if="item.href !== null" @click="openUrl(item.href)">
+          <a :href="item.href" v-if="item.href !== null" target="_blank">
+            <img :src="item.img" alt="" class="img-fluid hasUrl">
+          </a>
+
           <img :src="item.img" alt="" class="img-fluid" v-else>
         </swiper-slide>
         <!-- <swiper-slide class="bigImg" ><img src="../assets/img/home/banner.jpg" alt="" class="img-fluid"></swiper-slide>
@@ -18,7 +21,9 @@
       <swiper :options="swiperOptionTop" class="gallery-top" ref="swiperTop" v-if="mobileBanner.length>0">
     <!-- slides -->
         <swiper-slide class="bigImg" v-for="item in mobileBanner" :key="item.displayseq">
-          <img :src="item.img" alt="" class="img-fluid" v-if="item.href !== null" @click="openUrl(item.href)">
+          <a :href="item.href" v-if="item.href !== null" target="_blank">
+            <img :src="item.img" alt="" class="img-fluid hasUrl">
+          </a>
           <img :src="item.img" alt="" class="img-fluid" v-else>
         </swiper-slide>
         <!-- <swiper-slide class="bigImg" ><img src="../assets/img/home/banner_mobile08.jpg" alt="" class="img-fluid"></swiper-slide>
@@ -67,6 +72,7 @@ export default {
         notNextTick: true,
         loop: true,
         initialSlide: 0,
+        clickable: true,
         // spaceBetween: 10,
         // slidesPerView: 1,
         // loopedSlides: 1, // looped slides should be the same
@@ -79,7 +85,7 @@ export default {
         updateOnWindowResize: true,
         autoplay: {
           delay: 3000,
-          disableOnInteraction: true
+          disableOnInteraction: false
         }
       }
     }
@@ -104,6 +110,9 @@ export default {
      .desktop{
        display:none;
      }
+  }
+  .hasUrl{
+    cursor: pointer;
   }
 
 </style>
