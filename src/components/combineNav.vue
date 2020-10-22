@@ -47,9 +47,14 @@
       router-link(to="/aboutYFP").text-dark.item.aboutUs.mb-0.align-items-center.text-decoration-none 關於我們
       //- router-link(to="/serviceContent").item.saledHelp.mb-0.align-items-center 售後服務
       label(@click="$router.push('/serviceContent/contactus'); $store.state.sideBarShow = false").item.contactUs.mb-0.align-items-center 聯絡我們
-      label.item.register.mb-0.align-items-center
+      //- taopix 自動帶字
+      //- 登入前
+      label.item.register.mb-0.align-items-center(v-if="!login")
         a.font-weight-bold.text-decoration-none(onClick="tpxHighLevelRegisterInitControl(); return false;" id="tpx-register")
-      label.item.login.mb-0.align-items-center
+      //- 登入後
+      label.item.register.mb-0.align-items-center.login(v-if="login")
+        .font-weight-bold.text-decoration-none( id="tpx-register") 我的帳戶(登入後)
+      label.item.login.mb-0.align-items-center()
         a.font-weight-bold.text-decoration-none(id="tpx-signIn" onClick="tpxHighLevelSignInInitControl(); return false;")
       label.item.myItem.mb-0.align-items-center.tpx.tpx-accountLinkItem(id="tpx-projectslinkli")
         span(id="tpx-projectslist" onclick="tpxMyProjectsOnClick(); return false;")
@@ -102,7 +107,8 @@ export default{
   data () {
     return {
       // sideBarShow: false,
-      pJsonResponseObject: {}
+      pJsonResponseObject: {},
+      login: null
     }
   },
   methods: {
@@ -157,8 +163,22 @@ export default{
     // 取下拉選單內容
     vm.getNavBarList()
     vm.getBrandList()
-    // 檢查local storage 是否有內容，登入過會有內容，有登入過navbar 上方顯示方式直接顯示
+    // 檢查cookie 是否有內容，登入過會有內容，有登入過navbar 上方顯示方式直接顯示
     // vm.checkToken()
+    let ca = document.cookie.split(';')
+    // 判斷有無 mawebhlbr 看有無登入
+    for (let i = 0; i < ca.length; i++) {
+      let c = ca[i]
+      if (c.charAt(0) === ' ') {
+        c = c.substring(1, c.length)
+      }
+      if (c.indexOf('mawebhlbr') < 0) {
+        vm.login = false
+      } else {
+        vm.login = true
+        break
+      }
+    }
   }
 }
 </script>

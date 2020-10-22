@@ -37,17 +37,17 @@
                 p(v-else v-html="specId_sizeId_info.productIntroRightCol[idx]")
           hr.mt-0
           //- 沒有活動用這個
-          div(:class="{ 'flex-column' : fullWidth <= 640, 'align-items-center' : fullWidth <= 640}" v-if="discountprice === null").text-primary.d-flex.font-weight-bold.my-3 新平台，新體驗，正式上線！<p class="mb-0" :class="{'ml-auto' : fullWidth > 640}"><span class="fz26" >NT {{specId_sizeId_info.price | currency}}</span><span class="fz26 ml-2" v-if="specId_sizeId_info.priceRange">起</span></p>
+          div(v-if="discountprice === null").newPlatform.text-primary.d-flex.font-weight-bold.my-3 新平台，新體驗，正式上線！<p class="mb-0 soldPrice" ><span class="fz26 " >NT {{specId_sizeId_info.price | currency}}</span><span class="fz26 ml-2" v-if="specId_sizeId_info.priceRange">起</span></p>
           //- 活動用這個
-          div(:class="{ 'flex-column' : fullWidth <= 640, 'align-items-center' : fullWidth <= 640}" v-else).text-primary.d-flex.font-weight-bold.my-3.align-items-center 新平台，新體驗，正式上線！
-            <p class="mb-0 discountStyle" :class="{'ml-auto' : fullWidth > 640}"><span  >NT {{specId_sizeId_info.price | currency}}</span><span class="ml-2" v-if="specId_sizeId_info.priceRange">起</span></p>
-            .text-danger.activityPrice.ml-2(v-html="discountprice")
-          .d-flex.btnBox.flex-wrap(:class="{'justify-content-center' : fullWidth <= 640}")
-            router-link(to="/serviceContent" target="_blank").btn.btn-outline-primary.font-weight-bold.btnInPage(:class="[{'w-100' : fullWidth <= 640},{'mb-2' : fullWidth <= 640},{'mr-2' : fullWidth > 640}]") 編輯教學
+          div(v-else).newPlatform.text-primary.d-flex.font-weight-bold.my-3.align-items-center 新平台，新體驗，正式上線！
+            <p class="mb-0 discountStyle soldPrice" ><span class="d-flex">NT {{specId_sizeId_info.price | currency}}</span><span class="ml-2" v-if="specId_sizeId_info.priceRange">起</span></p>
+            .text-danger.activityPrice(v-html="discountprice")
+          .d-flex.btnBox.flex-wrap
+            router-link(to="/serviceContent" target="_blank").btn.btn-outline-primary.font-weight-bold.btnInPage.teachEdit 編輯教學
             //- 一般產品直接走正常流程
-            a(:href="specId_sizeId_info.link" :class="{'w-100' : fullWidth <= 640}" v-if="specId_sizeId_info.cnt === 1").btn.btn-primary.font-weight-bold.btnInPage.py-0.text-white 開始製作
+            a(:href="specId_sizeId_info.link" v-if="specId_sizeId_info.cnt === 1").btn.btn-primary.font-weight-bold.btnInPage.py-0.text-white.startEdit 開始製作
             //- 需要選風格的產品走下方的流程
-            router-link(:to="`/stylePage/${productId}/${specId}/${sizeId}/${styleId}`" :class="{'w-100' : fullWidth <= 640}" v-if="specId_sizeId_info.cnt !== 1").btn.btn-primary.font-weight-bold.btnInPage.py-0.text-white 選擇風格
+            router-link(:to="`/stylePage/${productId}/${specId}/${sizeId}/${styleId}`"  v-if="specId_sizeId_info.cnt !== 1").btn.btn-primary.font-weight-bold.btnInPage.py-0.text-white.chooseStyle 選擇風格
     .container.mt-5.mt-md-0
       .row.justify-content-center.py-4
         h2.font-weight-bold.mb-0.text-secondary.secondTitle 產品特性
@@ -104,6 +104,7 @@ export default {
   },
   data () {
     return {
+      timer: false,
       fullWidth: document.body.clientWidth,
       categoryId: null,
       // 判斷taopix login ornot
@@ -160,7 +161,14 @@ export default {
   watch: {
     // val 為改變的值
     fullWidth (val) {
-      this.fullWidth = val
+      if (!this.timer) {
+        this.fullWidth = val
+        this.timer = true
+        let that = this
+        setTimeout(function () {
+          that.timer = false
+        }, 400)
+      }
     }
   },
   async created () {
@@ -260,16 +268,33 @@ export default {
       }
     }
   }
+  // 新平台上限字樣
+  // (:class="{ 'flex-column' : fullWidth <= 640, 'align-items-center' : fullWidth <= 640}" v-if="discountprice === null")
+  @media(max-width: 641px){
+    .newPlatform{
+      flex-direction: column;
+    }
+  }
+  @media(min-width: 640px){
+    .soldPrice{
+      margin-left: auto;
+      white-space:nowrap;
+    }
+  }
+
   // 頁面中的Btn樣式
+  // :class="{'justify-content-center' : fullWidth <= 640}"
   .btnBox{
     justify-content: flex-end;
   }
+  // :class="[{'w-100' : fullWidth <= 640},{'mb-2' : fullWidth <= 640},{'mr-2' : fullWidth > 640}] teachEdit
+  // :class="{'w-100' : fullWidth <= 640}"  startEdit
+  // :class="{'w-100' : fullWidth <= 640}" chooseStyle
   .btnInPage{
     border-radius: 5px;
     width: 203px;
     height: 39px;
     font-size: 21px;
-    // padding-left: 50px;
     box-sizing: border-box;
     display: flex;
     justify-content: center;
@@ -278,10 +303,27 @@ export default {
       margin-left: 37px;
     }
   }
-  @media(max-width: 640px){
+  @media(max-width: 641px){
+    .btnBox{
+      justify-content: center;
+    }
     .btnInPage{
-      // width: 332px;
       padding-left: 0;
+      &.teachEdit{
+        width:100%;
+        margin-bottom:8px;
+      }
+      &.startEdit,&.chooseStyle{
+        width: 100%;
+      }
+    }
+  }
+  @media(min-width: 640px){
+    .btnInPage{
+      padding-left: 0;
+      &.teachEdit{
+        margin-right: 8px;
+      }
     }
   }
   // hr 樣式
@@ -509,6 +551,13 @@ export default {
     text-decoration: line-through;
   }
   .activityPrice{
+    margin-left: 8px;
     font-size: 20px;
+    white-space:nowrap;
+  }
+  @media(max-width: 640px){
+    .activityPrice{
+      margin-left: 0px;
+    }
   }
 </style>

@@ -5,7 +5,7 @@ For use with Taopix 2020r1
 Copyright 2011 - 2020 Taopix Limited
 */
 
-var kServerURL = 'https://order.cloudw2p.com/' // kServerURL needs to be set to the weburl for the corresponding brand in Taopix Control Centre.
+var kServerURL = 'https://staging.cloudw2p.com/' // kServerURL needs to be set to the weburl for the corresponding brand in Taopix Control Centre.
 var kGTMID = '' // kGTMID needs to be set if you wish to use Google Tag Manager. Set this to be you Google Tag Manager ID
 var gBasketCount = 0
 var gBasketLoaded = false
