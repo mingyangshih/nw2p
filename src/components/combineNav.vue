@@ -48,14 +48,17 @@
       //- router-link(to="/serviceContent").item.saledHelp.mb-0.align-items-center 售後服務
       label(@click="$router.push('/serviceContent/contactus'); $store.state.sideBarShow = false").item.contactUs.mb-0.align-items-center 聯絡我們
       //- taopix 自動帶字
-      //- 登入前
-      label.item.register.mb-0.align-items-center(v-if="!login")
-        a.font-weight-bold.text-decoration-none(onClick="tpxHighLevelRegisterInitControl(); return false;" id="tpx-register")
       //- 登入後
-      label.item.register.mb-0.align-items-center.login(v-if="login")
-        .font-weight-bold.text-decoration-none( id="tpx-register") 我的帳戶(登入後)
+      label.item.register.mb-0.align-items-center.login(v-if="mawebhlbr")
+        .font-weight-bold.text-decoration-none() 我的帳戶(登入後)
+      //- 登入前
+      label.item.register.mb-0.align-items-center(v-else)
+        a.font-weight-bold.text-decoration-none(onClick="tpxHighLevelRegisterInitControl(); return false;" id="tpx-register")
+      //- 登入登出Taopix按鈕
+      //- label.item.login.mb-0.align-items-center()
+      //-   a.font-weight-bold.text-decoration-none(id="tpx-signIn" onClick="tpxHighLevelSignInInitControl(); return false;")
       label.item.login.mb-0.align-items-center()
-        a.font-weight-bold.text-decoration-none(id="tpx-signIn" onClick="tpxHighLevelSignInInitControl(); return false;")
+        a.font-weight-bold.text-decoration-none(id="tpx-signIn" @click="signInControl")
       label.item.myItem.mb-0.align-items-center.tpx.tpx-accountLinkItem(id="tpx-projectslinkli")
         span(id="tpx-projectslist" onclick="tpxMyProjectsOnClick(); return false;")
       div.item.myItem.mb-0.align-items-center.tpx
@@ -108,10 +111,22 @@ export default{
     return {
       // sideBarShow: false,
       pJsonResponseObject: {},
-      login: null
+      login: null,
+      mawebhlbr: null
     }
   },
   methods: {
+    signInControl () {
+      let vm = this
+      if (vm.mawebhlbr) {
+        // 登出
+        vm.mawebhlbr = false
+        window.tpxDeleteCookie('mawebhlbr')
+      } else {
+        // 登入
+        window.tpxHighLevelSignInInitControl()
+      }
+    },
     closeSideBar () {
       const showStatus = $('#navbarNav').hasClass('show')
       if (showStatus) {
@@ -160,25 +175,38 @@ export default{
   },
   created () {
     const vm = this
+
+    // let mawbt = null
     // 取下拉選單內容
     vm.getNavBarList()
     vm.getBrandList()
-    // 檢查cookie 是否有內容，登入過會有內容，有登入過navbar 上方顯示方式直接顯示
-    // vm.checkToken()
-    let ca = document.cookie.split(';')
-    // 判斷有無 mawebhlbr 看有無登入
-    for (let i = 0; i < ca.length; i++) {
-      let c = ca[i]
-      if (c.charAt(0) === ' ') {
-        c = c.substring(1, c.length)
+  },
+  mounted () {
+    let vm = this
+    let newPromise = new Promise((resolve, reject) => {
+      // 傳入 resolve 與 reject，表示資料成功與失敗
+      let ran = window.tpxHighLevelBasketInitialise() // 隨機成功或失敗
+      if (ran) {
+        resolve(ran)
       }
-      if (c.indexOf('mawebhlbr') < 0) {
-        vm.login = false
-      } else {
-        vm.login = true
-        break
+    })
+    newPromise.then(data => {
+      if (data === 'finish') {
+        let ca = document.cookie.split(';')
+        for (let i = 0; i < ca.length; i++) {
+          let c = ca[i]
+          if (c.charAt(0) === ' ') {
+            c = c.substring(1, c.length)
+          }
+          if (c.indexOf('mawebhlbr') < 0) {
+            vm.login = false
+          } else {
+            vm.mawebhlbr = true
+            break
+          }
+        }
       }
-    }
+    })
   }
 }
 </script>

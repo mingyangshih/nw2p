@@ -1215,6 +1215,7 @@ function tpxHighLevelBasketInitialise () {
 	    	tpxHighLevelCheckUserSessionControl(lookUpToken)
 	    }
   }
+  return 'finish'
 }
 
 function tpxHighLevelLoggedInStatusCallBack (pIsSignedIn) {
