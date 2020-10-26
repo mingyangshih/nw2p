@@ -42,29 +42,39 @@
               p(v-else @click.prevent="standard(eachCategoryProduct[idx][0])").font-weight-bold.pl-3.py-2.mb-0.allProdItemDetailItem.fz14.text-decoration.none.text-dark <span @click="sideBarShowEvent">{{item}}</span>
               p.mb-0.font-weight-bold.pl-3.py-2.allProdItemDetailItem.fz14.text-decoration-none.text-dark( v-for="(item1,idx1) in totalProduct" :key="idx1" v-if="item1.productCategory === item" @click.prevent="standard(item1.productId)") - <span >{{item1.productName}}</span>
       label(@click="$router.push('/serviceContent'); $store.state.sideBarShow = false").item.helpCenter.mb-0.align-items-center 幫助中心
-      label(@click="$router.push('/activity'); $store.state.sideBarShow = false").item.helpCenter.mb-0.align-items-center.activity 抽獎活動
+      label(@click="$router.push(`/activity/${activityId}`); $store.state.sideBarShow = false").item.helpCenter.mb-0.align-items-center.activity 抽獎活動
       //- label.mb-0.ml-3(data-toggle="modal" data-target="#loginModal") SSO登入測試
       router-link(to="/aboutYFP").text-dark.item.aboutUs.mb-0.align-items-center.text-decoration-none 關於我們
       //- router-link(to="/serviceContent").item.saledHelp.mb-0.align-items-center 售後服務
       label(@click="$router.push('/serviceContent/contactus'); $store.state.sideBarShow = false").item.contactUs.mb-0.align-items-center 聯絡我們
-      //- taopix 自動帶字
-      //- 登入後
-      label.item.register.mb-0.align-items-center.login(v-if="mawebhlbr")
-        .font-weight-bold.text-decoration-none() 我的帳戶(登入後)
-      //- 登入前
-      label.item.register.mb-0.align-items-center(v-else)
+      label.item.register.mb-0.align-items-center
         a.font-weight-bold.text-decoration-none(onClick="tpxHighLevelRegisterInitControl(); return false;" id="tpx-register")
-      //- 登入登出Taopix按鈕
-      //- label.item.login.mb-0.align-items-center()
-      //-   a.font-weight-bold.text-decoration-none(id="tpx-signIn" onClick="tpxHighLevelSignInInitControl(); return false;")
-      label.item.login.mb-0.align-items-center()
-        a.font-weight-bold.text-decoration-none(id="tpx-signIn" @click="signInControl")
+      label.item.login.mb-0.align-items-center
+        a.font-weight-bold.text-decoration-none(id="tpx-signIn" onClick="tpxHighLevelSignInInitControl(); return false;")
       label.item.myItem.mb-0.align-items-center.tpx.tpx-accountLinkItem(id="tpx-projectslinkli")
         span(id="tpx-projectslist" onclick="tpxMyProjectsOnClick(); return false;")
       div.item.myItem.mb-0.align-items-center.tpx
         .tpx(id="tpx-basketButtonWrapper")
           p.mb-0.tpx.tpx-button.tpx-basketButton(id="tpx-basketlink" onclick="tpxBasketOnClick(); return false;")
             span.tpx.tpx-basketCount(id="tpx-basketButtonCount")
+      //- taopix 自動帶字 登入測試中
+      //- 登入後
+      //- label.item.register.mb-0.align-items-center.login(v-if="mawebhlbr")
+      //-   .font-weight-bold.text-decoration-none() 我的帳戶(登入後)
+      //- 登入前
+      //- label.item.register.mb-0.align-items-center(v-else)
+      //-   a.font-weight-bold.text-decoration-none(onClick="tpxHighLevelRegisterInitControl(); return false;" id="tpx-register")
+      //- 登入登出Taopix按鈕
+      //- label.item.login.mb-0.align-items-center()
+      //-   a.font-weight-bold.text-decoration-none(id="tpx-signIn" onClick="tpxHighLevelSignInInitControl(); return false;")
+      //- label.item.login.mb-0.align-items-center()
+      //-   a.font-weight-bold.text-decoration-none(id="tpx-signIn" @click="signInControl")
+      //- label.item.myItem.mb-0.align-items-center.tpx.tpx-accountLinkItem(id="tpx-projectslinkli")
+      //-   span(id="tpx-projectslist" onclick="tpxMyProjectsOnClick(); return false;")
+      //- div.item.myItem.mb-0.align-items-center.tpx
+      //-   .tpx(id="tpx-basketButtonWrapper")
+      //-     p.mb-0.tpx.tpx-button.tpx-basketButton(id="tpx-basketlink" onclick="tpxBasketOnClick(); return false;")
+      //-       span.tpx.tpx-basketCount(id="tpx-basketButtonCount")
     //- 小於640秀的畫面
     //- <!-- My Projects pop out panel -->
     //- loginmodal
@@ -112,7 +122,8 @@ export default{
       // sideBarShow: false,
       pJsonResponseObject: {},
       login: null,
-      mawebhlbr: null
+      mawebhlbr: null,
+      activityId: null
     }
   },
   methods: {
@@ -175,11 +186,19 @@ export default{
   },
   created () {
     const vm = this
-
-    // let mawbt = null
     // 取下拉選單內容
     vm.getNavBarList()
     vm.getBrandList()
+    // 活動畫面埋時間判斷id
+    let d = Date.now()
+    let activityDueDate = window.activity_due_date
+    let date = new Date(activityDueDate).getTime()
+
+    if (d < date) {
+      vm.activityId = 1
+    } else {
+      vm.activityId = 2
+    }
   },
   mounted () {
     let vm = this

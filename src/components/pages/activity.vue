@@ -1,13 +1,15 @@
 <template lang="pug">
   .activity
     .container-fluid.px-0
-      img.img-fluid.deskImg(src="../../../static/activity/desktop.jpg")
-      img.img-fluid.mobileImg(src="../../../static/activity/mobile.jpg")
+      img.img-fluid.deskImg(src="../../../static/activity/desktop.jpg" v-if="activityId == 1")
+      img.img-fluid.mobileImg(src="../../../static/activity/mobile.jpg" v-if="activityId == 1")
+      img.img-fluid.deskImg(src="../../../static/activity/desktop2.jpg" v-if="activityId == 2")
+      img.img-fluid.mobileImg(src="../../../static/activity/mobile2.jpg" v-if="activityId == 2")
     .container
       .d-flex.justify-content-center.align-items-center.my-4
         .activityTitle.font-weight-bold 活動期間
       p.w-100.text-center.firstDesc.font-weight-bold 第一波活動：2020/10/16 <span class="secondDesc">(上午 10:00)</span> ～2020/10/30 <span class="secondDesc">(下午 18:00)</span> 桌月曆早鳥 8 折
-      p.w-100.text-center.firstDesc.font-weight-bold 第二波活動：2020/11/2 <span class="secondDesc">(上午 10:00)</span>～2020/11/13 <span class="secondDesc">(下午 23:59)</span> <span class="notice">詳細內容敬請期待！</span>
+      p.w-100.text-center.firstDesc.font-weight-bold 第二波活動：2020/11/2 <span class="secondDesc">(上午 10:00)</span>～2020/11/13 <span class="secondDesc">(下午 23:59)</span> <span class="notice">全館88折</span>
       .d-flex.justify-content-center.align-items-center.my-4
         .activityTitle.font-weight-bold 抽獎時間
       p.w-100.text-center.firstDesc.font-weight-bold 2020年11月第 4 週，詳細日期將另行公布。
@@ -45,7 +47,23 @@
 
 <script>
 export default{
-
+  data () {
+    return {
+      activityId: null
+    }
+  },
+  created () {
+    this.activityId = this.$route.params.id
+  },
+  watch: {
+    async '$route' (to, from) {
+      const vm = this
+      const id = to.params.id
+      if (to.params.id !== from.params.id) {
+        vm.activityId = id
+      }
+    }
+  }
 }
 </script>
 
