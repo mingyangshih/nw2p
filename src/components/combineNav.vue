@@ -47,9 +47,25 @@
       router-link(to="/aboutYFP").text-dark.item.aboutUs.mb-0.align-items-center.text-decoration-none 關於我們
       //- router-link(to="/serviceContent").item.saledHelp.mb-0.align-items-center 售後服務
       label(@click="$router.push('/serviceContent/contactus'); $store.state.sideBarShow = false").item.contactUs.mb-0.align-items-center 聯絡我們
-      label.item.register.mb-0.align-items-center
+      //- label.item.register.mb-0.align-items-center
+      //-   a.font-weight-bold.text-decoration-none(onClick="tpxHighLevelRegisterInitControl(); return false;" id="tpx-register")
+      //- label.item.login.mb-0.align-items-center
+      //-   a.font-weight-bold.text-decoration-none(id="tpx-signIn" onClick="tpxHighLevelSignInInitControl(); return false;")
+      //- label.item.myItem.mb-0.align-items-center.tpx.tpx-accountLinkItem(id="tpx-projectslinkli")
+      //-   span(id="tpx-projectslist" onclick="tpxMyProjectsOnClick(); return false;")
+      //- div.item.myItem.mb-0.align-items-center.tpx
+      //-   .tpx(id="tpx-basketButtonWrapper")
+      //-     p.mb-0.tpx.tpx-button.tpx-basketButton(id="tpx-basketlink" onclick="tpxBasketOnClick(); return false;")
+      //-       span.tpx.tpx-basketCount(id="tpx-basketButtonCount")
+      //- taopix 自動帶字 登入測試中
+      //- 登入後
+      label.item.register.mb-0.align-items-center.login(v-if="mawebhlbr")
+        .font-weight-bold.text-decoration-none() 我的帳戶(登入後)
+      //- 登入前
+      label.item.register.mb-0.align-items-center(v-else)
         a.font-weight-bold.text-decoration-none(onClick="tpxHighLevelRegisterInitControl(); return false;" id="tpx-register")
-      label.item.login.mb-0.align-items-center
+      //- 登入登出Taopix按鈕
+      label.item.login.mb-0.align-items-center()
         a.font-weight-bold.text-decoration-none(id="tpx-signIn" onClick="tpxHighLevelSignInInitControl(); return false;")
       label.item.myItem.mb-0.align-items-center.tpx.tpx-accountLinkItem(id="tpx-projectslinkli")
         span(id="tpx-projectslist" onclick="tpxMyProjectsOnClick(); return false;")
@@ -57,25 +73,7 @@
         .tpx(id="tpx-basketButtonWrapper")
           p.mb-0.tpx.tpx-button.tpx-basketButton(id="tpx-basketlink" onclick="tpxBasketOnClick(); return false;")
             span.tpx.tpx-basketCount(id="tpx-basketButtonCount")
-      //- taopix 自動帶字 登入測試中
-      //- 登入後
-      //- label.item.register.mb-0.align-items-center.login(v-if="mawebhlbr")
-      //-   .font-weight-bold.text-decoration-none() 我的帳戶(登入後)
-      //- 登入前
-      //- label.item.register.mb-0.align-items-center(v-else)
-      //-   a.font-weight-bold.text-decoration-none(onClick="tpxHighLevelRegisterInitControl(); return false;" id="tpx-register")
-      //- 登入登出Taopix按鈕
-      //- label.item.login.mb-0.align-items-center()
-      //-   a.font-weight-bold.text-decoration-none(id="tpx-signIn" onClick="tpxHighLevelSignInInitControl(); return false;")
-      //- label.item.login.mb-0.align-items-center()
-      //-   a.font-weight-bold.text-decoration-none(id="tpx-signIn" @click="signInControl")
-      //- label.item.myItem.mb-0.align-items-center.tpx.tpx-accountLinkItem(id="tpx-projectslinkli")
-      //-   span(id="tpx-projectslist" onclick="tpxMyProjectsOnClick(); return false;")
-      //- div.item.myItem.mb-0.align-items-center.tpx
-      //-   .tpx(id="tpx-basketButtonWrapper")
-      //-     p.mb-0.tpx.tpx-button.tpx-basketButton(id="tpx-basketlink" onclick="tpxBasketOnClick(); return false;")
-      //-       span.tpx.tpx-basketCount(id="tpx-basketButtonCount")
-    //- 小於640秀的畫面
+
     //- <!-- My Projects pop out panel -->
     //- loginmodal
     <div id="tpx-projectlistcontents" class="tpx tpx-projectlist">

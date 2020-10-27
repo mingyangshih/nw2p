@@ -16,6 +16,7 @@ import bulletinModules from './modules/bulletin'
 import designerModules from './modules/designer'
 import designerItemModules from './modules/designerItem'
 import homeSwiperModules from './modules/homeswiper'
+import invoiceSearchModules from './modules/invoiceSearch'
 Vue.use(Vuex)
 
 export default new Vuex.Store({
@@ -38,7 +39,6 @@ export default new Vuex.Store({
     },
     sideBarShowEvent (state, status) {
       state.sideBarShow = status
-      // state.sideBarShow = !state.sideBarShow
     }
   },
   getters: {
@@ -58,6 +58,7 @@ export default new Vuex.Store({
     bulletinModules,
     designerModules,
     designerItemModules,
-    homeSwiperModules
+    homeSwiperModules,
+    invoiceSearchModules
   }
 })

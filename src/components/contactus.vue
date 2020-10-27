@@ -107,8 +107,9 @@
 <script>
 import VueRecaptcha from 'vue-recaptcha'
 import {mapActions} from 'vuex'
-import { createHelpers } from 'vuex-map-fields'
 import alert from '../components/alert'
+// v-model功能
+import { createHelpers } from 'vuex-map-fields'
 const { mapFields } = createHelpers({
   getterType: 'contactusModules/getField',
   mutationType: 'contactusModules/updateField'
