@@ -27,7 +27,9 @@
         p(v-if="viewportWidth <= 640") 10:00 ~ 12:00 及 13:00 ~ 17:00
         p 電子郵件 <span class="w2pemail">services@cloudw2p.com</span>
         button(v-if="viewportWidth <= 640" @click="$router.push('/serviceContent/contactus'); $store.state.serviceContentDrop = '#/serviceContent/contactus'").btn.btn-primary.font-weight-bold.btnInPage.pr-0.py-0.mt-3.text-decoration-none 聯絡我們 <i class="fas fa-chevron-right fa-xs"></i>
-        a(href="https://www.facebook.com/%E6%B0%B8%E8%B1%90%E9%9B%B2%E7%AB%AF%E5%8D%B0%E5%88%B7%E7%B6%B2%E7%B5%A6%E4%BD%A0%E7%9A%84-%E8%B3%AA%E6%84%9F%E5%8D%B0%E5%88%B7%E6%8F%90%E6%A1%88-104953087652948" target="_blank") <i class="fab fa-facebook-square fa-lg mt-3"></i>
+        .d-flex.align-items-center.socialIconBox
+          a(href="https://www.facebook.com/cloudw2p.tw" target="_blank") <img src="../../static/fb.svg" class="fb">
+          a(href="https://www.instagram.com/cloudw2p/" target="_blank").ml-2 <img src="../../static/ig.png" class="ig">
 </template>
 
 <script>
@@ -104,5 +106,18 @@ export default {
 }
 .w2pemail{
   font-size: 14px;
+}
+
+@media(max-width: 641px){
+  .socialIconBox{
+    margin-top: 16px;
+  }
+}
+
+.ig{
+  width: 22px;
+}
+.fb{
+  width: 24px;
 }
 </style>
