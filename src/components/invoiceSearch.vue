@@ -25,10 +25,11 @@
           tbody
             tr(v-for="item in invoiceAry" )
               th(scope='row') {{item.ordernumber}}
-              td {{item.invoicenumber}}
+              td(@click="invoiceNum(item.invoicenumber)") {{item.invoicenumber}}
               td {{item.invoicedate}}
               td {{JSON.parse(item.tot_amt)|currency}}
               td
+    .imgtest
 </template>
 
 <script>
@@ -44,7 +45,11 @@ export default{
     ...mapState('invoiceSearchModules', ['invoiceAry'])
   },
   methods: {
-    ...mapActions('invoiceSearchModules', ['getInvoice', 'init'])
+    ...mapActions('invoiceSearchModules', ['getInvoice', 'init', 'invoiceImg']),
+    invoiceNum (invoicenumber) {
+      this.$store.commit('invoiceSearchModules/invoiceNum', {invoicenumber})
+      this.invoiceImg()
+    }
   },
   created () {
     let vm = this

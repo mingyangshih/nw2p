@@ -5,7 +5,8 @@ export default{
   state: {
     startDate: '',
     endDate: '',
-    invoiceAry: []
+    invoiceAry: [],
+    invoiceNum: null
   },
   actions: {
     getInvoice ({commit, state}) {
@@ -38,8 +39,20 @@ export default{
       fetch(`${API_PATH}user/cloudinvoice/218a3411611912211664331197132515911195514128491347a0ca/${startDate}/${endDate}`, {method: 'GET'}).then(res => {
         return res.json()
       }).then(result => {
-        console.log(result)
         commit('getInvoice', {result})
+      }).finally(() => {
+        commit('LOADING', false, {root: true})
+      })
+    },
+    invoiceImg ({commit, state}) {
+      commit('LOADING', true, {root: true})
+      let API_PATH = process.env.API
+      fetch(`${API_PATH}user/invoiceimg/BV88619981`, {method: 'GET'}).then(res => {
+        return res.text()
+      }).then(response => {
+        var image = new Image()
+        image.src = img
+        document.querySelector('.imgtest').appendChild(image)
       }).finally(() => {
         commit('LOADING', false, {root: true})
       })
@@ -49,6 +62,9 @@ export default{
     updateField,
     getInvoice (state, {result}) {
       state.invoiceAry = result
+    },
+    invoiceNum (state, {invoiceNum}) {
+      state.invoiceNum = invoiceNum
     }
   },
   getters: {
