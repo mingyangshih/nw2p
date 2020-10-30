@@ -20,12 +20,12 @@
                p(v-else @click.prevent="standard(eachCategoryProduct[idx][0])").text-decoration-none.mb-2.itemHover {{item}} {{productEnCategory[idx]}}
                p.text-decoration-none.pl-3.mb-2.itemHover(v-for="item1 in totalProduct" v-if="item1.productCategory === item" :key="item1.productId" @click.prevent="standard(item1.productId)") - {{item1.productName}}
       div.item.allProd.mb-0.align-items-center.deskTop 設計品牌館
-        .dropDownMenu.bg-white.px-3
+        .styleDropDownMenu.bg-white.px-3
           .text-decoration-none.row
-            .col-md-4.py-3(v-for="(item,idx) in totalDesignCategory")
+            .col-12.py-3(v-for="(item,idx) in totalDesignCategory")
               .d-flex.flex-column
-               p.text-decoration-none.mb-2.itemHover {{item}}
-               router-link.text-decoration-none.pl-3.mb-2.itemHover(v-for="item1 in totalDesign" v-if="item1.groupcode === item" :key="item1.productId" :to="'/designer/' + item1.id + '/' + item1.designerId") - {{item1.designerName}}
+                //- p.text-decoration-none.mb-2.itemHover {{item}}
+                router-link.text-decoration-none.pl-3.mb-2.itemHover(v-for="item1 in totalDesign" v-if="item1.groupcode === item" :key="item1.productId" :to="'/designer/' + item1.id + '/' + item1.designerId") - {{item1.designerName}}
 
       //- mobile 所有產品
       .sidebarBox.w-100
@@ -371,6 +371,9 @@ export default{
     .dropDownMenu{
       display: block;
     }
+    .styleDropDownMenu{
+      display: block;
+    }
   }
   .dropDownMenu{
     display: none;
@@ -406,6 +409,54 @@ export default{
       position: absolute;
       top: -21px;
       left: calc(50% - 91px);
+      z-index: 1;
+    }
+    .itemHover{
+      color:black;
+    }
+    .itemHover:hover{
+      color: rgba(0,0,0,.3);
+    }
+  }
+  .styleDropDownMenu{
+    position: absolute;
+    top: 100%;
+  }
+  .styleDropDownMenu{
+    display: none;
+    min-width: 11rem;
+    max-width: 42rem;
+    padding: 0 16px;
+    box-sizing: border-box;
+    left: -50%;
+    top: calc(100% - 2px);
+    border: 1px solid rgba(0,0,0,.15);
+    border-radius: .25rem;
+    color: black;
+    &::before{
+      display:block;
+      content: "";
+      width: 20px;
+      height: 20px;
+      border-bottom: solid 10px #fefefe;
+      border-left: solid 10px transparent;
+      border-right: solid 10px transparent;
+      position: absolute;
+      top: -20px;
+      left: calc(50% - 11px);
+      z-index: 100000;
+    }
+    &::after{
+      display:block;
+      content: "";
+      width: 20px;
+      height: 20px;
+      border-bottom: solid 11px rgba(0,0,0,.3);
+      border-left: solid 11px transparent;
+      border-right: solid 11px transparent;
+      position: absolute;
+      top: -21px;
+      left: calc(50% - 12px);
       z-index: 1;
     }
     .itemHover{
