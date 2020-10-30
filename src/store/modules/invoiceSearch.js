@@ -1,4 +1,6 @@
 import { getField, updateField } from 'vuex-map-fields'
+import $ from 'jquery'
+import router from '../../router'
 
 export default{
   namespaced: true,
@@ -6,13 +8,36 @@ export default{
     startDate: '',
     endDate: '',
     invoiceAry: [],
-    invoiceNum: null
+    invoiceNum: null,
+    basketref: ''
   },
   actions: {
-    getInvoice ({commit, state}) {
+    getBasketRef ({commit}) {
+      let ca = document.cookie.split(';')
+      let tempbasketref = ''
+      for (let i = 0; i < ca.length; i++) {
+        let c = ca[i]
+        if (c.charAt(0) === ' ') {
+          c = c.substring(1, c.length)
+          if (c.includes('mawebhlbr')) {
+            tempbasketref = c
+          }
+        }
+      }
+      let basketref = tempbasketref.replace('mawebhlbr=', '')
+      commit('setBasketref', {basketref})
+    },
+    getInvoice ({commit, state, dispatch}) {
+      dispatch('getBasketRef')
+      if (state.basketref === '') {
+        alert('請先登入')
+        router.push('/')
+        return
+      }
       commit('LOADING', true, {root: true})
       let API_PATH = process.env.API
-      fetch(`${API_PATH}user/cloudinvoice/218a3411611912211664331197132515911195514128491347a0ca/${state.startDate}/${state.endDate}`, {method: 'GET'}).then(res => {
+      let token = state.basketref
+      fetch(`${API_PATH}user/cloudinvoice/${token}/${state.startDate}/${state.endDate}`, {method: 'POST'}).then(res => {
         return res.json()
       }).then(result => {
         commit('getInvoice', {result})
@@ -20,7 +45,13 @@ export default{
         commit('LOADING', false, {root: true})
       })
     },
-    init ({commit, state}) {
+    init ({commit, state, dispatch}) {
+      dispatch('getBasketRef')
+      if (state.basketref === '') {
+        alert('請先登入')
+        router.push('/')
+        return
+      }
       commit('LOADING', true, {root: true})
       let today = new Date()
       let time = today.getTime()
@@ -35,26 +66,38 @@ export default{
       let ldate = oneMonthAgoDate.getDate()
       let endDate = `${y}-${m}-${date}`
       let startDate = `${ly}-${lm}-${ldate}`
+      let token = state.basketref
       let API_PATH = process.env.API
-      fetch(`${API_PATH}user/cloudinvoice/218a3411611912211664331197132515911195514128491347a0ca/${startDate}/${endDate}`, {method: 'GET'}).then(res => {
+      fetch(`${API_PATH}user/cloudinvoice/${token}/${startDate}/${endDate}`, {method: 'POST'}).then(res => {
         return res.json()
       }).then(result => {
         commit('getInvoice', {result})
+      }).catch((error) => {
+        console.error(error)
       }).finally(() => {
         commit('LOADING', false, {root: true})
       })
     },
-    invoiceImg ({commit, state}) {
-      commit('LOADING', true, {root: true})
+    invoiceImg ({state}) {
+      if (state.basketref === '') {
+        alert('請先登入')
+        router.push('/')
+        return
+      }
+      $('#invoiceModal').modal('show')
+      let imgbox = document.getElementById('imgbox')
+      imgbox.innerHTML = ''
       let API_PATH = process.env.API
-      fetch(`${API_PATH}user/invoiceimg/BV88619981`, {method: 'GET'}).then(res => {
-        return res.text()
+      let invoiceNum = state.invoiceNum
+      let token = state.basketref
+      fetch(`${API_PATH}user/invoiceimg/${token}/${invoiceNum}`, {method: 'POST'}).then(res => {
+        return res.json()
       }).then(response => {
-        var image = new Image()
-        image.src = img
-        document.querySelector('.imgtest').appendChild(image)
+        let image = new Image()
+        image.src = response.data
+        image.classList.add('img-fluid')
+        imgbox.appendChild(image)
       }).finally(() => {
-        commit('LOADING', false, {root: true})
       })
     }
   },
@@ -65,6 +108,9 @@ export default{
     },
     invoiceNum (state, {invoiceNum}) {
       state.invoiceNum = invoiceNum
+    },
+    setBasketref (state, {basketref}) {
+      state.basketref = basketref
     }
   },
   getters: {

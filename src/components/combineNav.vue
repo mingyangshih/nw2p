@@ -19,13 +19,13 @@
                p( @click.prevent="productdetail(categoryId[idx])" v-if="eachCategoryNumber[idx] > 1").text-decoration-none.mb-2.itemHover {{item}} {{productEnCategory[idx]}}
                p(v-else @click.prevent="standard(eachCategoryProduct[idx][0])").text-decoration-none.mb-2.itemHover {{item}} {{productEnCategory[idx]}}
                p.text-decoration-none.pl-3.mb-2.itemHover(v-for="item1 in totalProduct" v-if="item1.productCategory === item" :key="item1.productId" @click.prevent="standard(item1.productId)") - {{item1.productName}}
-      //- div.item.allProd.mb-0.align-items-center.deskTop 設計品牌館
-      //-   .dropDownMenu.bg-white.px-3
-      //-     .text-decoration-none.row
-      //-       .col-md-4.py-3(v-for="(item,idx) in totalDesignCategory")
-      //-         .d-flex.flex-column
-      //-          p.text-decoration-none.mb-2.itemHover {{item}}
-      //-          router-link.text-decoration-none.pl-3.mb-2.itemHover(v-for="item1 in totalDesign" v-if="item1.groupcode === item" :key="item1.productId" :to="'/designer/' + item1.id + '/' + item1.designerId") - {{item1.designerName}}
+      div.item.allProd.mb-0.align-items-center.deskTop 設計品牌館
+        .dropDownMenu.bg-white.px-3
+          .text-decoration-none.row
+            .col-md-4.py-3(v-for="(item,idx) in totalDesignCategory")
+              .d-flex.flex-column
+               p.text-decoration-none.mb-2.itemHover {{item}}
+               router-link.text-decoration-none.pl-3.mb-2.itemHover(v-for="item1 in totalDesign" v-if="item1.groupcode === item" :key="item1.productId" :to="'/designer/' + item1.id + '/' + item1.designerId") - {{item1.designerName}}
 
       //- mobile 所有產品
       .sidebarBox.w-100
@@ -45,30 +45,28 @@
       label(@click="$router.push(`/activity/${activityId}`); $store.state.sideBarShow = false").item.helpCenter.mb-0.align-items-center.activity 抽獎活動
       //- label.mb-0.ml-3(data-toggle="modal" data-target="#loginModal") SSO登入測試
       router-link(to="/aboutYFP").text-dark.item.aboutUs.mb-0.align-items-center.text-decoration-none 關於我們
-      //- router-link(to="/serviceContent").item.saledHelp.mb-0.align-items-center 售後服務
       label(@click="$router.push('/serviceContent/contactus'); $store.state.sideBarShow = false").item.contactUs.mb-0.align-items-center 聯絡我們
-      //- label.item.register.mb-0.align-items-center
-      //-   a.font-weight-bold.text-decoration-none(onClick="tpxHighLevelRegisterInitControl(); return false;" id="tpx-register")
-      //- label.item.login.mb-0.align-items-center
-      //-   a.font-weight-bold.text-decoration-none(id="tpx-signIn" onClick="tpxHighLevelSignInInitControl(); return false;")
-      //- label.item.myItem.mb-0.align-items-center.tpx.tpx-accountLinkItem(id="tpx-projectslinkli")
-      //-   span(id="tpx-projectslist" onclick="tpxMyProjectsOnClick(); return false;")
-      //- div.item.myItem.mb-0.align-items-center.tpx
-      //-   .tpx(id="tpx-basketButtonWrapper")
-      //-     p.mb-0.tpx.tpx-button.tpx-basketButton(id="tpx-basketlink" onclick="tpxBasketOnClick(); return false;")
-      //-       span.tpx.tpx-basketCount(id="tpx-basketButtonCount")
+
       //- taopix 自動帶字 登入測試中
       //- 登入後
-      label.item.register.mb-0.align-items-center.login(v-if="mawebhlbr")
-        .font-weight-bold.text-decoration-none() 我的帳戶(登入後)
+      //- 桌機
+      label.mb-0.align-items-center.login.h-100.afterLoginBox(v-if="mawebhlbr")
+        .font-weight-bold.text-decoration-none.h-100.justify-content-center.align-items-center.afterLogin
+          span.memberCenter 會員中心
+          .w-100.afterLoginDropDown.flex-column.align-items-center
+            a.font-weight-bold.text-decoration-none.mb-3.itemHover.myAccount(onClick="tpxHighLevelRegisterInitControl(); return false;" id="tpx-register")
+            a(@click="$router.push('/invoice'); $store.state.sideBarShow = false").text-decoration-none.itemHover.invoiceSearch 發票查詢
       //- 登入前
       label.item.register.mb-0.align-items-center(v-else)
         a.font-weight-bold.text-decoration-none(onClick="tpxHighLevelRegisterInitControl(); return false;" id="tpx-register")
+
       //- 登入登出Taopix按鈕
       label.item.login.mb-0.align-items-center()
-        a.font-weight-bold.text-decoration-none(id="tpx-signIn" onClick="tpxHighLevelSignInInitControl(); return false;")
+        a.font-weight-bold.text-decoration-none(id="tpx-signIn" @click="signInControl")
+      //- 我的作品
       label.item.myItem.mb-0.align-items-center.tpx.tpx-accountLinkItem(id="tpx-projectslinkli")
         span(id="tpx-projectslist" onclick="tpxMyProjectsOnClick(); return false;")
+      //- 購物車
       div.item.myItem.mb-0.align-items-center.tpx
         .tpx(id="tpx-basketButtonWrapper")
           p.mb-0.tpx.tpx-button.tpx-basketButton(id="tpx-basketlink" onclick="tpxBasketOnClick(); return false;")
@@ -129,7 +127,7 @@ export default{
       let vm = this
       if (vm.mawebhlbr) {
         // 登出
-        vm.mawebhlbr = false
+        vm.mawebhlbr = !vm.mawebhlbr
         window.tpxDeleteCookie('mawebhlbr')
       } else {
         // 登入
@@ -505,4 +503,101 @@ export default{
   .activity{
     color:#f24f55;
   }
+
+  // 登入後的夏拉
+  @media(max-width:641px){
+    .afterLogin{
+      .memberCenter{
+        display: none;
+      }
+    }
+    .afterLoginBox{
+      margin-left: 0;
+      padding-top : 16px;
+      padding-bottom: 16px;
+      box-sizing: border-box;
+      width: 100%;
+      border-bottom: 2px solid hsla(0,0%,50.2%,.4);
+      justify-content: flex-start;
+    }
+  }
+
+  @media(max-width: 641px){
+    .afterLoginDropDown{
+      display:block;
+      a{
+        display: block;
+        color:black;
+      }
+      .myAccount{
+        padding-bottom: 16px;
+        border-bottom: 2px solid hsla(0,0%,50.2%,.4);
+      }
+      .invoiceSearch{
+        margin-top: 16px;
+      }
+    }
+  }
+  @media(min-width: 640px){
+    .afterLogin{
+      min-width: 122px;
+      position:relative;
+      display:flex;
+      cursor: pointer;
+      &:hover{
+        .afterLoginDropDown{
+          display: flex;
+          padding:16px;
+        }
+      }
+    }
+    .afterLoginBox{
+      display: flex;
+      margin-left: auto;
+      justify-content: center;
+    }
+    .afterLoginDropDown{
+      display:none;
+      position:absolute;
+      left:0;
+      background: white;
+      top: calc(100% - 2px);
+      border: 1px solid rgba(0,0,0,.15);
+      border-radius: .25rem;
+      .itemHover{
+        color:black;
+        cursor:pointer;
+      }
+      .itemHover:hover{
+        color: rgba(0,0,0,.3);
+      }
+      &::before{
+        display:block;
+        content: "";
+        width: 20px;
+        height: 20px;
+        border-bottom: solid 10px #fefefe;
+        border-left: solid 10px transparent;
+        border-right: solid 10px transparent;
+        position: absolute;
+        top: -20px;
+        left: calc(50% - 10px);
+        z-index: 100000;
+      }
+      &::after{
+        display:block;
+        content: "";
+        width: 20px;
+        height: 20px;
+        border-bottom: solid 11px rgba(0,0,0,.3);
+        border-left: solid 11px transparent;
+        border-right: solid 11px transparent;
+        position: absolute;
+        top: -21px;
+        left: calc(50% - 11px);
+        z-index: 1;
+      }
+    }
+  }
+
 </style>

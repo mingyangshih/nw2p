@@ -29,7 +29,16 @@
               td {{item.invoicedate}}
               td {{JSON.parse(item.tot_amt)|currency}}
               td
-    .imgtest
+    // Modal
+    #invoiceModal.modal.fade(tabindex='-1' role='dialog' aria-labelledby='exampleModalLabel' aria-hidden='true')
+      .modal-dialog(role='document')
+        .modal-content
+          .modal-header.border-bottom-0
+            button.close(type='button' data-dismiss='modal' aria-label='Close')
+              span(aria-hidden='true') &times;
+          .modal-body
+            #imgbox
+
 </template>
 
 <script>
@@ -46,8 +55,8 @@ export default{
   },
   methods: {
     ...mapActions('invoiceSearchModules', ['getInvoice', 'init', 'invoiceImg']),
-    invoiceNum (invoicenumber) {
-      this.$store.commit('invoiceSearchModules/invoiceNum', {invoicenumber})
+    invoiceNum (invoiceNum) {
+      this.$store.commit('invoiceSearchModules/invoiceNum', {invoiceNum})
       this.invoiceImg()
     }
   },
