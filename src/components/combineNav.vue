@@ -19,7 +19,7 @@
                p( @click.prevent="productdetail(categoryId[idx])" v-if="eachCategoryNumber[idx] > 1").text-decoration-none.mb-2.itemHover {{item}} {{productEnCategory[idx]}}
                p(v-else @click.prevent="standard(eachCategoryProduct[idx][0])").text-decoration-none.mb-2.itemHover {{item}} {{productEnCategory[idx]}}
                p.text-decoration-none.pl-3.mb-2.itemHover(v-for="item1 in totalProduct" v-if="item1.productCategory === item" :key="item1.productId" @click.prevent="standard(item1.productId)") - {{item1.productName}}
-      div.item.allProd.mb-0.align-items-center.deskTop 設計品牌館
+      div.item.allProd.mb-0.align-items-center.deskTop(v-if="styleOpen") 設計品牌館
         .styleDropDownMenu.bg-white.px-3
           .text-decoration-none.row
             .col-12.py-3(v-for="(item,idx) in totalDesignCategory")
@@ -119,7 +119,8 @@ export default{
       pJsonResponseObject: {},
       login: null,
       mawebhlbr: null,
-      activityId: null
+      activityId: null,
+      styleOpen: null
     }
   },
   methods: {
@@ -195,6 +196,9 @@ export default{
     } else {
       vm.activityId = 2
     }
+    // style open or not
+    // var style_open = true
+    vm.styleOpen = window.style_open
   },
   mounted () {
     let vm = this
