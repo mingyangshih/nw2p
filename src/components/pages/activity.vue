@@ -16,7 +16,7 @@
       .d-flex.justify-content-center.align-items-center.my-4
         .activityTitle.font-weight-bold 領獎方式
       p.w-100.text-center.firstDesc.font-weight-bold.mb-md-3 抽出得獎人後會於 <a href="https://www.facebook.com/cloudw2p.tw/" class="text-decoration-none" target="_blank">永豐雲端印刷網粉絲團</a>
-      p.w-100.text-center.firstDesc.font-weight-bold 公布相關訊息，公布相關訊息，同時有客服人員主動聯繫得獎人，確認及辦理領獎相關事宜。
+      p.w-100.text-center.firstDesc.font-weight-bold 公布相關訊息，同時有客服人員主動聯繫得獎人，確認及辦理領獎相關事宜。
       .d-flex.justify-content-center.align-items-center.my-4
         .activityTitle.font-weight-bold.bg-primary 活動規則
       p.w-100.firstDesc.font-weight-bold.text-justify 兩波活動期間內，<span class="notice font-weight-bold">只要在永豐雲端印刷網新網站<a href="https://new.cloudw2p.com/" class="notice" target="_blank">(https://new.cloudw2p.com/)</a>單筆消費金額滿 1500 元（運費不列入計算）</span>，即可憑發票號碼參加抽獎，活動期間內消費滿額次數越多，就能有越多抽獎機會。
