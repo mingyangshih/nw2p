@@ -1,5 +1,6 @@
 <template lang="pug">
   .invoiceSearch
+    alert
     .title 雲端發票查詢
     //- ＊此處所顯示的電子發票皆為使用「永豐雲端印刷網會員載具」之發票。 ＊如欲查詢使用其它載具的發票內容，請至財政部電子發票整合服務平台查詢。 ＊您也可以進行會員載具歸戶，所有在永豐雲端印刷網交易的雲端發票，都可在財政部電子發票整合服務平台統一管理。
     hr.w-100
@@ -25,7 +26,7 @@
           tbody
             tr(v-for="item in invoiceAry" )
               th(scope='row') {{item.ordernumber}}
-              td(@click="invoiceNum(item.invoicenumber)") {{item.invoicenumber}}
+              td(@click="invoiceNum(item.invoicenumber)").text-primary.font-weight-bold.invoiceNum {{item.invoicenumber}}
               td {{item.invoicedate}}
               td {{JSON.parse(item.tot_amt)|currency}}
               td
@@ -34,9 +35,10 @@
       .modal-dialog(role='document')
         .modal-content
           .modal-header.border-bottom-0
-            button.close(type='button' data-dismiss='modal' aria-label='Close')
+            button.close(type='button' @click="closeModal")
               span(aria-hidden='true') &times;
           .modal-body
+            #system
             #imgbox
 
 </template>
@@ -44,17 +46,19 @@
 <script>
 import {mapActions, mapState} from 'vuex'
 import { createHelpers } from 'vuex-map-fields'
+import alert from '../components/alert'
 const { mapFields } = createHelpers({
   getterType: 'invoiceSearchModules/getField',
   mutationType: 'invoiceSearchModules/updateField'
 })
 export default{
+  components: {alert},
   computed: {
     ...mapFields(['startDate', 'endDate']),
     ...mapState('invoiceSearchModules', ['invoiceAry'])
   },
   methods: {
-    ...mapActions('invoiceSearchModules', ['getInvoice', 'init', 'invoiceImg']),
+    ...mapActions('invoiceSearchModules', ['getInvoice', 'init', 'invoiceImg', 'closeModal']),
     invoiceNum (invoiceNum) {
       this.$store.commit('invoiceSearchModules/invoiceNum', {invoiceNum})
       this.invoiceImg()
@@ -68,6 +72,9 @@ export default{
 </script>
 
 <style lang="scss" scoped>
+  .invoiceNum{
+    cursor: pointer;
+  }
   .title{
     font-size: 24px;
     font-weight: bold;
