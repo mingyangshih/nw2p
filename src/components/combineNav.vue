@@ -196,8 +196,7 @@ export default{
     } else {
       vm.activityId = 2
     }
-    // style open or not
-    // var style_open = true
+    // 設計師品牌館是否開啟
     vm.styleOpen = window.style_open
   },
   mounted () {
@@ -376,7 +375,7 @@ export default{
       display: block;
     }
     .styleDropDownMenu{
-      display: block;
+      display:block;
     }
   }
   .dropDownMenu{

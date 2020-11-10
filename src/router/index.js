@@ -24,6 +24,7 @@ import homeSwipertest from '@/components/homeSwipertest'
 import activity from '@/components/pages/activity'
 import invoice from '@/components/pages/invoice'
 import invoiceSearch from '@/components/invoiceSearch'
+import paperMaterial from '@/components/pages/paperMaterial'
 
 Vue.use(Router)
 
@@ -151,6 +152,11 @@ export default new Router({
       path: '/loading',
       name: loading,
       component: loading
+    },
+    {
+      path: '/paperMaterial',
+      name: 'paperMaterial',
+      component: paperMaterial
     }
   ],
   scrollBehavior (to, from, savedPosition) {
