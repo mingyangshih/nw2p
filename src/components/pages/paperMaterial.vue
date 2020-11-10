@@ -5,7 +5,8 @@
     .row.mb-4
       .col-lg-4.col-md-6
         .d-flex.flex-column
-          img.img-fluid(src="https://picsum.photos/385/385")
+          img.img-fluid(src="../../../static/papermaterial/material_1_1.png" v-if="picShow === 1")
+          img.img-fluid(src="../../../static/papermaterial/material_1_2.png" v-if="picShow === 2")
           div.my-3.text-center
             .subTitle 超黏貼紙(上亮膜)
           .table-responsive
@@ -41,7 +42,8 @@
                       li 因表面上亮膜，不適合蓋章、書寫、打號。
       .col-lg-4.col-md-6
         .d-flex.flex-column
-          img.img-fluid(src="https://picsum.photos/385/385")
+          img.img-fluid(src="../../../static/papermaterial/material_2_1.png" v-if="picShow === 1")
+          img.img-fluid(src="../../../static/papermaterial/material_2_2.png" v-if="picShow === 2")
           div.my-3.text-center
             .subTitle 合成(珠光)貼紙(上亮膜)
           .table-responsive
@@ -77,7 +79,8 @@
                       li 因表面上亮膜，不適合蓋章、書寫、打號。
       .col-lg-4.col-md-6
         .d-flex.flex-column
-          img.img-fluid(src="https://picsum.photos/385/385")
+          img.img-fluid(src="../../../static/papermaterial/material_3_1.png" v-if="picShow === 1")
+          img.img-fluid(src="../../../static/papermaterial/material_3_2.png" v-if="picShow === 2")
           div.my-3.text-center
             .subTitle 透明貼紙(上亮膜)
           .table-responsive
@@ -114,7 +117,9 @@
     .row.mb-4
       .col-lg-4.col-md-6
         .d-flex.flex-column
-          img.img-fluid(src="https://picsum.photos/385/385")
+          img.img-fluid(src="../../../static/papermaterial/material_4_1.png" v-if="threePicShow === 1")
+          img.img-fluid(src="../../../static/papermaterial/material_4_2.png" v-if="threePicShow === 2")
+          img.img-fluid(src="../../../static/papermaterial/material_4_3.png" v-if="threePicShow === 3")
           div.my-3.text-center
             .subTitle 模造貼紙(上亮膜/不上亮膜)
           .table-responsive
@@ -149,7 +154,8 @@
                       li 因表面上亮膜，不適合蓋章、書寫、打號。
       .col-lg-4.col-md-6
         .d-flex.flex-column
-          img.img-fluid(src="https://picsum.photos/385/385")
+          img.img-fluid(src="../../../static/papermaterial/material_5_1.png" v-if="picShow === 1")
+          img.img-fluid(src="../../../static/papermaterial/material_5_2.png" v-if="picShow === 2")
           div.my-3.text-center
             .subTitle 銅版R膠貼紙(上亮膜)
           .table-responsive
@@ -185,12 +191,35 @@
                       li 因表面上亮膜，不適合蓋章、書寫、打號。
       .col-lg-4.col-md-6
         .d-flex.flex-column
-          img.img-fluid(src="https://picsum.photos/385/385")
+          img.img-fluid(src="../../../static/papermaterial/material_6_1.png")
 
 </template>
 
 <script>
-export default{}
+export default{
+  data () {
+    return {
+      picShow: 1,
+      threePicShow: 1
+    }
+  },
+  created () {
+    const vm = this
+    setInterval(function () {
+      if (vm.picShow === 1) {
+        vm.picShow += 1
+      } else {
+        vm.picShow = 1
+      }
+
+      if (vm.threePicShow === 1 || vm.threePicShow === 2) {
+        vm.threePicShow += 1
+      } else {
+        vm.threePicShow = 1
+      }
+    }, 4000)
+  }
+}
 
 </script>
 
