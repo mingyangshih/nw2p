@@ -42,7 +42,8 @@
           div(v-else).newPlatform.text-primary.d-flex.font-weight-bold.my-3.align-items-center 新平台，新體驗，正式上線！
             <p class="mb-0 discountStyle soldPrice" ><span class="d-flex">NT {{specId_sizeId_info.price | currency}}</span><span class="ml-2" v-if="specId_sizeId_info.priceRange">起</span></p>
             .text-danger.activityPrice(v-html="discountprice")
-          .d-flex.btnBox.flex-wrap
+          .d-flex.btnBox
+            router-link(to="/paperMaterial" target="_blank" v-if="materialPage === 'Y'").btn.btn-outline-primary.font-weight-bold.btnInPage.teachEdit 紙材介紹
             router-link(to="/serviceContent" target="_blank").btn.btn-outline-primary.font-weight-bold.btnInPage.teachEdit 編輯教學
             //- 一般產品直接走正常流程
             a(:href="specId_sizeId_info.link" v-if="specId_sizeId_info.cnt === 1").btn.btn-primary.font-weight-bold.btnInPage.py-0.text-white.startEdit 開始製作
@@ -107,8 +108,7 @@ export default {
       timer: false,
       fullWidth: document.body.clientWidth,
       categoryId: null,
-      // 判斷taopix login ornot
-      mawuli: null
+      materialPage: null
     }
   },
   computed: {
@@ -176,28 +176,11 @@ export default {
     // 取資料
     const id = this.$route.params.id
     await vm.$store.dispatch('getStandardData', {id})
+    vm.materialPage = vm.productMaster[0].materialPage
     let categoryId = this.$store.state.standardModules.categoryId
     vm.categoryId = categoryId
     // call productDetail.js 內的actions
     vm.$store.dispatch('getSubMenu', {categoryId})
-    // 切換畫面重載
-
-    // 判斷是否登入
-    // let reg = /mawuli/gi
-    // var ca = document.cookie.split(';') // 會把cookie拆成一個array
-    // ca.forEach(itm => {
-    //   if (itm === 'mawhluid=89847983778080838079807675') {
-    //     // console.log(true)
-    //   }
-    // })
-    // let test = reg.test(document.cookie)
-    // // console.log(test)
-    // // console.log(vm.mawuli)
-    // if (test) {
-    //   vm.mawuli = true
-    // } else {
-    //   vm.mawuli = false
-    // }
   }
 }
 </script>
@@ -217,7 +200,6 @@ export default {
   }
   .standard{
     width: 100%;
-    // overflow-x: hidden;
   }
   // 促銷活動樣式
   .campaign{
@@ -257,9 +239,7 @@ export default {
       }
     }
     cursor: pointer;
-    // &:hover{
-    //   opacity: .5;
-    // }
+
   }
   @media(min-width: 640px){
     .schematic{
@@ -269,7 +249,7 @@ export default {
     }
   }
   // 新平台上限字樣
-  // (:class="{ 'flex-column' : fullWidth <= 640, 'align-items-center' : fullWidth <= 640}" v-if="discountprice === null")
+
   @media(max-width: 641px){
     .newPlatform{
       flex-direction: column;
@@ -283,13 +263,11 @@ export default {
   }
 
   // 頁面中的Btn樣式
-  // :class="{'justify-content-center' : fullWidth <= 640}"
+
   .btnBox{
     justify-content: flex-end;
   }
-  // :class="[{'w-100' : fullWidth <= 640},{'mb-2' : fullWidth <= 640},{'mr-2' : fullWidth > 640}] teachEdit
-  // :class="{'w-100' : fullWidth <= 640}"  startEdit
-  // :class="{'w-100' : fullWidth <= 640}" chooseStyle
+
   .btnInPage{
     border-radius: 5px;
     width: 203px;
@@ -303,12 +281,25 @@ export default {
       margin-left: 37px;
     }
   }
-  @media(max-width: 641px){
+  @media(min-width:813px){
+    .btnInPage{
+      padding-left: 0;
+      &.teachEdit{
+        margin:0 8px;
+      }
+      &.startEdit{
+        margin:0 8px;
+      }
+    }
+  }
+  @media(max-width: 812px){
     .btnBox{
       justify-content: center;
+      flex-wrap: wrap;
     }
     .btnInPage{
       padding-left: 0;
+      margin-bottom: 8px;
       &.teachEdit{
         width:100%;
         margin-bottom:8px;
@@ -318,14 +309,7 @@ export default {
       }
     }
   }
-  @media(min-width: 640px){
-    .btnInPage{
-      padding-left: 0;
-      &.teachEdit{
-        margin-right: 8px;
-      }
-    }
-  }
+
   // hr 樣式
   hr{
     border-top: 1px solid rgba(0,0,0,0.5);
