@@ -267,6 +267,7 @@ export default {
       white-space:nowrap;
       display: flex;
       flex-shrink: 0;
+      align-items:center;
     }
   }
 
