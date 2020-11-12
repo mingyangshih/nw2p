@@ -42,7 +42,7 @@
               p(v-else @click.prevent="standard(eachCategoryProduct[idx][0])").font-weight-bold.pl-3.py-2.mb-0.allProdItemDetailItem.fz14.text-decoration.none.text-dark <span @click="sideBarShowEvent">{{item}}</span>
               p.mb-0.font-weight-bold.pl-3.py-2.allProdItemDetailItem.fz14.text-decoration-none.text-dark( v-for="(item1,idx1) in totalProduct" :key="idx1" v-if="item1.productCategory === item" @click.prevent="standard(item1.productId)") - <span >{{item1.productName}}</span>
       label(@click="$router.push('/serviceContent'); $store.state.sideBarShow = false").item.helpCenter.mb-0.align-items-center 幫助中心
-      label(@click="$router.push(`/activity/${activityId}`); $store.state.sideBarShow = false").item.helpCenter.mb-0.align-items-center.activity 抽獎活動
+      label(@click="$router.push(`/activity/${activityId}`); $store.state.sideBarShow = false" v-if="activityOpen").item.helpCenter.mb-0.align-items-center.activity 抽獎活動
       //- label.mb-0.ml-3(data-toggle="modal" data-target="#loginModal") SSO登入測試
       router-link(to="/aboutYFP").text-dark.item.aboutUs.mb-0.align-items-center.text-decoration-none 關於我們
       label(@click="$router.push('/serviceContent/contactus'); $store.state.sideBarShow = false").item.contactUs.mb-0.align-items-center 聯絡我們
@@ -120,7 +120,8 @@ export default{
       login: null,
       mawebhlbr: null,
       activityId: null,
-      styleOpen: null
+      styleOpen: null,
+      activityOpen: null
     }
   },
   methods: {
@@ -198,6 +199,7 @@ export default{
     }
     // 設計師品牌館是否開啟
     vm.styleOpen = window.style_open
+    vm.activityOpen = window.activity_open
   },
   mounted () {
     let vm = this
