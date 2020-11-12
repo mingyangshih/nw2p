@@ -5,7 +5,12 @@
     .row.mb-4
       .col-lg-4.col-md-6
         .d-flex.flex-column
-          img.img-fluid(src="https://picsum.photos/385/385")
+          swiper.gallery-top.w-100(:options='swiperOptionTop' ref='swiperTop')
+            swiper-slide
+              img.img-fluid(src="../../../static/papermaterial/material_1_1.jpg")
+            swiper-slide
+              img.img-fluid(src="../../../static/papermaterial/material_1_2.jpg")
+            .swiper-pagination(slot='pagination')
           div.my-3.text-center
             .subTitle 超黏貼紙(上亮膜)
           .table-responsive
@@ -41,7 +46,12 @@
                       li 因表面上亮膜，不適合蓋章、書寫、打號。
       .col-lg-4.col-md-6
         .d-flex.flex-column
-          img.img-fluid(src="https://picsum.photos/385/385")
+          swiper.gallery-top.w-100(:options='swiperOptionTop' ref='swiperTop')
+            swiper-slide
+              img.img-fluid(src="../../../static/papermaterial/material_2_1.jpg")
+            swiper-slide
+              img.img-fluid(src="../../../static/papermaterial/material_2_2.jpg")
+            .swiper-pagination(slot='pagination')
           div.my-3.text-center
             .subTitle 合成(珠光)貼紙(上亮膜)
           .table-responsive
@@ -77,7 +87,12 @@
                       li 因表面上亮膜，不適合蓋章、書寫、打號。
       .col-lg-4.col-md-6
         .d-flex.flex-column
-          img.img-fluid(src="https://picsum.photos/385/385")
+          swiper.gallery-top.w-100(:options='swiperOptionTop' ref='swiperTop')
+            swiper-slide
+              img.img-fluid(src="../../../static/papermaterial/material_3_1.jpg")
+            swiper-slide
+              img.img-fluid(src="../../../static/papermaterial/material_3_2.jpg")
+            .swiper-pagination(slot='pagination')
           div.my-3.text-center
             .subTitle 透明貼紙(上亮膜)
           .table-responsive
@@ -114,7 +129,14 @@
     .row.mb-4
       .col-lg-4.col-md-6
         .d-flex.flex-column
-          img.img-fluid(src="https://picsum.photos/385/385")
+          swiper.gallery-top.w-100(:options='swiperOptionTop' ref='swiperTop')
+            swiper-slide
+              img.img-fluid(src="../../../static/papermaterial/material_4_1.jpg")
+            swiper-slide
+              img.img-fluid(src="../../../static/papermaterial/material_4_2.jpg")
+            swiper-slide
+              img.img-fluid(src="../../../static/papermaterial/material_4_3.jpg")
+            .swiper-pagination(slot='pagination')
           div.my-3.text-center
             .subTitle 模造貼紙(上亮膜/不上亮膜)
           .table-responsive
@@ -149,7 +171,12 @@
                       li 因表面上亮膜，不適合蓋章、書寫、打號。
       .col-lg-4.col-md-6
         .d-flex.flex-column
-          img.img-fluid(src="https://picsum.photos/385/385")
+          swiper.gallery-top.w-100(:options='swiperOptionTop' ref='swiperTop')
+            swiper-slide
+              img.img-fluid(src="../../../static/papermaterial/material_5_1.jpg")
+            swiper-slide
+              img.img-fluid(src="../../../static/papermaterial/material_5_2.jpg")
+            .swiper-pagination(slot='pagination')
           div.my-3.text-center
             .subTitle 銅版R膠貼紙(上亮膜)
           .table-responsive
@@ -185,12 +212,38 @@
                       li 因表面上亮膜，不適合蓋章、書寫、打號。
       .col-lg-4.col-md-6
         .d-flex.flex-column
-          img.img-fluid(src="https://picsum.photos/385/385")
+          img.img-fluid(src="../../../static/papermaterial/material_6_1.jpg")
 
 </template>
 
 <script>
-export default{}
+import { swiper, swiperSlide } from 'vue-awesome-swiper'
+import 'swiper/dist/css/swiper.css'
+export default{
+  components: {
+    swiper,
+    swiperSlide
+  },
+  data () {
+    return {
+      picShow: 1,
+      threePicShow: 1,
+      swiperOptionTop: {
+        notNextTick: true,
+        loop: true,
+        initialSlide: 0,
+        clickable: true,
+        effect: 'fade',
+        pagination: {
+          el: '.swiper-pagination',
+          clickable: true,
+          type: 'bullets'
+        },
+        updateOnWindowResize: true
+      }
+    }
+  }
+}
 
 </script>
 
