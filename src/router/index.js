@@ -22,7 +22,7 @@ import invoiceAndSaledService from '@/components/invoiceAndSaledService'
 import teachEdit from '@/components/teachEdit'
 import homeSwipertest from '@/components/homeSwipertest'
 import activity from '@/components/pages/activity'
-// import paperMaterial from '@/components/pages/paperMaterial'
+import paperMaterial from '@/components/pages/paperMaterial'
 
 Vue.use(Router)
 
@@ -144,12 +144,12 @@ export default new Router({
       path: '/loading',
       name: loading,
       component: loading
+    },
+    {
+      path: '/paperMaterial',
+      name: 'paperMaterial',
+      component: paperMaterial
     }
-    // {
-    //   path: '/paperMaterial',
-    //   name: 'paperMaterial',
-    //   component: paperMaterial
-    // }
   ],
   scrollBehavior (to, from, savedPosition) {
     return { x: 0, y: 0 }
