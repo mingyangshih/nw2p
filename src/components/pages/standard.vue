@@ -37,7 +37,7 @@
                 p(v-else v-html="specId_sizeId_info.productIntroRightCol[idx]")
           hr.mt-0
           //- 沒有活動用這個
-          div(v-if="discountprice === null").newPlatform.text-primary.d-flex.font-weight-bold.my-3 新平台，新體驗，正式上線！<p class="mb-0 soldPrice" ><span class="fz26 " >NT {{specId_sizeId_info.price | currency}}</span><span class="fz26 ml-2" v-if="specId_sizeId_info.priceRange">起</span></p>
+          div(v-if="discountprice === null").newPlatform.text-primary.d-flex.font-weight-bold.my-3 新平台，新體驗，正式上線！<p class="mb-0 soldPrice" ><span class="fz26 " >NT {{specId_sizeId_info.price | currency}}</span><span class="ml-2" v-if="specId_sizeId_info.priceRange" >起</span></p>
           //- 活動用這個
           div(v-else).newPlatform.text-primary.d-flex.font-weight-bold.my-3.align-items-center 新平台，新體驗，正式上線！
             <p class="mb-0 discountStyle soldPrice" ><span class="d-flex">NT {{specId_sizeId_info.price | currency}}</span><span class="ml-2" v-if="specId_sizeId_info.priceRange">起</span></p>
@@ -255,10 +255,18 @@ export default {
       flex-direction: column;
     }
   }
+  @media(max-width: 641px){
+    .soldPrice{
+      display: flex;
+      flex-shrink: 0;
+    }
+  }
   @media(min-width: 640px){
     .soldPrice{
       margin-left: auto;
       white-space:nowrap;
+      display: flex;
+      flex-shrink: 0;
     }
   }
 
