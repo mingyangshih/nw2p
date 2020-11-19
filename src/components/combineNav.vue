@@ -159,13 +159,7 @@ export default{
       this.$router.push(`/standard/${id}`).catch(err => {
         if (err.name === 'NavigationDuplicated') window.location.reload()
       })
-      window.location.reload()
-    },
-    serviceContent () {
-      this.$router.push('/serviceContent').catch(err => {
-        if (err.name === 'NavigationDuplicated') window.location.reload()
-      })
-      window.location.reload()
+      // window.location.reload()
     }
   },
   computed: {

@@ -146,7 +146,7 @@ export default {
     },
     standard (id) {
       this.$router.push(`/standard/${id}`)
-      window.location.reload()
+      // window.location.reload()
     }
   },
   mounted () {
@@ -169,6 +169,18 @@ export default {
           that.timer = false
         }, 400)
       }
+    },
+    // navbar 載入同個component 不同id時用這個方法重取資料
+    async '$route' (to, from) {
+      const vm = this
+      // 取資料
+      const id = this.$route.params.id
+      await vm.$store.dispatch('getStandardData', {id})
+      vm.materialPage = vm.productMaster[0].materialPage
+      let categoryId = this.$store.state.standardModules.categoryId
+      vm.categoryId = categoryId
+      // call productDetail.js 內的actions
+      vm.$store.dispatch('getSubMenu', {categoryId})
     }
   },
   async created () {

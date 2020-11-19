@@ -5,10 +5,6 @@
       <swiper-slide class="bigImg" v-for="item in productAlbum" :key="item.albumId"><img :src="$store.state.imgPath+item.productAlbum" alt=""></swiper-slide>
       <!-- Optional controls -->
       <div class="swiper-pagination"  slot="pagination"></div>
-      <!-- <div class="swiper-button-prev" slot="button-prev"></div> -->
-      <!-- <div class="swiper-button-next" slot="button-next"></div> -->
-      <!-- <div class="swiper-scrollbar"   slot="scrollbar"></div> -->
-      <!-- swiper2 Thumbs -->
     </swiper>
     <swiper :options="swiperOptionThumbs" class="gallery-thumbs mt-3" ref="swiperThumbs" v-if="viewportWidth > 640 && productAlbum.length>0">
       <swiper-slide class="slide-1 smallImg" v-for="item in productAlbum" :key="item.albumId" ><img :src="$store.state.imgPath+item.productAlbum" alt=""></swiper-slide>
@@ -81,6 +77,31 @@ export default {
         swiperThumbs.controller.control = swiperTop
       })
     })
+  },
+  watch: {
+    async '$route' (to, from) {
+      if (to.params.id !== from.params.id) {
+        const id = to.params.id
+        let API_PATH = process.env.API
+        this.productAlbum = []
+        await this.$http.get(`${API_PATH}product/getdetail/${id}`).then(response => {
+          if (response.data.data.productAlbum.length === 0) {
+            let productAlbum = {productAlbum: 'https://fakeimg.pl/599/?text=fake image'}
+            this.productAlbum.push(productAlbum)
+          } else {
+            this.productAlbum = response.data.data.productAlbum
+          }
+          this.swiperOptionTop.loopedSlides = this.productAlbum.length
+          this.swiperOptionThumbs.loopedSlides = this.productAlbum.length
+          this.$nextTick(() => {
+            const swiperTop = this.$refs.swiperTop.swiper
+            const swiperThumbs = this.$refs.swiperThumbs.swiper
+            swiperTop.controller.control = swiperThumbs
+            swiperThumbs.controller.control = swiperTop
+          })
+        })
+      }
+    }
   }
 }
 </script>
