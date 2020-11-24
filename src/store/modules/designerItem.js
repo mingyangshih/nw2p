@@ -23,10 +23,9 @@ export default {
       return axios.get(`${API_PATH}design/getdetail/${designerItemId}`).then(response => {
         let {productItem, productIntroDesc, productNotes, productPattern, productFeature, purchaseNotice, designerMaster, recommendedDesigner, recommendedPrdouct} = response.data.data
         commit('init', {productItem, productIntroDesc, productNotes, productPattern, productFeature, purchaseNotice, designerMaster, recommendedDesigner, recommendedPrdouct})
+        commit('LOADING', false, {root: true})
       }).catch(error => {
         console.log(error)
-      }).finally(() => {
-        commit('LOADING', false, {root: true})
       })
     }
   },

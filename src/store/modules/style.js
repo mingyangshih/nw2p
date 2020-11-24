@@ -36,7 +36,6 @@ export default {
         context.commit('setStyleData', {productItem, id, specId, sizeId, productName, categoryName, categoryId, pagination, productMaster})
       }).catch((error) => {
         console.log(error)
-      }).finally(() => {
       })
     },
     getStyleClass (context, {id}) {
@@ -45,10 +44,9 @@ export default {
       return axios.get(getAPI).then((response) => {
         let getStyleClass = response.data
         context.commit('setStyleClass', {getStyleClass})
+        context.commit('LOADING', false, {root: true})
       }).catch((error) => {
         console.log(error)
-      }).finally(() => {
-        context.commit('LOADING', false, {root: true})
       })
     },
     // 換風格重新抓一次資料
@@ -68,10 +66,9 @@ export default {
           }
         })
         context.commit('setStyleData', {productItem, id, specId, sizeId, productName, categoryName, categoryId, pagination, productMaster})
+        context.commit('LOADING', false, {root: true})
       }).catch((error) => {
         console.log(error)
-      }).finally(() => {
-        context.commit('LOADING', false, {root: true})
       })
     }
   },

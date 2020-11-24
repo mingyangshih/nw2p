@@ -18,7 +18,7 @@ export default {
         if (err.response) {
           console.log(err)
         }
-      }).finally(() => {})
+      })
     }
   },
   mutations: {

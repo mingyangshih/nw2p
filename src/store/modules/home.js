@@ -13,20 +13,18 @@ export default {
       commit('LOADING', true, {root: true})
       return axios.get(`${API_PATH}product/getindex`).then((response) => {
         commit('changeIndexData', response.data.data)
+        commit('LOADING', false, {root: true})
       }).catch((error) => {
         console.log(error)
-      }).finally(() => {
-        commit('LOADING', false, {root: true})
       })
     },
     getHomeCategory ({commit}) {
       let API_PATH = process.env.API
       return axios.get(`${API_PATH}product/getcategory`).then((response) => {
         commit('changeHomeCategoryData', response.data.data)
+        commit('LOADING', false, {root: true})
       }).catch((error) => {
         console.log(error)
-      }).finally(() => {
-        commit('LOADING', false, {root: true})
       })
     }
   },

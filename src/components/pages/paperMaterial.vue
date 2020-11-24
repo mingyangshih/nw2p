@@ -8,8 +8,8 @@
           swiper.gallery-top.w-100(:options='swiperOptionTop' ref='swiperTop')
             swiper-slide
               img.img-fluid(src="../../../static/papermaterial/material_1_1.jpg")
-            swiper-slide
-              img.img-fluid(src="../../../static/papermaterial/material_1_2.jpg")
+            //- swiper-slide
+            //-   img.img-fluid(src="../../../static/papermaterial/material_1_2.jpg")
             .swiper-pagination(slot='pagination')
           div.my-3.text-center
             .subTitle 超黏貼紙(上亮膜)
@@ -49,8 +49,8 @@
           swiper.gallery-top.w-100(:options='swiperOptionTop' ref='swiperTop')
             swiper-slide
               img.img-fluid(src="../../../static/papermaterial/material_2_1.jpg")
-            swiper-slide
-              img.img-fluid(src="../../../static/papermaterial/material_2_2.jpg")
+            //- swiper-slide
+            //-   img.img-fluid(src="../../../static/papermaterial/material_2_2.jpg")
             .swiper-pagination(slot='pagination')
           div.my-3.text-center
             .subTitle 合成(珠光)貼紙(上亮膜)
@@ -90,8 +90,8 @@
           swiper.gallery-top.w-100(:options='swiperOptionTop' ref='swiperTop')
             swiper-slide
               img.img-fluid(src="../../../static/papermaterial/material_3_1.jpg")
-            swiper-slide
-              img.img-fluid(src="../../../static/papermaterial/material_3_2.jpg")
+            //- swiper-slide
+            //-   img.img-fluid(src="../../../static/papermaterial/material_3_2.jpg")
             .swiper-pagination(slot='pagination')
           div.my-3.text-center
             .subTitle 透明貼紙(上亮膜)
@@ -132,10 +132,10 @@
           swiper.gallery-top.w-100(:options='swiperOptionTop' ref='swiperTop')
             swiper-slide
               img.img-fluid(src="../../../static/papermaterial/material_4_1.jpg")
-            swiper-slide
-              img.img-fluid(src="../../../static/papermaterial/material_4_2.jpg")
-            swiper-slide
-              img.img-fluid(src="../../../static/papermaterial/material_4_3.jpg")
+            //- swiper-slide
+            //-   img.img-fluid(src="../../../static/papermaterial/material_4_2.jpg")
+            //- swiper-slide
+            //-   img.img-fluid(src="../../../static/papermaterial/material_4_3.jpg")
             .swiper-pagination(slot='pagination')
           div.my-3.text-center
             .subTitle 模造貼紙(上亮膜/不上亮膜)
@@ -174,8 +174,8 @@
           swiper.gallery-top.w-100(:options='swiperOptionTop' ref='swiperTop')
             swiper-slide
               img.img-fluid(src="../../../static/papermaterial/material_5_1.jpg")
-            swiper-slide
-              img.img-fluid(src="../../../static/papermaterial/material_5_2.jpg")
+            //- swiper-slide
+            //-   img.img-fluid(src="../../../static/papermaterial/material_5_2.jpg")
             .swiper-pagination(slot='pagination')
           div.my-3.text-center
             .subTitle 銅版R膠貼紙(上亮膜)

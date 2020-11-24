@@ -14,7 +14,6 @@ export default {
         if (error.response) {
           console.log(error)
         }
-      }).finally(() => {
       })
     }
   }

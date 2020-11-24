@@ -18,11 +18,10 @@ export default{
         let subProducts = response.data.data[0].subProducts
         let categoryName = response.data.data[0].categoryName
         context.commit('subMenuTotalData', {subMenuTotalData, categoryName, subProducts})
+        context.commit('LOADING', false, {root: true})
       }).catch(error => {
         console.log(error)
         router.push('/')
-      }).finally(() => {
-        context.commit('LOADING', false, {root: true})
       })
     }
   },

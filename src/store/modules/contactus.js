@@ -57,14 +57,12 @@ export default{
             commit('testEmptyInput', emptyInput)
             // 成功後把所有input全部清空
             commit('clearContactInfo')
+            dispatch('getImage')
           } else {
             let message = result.error_message
             let theme = 'danger'
             commit('changeMessage', {message, theme}, {root: true})
           }
-        }).finally(() => {
-          // 重取一次圖片
-          dispatch('getImage')
         })
       }
     },

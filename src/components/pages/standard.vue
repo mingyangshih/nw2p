@@ -37,7 +37,7 @@
                 p(v-else v-html="specId_sizeId_info.productIntroRightCol[idx]")
           hr.mt-0
           //- 沒有活動用這個
-          div(v-if="discountprice === null").newPlatform.text-primary.d-flex.font-weight-bold.my-3 新平台，新體驗，正式上線！<p class="mb-0 soldPrice" ><span class="fz26 " >NT {{specId_sizeId_info.price | currency}}</span><span class="ml-2" v-if="specId_sizeId_info.priceRange" >起</span></p>
+          div(v-if="discountprice === null").newPlatform.text-primary.d-flex.font-weight-bold.my-3 新平台，新體驗，正式上線！<p class="mb-0 soldPrice" ><span class="fz26 " >NT {{specId_sizeId_info.price | currency}}</span><span class="ml-2" v-if="specId_sizeId_info.priceRange">起</span></p>
           //- 活動用這個
           div(v-else).newPlatform.text-primary.d-flex.font-weight-bold.my-3.align-items-center 新平台，新體驗，正式上線！
             <p class="mb-0 discountStyle soldPrice" ><span class="d-flex">NT {{specId_sizeId_info.price | currency}}</span><span class="ml-2" v-if="specId_sizeId_info.priceRange">起</span></p>
@@ -146,7 +146,7 @@ export default {
     },
     standard (id) {
       this.$router.push(`/standard/${id}`)
-      window.location.reload()
+      // window.location.reload()
     }
   },
   mounted () {
@@ -169,6 +169,18 @@ export default {
           that.timer = false
         }, 400)
       }
+    },
+    // navbar 載入同個component 不同id時用這個方法重取資料
+    async '$route' (to, from) {
+      const vm = this
+      // 取資料
+      const id = this.$route.params.id
+      await vm.$store.dispatch('getStandardData', {id})
+      vm.materialPage = vm.productMaster[0].materialPage
+      let categoryId = this.$store.state.standardModules.categoryId
+      vm.categoryId = categoryId
+      // call productDetail.js 內的actions
+      vm.$store.dispatch('getSubMenu', {categoryId})
     }
   },
   async created () {
@@ -265,9 +277,16 @@ export default {
     .soldPrice{
       margin-left: auto;
       white-space:nowrap;
-      display: flex;
+      display:flex;
       flex-shrink: 0;
-      align-items:center;
+      align-items: center;
+    }
+  }
+  @media(max-width:641px){
+    .soldPrice{
+      display:flex;
+      flex-shrink: 0;
+      align-items: center;
     }
   }
 

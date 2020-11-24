@@ -50,9 +50,8 @@ export default {
         let categoryId = productItem[0].categoryId
         let productId = productItem[0].productId
         context.commit('changeStandardData', {productSpec, productItem, productFeature, standardTitle, categoryName, categoryId, productId, productRecommend, productMaster, productIntroDesc})
-      }).catch((error) => { console.log(error) }).finally(() => {
         context.commit('LOADING', false, {root: true})
-      })
+      }).catch((error) => { console.log(error) })
     }
   },
   mutations: {
