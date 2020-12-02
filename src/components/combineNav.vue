@@ -51,7 +51,7 @@
       //- 登入後
       //- 桌機
       label.mb-0.align-items-center.login.h-100.afterLoginBox(v-if="mawebhlbr")
-        .font-weight-bold.text-decoration-none.h-100.justify-content-center.align-items-center.afterLogin
+        .font-weight-bold.text-decoration-none.justify-content-center.align-items-center.afterLogin
           span.memberCenter 會員中心
           .w-100.afterLoginDropDown.flex-column.align-items-center
             a.font-weight-bold.text-decoration-none.mb-3.itemHover.myAccount(onClick="tpxHighLevelRegisterInitControl(); return false;" id="tpx-register")
@@ -593,6 +593,7 @@ export default{
       min-width: 122px;
       position:relative;
       display:flex;
+      height:100%;
       cursor: pointer;
       &:hover{
         .afterLoginDropDown{
