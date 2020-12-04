@@ -15,7 +15,7 @@
       p.w-100.text-center.firstDesc.font-weight-bold 2020年11月第 4 週，詳細日期將另行公布。
       .d-flex.justify-content-center.align-items-center.my-4
         .activityTitle.font-weight-bold 領獎方式
-      p.w-100.text-center.firstDesc.font-weight-bold.mb-md-3 抽出得獎人後會於 <a href="https://www.facebook.com/cloudw2p.tw/" class="text-decoration-none" target="_blank">永豐雲端印刷網粉絲團</a>
+      p.w-100.text-center.firstDesc.font-weight-bold.mb-md-3 <a href="https://www.facebook.com/cloudw2p.tw/posts/226494198832169" class="text-decoration-none" target="_blank">點我看抽獎活動得獎名單！</a>
       p.w-100.text-center.firstDesc.font-weight-bold 公布相關訊息，同時有客服人員主動聯繫得獎人，確認及辦理領獎相關事宜。
       .d-flex.justify-content-center.align-items-center.my-4
         .activityTitle.font-weight-bold.bg-primary 活動規則

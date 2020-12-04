@@ -3,13 +3,13 @@
     loading(:active.sync="isLoading" :is-full-page="fullPage" :color="color" :loader="loader")
     .container-fluid
       .row.px-0.campaign.campaignBox.bg-primary.desktop
-        p.mb-0.w-100.campaignDes(v-for="(item,idx) in bulletinArray" v-if="bulletin === idx") {{item.content}}
+        p.mb-0.w-100.campaignDes(v-for="(item,idx) in bulletinArray" v-if="bulletin === idx" v-html="item.content")
         //-  && Date.parse(item.issueEndDate) > timestemp
     .container.px-0.mx-md-6
       combineNav
     .container-fluid
       .row.px-0.campaign.campaignBox.bg-primary.mobile
-        p.mb-0.w-100.campaignDes(v-for="(item,idx) in bulletinArray" v-if="bulletin === idx") {{item.content}}
+        p.mb-0.w-100.campaignDes(v-for="(item,idx) in bulletinArray" v-if="bulletin === idx" v-html="item.content")
     router-view
     .container-fluid.border-top.px-0.footer
       footerComponent(:viewportWidth="fullWidth")
@@ -40,6 +40,7 @@ export default {
       fullWidth: document.body.clientWidth,
       bulletin: 0,
       timestemp: null
+
     }
   },
   methods: {
@@ -138,6 +139,9 @@ body{
   display: flex;
   justify-content: center;
   align-items: center;
+  a{
+    color: white;
+  }
 }
 .footer{
   background-color: #f4f4f1;
