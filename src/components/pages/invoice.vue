@@ -4,7 +4,7 @@
       .row
         .col-md-2
           .d-flex.flex-column
-            router-link(to="/invoice").mb-3.d-flex.justify-content-between.align-items-center.text-decoration-none.link <span >雲端發票查詢</span> <i class="fas fa-chevron-right"></i>
+            router-link(to="/invoice").mb-3.d-flex.justify-content-between.align-items-center.text-decoration-none.link <span >發票查詢</span> <i class="fas fa-chevron-right"></i>
         .col-md-10
           router-view
 </template>
