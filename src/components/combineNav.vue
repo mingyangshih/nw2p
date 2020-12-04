@@ -50,6 +50,27 @@
       //- taopix 自動帶字 登入測試中
       //- 登入後
       //- 桌機
+      //- label.mb-0.align-items-center.login.h-100.afterLoginBox(v-if="mawebhlbr")
+      //-   .font-weight-bold.text-decoration-none.justify-content-center.align-items-center.afterLogin
+      //-     span.memberCenter 會員中心
+      //-     .w-100.afterLoginDropDown.flex-column.align-items-center
+      //-       a.font-weight-bold.text-decoration-none.mb-3.itemHover.myAccount(onClick="tpxHighLevelRegisterInitControl(); return false;" id="tpx-register")
+      //-       a(@click="$router.push('/invoice'); $store.state.sideBarShow = false").text-decoration-none.itemHover.invoiceSearch 發票查詢
+      //- //- 登入前
+      //- label.item.register.mb-0.align-items-center(v-else)
+      //-   a.font-weight-bold.text-decoration-none(onClick="tpxHighLevelRegisterInitControl(); return false;" id="tpx-register")
+      //- label.item.login.mb-0.align-items-center
+      //-   a.font-weight-bold.text-decoration-none(id="tpx-signIn" onClick="tpxHighLevelSignInInitControl(); return false;")
+      //- label.item.myItem.mb-0.align-items-center.tpx.tpx-accountLinkItem(id="tpx-projectslinkli")
+      //-   span(id="tpx-projectslist" onclick="tpxMyProjectsOnClick(); return false;")
+      //- div.item.myItem.mb-0.align-items-center.tpx
+      //-   .tpx(id="tpx-basketButtonWrapper")
+      //-     p.mb-0.tpx.tpx-button.tpx-basketButton(id="tpx-basketlink" onclick="tpxBasketOnClick(); return false;")
+      //-       span.tpx.tpx-basketCount(id="tpx-basketButtonCount")
+
+      //- taopix 自動帶字 登入測試中
+      //- 登入後
+      //- 桌機
       label.mb-0.align-items-center.login.h-100.afterLoginBox(v-if="mawebhlbr")
         .font-weight-bold.text-decoration-none.justify-content-center.align-items-center.afterLogin
           span.memberCenter 會員中心
@@ -59,39 +80,18 @@
       //- 登入前
       label.item.register.mb-0.align-items-center(v-else)
         a.font-weight-bold.text-decoration-none(onClick="tpxHighLevelRegisterInitControl(); return false;" id="tpx-register")
-      label.item.login.mb-0.align-items-center
-        a.font-weight-bold.text-decoration-none(id="tpx-signIn" onClick="tpxHighLevelSignInInitControl(); return false;")
+
+      //- 登入登出Taopix按鈕
+      label.item.login.mb-0.align-items-center()
+        a.font-weight-bold.text-decoration-none(id="tpx-signIn" @click="signInControl")
+      //- 我的作品
       label.item.myItem.mb-0.align-items-center.tpx.tpx-accountLinkItem(id="tpx-projectslinkli")
         span(id="tpx-projectslist" onclick="tpxMyProjectsOnClick(); return false;")
+      //- 購物車
       div.item.myItem.mb-0.align-items-center.tpx
         .tpx(id="tpx-basketButtonWrapper")
           p.mb-0.tpx.tpx-button.tpx-basketButton(id="tpx-basketlink" onclick="tpxBasketOnClick(); return false;")
             span.tpx.tpx-basketCount(id="tpx-basketButtonCount")
-
-      //- taopix 自動帶字 登入測試中
-      //- 登入後
-      //- 桌機
-      //- label.mb-0.align-items-center.login.h-100.afterLoginBox(v-if="mawebhlbr")
-      //-   .font-weight-bold.text-decoration-none.h-100.justify-content-center.align-items-center.afterLogin
-      //-     span.memberCenter 會員中心
-      //-     .w-100.afterLoginDropDown.flex-column.align-items-center
-      //-       a.font-weight-bold.text-decoration-none.mb-3.itemHover.myAccount(onClick="tpxHighLevelRegisterInitControl(); return false;" id="tpx-register")
-      //-       a(@click="$router.push('/invoice'); $store.state.sideBarShow = false").text-decoration-none.itemHover.invoiceSearch 發票查詢
-      //- //- 登入前
-      //- label.item.register.mb-0.align-items-center(v-else)
-      //-   a.font-weight-bold.text-decoration-none(onClick="tpxHighLevelRegisterInitControl(); return false;" id="tpx-register")
-
-      //- //- 登入登出Taopix按鈕
-      //- label.item.login.mb-0.align-items-center()
-      //-   a.font-weight-bold.text-decoration-none(id="tpx-signIn" @click="signInControl")
-      //- //- 我的作品
-      //- label.item.myItem.mb-0.align-items-center.tpx.tpx-accountLinkItem(id="tpx-projectslinkli")
-      //-   span(id="tpx-projectslist" onclick="tpxMyProjectsOnClick(); return false;")
-      //- //- 購物車
-      //- div.item.myItem.mb-0.align-items-center.tpx
-      //-   .tpx(id="tpx-basketButtonWrapper")
-      //-     p.mb-0.tpx.tpx-button.tpx-basketButton(id="tpx-basketlink" onclick="tpxBasketOnClick(); return false;")
-      //-       span.tpx.tpx-basketCount(id="tpx-basketButtonCount")
 
     //- <!-- My Projects pop out panel -->
     //- loginmodal
