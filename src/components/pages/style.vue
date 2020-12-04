@@ -41,7 +41,7 @@
       .border.border-dark.modalBox.p-3
         p.modalTitle.mb-4.text-center {{templateName}}
         .d-flex.align-items-center
-          .d-flex.justify-content-center.align-items-center.flex-column(style="width: 60%")
+          .d-flex.justify-content-center.align-items-center.flex-column.coverImgBox
             p 封面
             .lightBoxImgBox(style="max-width:100%;")
               //- img.img-fluid(src="../../../static/A01-1.jpg" style="width: auto; max-height: 500px;")
@@ -240,9 +240,15 @@ export default {
     background: #ededed;
     width: 50%;
   }
+  .coverImgBox{
+    width: 60%;
+  }
   @media(max-width:651px){
     .modalBox{
       width: 100%;
+    }
+    .coverImgBox{
+      width: auto;
     }
   }
   .modalTitle{

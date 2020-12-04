@@ -22,6 +22,8 @@ import invoiceAndSaledService from '@/components/invoiceAndSaledService'
 import teachEdit from '@/components/teachEdit'
 import homeSwipertest from '@/components/homeSwipertest'
 import activity from '@/components/pages/activity'
+import invoice from '@/components/pages/invoice'
+import invoiceSearch from '@/components/invoiceSearch'
 import paperMaterial from '@/components/pages/paperMaterial'
 
 Vue.use(Router)
@@ -118,6 +120,16 @@ export default new Router({
           component: invoiceAndSaledService
         }
       ]
+    },
+    {
+      path: '/invoice',
+      name: '',
+      component: invoice,
+      children: [{
+        path: '',
+        name: 'invoiceSearch',
+        component: invoiceSearch
+      }]
     },
     {
       path: '/activity/:id',

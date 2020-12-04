@@ -46,7 +46,18 @@
       //- label.mb-0.ml-3(data-toggle="modal" data-target="#loginModal") SSO登入測試
       router-link(to="/aboutYFP").text-dark.item.aboutUs.mb-0.align-items-center.text-decoration-none 關於我們
       label(@click="$router.push('/serviceContent/contactus'); $store.state.sideBarShow = false").item.contactUs.mb-0.align-items-center 聯絡我們
-      label.item.register.mb-0.align-items-center
+
+      //- taopix 自動帶字 登入測試中
+      //- 登入後
+      //- 桌機
+      label.mb-0.align-items-center.login.h-100.afterLoginBox(v-if="mawebhlbr")
+        .font-weight-bold.text-decoration-none.justify-content-center.align-items-center.afterLogin
+          span.memberCenter 會員中心
+          .w-100.afterLoginDropDown.flex-column.align-items-center
+            a.font-weight-bold.text-decoration-none.mb-3.itemHover.myAccount(onClick="tpxHighLevelRegisterInitControl(); return false;" id="tpx-register")
+            a(@click="$router.push('/invoice'); $store.state.sideBarShow = false").text-decoration-none.itemHover.invoiceSearch 發票查詢
+      //- 登入前
+      label.item.register.mb-0.align-items-center(v-else)
         a.font-weight-bold.text-decoration-none(onClick="tpxHighLevelRegisterInitControl(); return false;" id="tpx-register")
       label.item.login.mb-0.align-items-center
         a.font-weight-bold.text-decoration-none(id="tpx-signIn" onClick="tpxHighLevelSignInInitControl(); return false;")
@@ -605,6 +616,7 @@ export default{
       min-width: 122px;
       position:relative;
       display:flex;
+      height:100%;
       cursor: pointer;
       &:hover{
         .afterLoginDropDown{
