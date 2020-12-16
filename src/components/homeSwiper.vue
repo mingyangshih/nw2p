@@ -84,7 +84,7 @@ export default {
         },
         updateOnWindowResize: true,
         autoplay: {
-          delay: 3000,
+          delay: 8000,
           disableOnInteraction: false
         }
       }

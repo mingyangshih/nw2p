@@ -54,29 +54,23 @@
   .container.aChanceBox
     .row.justify-content-center
       .col-sm-6.mb-30(v-for="itm in getHomeCategoryData" :key="itm.categoryId")
-        router-link.aChanceInsideBox.d-block(to="/serviceContent/contactus" v-if="itm.isLink === 'Y' && itm.categoryName === '更多客製化商品'")
+        router-link.aChanceInsideBox.d-block(:to="itm.linkUrl" v-if="itm.isLink === 'S'")
           .w-40.wordBox.d-flex.flex-column.align-items-center.justify-content-center.h-100
             p.wordBoxTitle.text-dark {{itm.categoryName}}
             P.wordBoxTitleEn.text-dark {{itm.categoryEName}}
             p.font-weight-bold.standard.text-dark.mb-0(v-for="item in totalProduct" v-if="item.categoryId === itm.categoryId") {{item.productName}}
           img(:src="itm.categoryImg").w-100
-        router-link.aChanceInsideBox.d-block(:to="`/productDetail/${itm.categoryId}`" v-if="itm.isLink === 'Y' && itm.categoryName !== '更多客製化商品'" )
+        router-link.aChanceInsideBox.d-block(:to="`/productDetail/${itm.categoryId}`" v-if="itm.isLink === 'A'" )
           .w-40.wordBox.d-flex.flex-column.align-items-center.justify-content-center.h-100
             p.wordBoxTitle.text-dark {{itm.categoryName}}
             P.wordBoxTitleEn.text-dark {{itm.categoryEName}}
             p.font-weight-bold.standard.text-dark.mb-0(v-for="item in totalProduct" v-if="item.categoryId === itm.categoryId") {{item.productName}}
           img(:src="itm.categoryImg").w-100
-        router-link.aChanceInsideBox.d-block(v-if="itm.isLink !== 'Y'" :to="`/standard/${itm.isLink}`")
-          .w-40.wordBox.d-flex.flex-column.align-items-center.justify-content-center.h-100
-            p.wordBoxTitle.text-dark {{itm.categoryName}}
-            P.wordBoxTitleEn.text-dark {{itm.categoryEName}}
-            p.font-weight-bold.standard.text-dark.mb-0(v-for="item in totalProduct" v-if="item.categoryId === itm.categoryId") {{item.productName}}
-          img(:src="itm.categoryImg").w-100
-        //- .aChanceInsideBox.d-block(v-if="itm.isLink === 'Y' && itm.categoryName === '更多客製化商品'")
+        //- router-link.aChanceInsideBox.d-block(v-if="itm.isLink !== 'Y'" :to="`/standard/${itm.isLink}`")
         //-   .w-40.wordBox.d-flex.flex-column.align-items-center.justify-content-center.h-100
         //-     p.wordBoxTitle.text-dark {{itm.categoryName}}
         //-     P.wordBoxTitleEn.text-dark {{itm.categoryEName}}
-        //-     //- p.font-weight-bold.standard.text-dark.mb-0(v-for="item in totalProduct" v-if="item.categoryId === itm.categoryId") {{item.productName}}
+        //-     p.font-weight-bold.standard.text-dark.mb-0(v-for="item in totalProduct" v-if="item.categoryId === itm.categoryId") {{item.productName}}
         //-   img(:src="itm.categoryImg").w-100
   .container.px-0
     .row.justify-content-center.w-100.mx-auto.px-0

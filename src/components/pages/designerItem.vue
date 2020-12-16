@@ -181,6 +181,7 @@ export default {
   }
   .patterenImgBox{
     margin-bottom: 8px;
+    cursor: pointer;
   }
   @media(max-width:640px){
     .patterenImgBox{

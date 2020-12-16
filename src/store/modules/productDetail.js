@@ -5,7 +5,8 @@ export default{
   state: {
     subMenuTotalData: [],
     categoryName: null,
-    subProducts: []
+    subProducts: [],
+    categoryBannerText: ''
   },
   actions: {
     getSubMenu (context, {categoryId}) {
@@ -17,7 +18,8 @@ export default{
         let subMenuTotalData = response.data.data
         let subProducts = response.data.data[0].subProducts
         let categoryName = response.data.data[0].categoryName
-        context.commit('subMenuTotalData', {subMenuTotalData, categoryName, subProducts})
+        let {categoryBannerText} = response.data.data[0]
+        context.commit('subMenuTotalData', {subMenuTotalData, categoryName, subProducts, categoryBannerText})
         context.commit('LOADING', false, {root: true})
       }).catch(error => {
         console.log(error)
@@ -26,10 +28,11 @@ export default{
     }
   },
   mutations: {
-    subMenuTotalData (state, {subMenuTotalData, categoryName, subProducts}) {
+    subMenuTotalData (state, {subMenuTotalData, categoryName, subProducts, categoryBannerText}) {
       state.subMenuTotalData = subMenuTotalData
       state.categoryName = categoryName
       state.subProducts = subProducts
+      state.categoryBannerText = categoryBannerText
     }
   }
 }

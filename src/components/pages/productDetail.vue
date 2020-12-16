@@ -12,7 +12,7 @@
       //- 裝訂方式
       .row.bookBinding
         .col-sm-12.px-0.text-center
-          h2.font-weight-bold.mb-0.text-secondary 隨心所欲選擇您要的裝訂方式
+          h2.font-weight-bold.mb-0.text-secondary {{categoryBannerText}}
     //- 不同的裝訂方式
     .container.bookBindingProduct
       .row.justify-content-center
@@ -75,7 +75,8 @@ export default {
     ...mapState({
       subMenuTotalData: state => state.productDetailModules.subMenuTotalData,
       categoryName: state => state.productDetailModules.categoryName,
-      subProducts: state => state.productDetailModules.subProducts
+      subProducts: state => state.productDetailModules.subProducts,
+      categoryBannerText: state => state.productDetailModules.categoryBannerText
     })
   },
   async created () {

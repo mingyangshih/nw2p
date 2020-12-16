@@ -1,10 +1,10 @@
 <template>
   <div class="swiperComponent" :class="{'mt-3' : viewportWidth <= 640}">
-    <swiper :options="swiperOptionTop" class="gallery-top" ref="swiperTop"  >
+    <swiper :options="swiperOptionTop" class="gallery-top" ref="swiperTop"  v-if="productItemAlbum.length > 0">
     <!-- slides -->
-      <swiper-slide class="bigImg" v-for="item in productItem" :key="item.Id"><img :src="item.imgcover" alt=""></swiper-slide>
+      <swiper-slide class="bigImg" v-for="item in productItemAlbum" :key="item.albumId"><img :src="item.productAlbum" alt=""></swiper-slide>
       <!-- Optional controls -->
-      <!-- <div class="swiper-pagination"  slot="pagination"></div> -->
+      <div class="swiper-pagination"  slot="pagination"></div>
       <!-- <div class="swiper-button-prev" slot="button-prev"></div> -->
       <!-- <div class="swiper-button-next" slot="button-next"></div> -->
       <!-- <div class="swiper-scrollbar"   slot="scrollbar"></div> -->
@@ -33,33 +33,28 @@ export default {
   data () {
     return {
       swiperOptionTop: {
-        spaceBetween: 10,
+        notNextTick: true,
+        loop: true,
         slidesPerView: 1,
-        loopedSlides: 1, // looped slides should be the same
+        initialSlide: 0,
+        clickable: true,
         effect: 'fade',
-        loop: false,
         pagination: {
           el: '.swiper-pagination',
           clickable: true,
           type: 'bullets'
         },
-        updateOnWindowResize: true
-      },
-      swiperOptionThumbs: {
-        spaceBetween: 10,
-        touchRatio: 0.2,
-        slidesPerView: 'auto',
-        loopedSlides: 1, // looped slides should be the same
-        slideToClickedSlide: true,
-        centeredSlides: true,
-        loop: true
+        updateOnWindowResize: true,
+        autoplay: {
+          delay: 5000,
+          disableOnInteraction: false
+        }
       }
-      // productPattern: []
     }
   },
   computed: {
     ...mapState({
-      productItem: state => state.designerItemModules.productItem
+      productItemAlbum: state => state.designerItemModules.productItemAlbum
     })
   }
 }
