@@ -37,9 +37,9 @@
                 p(v-else v-html="specId_sizeId_info.productIntroRightCol[idx]")
           hr.mt-0
           //- 沒有活動用這個
-          div(v-if="discountprice === null").newPlatform.text-primary.d-flex.font-weight-bold.my-3 新平台，新體驗，正式上線！<p class="mb-0 soldPrice" ><span class="fz26 " >NT {{specId_sizeId_info.price | currency}}</span><span class="ml-2" v-if="specId_sizeId_info.priceRange">起</span></p>
+          div(v-if="discountprice === null").newPlatform.text-primary.d-flex.font-weight-bold.my-3 <span v-html="standardPageNotify"></span><p class="mb-0 soldPrice" ><span class="fz26 " >NT {{specId_sizeId_info.price | currency}}</span><span class="ml-2" v-if="specId_sizeId_info.priceRange">起</span></p>
           //- 活動用這個
-          div(v-else).newPlatform.text-primary.d-flex.font-weight-bold.my-3.align-items-center 新平台，新體驗，正式上線！
+          div(v-else).newPlatform.text-primary.d-flex.font-weight-bold.my-3.align-items-center <span v-html="standardPageNotify"></span>
             <p class="mb-0 discountStyle soldPrice" ><span class="d-flex">NT {{specId_sizeId_info.price | currency}}</span><span class="ml-2" v-if="specId_sizeId_info.priceRange">起</span></p>
             .text-danger.activityPrice(v-html="discountprice")
           .d-flex.btnBox
@@ -108,7 +108,8 @@ export default {
       timer: false,
       fullWidth: document.body.clientWidth,
       categoryId: null,
-      materialPage: null
+      materialPage: null,
+      standardPageNotify: ''
     }
   },
   computed: {
@@ -193,6 +194,8 @@ export default {
     vm.categoryId = categoryId
     // call productDetail.js 內的actions
     vm.$store.dispatch('getSubMenu', {categoryId})
+    // 取得apiPath內standard 畫面行銷文字 standardPageNotify
+    vm.standardPageNotify = window.standardPageNotify
   }
 }
 </script>

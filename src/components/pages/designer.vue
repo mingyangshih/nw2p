@@ -123,7 +123,7 @@ export default {
 
 <style lang="scss" scoped>
   $s20: 20px;
-  $serif: 'Noto Serif TC', serif;
+  $serif: 'Noto Serif TC', serif, Apple Color Emoji, Segoe UI Emoji, Segoe UI Symbol, Noto Color Emoji;
   .titleFont{
     font-size: 24px;
     font-family: $serif;

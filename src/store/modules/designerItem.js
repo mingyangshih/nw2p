@@ -15,15 +15,16 @@ export default {
     editLink: '',
     recommendedDesigner: [],
     recommendedPrdouct: [],
-    productItemAlbum: []
+    productItemAlbum: [],
+    productItemFeature: []
   },
   actions: {
     getDesignerItem ({commit}, {designerItemId}) {
       commit('LOADING', true, {root: true})
       let API_PATH = process.env.API
       return axios.get(`${API_PATH}design/getdetail/${designerItemId}`).then(response => {
-        let {productItem, productIntroDesc, productNotes, productPattern, productFeature, purchaseNotice, designerMaster, recommendedDesigner, recommendedPrdouct, productItemAlbum} = response.data.data
-        commit('init', {productItem, productIntroDesc, productNotes, productPattern, productFeature, purchaseNotice, designerMaster, recommendedDesigner, recommendedPrdouct, productItemAlbum})
+        let {productItem, productIntroDesc, productNotes, productPattern, productFeature, purchaseNotice, designerMaster, recommendedDesigner, recommendedPrdouct, productItemAlbum, productItemFeature} = response.data.data
+        commit('init', {productItem, productIntroDesc, productNotes, productPattern, productFeature, purchaseNotice, designerMaster, recommendedDesigner, recommendedPrdouct, productItemAlbum, productItemFeature})
         commit('LOADING', false, {root: true})
       }).catch(error => {
         console.log(error)
@@ -31,7 +32,7 @@ export default {
     }
   },
   mutations: {
-    init (state, {productItem, productIntroDesc, productNotes, productPattern, productFeature, purchaseNotice, designerMaster, recommendedDesigner, recommendedPrdouct, productItemAlbum}) {
+    init (state, {productItem, productIntroDesc, productNotes, productPattern, productFeature, purchaseNotice, designerMaster, recommendedDesigner, recommendedPrdouct, productItemAlbum, productItemFeature}) {
       state.productItem = productItem
       state.productName = productItem[0].productName
       state.templateName = productItem[0].templateName
@@ -48,6 +49,7 @@ export default {
       state.recommendedDesigner = recommendedDesigner
       state.recommendedPrdouct = recommendedPrdouct
       state.productItemAlbum = productItemAlbum
+      state.productItemFeature = productItemFeature
     },
     choosedPatteren (state, {Id, editLink}) {
       state.choosedPatterenID = Id

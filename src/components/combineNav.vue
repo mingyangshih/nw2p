@@ -255,6 +255,7 @@ export default{
     background: white;
     width: 100%;
     display: flex;
+    font-family: 'Noto Serif TC', serif, Apple Color Emoji, Segoe UI Emoji, Segoe UI Symbol, Noto Color Emoji;;
     .xBox{
       display: none;
     }
@@ -435,6 +436,7 @@ export default{
     }
     .itemHover{
       color:black;
+      font-family: 'Noto Serif TC', serif, Apple Color Emoji, Segoe UI Emoji, Segoe UI Symbol, Noto Color Emoji;
     }
     .itemHover:hover{
       color: rgba(0,0,0,.3);
@@ -455,6 +457,7 @@ export default{
     border: 1px solid rgba(0,0,0,.15);
     border-radius: .25rem;
     color: black;
+    white-space: nowrap;
     &::before{
       display:block;
       content: "";
@@ -483,6 +486,7 @@ export default{
     }
     .itemHover{
       color:black;
+      font-family: 'Noto Serif TC', serif, Apple Color Emoji, Segoe UI Emoji, Segoe UI Symbol, Noto Color Emoji;;
     }
     .itemHover:hover{
       color: rgba(0,0,0,.3);

@@ -39,6 +39,16 @@
       .row.justify-content-center.py-4
         h2.font-weight-bold.mb-0.text-secondary.secondTitle 產品特性
       hr(v-if="fullWidth > 640").mt-0.mb-5
+    .container(v-for="(item,idx) in productItemFeature" )
+      .row.justify-content-center(:class="{'flex-row-reverse': idx%2 == 0}")
+        .col-md-5
+          .under_second_banner_des_box_left
+            .glasses
+              p.font-weight-bold.text-dark.under_secondbanner_des_title(:class="{'mb-3' : fullWidth <= 640}") {{item.featureTitle}}
+              p.under_secondbanner_des.mb-0(:class="{'text-justify' : fullWidth <= 640}" v-html="item.featureDesc")
+        .col-md-7.bgSetting
+          img(:src="item.featurePicture")
+      hr.my-5
     .container(v-for="(item,idx) in productFeature" )
       .row.justify-content-center(:class="{'flex-row-reverse': idx%2 !== 0}")
         .col-md-5
@@ -102,7 +112,8 @@ export default {
       productFeature: state => state.designerItemModules.productFeature,
       purchaseNotice: state => state.designerItemModules.purchaseNotice,
       choosedPatterenID: state => state.designerItemModules.choosedPatterenID,
-      editLink: state => state.designerItemModules.editLink
+      editLink: state => state.designerItemModules.editLink,
+      productItemFeature: state => state.designerItemModules.productItemFeature
     })
   },
   mounted () {
