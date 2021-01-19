@@ -41,6 +41,15 @@
               p(@click.prevent="productdetail(categoryId[idx])" v-if="eachCategoryNumber[idx] > 1").font-weight-bold.pl-3.py-2.mb-0.allProdItemDetailItem.fz14.text-decoration.none.text-dark <span @click="sideBarShowEvent">{{item}}</span>
               p(v-else @click.prevent="standard(eachCategoryProduct[idx][0])").font-weight-bold.pl-3.py-2.mb-0.allProdItemDetailItem.fz14.text-decoration.none.text-dark <span @click="sideBarShowEvent">{{item}}</span>
               p.mb-0.font-weight-bold.pl-3.py-2.allProdItemDetailItem.fz14.text-decoration-none.text-dark( v-for="(item1,idx1) in totalProduct" :key="idx1" v-if="item1.productCategory === item" @click.prevent="standard(item1.productId)") - <span >{{item1.productName}}</span>
+          //- 設計師品牌館
+          <input type="checkbox" id="designer" class="d-none">
+          label(for="designer").navItem.font-weight-bold.align-items-center.mb-0.d-flex 設計師品牌館<i class="fas fa-chevron-down ml-auto"></i><i class="fas fa-chevron-up ml-auto"></i>
+          .allProdItemBoxDesigner.w-100
+            .navItem.font-weight-bold.allProdItem( v-for="(item,idx) in totalDesignCategory" )
+              input.allDesignerItemDetail.d-none(type="checkbox" :id="'designer'+idx")
+              label.d-flex(:for="'designer'+idx").mb-0 {{item}} <i class="fas fa-chevron-down ml-auto"></i><i class="fas fa-chevron-up ml-auto"></i>
+              .flex-column.allProdItemDetailItem
+                span.text-decoration-none.pl-3.mb-2.itemHover.text-dark(v-for="item1 in totalDesign" v-if="item1.groupcode === item" :key="item1.productId" :to="'/designer/' + item1.id + '/' + item1.designerId" @click="designer(item1.id,item1.designerId)") - {{item1.designerName}}
       label(@click="$router.push('/serviceContent'); $store.state.sideBarShow = false").item.helpCenter.mb-0.align-items-center 幫助中心
       label(@click="$router.push(`/activity/${activityId}`); $store.state.sideBarShow = false" v-if="activityOpen").item.helpCenter.mb-0.align-items-center.activity 抽獎活動
       //- label.mb-0.ml-3(data-toggle="modal" data-target="#loginModal") SSO登入測試
@@ -183,6 +192,12 @@ export default{
       })
       this.$store.commit('sideBarShowEvent', false)
       // window.location.reload()
+    },
+    designer (id, designerId) {
+      this.$router.push(`/designer/${id}/${designerId}`).catch(err => {
+        if (err.name === 'NavigationDuplicated') window.location.reload()
+      })
+      this.$store.commit('sideBarShowEvent', false)
     }
   },
   computed: {
@@ -568,6 +583,37 @@ export default{
     }
     &~.allProdItemDetailItem{
       display:block;
+    }
+  }
+  // 設計師
+  .allProdItemBoxDesigner{
+    display:none;
+  }
+  #designer:checked~label[for="designer"]{
+    &>.fa-chevron-up{
+      display: initial;
+      color:rgba(128,128,128, .4);
+    }
+    &>.fa-chevron-down{
+      display: none;
+    }
+    &~.allProdItemBoxDesigner{
+      display: block;
+      width: 100%;
+    }
+  }
+  .allDesignerItemDetail:checked{
+    &~label{
+      color: rgba(128,128,128, .4);
+      &>.fa-chevron-down{
+        display: none;
+      }
+      &>.fa-chevron-up{
+        display: block;
+      }
+    }
+    &~.allProdItemDetailItem{
+      display:flex;
     }
   }
   // sidebarbox
