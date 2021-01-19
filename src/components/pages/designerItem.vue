@@ -31,7 +31,7 @@
                 .p-1.border.mx-1.patterenImgBox(v-for="item in productPattern" :class="{'border-dark': choosedPatterenID === item.Id}" @click="changePatteren(item.Id, item.editLink)")
                   img( :src="item.imgcover").mx-1.patterenImg
           hr.mt-3
-          div(:class="{ 'flex-column' : fullWidth <= 640, 'align-items-center' : fullWidth <= 640}").text-primary.d-flex.font-weight-bold.my-3 新平台，新體驗，正式上線！<p class="mb-0" :class="{'ml-auto' : fullWidth > 640}"><span class="price" >NT {{price | currency}}</span></p>
+          div(:class="{ 'flex-column' : fullWidth <= 640, 'align-items-center' : fullWidth <= 640}").text-primary.d-flex.font-weight-bold.my-3 <span v-html="standardPageNotify"></span><p class="mb-0" :class="{'ml-auto' : fullWidth > 640}"><span class="price" >NT {{price | currency}}</span></p>
           .d-flex.btnBox.flex-wrap(:class="{'justify-content-center' : fullWidth <= 640}")
             a(:href="editLink" :class="{'w-100' : fullWidth <= 640}").btn.btn-primary.font-weight-bold.btnInPage.py-0.text-white 我要購買
     designerItemSwiper
@@ -83,7 +83,8 @@ export default {
       fullWidth: document.body.clientWidth,
       categoryId: null,
       categoryName: '',
-      standardTitle: ''
+      standardTitle: '',
+      standardPageNotify: ''
     }
   },
   methods: {
@@ -98,6 +99,8 @@ export default {
     await this.$store.dispatch('getDesignerItem', {designerItemId})
     vm.categoryName = vm.productItem[0].categoryName
     vm.categoryId = vm.productItem[0].categoryId
+    // 取得apiPath內standard 畫面行銷文字 standardPageNotify
+    vm.standardPageNotify = window.standardPageNotify
   },
   computed: {
     ...mapState({
