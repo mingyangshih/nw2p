@@ -43,7 +43,7 @@
               p.mb-0.font-weight-bold.pl-3.py-2.allProdItemDetailItem.fz14.text-decoration-none.text-dark( v-for="(item1,idx1) in totalProduct" :key="idx1" v-if="item1.productCategory === item" @click.prevent="standard(item1.productId)") - <span >{{item1.productName}}</span>
           //- 設計師品牌館
           <input type="checkbox" id="designer" class="d-none">
-          label(for="designer").navItem.font-weight-bold.align-items-center.mb-0.d-flex 設計師品牌館<i class="fas fa-chevron-down ml-auto"></i><i class="fas fa-chevron-up ml-auto"></i>
+          label(for="designer").navItem.font-weight-bold.align-items-center.mb-0.d-flex 設計品牌館<i class="fas fa-chevron-down ml-auto"></i><i class="fas fa-chevron-up ml-auto"></i>
           .allProdItemBoxDesigner.w-100
             .navItem.font-weight-bold.allProdItem( v-for="(item,idx) in totalDesignCategory" )
               .flex-column.allProdItemDetailItem
