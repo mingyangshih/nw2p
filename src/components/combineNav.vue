@@ -46,8 +46,6 @@
           label(for="designer").navItem.font-weight-bold.align-items-center.mb-0.d-flex 設計師品牌館<i class="fas fa-chevron-down ml-auto"></i><i class="fas fa-chevron-up ml-auto"></i>
           .allProdItemBoxDesigner.w-100
             .navItem.font-weight-bold.allProdItem( v-for="(item,idx) in totalDesignCategory" )
-              input.allDesignerItemDetail.d-none(type="checkbox" :id="'designer'+idx")
-              label.d-flex(:for="'designer'+idx").mb-0 {{item}} <i class="fas fa-chevron-down ml-auto"></i><i class="fas fa-chevron-up ml-auto"></i>
               .flex-column.allProdItemDetailItem
                 span.text-decoration-none.pl-3.mb-2.itemHover.text-dark(v-for="item1 in totalDesign" v-if="item1.groupcode === item" :key="item1.productId" :to="'/designer/' + item1.id + '/' + item1.designerId" @click="designer(item1.id,item1.designerId)") - {{item1.designerName}}
       label(@click="$router.push('/serviceContent'); $store.state.sideBarShow = false").item.helpCenter.mb-0.align-items-center 幫助中心
@@ -588,6 +586,9 @@ export default{
   // 設計師
   .allProdItemBoxDesigner{
     display:none;
+    .allProdItemDetailItem{
+      display:flex;
+    }
   }
   #designer:checked~label[for="designer"]{
     &>.fa-chevron-up{
@@ -600,20 +601,6 @@ export default{
     &~.allProdItemBoxDesigner{
       display: block;
       width: 100%;
-    }
-  }
-  .allDesignerItemDetail:checked{
-    &~label{
-      color: rgba(128,128,128, .4);
-      &>.fa-chevron-down{
-        display: none;
-      }
-      &>.fa-chevron-up{
-        display: block;
-      }
-    }
-    &~.allProdItemDetailItem{
-      display:flex;
     }
   }
   // sidebarbox
