@@ -17,6 +17,7 @@ import designerModules from './modules/designer'
 import designerItemModules from './modules/designerItem'
 import homeSwiperModules from './modules/homeswiper'
 import invoiceSearchModules from './modules/invoiceSearch'
+import exchangeModules from './modules/exchange'
 Vue.use(Vuex)
 
 export default new Vuex.Store({
@@ -59,6 +60,7 @@ export default new Vuex.Store({
     designerModules,
     designerItemModules,
     homeSwiperModules,
-    invoiceSearchModules
+    invoiceSearchModules,
+    exchangeModules
   }
 })

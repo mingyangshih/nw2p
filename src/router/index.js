@@ -25,6 +25,7 @@ import activity from '@/components/pages/activity'
 import invoice from '@/components/pages/invoice'
 import invoiceSearch from '@/components/invoiceSearch'
 import paperMaterial from '@/components/pages/paperMaterial'
+import exchange from '@/components/pages/exchange'
 
 Vue.use(Router)
 
@@ -61,7 +62,7 @@ export default new Router({
     },
     {
       path: '/designer/:id/:designerId',
-      name: 'stylePage',
+      name: 'designer',
       component: designer
     },
     {
@@ -161,6 +162,11 @@ export default new Router({
       path: '/paperMaterial',
       name: 'paperMaterial',
       component: paperMaterial
+    },
+    {
+      path: '/exchange',
+      name: 'exchange',
+      component: exchange
     }
   ],
   scrollBehavior (to, from, savedPosition) {
