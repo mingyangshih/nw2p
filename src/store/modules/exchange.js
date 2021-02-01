@@ -3,7 +3,8 @@ import axios from 'axios'
 export default{
   namespaced: true,
   state: {
-    coupons: []
+    coupons: [],
+    kind: []
   },
   actions: {
     getGroupCoupon ({commit}) {
@@ -11,15 +12,25 @@ export default{
       commit('LOADING', true, {root: true})
       axios.get(`${API_PATH}groupcoupon/getdetail`).then(rep => {
         let coupons = rep.data.data.productItem
-        commit('getGroupCoupon', {coupons})
+        let kind = []
+        coupons.forEach(item => {
+          // productName
+          if (kind.indexOf(item.productName) < 0) {
+            kind.push(item.productName)
+          }
+        })
+        console.log(kind)
+        console.log(coupons)
+        commit('getGroupCoupon', {coupons, kind})
       }).finally(() => {
         commit('LOADING', false, {root: true})
       })
     }
   },
   mutations: {
-    getGroupCoupon (state, {coupons}) {
+    getGroupCoupon (state, {coupons, kind}) {
       state.coupons = coupons
+      state.kind = kind
     }
 
   }
