@@ -3,7 +3,7 @@
     <div class="desktop">
       <swiper :options="swiperOptionTop" class="gallery-top" ref="swiperTop" v-if="pcBanner.length>0">
     <!-- slides -->
-        <swiper-slide class="bigImg" v-for="item in pcBanner" :key="item.displayseq" >
+        <swiper-slide class="bigImg" v-for="item in pcBanner" :key="item.href" >
           <a :href="item.href" v-if="item.href !== null" target="_blank">
             <img :src="item.img" alt="" class="img-fluid hasUrl">
           </a>
@@ -20,7 +20,7 @@
     <div class="mobile">
       <swiper :options="swiperOptionTop" class="gallery-top" ref="swiperTop" v-if="mobileBanner.length>0">
     <!-- slides -->
-        <swiper-slide class="bigImg" v-for="item in mobileBanner" :key="item.displayseq">
+        <swiper-slide class="bigImg" v-for="item in mobileBanner" :key="item.href">
           <a :href="item.href" v-if="item.href !== null" target="_blank">
             <img :src="item.img" alt="" class="img-fluid hasUrl">
           </a>
